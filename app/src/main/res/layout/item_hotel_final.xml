@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    app:cardCornerRadius="4dp"
+    android:elevation="2dp"
+    android:layout_marginStart="@dimen/standard_margin"
+    android:layout_marginEnd="@dimen/standard_margin"
+    android:layout_marginBottom="14dp"
+    android:layout_marginTop="4dp"
+    android:clickable="true"
+    android:background="@android:color/transparent"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            android:id="@+id/shapeiv_hotel_item"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shape_roundRect_bottomLeftRadius="4dp"
+            app:shape_roundRect_bottomRightRadius="0dp"
+            app:shape_roundRect_topLeftRadius="4dp"
+            app:shape_roundRect_topRightRadius="0dp">
+
+            <ImageView
+                android:id="@+id/iv_hotel_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_hotel" />
+
+
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+
+        <TextView
+            android:id="@+id/tv_hotel_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/tv_item_hotel_name"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar_hotel_item" />
+
+
+        <me.zhanghai.android.materialratingbar.MaterialRatingBar
+            android:id="@+id/ratingBar_hotel_item"
+            style="@style/Widget.MaterialRatingBar.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:rating="2.5"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:mrb_progressBackgroundTint="@android:color/transparent"
+            app:mrb_progressTint="@color/colorPrimary"
+            app:mrb_secondaryProgressTint="@color/black3" />
+
+        <TextView
+            android:id="@+id/tv_hotel_item_address"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:maxLength="25"
+            android:text="Palang Shahr, Palang Sq."
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_item_name" />
+
+        <TextView
+            android:id="@+id/tv_hotel_item_old_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:maxLength="20"
+            android:text="$199"
+            android:textAllCaps="false"
+            android:textColor="@color/light_gray"
+            android:textSize="@dimen/small"
+            app:layout_constraintBottom_toTopOf="@+id/tv_hotel_item_new_price"
+            app:layout_constraintStart_toStartOf="@+id/guideline16" />
+
+        <TextView
+            android:id="@+id/tv_hotel_item_new_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLength="20"
+            android:text="$149"
+            android:textAllCaps="false"
+            android:textColor="@color/red"
+            android:textSize="@dimen/header_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="25% off"
+            android:textSize="@dimen/small"
+            android:textColor="@color/green"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_hotel_item_new_price"
+            app:layout_constraintStart_toEndOf="@+id/tv_hotel_item_new_price" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:text="Free cancellation, Fre Wifi"
+            android:textSize="@dimen/small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline16"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hotel_item_address" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

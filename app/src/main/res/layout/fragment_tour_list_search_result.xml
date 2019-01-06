@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/cl_tourlist"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f1f1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ab_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_hotelsearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_tour_list_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/title_small_font_size"
+                android:text="Tehran •"/>
+
+
+            <ImageView
+                android:id="@+id/iv_tour_list_search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_search_white_24dp"
+                android:layout_marginEnd="@dimen/standard_margin"
+                android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_tour_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+        <RelativeLayout
+            android:id="@+id/rl_tour_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/tv_search_check_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginStart="@dimen/large_margin"
+                android:text="11 Nov 2018"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_search_night_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_thin"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_centerHorizontal="true"
+                android:text="4 nights"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="@drawable/curve_shape_gray"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/small"
+                android:elevation="3dp"
+                />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="40dp"
+                android:background="@color/black3"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:elevation="0dp"/>
+
+            <TextView
+                android:id="@+id/tv_search_check_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/large_margin"
+                android:text="17 Nov 2018"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/large_margin"
+                />
+
+        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+        android:id="@+id/shimmer_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/small_margin"
+        android:clipToPadding="false"
+        app:shimmer_demo_child_count="10"
+        app:shimmer_demo_layout="@layout/shimmer_item_tour"
+        app:shimmer_demo_layout_manager_type="linear_vertical"
+        app:shimmer_demo_angle="20"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ScrollView01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/mainListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:paddingBottom="@dimen/large_margin"
+            android:paddingLeft="@dimen/small_margin"
+            android:paddingRight="@dimen/small_margin"
+            android:paddingTop="@dimen/standard_margin"
+            android:scrollbars="none"
+            android:nestedScrollingEnabled="true"
+            android:layout_below="@+id/tv_tour_list_results_num"
+           />
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fbutton_hotellistsearchresult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/small_margin"
+        android:background="@drawable/curve_shape_fill_blue"
+        android:src="@drawable/ic_filter_list_black_24dp"
+        app:fabSize="normal" />
+
+    <include layout="@layout/bottom_sheet_filter_tour" />
+    <include layout="@layout/bottom_sheet_date_picker" />
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

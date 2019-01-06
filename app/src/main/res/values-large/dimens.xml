@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // Margins
+    <dimen name="small_margin">16dp</dimen>
+    <dimen name="standard_margin">32dp</dimen>
+    <dimen name="large_margin">48dp</dimen>
+    <dimen name="extra_large_margin">64dp</dimen>
+    <dimen name="xx_large_margin">80dp</dimen>
+    <dimen name="button_standard_end_start_margin">80dp</dimen>
+
+
+
+    // Fonts
+    <dimen name="app_name_font_size">40sp</dimen>
+    <dimen name="title_small_font_size">28sp</dimen>
+    <dimen name="standard_font_size">22sp</dimen>
+    <dimen name="button_standard_font">18sp</dimen>
+    <dimen name="header_0">34sp</dimen>
+    <dimen name="header_1">28sp</dimen>
+    <dimen name="header_2">20sp</dimen>
+    <dimen name="standard">16sp</dimen>
+    <dimen name="small">12sp</dimen>
+
+
+
+
+
+    <dimen name="cardview_mainpage_service">130dp</dimen>
+    <dimen name="bannerslider_mainpage_service">250dp</dimen>
+    <dimen name="search_mainpage_service">40dp</dimen>
+    <dimen name="arc_signup">300dp</dimen>
+
+</resources>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <!-- content header line -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="7dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="7dp">
+
+        <TextView
+            android:id="@+id/tv_tour_item_big_group_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Natioal park tour"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/standard" />
+
+        <TextView
+            android:id="@+id/tv_tour_item_big_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/price_mock"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/standard"
+            android:textStyle="bold" />
+
+
+       <!--  icon -->
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/menu_icon"-->
+     <!--/>-->
+
+
+    </RelativeLayout>
+
+    <!-- content header image -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <ImageView
+            android:id="@+id/iv_tour_item_big_tour_img"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/hotel" />
+
+
+        <com.dagang.library.GradientButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            app:button_text="Bus VIP 35"
+            app:button_start_color="@android:color/transparent"
+            app:button_end_color="@android:color/transparent"
+            app:button_text_color="@color/white"
+            app:button_shadow_color="@color/colorPrimaryDark"
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+            android:outlineSpotShadowColor="@color/colorPrimaryDark"
+            app:button_shadow_angle="35"
+            android:layout_marginStart="20dp"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/head_image_left_text"-->
+            <!--style="@style/ContentImageBadgeText"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@id/head_image"-->
+            <!--android:layout_alignLeft="@id/head_image"-->
+            <!--android:layout_alignStart="@id/head_image"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingStart="20dp"-->
+            <!--android:text="@string/requests_count_mock" />-->
+
+        <!--<TextView-->
+            <!--style="@style/ContentImageBadgeTitle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@id/head_image_left_text"-->
+            <!--android:layout_alignLeft="@id/head_image_left_text"-->
+            <!--android:layout_alignStart="@id/head_image_left_text"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingStart="20dp"-->
+            <!--android:text="@string/tv_item_capacity" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/head_image_right_text"-->
+            <!--style="@style/ContentImageBadgeText"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@id/head_image"-->
+            <!--android:layout_alignEnd="@id/head_image"-->
+            <!--android:layout_alignRight="@id/head_image"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:paddingEnd="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:text="@string/weight_mock" />-->
+
+        <!--<TextView-->
+            <!--style="@style/ContentImageBadgeTitle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@id/head_image_right_text"-->
+            <!--android:layout_alignLeft="@id/head_image_right_text"-->
+            <!--android:layout_alignStart="@id/head_image_right_text"-->
+            <!--android:text="@string/tv_item_language" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/head_image_center_text"-->
+            <!--style="@style/ContentImageBadgeText"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignBottom="@id/head_image"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:paddingBottom="10dp"-->
+            <!--android:text="@string/pledge_mock" />-->
+
+        <!--<TextView-->
+            <!--style="@style/ContentImageBadgeTitle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_above="@id/head_image_center_text"-->
+            <!--android:layout_alignLeft="@id/head_image_center_text"-->
+            <!--android:layout_alignStart="@id/head_image_center_text"-->
+            <!--android:text="@string/tv_item_language" />-->
+
+
+    </RelativeLayout>
+
+    <!-- content body layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgContent"
+        android:orientation="vertical"
+        android:paddingBottom="6dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp">
+
+        <!-- avatar and type part -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <!--<TextView-->
+                <!--android:id="@+id/content_avatar_title"-->
+                <!--style="@style/ContentMainBadgeTitle"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_marginBottom="5dp"-->
+                <!--android:text="@string/tour_leader" />-->
+
+            <com.github.florent37.shapeofview.shapes.RoundRectView
+                android:id="@+id/iv_tour_item_big_tour_leader_img_container"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:shape_roundRect_bottomLeftRadius="2dp"
+                app:shape_roundRect_bottomRightRadius="2dp"
+                app:shape_roundRect_topLeftRadius="2dp"
+                app:shape_roundRect_topRightRadius="2dp"
+                >
+                <ImageView
+                    android:id="@+id/iv_tour_item_big_tour_leader_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avatar"
+                    />
+
+
+
+            </com.github.florent37.shapeofview.shapes.RoundRectView>
+
+            <TextView
+                android:id="@+id/tv_tour_item_big_tour_leader_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/iv_tour_item_big_tour_leader_img_container"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/iv_tour_item_big_tour_leader_img_container"
+                android:text="@string/client_name_mock"
+                android:textColor="@color/black"
+                android:textSize="@dimen/standard"
+                android:fontFamily="@font/roboto_medium" />
+
+            <TextView
+                android:id="@+id/tv_tour_item_big_tourleade_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tv_tour_item_big_tour_leader_name"
+                android:layout_below="@id/tv_tour_item_big_tour_leader_name"
+                android:text="@string/tour_leader"
+                android:textSize="@dimen/small"/>
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignBottom="@+id/tv_tour_item_big_tourleade_txt"-->
+                <!--android:layout_marginBottom="-2dp"-->
+                <!--android:layout_marginLeft="3dp"-->
+                <!--android:layout_marginStart="3dp"-->
+                <!--android:layout_toEndOf="@id/tv_tour_item_big_tourleade_txt"-->
+                <!--android:layout_toRightOf="@id/tv_tour_item_big_tourleade_txt"-->
+                <!--android:text="@string/rating_mock"-->
+                <!--android:textColor="@color/contentBadgeTitle"-->
+                <!--android:textSize="12sp" />-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@drawable/arrow"-->
+            <!--/>-->
+
+        </RelativeLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="9dp"
+            android:src="@color/contentDividerLine" />
+
+        <!-- addresses part -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/content_from_badge"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/from_badge"
+                    android:textSize="@dimen/small"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_start_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/content_from_badge"
+                    android:layout_below="@id/content_from_badge"
+                    android:text="Tehran"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/standard"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_start_point_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_tour_item_big_start_point"
+                    android:layout_below="@id/tv_tour_item_big_start_point"
+                    android:text="@string/content_from2_mock"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/small" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/content_to_badge"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/to_badge"
+                    android:textSize="@dimen/small"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_end_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/content_to_badge"
+                    android:layout_below="@id/content_to_badge"
+                    android:text="Kashan"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/standard"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_end_point_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_tour_item_big_end_point"
+                    android:layout_below="@id/tv_tour_item_big_end_point"
+                    android:text="@string/content_to2_mock"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/small" />
+
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:src="@drawable/arrow"-->
+                <!--/>-->
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- divider line -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="7dp"
+            android:src="@color/contentDividerLine" />
+
+        <!-- dates part -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/content_delivery_date_badge"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/tv_tour_item_big_start_date"
+                    android:textSize="@dimen/small"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_start_day_and_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/content_delivery_date_badge"
+                    android:layout_below="@id/content_delivery_date_badge"
+                    android:text="@string/delivery_time_mock"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_tour_item_big_start_day_and_time"
+                    android:layout_below="@id/tv_tour_item_big_start_day_and_time"
+                    android:text="@string/delivery_date_mock"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/standard" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/content_deadline_badge"
+                    style="@style/ContentMainBadgeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/tv_tour_item_big_end_date"
+                    android:textSize="@dimen/small"/>
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_end_day_and_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/content_deadline_badge"
+                    android:layout_below="@id/content_deadline_badge"
+                    android:text="@string/deadline_time_mock"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/small"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_tour_item_big_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_tour_item_big_end_day_and_time"
+                    android:layout_alignStart="@id/tv_tour_item_big_end_day_and_time"
+                    android:layout_below="@id/tv_tour_item_big_end_day_and_time"
+                    android:text="may 16,2016"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="@dimen/standard" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- request button -->
+        <com.dagang.library.GradientButton
+            android:id="@+id/content_request_btn"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="8dp"
+            app:button_start_color="@color/colorAccent"
+            app:button_end_color="@color/colorAccent"
+            app:button_text="@string/buton_tour_item_big_details"
+            app:button_text_color="@color/black"
+            android:textAlignment="center"
+            android:textSize="@dimen/standard"
+            app:button_radius="4dp"
+            app:button_is_shadowed="false"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="5 people have purchased this tour"
+            android:textAlignment="center"
+            android:textColor="@color/contentBadgeTitle"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

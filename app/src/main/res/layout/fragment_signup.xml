@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/bottom_sheet_sign_up"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:elevation="5dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <com.github.florent37.shapeofview.shapes.ArcView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/arc_signup"
+        app:shape_arc_cropDirection="outside"
+        app:shape_arc_height="40dp"
+        app:shape_arc_position="bottom"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_sign_up_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_close_white_24dp"
+                    android:padding="16dp"
+                   />
+
+                <Button
+                    android:id="@+id/button_signup_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/change_the_language"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/small"
+                    android:padding="4dp"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:background="@android:color/transparent"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginEnd="@dimen/standard_margin"
+                android:gravity="center"
+                android:text="@string/tv_signup_title"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:fontFamily="@font/roboto_thin" />
+
+        </LinearLayout>
+    </com.github.florent37.shapeofview.shapes.ArcView>
+
+    <!--<Button-->
+        <!--android:id="@+id/button_signup_google"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
+        <!--android:layout_marginTop="@dimen/xx_large_margin"-->
+        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
+        <!--android:background="@drawable/curve_shape"-->
+        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
+        <!--android:text="@string/button_signup_google"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/blue_dark"-->
+        <!--android:textSize="@dimen/button_standard_font" />-->
+
+    <com.shaishavgandhi.loginbuttons.GoogleButton
+        android:id="@+id/button_signup_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_standard_end_start_margin"
+        android:layout_marginTop="@dimen/xx_large_margin"
+        android:layout_marginEnd="@dimen/button_standard_end_start_margin"
+        android:textAlignment="center"
+        app:roundedCorner="true"
+        app:iconCenterAligned="false"
+        app:roundedCornerRadius="75dp"
+        app:iconSize="30dp"
+        android:textAllCaps="false"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/button_signup_google"
+        />
+
+
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
+        <!--android:layout_marginTop="@dimen/standard_margin"-->
+        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
+        <!--android:background="@drawable/curve_shape"-->
+        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
+        <!--android:text="@string/button_signup_facebook"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/blue_dark"-->
+        <!--android:textSize="@dimen/button_standard_font" />-->
+
+    <com.shaishavgandhi.loginbuttons.FacebookButton
+        android:id="@+id/button_signup_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_standard_end_start_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/button_standard_end_start_margin"
+        android:textAlignment="center"
+        app:roundedCorner="true"
+        app:iconCenterAligned="false"
+        app:roundedCornerRadius="75dp"
+        app:iconSize="30dp"
+        android:textAllCaps="false"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:textColor="@color/white"
+        android:text="@string/button_signup_facebook"
+        />
+
+    <!--<Button-->
+        <!--android:id="@+id/button_signup_login_as_guest"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
+        <!--android:layout_marginTop="@dimen/standard_margin"-->
+        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
+        <!--android:background="@drawable/curve_shape"-->
+        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
+        <!--android:text="@string/button_signup_loginasguest"-->
+        <!--android:textAllCaps="false"-->
+        <!--android:textColor="@color/blue_dark"-->
+        <!--android:textSize="@dimen/button_standard_font" />-->
+
+    <com.shaishavgandhi.loginbuttons.TwitterButton
+        android:id="@+id/button_signup_twitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/button_standard_end_start_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/button_standard_end_start_margin"
+        app:iconSize="30dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:textAllCaps="false"
+        app:roundedCorner="true"
+        app:iconCenterAligned="false"
+        android:text="Sign in with Twitter"
+        />
+
+
+
+
+</LinearLayout>

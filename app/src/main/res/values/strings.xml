@@ -1,0 +1,112 @@
+<resources>
+    <string name="app_name">YoYo</string>
+
+    <string name="tv_complete_info_main_title">Please Complete your Information</string>
+    <string name="tv_complete_info_title1">Acount Information</string>
+    <string name="tv_complete_info_title2">Personal Information</string>
+    <string name="et_complete_info_firstName">First Name</string>
+    <string name="et_complete_info_lastName">Last Name</string>
+    <string name="et_complete_info_email">Email</string>
+    <string name="tv_complete_info_personal_country">Country/Region</string>
+    <string name="et_complete_info_personal_phone_number">Phone Number</string>
+    <string name="tv_complete_info_personal_date_of_birth">Date of Birth(optional)</string>
+    <string name="et_complete_info_personal_introducer_code">Introducer\'\s Code(optional)</string>
+    <string name="button_complete_info_personal_submit">Submit</string>
+    <string name="tv_mainpage_services">Booking Services •</string>
+    <string name="tv_mainpage_available_services">2 services for now</string>
+    <string name="tv_mainpage_more_services">more services is coming soon</string>
+    <string name="button_mainpage_hotels">Hotels</string>
+    <string name="button_mainpage_tours">Tours</string>
+    <string name="button_mainpage_flights">Flights</string>
+    <string name="button_mainpage_specialOffers">Offers</string>
+    <string name="tv_hotelsearch_title">Staying anywhere?</string>
+    <string name="button_hotelsearch_search">Search</string>
+    <string name="button_hotelsearch_datepicker_from">Check-in</string>
+    <string name="button_hotelsearch_datepicker_to">Check-out</string>
+    <string name="tv_specialoffers_title">Special Offers</string>
+    <string name="tv_signup_title">Welcom to Yoyo</string>
+    <string name="button_signup_google">Sign in with Google</string>
+    <string name="button_signup_facebook">Sign in with Facebook</string>
+    <string name="button_signup_loginasguest">Login As Guest</string>
+    <string name="tv_item_hotel_name">Hotel Name</string>
+    <string name="tv_item_hotel_type">Type : </string>
+    <string name="tv_item_hotel_address">City, District :</string>
+    <string name="tv_item_hotel_price">Price : </string>
+    <string name="tv_item_hotel_price2"> from </string>
+    <string name="navigation_bn_order">Orders</string>
+    <string name="navigation_bn_home">Home</string>
+    <string name="navigation_bn_profile">Profile</string>
+
+    // folding cell strings
+    <string name="order_id_mock" translatable="false"># 1234–5678</string>
+    <string name="price_mock" translatable="false">$25</string>
+    <string name="requests_count_mock" translatable="false">5</string>
+    <string name="tv_item_destination" translatable="false">Destination</string>
+    <string name="weight_mock" translatable="false">50 oz</string>
+    <string name="tv_item_capacity" translatable="false">Capacity</string>
+    <string name="pledge_mock" translatable="false">$150</string>
+    <string name="tv_item_language" translatable="false">Language</string>
+    <string name="sender_badge" translatable="false">SENDER</string>
+    <string name="client_name_mock" translatable="false">Edward Norton</string>
+    <string name="rating_mock" translatable="false">(26)</string>
+    <string name="from_badge" translatable="false">FROM</string>
+    <string name="to_badge" translatable="false">TO</string>
+    <string name="delivery_date_badge" translatable="false">DELIVERY DATE</string>
+    <string name="delivery_time_mock" translatable="false">6:30 pm</string>
+    <string name="delivery_date_mock" translatable="false">May 16, 2016</string>
+    <string name="deadline_badge" translatable="false">REQUEST DEADLINE</string>
+    <string name="deadline_time_mock" translatable="false">24 minutes</string>
+    <string name="request_btn_text" translatable="false">REQUEST</string>
+    <string name="btn_annotation_mock" translatable="false">5 people have sent a request</string>
+    <string name="content_from1_mock">W 90th St</string>
+    <string name="content_from2_mock">New York, NY 10025</string>
+    <string name="content_to1_mock">46th Ave</string>
+    <string name="content_to2_mock">Woodside, NY 11101</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    //direct select
+    <string name="picker_box_arrows_icon">picker box arrows icon</string>
+    <string name="cell_image">cell image</string>
+    <string name="type">Direct Select for Android</string>
+    <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly, if you have any questions, please create an issue on our GitHub account.</string>
+    <string name="customized_picker">Here a fully customized picker with custom background and cell layout:</string>
+    <string name="picker_with_custom_bg">Here a picker with default cell but custom background:</string>
+    <string name="footer_text">by Ramotion inc.</string>
+
+
+    <string name="tv_hotefilter_facilities">Hotel Facilities :</string>
+    <string name="tv_filterhotel_parking">Parking</string>
+    <string name="tv_filterhotel_pool">Pool</string>
+    <string name="tv_filterhotel_garden">Garden</string>
+    <string name="tv_filterhotel_hotel_quality">Hotel Quality :</string>
+    <string name="tv_filterhotel_pricerange">Price Range (per Room,per Night) :</string>
+    <string name="button_filterhotel">Apply</string>
+    <string name="tv_toursearch_tour">Tour</string>
+    <string name="tv_hotelsearch_hotel">Hotels</string>
+    <string name="tv_toursearch_title">Find your Tour</string>
+    <string name="tv_date_picker_check_in">Check-in</string>
+    <string name="tv_date_picker_check_out">Check-out</string>
+    <string name="tv_datepicker_select_date">Select Date</string>
+    <string name="tour_leader">Tour Leader</string>
+    <string name="buton_tour_item_big_details">Details</string>
+    <string name="tv_tour_item_big_start_date">Start date</string>
+    <string name="tv_tour_item_big_end_date">End date</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_profile_sign_out">Sign Out</string>
+    <string name="button_profile_report_an_app_problem">Report an app problem</string>
+    <string name="button_profile_setting">Setting</string>
+    <string name="button_profile_rules">Rules</string>
+    <string name="button_profile_trlavlers_list">Travel Companions</string>
+    <string name="button_profile_edit_profile">Edit Profile</string>
+    <string name="tv_sign_out">Are you sure you want to Sign Out?</string>
+    <string name="tv_about_city_title">About City</string>
+    <string name="tv_filter_hotel_title">Filter</string>
+    <!--<string name="server_client_id">181467561755-ud9pfv5vhac9kqdrkm6d54o1pm525baj.apps.googleusercontent.com</string>-->
+    <string name="server_client_id">181467561755-7uedee591j3jcb4pj09u79t70akkkn0t.apps.googleusercontent.com</string>
+    <string name="tv_hotel_details_des">Description: </string>
+    <string name="tv_hotel_details_rules">Rules: </string>
+    <string name="change_the_language">change the language</string>
+
+</resources>

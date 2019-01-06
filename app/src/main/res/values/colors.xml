@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#f1f1f1</color>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <color name="colorPrimary">#0265d3</color>
+    <color name="colorPrimaryDark">#0a54a7</color>
+    <color name="colorAccent">#fede02</color>
+    <color name="star">#ffda45</color>
+    <color name="colorAccentLight">#fdf4b2</color>
+    <color name="colorPrimaryLight">#bdecff</color>
+    <color name="colorPrimaryShadow">#549cec</color>
+    <color name="white">#fff</color>
+    <color name="green">#5fb783</color>
+    <color name="red">#ff0000</color>
+    <color name="purple_red">#da21b2</color>
+    <color name="purple_light">#e499f9</color>
+    <color name="purple">#c300fa</color>
+    <color name="blue_dark">#4e40bc</color>
+    <color name="golden">#f7fa3b</color>
+    <color name="light_gray">#e1e1e1</color>
+    <color name="light_golden">#c2ad7b</color>
+    <color name="sky_black">#444482</color>
+    <color name="empty">#00000000</color>
+    <color name="black">#000</color>
+    <color name="black1">#333</color>
+    <color name="black2">#666</color>
+    <color name="black3">#999</color>
+    <color name="black4">#ccc</color>
+    <color name="black5">#eee</color>
+    <color name="accent">#ff2d6f</color>
+    <color name="black3_transparent">#b2666666</color>
+    <color name="demo_dark_transparent">#24000000</color>
+
+    //folding cell colors
+    <color name="bgBackSideColor">#f4f0ff</color>
+    <color name="bgTitleLeft">#594691</color>
+    <color name="bgTitleRight">#ffffff</color>
+    <color name="bgContentTop">#594691</color>
+    <color name="bgContent">#ffffff</color>
+    <color name="contentDividerLine">#e0e0e0</color>
+    <color name="contentBadgeTitle">#a9a9a9</color>
+    <color name="titleBadgeTitle">#adafb1</color>
+    <color name="titleBadgeText">#adafb1</color>
+    <color name="mainTextColor">#343d43</color>
+    <color name="btnRequest">#ffbf12</color>
+    <color name="black_overlay">#66000000</color>
+
+    //direct select
+    <color name="selector_border">#dedede</color>
+    <color name="picker_box_border">#eee</color>
+    <color name="picker_box_bg">#ffffff</color>
+    <color name="ds_list_bg">#ffffff</color>
+    <color name="picker_list_text">#232323</color>
+
+</resources>

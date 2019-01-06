@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ds="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ramotion.directselect.DSListView
+        android:id="@+id/ds_county_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ds_list_bg"
+        android:visibility="invisible"
+        ds:picker_box_view="@id/ds_country_picker"
+        ds:scale_animations="true"
+        ds:scale_animations_factor="1.15"
+        ds:scale_animations_pivot_center="true"
+        ds:selected_index="5"
+        ds:selector_background="@drawable/curve_shape_direct_select" />
+
+    <com.ramotion.directselect.DSListView
+        android:id="@+id/ds_months_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ds_list_bg"
+        android:visibility="invisible"
+        ds:data_array="@array/months"
+        ds:picker_box_view="@id/ds_month_picker"
+        ds:scale_animations="true"
+        ds:scale_animations_factor="1.2"
+        ds:scale_animations_pivot_center="false"
+        ds:selected_index="5"
+        ds:selector_background="@drawable/curve_shape_direct_select" />
+
+    <com.ramotion.directselect.DSListView
+        android:id="@+id/ds_days_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ds_list_bg"
+        android:visibility="invisible"
+        ds:data_array="@array/days"
+        ds:picker_box_view="@id/ds_day_picker"
+        ds:scale_animations="true"
+        ds:scale_animations_factor="1.2"
+        ds:scale_animations_pivot_center="false"
+        ds:selected_index="14"
+        ds:selector_background="@drawable/curve_shape_direct_select" />
+
+    <com.ramotion.directselect.DSListView
+        android:id="@+id/ds_years_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/ds_list_bg"
+        android:visibility="invisible"
+        ds:data_array="@array/years"
+        ds:picker_box_view="@id/ds_year_picker"
+        ds:scale_animations="true"
+        ds:scale_animations_factor="1.2"
+        ds:scale_animations_pivot_center="false"
+        ds:selected_index="8"
+        ds:selector_background="@drawable/curve_shape_direct_select" />
+
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:ds="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ds:layout_constraintBottom_toTopOf="@+id/ds_country_picker"
+        ds:layout_constraintTop_toTopOf="@+id/ds_country_picker">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:text="@string/tv_complete_info_main_title"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_dark"
+            android:textSize="@dimen/header_1"
+            ds:layout_constraintBottom_toTopOf="@+id/textView12"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/tv_complete_info_title1"
+            android:textAllCaps="false"
+            android:textSize="@dimen/header_2"
+            ds:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="@dimen/small_margin"
+            android:paddingEnd="@dimen/small_margin"
+            ds:errorEnabled="true"
+            ds:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textView12"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <EditText
+                android:id="@+id/et_compinfo_firstname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/et_complete_info_firstName"
+                android:inputType="text"
+                android:textAllCaps="false"
+                android:textSize="@dimen/standard"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="@dimen/small_margin"
+            android:paddingEnd="@dimen/small_margin"
+            ds:errorEnabled="true"
+            ds:layout_constraintBottom_toTopOf="@+id/textInputLayout7"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <EditText
+                android:id="@+id/et_compinfo_lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/et_complete_info_lastName"
+                android:inputType="text"
+                android:textAllCaps="false"
+                android:textSize="@dimen/standard"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="@dimen/small_margin"
+            android:paddingEnd="@dimen/small_margin"
+            ds:errorEnabled="true"
+            ds:layout_constraintBottom_toTopOf="@+id/textView13"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <EditText
+                android:id="@+id/et_compinfo_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/et_complete_info_email"
+                android:inputType="text"
+                android:textAllCaps="false"
+                android:textSize="@dimen/standard"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/et_complete_info_personal_phone_number"
+            android:textAllCaps="false"
+            android:textSize="@dimen/standard"
+            ds:layout_constraintBottom_toTopOf="@+id/ds_country_picker"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+
+
+        <yoyo.app.android.com.yoyoapp.DirectSelect.AdvancedExampleCountryPickerBox
+            android:id="@+id/ds_country_picker"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            ds:layout_constraintEnd_toStartOf="@+id/textInputLayout8"
+            ds:layout_constraintHorizontal_bias="0.5"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout8"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingStart="@dimen/small_margin"
+            android:paddingEnd="@dimen/small_margin"
+            ds:errorEnabled="true"
+            ds:layout_constraintBottom_toBottomOf="@+id/ds_country_picker"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintHorizontal_bias="0.5"
+            ds:layout_constraintStart_toEndOf="@+id/ds_country_picker"
+            ds:layout_constraintTop_toTopOf="@+id/ds_country_picker"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <EditText
+                android:id="@+id/et_compinfo_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/et_complete_info_personal_phone_number"
+                android:inputType="text"
+                android:textAllCaps="false"
+                android:textSize="@dimen/standard"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingStart="@dimen/small_margin"
+            android:paddingEnd="@dimen/small_margin"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textInputLayout8"
+            tools:ignore="RtlHardcoded,RtlSymmetry">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/et_complete_info_personal_introducer_code"
+                android:inputType="number"
+                android:textAllCaps="false"
+                android:textSize="@dimen/standard"
+                tools:ignore="HardcodedText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button_compinfo_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/curve_shape_fill_blue"
+            android:fontFamily="@font/roboto_medium"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/button_complete_info_personal_submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_standard_font"
+            app:layout_constraintVertical_bias="0.0"
+            ds:layout_constraintBottom_toBottomOf="parent"
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintHorizontal_bias="0.0"
+            ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--</ScrollView>-->
+</FrameLayout>

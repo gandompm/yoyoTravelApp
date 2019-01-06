@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rl_pricefilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_filter_price_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/tv_filter_hotel_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_filter_price_close"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_filter_price_close"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="8dp" />
+
+    <ImageView
+        android:id="@+id/iv_filter_price_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_close_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_filter_price_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Reset"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/standard"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_filter_price_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_filter_price_title" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/small_margin"
+            android:src="@color/black4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_price_title" />
+
+        <TextView
+            android:id="@+id/tv_filter_pricerange"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/tv_filterhotel_pricerange"
+            android:textColor="@color/black2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_price_title" />
+
+        <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/rangebar_filter_price"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_pricerange"
+            app:mrb_connectingLineColor="@color/colorPrimary"
+            app:mrb_pinColor="@color/colorPrimary"
+            app:mrb_selectorColor="@color/white"
+            app:mrb_selectorBoundaryColor="@color/colorPrimary"
+            app:mrb_pinTextColor="@color/white"
+            app:mrb_rangeBarColor="@color/light_gray"
+            app:mrb_tickColor="@android:color/transparent"
+            app:mrb_pinMaxFont="15sp"
+            app:mrb_pinMinFont="12sp"
+            app:mrb_pinRadius="14dp"
+            app:mrb_rangeBar="true"
+            app:mrb_rangeBarPaddingBottom="20dp"
+            app:mrb_rangeBar_rounded="true"
+            app:mrb_selectorBoundarySize="2dp"
+            app:mrb_selectorSize="10dp"
+            app:mrb_temporaryPins="true"
+            app:mrb_tickEnd="1500"
+            app:mrb_tickInterval="25"
+            app:mrb_tickStart="50" />
+
+        <TextView
+            android:id="@+id/tv_filter_price_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/standard_margin"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="From 100$ to 150$"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_2"
+            app:layout_constraintBottom_toTopOf="@+id/iv_filter_price_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rangebar_filter_price" />
+
+        <RelativeLayout
+            android:id="@+id/iv_filter_price_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_price_filter" >
+            <Button
+                android:id="@+id/button_filter_price_apply"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/curve_shape_fill_yellow"
+                android:text="@string/button_filterhotel"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:layout_margin="@dimen/small_margin"
+                android:fontFamily="@font/roboto_medium"
+                />
+
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
