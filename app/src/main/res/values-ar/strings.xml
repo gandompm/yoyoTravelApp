@@ -1,43 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">YoYo</string>
 
-    <string name="tv_complete_info_main_title">يرجى استكمال المعلومات الخاصة بك</string>
-    <string name="tv_complete_info_title1">Acount Information</string>
-    <string name="tv_complete_info_title2">Personal Information</string>
-    <string name="et_complete_info_firstName">First Name</string>
-    <string name="et_complete_info_lastName">Last Name</string>
-    <string name="et_complete_info_email">Email</string>
-    <string name="tv_complete_info_personal_country">Country/Region</string>
-    <string name="et_complete_info_personal_phone_number">Phone Number</string>
-    <string name="tv_complete_info_personal_date_of_birth">Date of Birth(optional)</string>
-    <string name="et_complete_info_personal_introducer_code">Introducer\'\s Code(optional)</string>
-    <string name="button_complete_info_personal_submit">Submit</string>
-    <string name="tv_mainpage_services">Booking Services •</string>
-    <string name="tv_mainpage_available_services">2 services for now</string>
-    <string name="tv_mainpage_more_services">more services is coming soon</string>
-    <string name="button_mainpage_hotels">Hotels</string>
-    <string name="button_mainpage_tours">Tours</string>
-    <string name="button_mainpage_flights">Flights</string>
-    <string name="button_mainpage_specialOffers">Offers</string>
-    <string name="tv_hotelsearch_title">Staying anywhere?</string>
-    <string name="button_hotelsearch_search">Search</string>
-    <string name="button_hotelsearch_datepicker_from">Check-in</string>
-    <string name="button_hotelsearch_datepicker_to">Check-out</string>
-    <string name="tv_specialoffers_title">Special Offers</string>
-    <string name="tv_signup_title">مرحبًا بكم في يويو</string>
+    <string name="tv_complete_info_main_title">یرجی استکمال المعلومات</string>
+    <string name="account_information">معلومات الحساب</string>
+    <string name="personal_information">معلومات شخصية</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="last_name">الاسم الثلاثی</string>
+    <string name="email">البرید الالکترونی</string>
+    <string name="tv_complete_info_personal_country">البلد/المنطقه</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="tv_complete_info_personal_date_of_birth">التاریخ الولاده(الاختیاری)</string>
+    <string name="et_complete_info_personal_introducer_code">المعرف\'\s Code(الاختیاری)</string>
+    <string name="button_complete_info_personal_submit">الارسال</string>
+    <string name="tv_mainpage_services">خدمات الحجز •</string>
+    <string name="tv_mainpage_available_services">2 خدمات في الوقت الراهن</string>
+    <string name="tv_mainpage_more_services">المزيد من الخدمات قريبا</string>
+    <string name="tours">الکروب</string>
+    <string name="button_mainpage_flights">رحلات الطيران</string>
+    <string name="button_mainpage_specialOffers">عروض</string>
+    <string name="tv_hotelsearch_title">البقاء في اي مكان؟</string>
+    <string name="search">ابحث</string>
+    <string name="button_hotelsearch_datepicker_from">نزل في فندق تحقق في</string>
+    <string name="button_hotelsearch_datepicker_to">دفع ويغادر الفندق</string>
+    <string name="tv_specialoffers_title">عروض خاصه</string>
+    <string name="tv_signup_title">مرحبا بکم فی یویو</string>
     <string name="button_signup_google">الدخول مع جوجل</string>
-    <string name="button_signup_facebook">الدخول مع الفيسبوك</string>
+    <string name="button_signup_facebook">الدخول مع فیس بوک</string>
     <string name="button_signup_loginasguest">تسجيل الدخول كضيف</string>
-    <string name="change_the_language">تغيير اللغة</string>
-    <string name="tv_item_hotel_name">Hotel Name</string>
-    <string name="tv_item_hotel_type">Type : </string>
-    <string name="tv_item_hotel_address">City, District :</string>
-    <string name="tv_item_hotel_price">Price : </string>
-    <string name="tv_item_hotel_price2"> from </string>
-    <string name="navigation_bn_order">Orders</string>
-    <string name="navigation_bn_home">Home</string>
-    <string name="navigation_bn_profile">Profile</string>
+    <string name="tv_item_hotel_name">الاسم الفندق</string>
+    <string name="tv_item_hotel_type">الطباعة :</string>
+    <string name="tv_item_hotel_address">المدينة, المنطقة :</string>
+    <string name="tv_item_hotel_price">السعر :</string>
+    <string name="from_small">من</string>
+    <string name="navigation_bn_order">اوامر</string>
+    <string name="navigation_bn_home">البيت</string>
+    <string name="navigation_bn_profile">الملف الشخصي</string>
 
     // folding cell strings
     <string name="order_id_mock" translatable="false"># 1234–5678</string>
@@ -70,43 +67,108 @@
     <string name="picker_box_arrows_icon">picker box arrows icon</string>
     <string name="cell_image">cell image</string>
     <string name="type">Direct Select for Android</string>
-    <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly, if you have any questions, please create an issue on our GitHub account.</string>
+    <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly,
+        if you have any questions, please create an issue on our GitHub account.
+    </string>
     <string name="customized_picker">Here a fully customized picker with custom background and cell layout:</string>
     <string name="picker_with_custom_bg">Here a picker with default cell but custom background:</string>
     <string name="footer_text">by Ramotion inc.</string>
 
 
-    <string name="tv_hotefilter_facilities">Hotel Facilities :</string>
-    <string name="tv_filterhotel_parking">Parking</string>
-    <string name="tv_filterhotel_pool">Pool</string>
-    <string name="tv_filterhotel_garden">Garden</string>
-    <string name="tv_filterhotel_hotel_quality">Hotel Quality :</string>
-    <string name="tv_filterhotel_pricerange">Price Range (per Room,per Night) :</string>
-    <string name="button_filterhotel">Apply</string>
-    <string name="tv_toursearch_tour">Tour</string>
-    <string name="tv_hotelsearch_hotel">Hotels</string>
-    <string name="tv_toursearch_title">Find your Tour</string>
-    <string name="tv_date_picker_check_in">Check-in</string>
-    <string name="tv_date_picker_check_out">Check-out</string>
-    <string name="tv_datepicker_select_date">Select Date</string>
-    <string name="tour_leader">Tour Leader</string>
-    <string name="buton_tour_item_big_details">Details</string>
-    <string name="tv_tour_item_big_start_date">Start date</string>
-    <string name="tv_tour_item_big_end_date">End date</string>
+    <string name="tv_hotefilter_facilities">مرافق الفندق :</string>
+    <string name="tv_filterhotel_parking">موقف سيارات</string>
+    <string name="tv_filterhotel_pool">حوض السباحة</string>
+    <string name="tv_filterhotel_garden">حديقة</string>
+    <string name="tv_filterhotel_hotel_quality">جودة الفندق:</string>
+    <string name="tv_filterhotel_pricerange">نطاق السعر (لكل الغرفة,لليلة الواحدة) :</string>
+    <string name="button_filterhotel">تطبيق</string>
+    <string name="tv_toursearch_tour">جولة</string>
+    <string name="hotels">الفنادق</string>
+    <string name="tv_toursearch_title">ابحث عن جولتك</string>
+    <string name="tv_date_picker_check_in">نزل في فندق تحقق في</string>
+    <string name="tv_date_picker_check_out">دفع ويغادر الفندق</string>
+    <string name="tv_datepicker_select_date">حددالتاريخ</string>
+    <string name="tour_leader">قائد الجولة</string>
+    <string name="buton_tour_item_big_details">تفاصيل</string>
+    <string name="tv_tour_item_big_start_date">تاريخ البدء</string>
+    <string name="tv_tour_item_big_end_date">تاريخ الانتهاء</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="button_profile_sign_out">Sign Out</string>
-    <string name="button_profile_report_an_app_problem">Report an app problem</string>
-    <string name="button_profile_setting">Setting</string>
-    <string name="button_profile_rules">Rules</string>
-    <string name="button_profile_trlavlers_list">Travel Companions</string>
-    <string name="button_profile_edit_profile">Edit Profile</string>
-    <string name="tv_sign_out">Are you sure you want to Sign Out?</string>
-    <string name="tv_about_city_title">About City</string>
-    <string name="tv_filter_hotel_title">Filter</string>
+    <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
+    <string name="button_profile_sign_out">تسجيل الخروج</string>
+    <string name="button_profile_report_an_app_problem">الإبلاغ عن مشكلة في التطبيق</string>
+    <string name="button_profile_setting">الإعدادات</string>
+    <string name="button_profile_rules">قواعد</string>
+    <string name="button_profile_trlavlers_list">رفقاء السفر</string>
+    <string name="button_profile_edit_profile">تعديل الملف الشخصي</string>
+    <string name="tv_sign_out">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="tv_about_city_title">عن المدينة</string>
     <!--<string name="server_client_id">181467561755-ud9pfv5vhac9kqdrkm6d54o1pm525baj.apps.googleusercontent.com</string>-->
     <string name="server_client_id">181467561755-7uedee591j3jcb4pj09u79t70akkkn0t.apps.googleusercontent.com</string>
-    <string name="tv_hotel_details_des">Description: </string>
-    <string name="tv_hotel_details_rules">Rules: </string>
+    <string name="tv_hotel_details_des">وصف:</string>
+    <string name="tv_hotel_details_rules">قواعد:</string>
+    <string name="change_the_language">تغييراللغة</string>
+    <string name="iran">ایران</string>
+    <string name="filter">فلتر</string>
+    <string name="country">بلد</string>
+
+
+    //new
+    <string name="hotel_near_me">فندق قريب مني</string>
+    <string name="filter_by_price_optional">تصفية حسب السعر (اختياري)</string>
+    <string name="going_anywhere">أذهب إلى أي مكان?</string>
+    <string name="tour_near_me">جولة قريب مني</string>
+    <string name="rules">قواعد</string>
+    <string name="travel_companions">رفقا السفر</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="setting">ضبط</string>
+    <string name="report_an_app_problem">الإبلاغ عن مشكلة في التطبيق</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="all_trips">جميع الرحلات</string>
+    <string name="upcoming_trips">الرحلات القادمة</string>
+    <string name="flying_rewards">مكافآت الطيران</string>
+    <string name="what_are_you_looking_for">ما الذي تبحث عنه؟</string>
+    <string name="search_with_dot">بحث...</string>
+    <string name="first_name_cannot_be_empty">الاسم الأول لا يمكن أن يكون فارغا</string>
+    <string name="last_name_cannot_be_empty">اللقب لايمكن أن يكون فارغأ</string>
+    <string name="phone_number_cannot_be_empty">رقم الهاتف لایمکن أن يكون فارغا</string>
+    <string name="email_cannot_be_empty">البريد الإلكتروني لا يمكن أن يكون فارغًا</string>
+    <string name="nights">لیالی</string>
+    <string name="results">النتائج</string>
+    <string name="from_capital">من</string>
+    <string name="to">الي</string>
+    <string name="reset">إعادة تعيين</string>
+    <string name="staying_dates">البقاء التواريخ</string>
+    <string name="advanture">تقدم</string>
+    <string name="health">الصحة</string>
+    <string name="nature">طبيعة</string>
+    <string name="sport">رياضة</string>
+    <string name="food">طعام</string>
+    <string name="tour_language">لغة السياح :</string>
+    <string name="persian">اللغة الفارسية</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="duration">مدة :</string>
+    <string name="age_range">نطاق العمر :</string>
+    <string name="price">السعر:</string>
+    <string name="apply">اطبق</string>
+    <string name="travellers_companions">مرافق المسافرين</string>
+    <string name="edit_traveller">تصحيح المسافر</string>
+    <string name="gender">جنس</string>
+    <string name="male">ذكر</string>
+    <string name="female">الانثي</string>
+    <string name="date_of_birth">تاريخ الولادة</string>
+    <string name="iranian_national_code">القانون الوطني الايراني</string>
+    <string name="passport_expiry_date">تاريخ انتهاء صلاحية جواز السفر</string>
+    <string name="passport_number">رقم جواز السفر</string>
+    <string name="delete">حذف</string>
+    <string name="save">حفظ</string>
+    <string name="full_name">الاسم الكامل</string>
+    <string name="date_of_birth_optional">تاريخ الولادة( الاختياري)</string>
+    <string name="country_optional">البلد (الاختياري)</string>
+
+
+
+
+
 </resources>

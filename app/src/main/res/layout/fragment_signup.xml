@@ -18,8 +18,7 @@
         android:layout_height="@dimen/arc_signup"
         app:shape_arc_cropDirection="outside"
         app:shape_arc_height="40dp"
-        app:shape_arc_position="bottom"
-        >
+        app:shape_arc_position="bottom">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,20 +73,6 @@
         </LinearLayout>
     </com.github.florent37.shapeofview.shapes.ArcView>
 
-    <!--<Button-->
-        <!--android:id="@+id/button_signup_google"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
-        <!--android:layout_marginTop="@dimen/xx_large_margin"-->
-        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
-        <!--android:background="@drawable/curve_shape"-->
-        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
-        <!--android:text="@string/button_signup_google"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="@color/blue_dark"-->
-        <!--android:textSize="@dimen/button_standard_font" />-->
-
     <com.shaishavgandhi.loginbuttons.GoogleButton
         android:id="@+id/button_signup_google"
         android:layout_width="match_parent"
@@ -107,19 +92,6 @@
         />
 
 
-    <!--<Button-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
-        <!--android:layout_marginTop="@dimen/standard_margin"-->
-        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
-        <!--android:background="@drawable/curve_shape"-->
-        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
-        <!--android:text="@string/button_signup_facebook"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="@color/blue_dark"-->
-        <!--android:textSize="@dimen/button_standard_font" />-->
-
     <com.shaishavgandhi.loginbuttons.FacebookButton
         android:id="@+id/button_signup_facebook"
         android:layout_width="match_parent"
@@ -138,19 +110,6 @@
         android:text="@string/button_signup_facebook"
         />
 
-    <!--<Button-->
-        <!--android:id="@+id/button_signup_login_as_guest"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="@dimen/button_standard_end_start_margin"-->
-        <!--android:layout_marginTop="@dimen/standard_margin"-->
-        <!--android:layout_marginEnd="@dimen/button_standard_end_start_margin"-->
-        <!--android:background="@drawable/curve_shape"-->
-        <!--android:foreground="?attr/selectableItemBackgroundBorderless"-->
-        <!--android:text="@string/button_signup_loginasguest"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="@color/blue_dark"-->
-        <!--android:textSize="@dimen/button_standard_font" />-->
 
     <com.shaishavgandhi.loginbuttons.TwitterButton
         android:id="@+id/button_signup_twitter"

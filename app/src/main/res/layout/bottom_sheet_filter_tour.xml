@@ -20,7 +20,7 @@
         android:background="@color/white"
         android:gravity="center"
         android:elevation="2dp"
-        android:text="@string/tv_filter_hotel_title"
+        android:text="@string/filter"
         android:textSize="@dimen/header_1" />
 
     <ImageView
@@ -91,35 +91,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="Advanture" />
+                android:text="@string/advanture" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/button_filterhotel_two_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="Health" />
+                android:text="@string/health" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/button_filterhotel_three_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="Nature" />
+                android:text="@string/nature" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/button_filterhotel_four_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="Sport" />
+                android:text="@string/sport" />
 
             <com.nex3z.togglebuttongroup.button.LabelToggle
                 android:id="@+id/button_filterhotel_five_star"
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
-                android:text="Food" />
+                android:text="@string/food" />
 
 
         </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Tour Language :"
+            android:text="@string/tour_language"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/groupbutton_filtertour" />
 
@@ -147,19 +147,19 @@
                 android:id="@+id/choice_a"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:text="Persian"/>
+                android:text="@string/persian"/>
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_b"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:text="English" />
+                android:text="@string/english" />
 
             <com.nex3z.togglebuttongroup.button.CircularToggle
                 android:id="@+id/choice_c"
                 android:layout_width="70dp"
                 android:layout_height="60dp"
-                android:text="Arabic" />
+                android:text="@string/arabic" />
 
 
         </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
@@ -170,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Duration :"
+        android:text="@string/duration"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/group_choices_filtertour_language" />
 
@@ -218,7 +218,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text=" Age Range : "
+        android:text="@string/age_range"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertour_duration" />
 
@@ -266,7 +266,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Price:"
+        android:text="@string/price"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertour_age" />
 
@@ -331,7 +331,7 @@
         app:button_shadow_radius="10dp"
         app:button_size="6sp"
         app:button_start_color="@color/colorPrimary"
-        app:button_text="Apply"
+        app:button_text="@string/apply"
         app:button_text_color="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

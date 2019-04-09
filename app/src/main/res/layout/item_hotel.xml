@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_hotel_item_type"
             android:layout_toEndOf="@+id/tv_hotel_item_price1"
-            android:text="@string/tv_item_hotel_price2"
+            android:text="@string/from_small"
             android:textAllCaps="false"
             android:textSize="@dimen/small" />
 

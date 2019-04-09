@@ -4,6 +4,7 @@ package yoyo.app.android.com.yoyoapp;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -48,6 +49,7 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
     private TextView priceRange;
     private ShimmerRecyclerView shimmerRecycler;
     private int listSize;
+    private ImageView closeButton;
     private DatePickerBottomSheet datePickerBottomSheet;
     private View view;
     @Override
@@ -62,6 +64,7 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
         floatingActionButtonFunction();
         setupFilterButton();
         setupToolbar();
+        setupCloseBottomSheet();
 
         priceRange = view.findViewById(R.id.tv_filterhotel_price);
         rangeBar = view.findViewById(R.id.rangebar_filterhotel_price);
@@ -69,11 +72,20 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
             @Override
             public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex,
                                               int rightPinIndex, String leftPinValue, String rightPinValue) {
-                priceRange.setText("From " + String.valueOf(leftPinValue) + "$ to " + String.valueOf(rightPinValue) + "$");
+                priceRange.setText(getString(R.string.from_capital) + " " + String.valueOf(leftPinValue) + "$" + " " +getString(R.string.to) + " " + String.valueOf(rightPinValue) + "$");
             }
         });
 
         return view;
+    }
+
+    private void setupCloseBottomSheet() {
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehaviorFilter.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
     }
 
     private void setupShimmerLayout() {
@@ -107,7 +119,7 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
         cityNameTextview.setText(searchText);
         startDateTextview.setText(startDate);
         endDateTextview.setText(endDate);
-        durationTextview.setText(duration+" Nights");
+        durationTextview.setText(duration + " " + getString(R.string.nights));
     }
 
     private void setupToolbar() {
@@ -179,6 +191,7 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
         filterButton = view.findViewById(R.id.button_filterhotel_filter);
         startDateTextview = view.findViewById(R.id.tv_search_check_in);
         toolbar =(Toolbar) view.findViewById(R.id.tb_hotelsearch);
+        closeButton = view.findViewById(R.id.iv_filter_hotel_close);
         CoordinatorLayout coordinatorLayout = view.findViewById(R.id.cl_hotellist);
         shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_view);
         LinearLayout llBottomSheet = (LinearLayout) view.findViewById(R.id.ll_datepicker_bottom_sheet);
@@ -187,7 +200,7 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
     }
 
     private void setupSnackBar() {
-        Snackbar snackbar = Snackbar.make(view, listSize  +" Results", com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+        Snackbar snackbar = Snackbar.make(view, listSize  + " " + getString(R.string.results), Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
         View sbView = snackbar.getView();
         sbView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.green));

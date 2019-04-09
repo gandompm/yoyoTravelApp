@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import yoyo.app.android.com.yoyoapp.BottomSheet.SignUpBottomSheet;
 import yoyo.app.android.com.yoyoapp.DataModels.Client;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SearchDialogFragment;
@@ -25,14 +26,14 @@ import com.squareup.picasso.Picasso;
 public class ProfileFragment extends Fragment {
 
     private static final int RC_SIGN_IN = 9001;
-    private Button editProfileButton, signOutButton ,reportButton;
+    private ImageView editProfileCardImageview, signOutCardImageview, reportCardImageview , settingCardImageview ,travellerCompanionImageview;
     private SignUpBottomSheet signUpBottomSheet;
     private FragmentManager fragmentManager;
     private GoogleAuthentication googleSignIn;
     private Client client;
-    private Button googleButton , settingButton;
-    private TextView emailTextview ,nameTextview;
-    private ImageView clientImageview;
+    private Button googleButton ;
+    private TextView nameTextview;
+    private CircleImageView clientImageview ;
     private View view;
 
     @Override
@@ -51,12 +52,25 @@ public class ProfileFragment extends Fragment {
         setupReportButton();
         setupSettingButton();
         onStartProfileActivity();
+        setupTravellerCompanionButton();
 
         return view;
     }
 
+    private void setupTravellerCompanionButton() {
+        travellerCompanionImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_framelayout,new TravellerCompanionFragment()).addToBackStack("traveller companion");
+                fragmentTransaction.commit();
+            }
+        });
+    }
+
     private void setupSettingButton() {
-        settingButton.setOnClickListener(new View.OnClickListener() {
+        settingCardImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -73,15 +87,13 @@ public class ProfileFragment extends Fragment {
 
         if (client!= null && client.getFirstName()!= "")
         {
-            emailTextview.setText(client.getEmail());
             nameTextview.setText(client.getFirstName());
             Picasso.with(getContext()).load(client.getPicture()).into(clientImageview);
         }
     }
 
     private void setupReportButton() {
-        reportButton = view.findViewById(R.id.button_profile_report_a_problem);
-        reportButton.setOnClickListener(new View.OnClickListener() {
+        reportCardImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -93,7 +105,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupSignupButton() {
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+        signOutCardImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -106,7 +118,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupEditProfileButton() {
-        editProfileButton.setOnClickListener(new View.OnClickListener() {
+        editProfileCardImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -119,15 +131,16 @@ public class ProfileFragment extends Fragment {
 
     private void init() {
         fragmentManager = getFragmentManager();
-        editProfileButton = view.findViewById(R.id.button_profile_edit_profile);
-        signOutButton = view.findViewById(R.id.button_profile_log_out);
+        editProfileCardImageview = view.findViewById(R.id.iv_profile_edit);
+        signOutCardImageview = view.findViewById(R.id.iv_profile_sign_out);
         googleSignIn = new GoogleAuthentication(getContext());
         signUpBottomSheet = new SignUpBottomSheet(getContext(),view);
         googleButton = view.findViewById(R.id.button_signup_google);
-        emailTextview = view.findViewById(R.id.tv_profile_email);
         nameTextview = view.findViewById(R.id.tv_profile_name);
         clientImageview = view.findViewById(R.id.iv_profile);
-        settingButton = view.findViewById(R.id.button_profile_setting);
+        settingCardImageview = view.findViewById(R.id.iv_profile_setting);
+        reportCardImageview = view.findViewById(R.id.iv_profile_report_problem);
+        travellerCompanionImageview = view.findViewById(R.id.iv_profile_travel_companion);
     }
 
     public void onStartProfileActivity()
@@ -171,7 +184,7 @@ public class ProfileFragment extends Fragment {
             UserSharedManager userSharedManager = new UserSharedManager(getContext());
             GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
             userSharedManager.saveDataToSharedPrefrence(acct);
-            signUpBottomSheet.handleSignInResult(data);
+//            signUpBottomSheet.handleSignInResult(data);
             startActivity(new Intent(getContext(),CompleteInfoActivity.class));
 
         }

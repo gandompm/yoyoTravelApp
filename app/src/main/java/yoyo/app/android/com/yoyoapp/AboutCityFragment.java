@@ -15,7 +15,6 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 
 public class AboutCityFragment extends Fragment {
 
-
     private NestedScrollView nestedScrollView;
     private View view;
     @Override

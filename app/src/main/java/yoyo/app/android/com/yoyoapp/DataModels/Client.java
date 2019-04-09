@@ -3,6 +3,7 @@ package yoyo.app.android.com.yoyoapp.DataModels;
 import java.util.Date;
 
 public class Client {
+
     private String email;
     private String firstName;
     private String lastName;
@@ -11,7 +12,6 @@ public class Client {
     private Date dob;
     private String picture;
     private String language;
-
 
 
     public String getEmail() {

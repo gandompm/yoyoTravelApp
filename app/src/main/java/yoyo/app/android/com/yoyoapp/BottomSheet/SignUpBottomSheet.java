@@ -64,7 +64,6 @@ public class SignUpBottomSheet {
                 dialog.show();
             }
         });
-
     }
 
     //
@@ -129,7 +128,6 @@ public class SignUpBottomSheet {
 
                 ApiService apiService = new ApiService(context);
                 apiService.sendTestRequest(acct.getServerAuthCode());
-
             }
         }
     }
@@ -188,7 +186,6 @@ public class SignUpBottomSheet {
                 if (slideOffset < 0.5)
                 {
                     ((MainActivity)context).bottomNavigation.setVisibility(View.VISIBLE);
-
                 }
                 else if (slideOffset > 0.5)
                 {

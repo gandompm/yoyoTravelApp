@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#f1f1f1</color>
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <color name="colorPrimary">#0265d3</color>
+    <color name="colorPrimary">#1566e0</color>
     <color name="colorPrimaryDark">#0a54a7</color>
     <color name="colorAccent">#fede02</color>
     <color name="star">#ffda45</color>
@@ -22,7 +21,7 @@
     <color name="sky_black">#444482</color>
     <color name="empty">#00000000</color>
     <color name="black">#000</color>
-    <color name="black1">#333</color>
+    <color name="black1">#333333</color>
     <color name="black2">#666</color>
     <color name="black3">#999</color>
     <color name="black4">#ccc</color>

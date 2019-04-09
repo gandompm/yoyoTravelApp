@@ -9,7 +9,7 @@
     android:background="@color/background"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
-    android:elevation="8dp"
+    android:elevation="6dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <RelativeLayout
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/small_margin"
-            android:text="Staying Dates"
+            android:text="@string/staying_dates"
             android:textColor="@color/white"
             android:fontFamily="@font/roboto_medium"
             android:textSize="@dimen/header_2" />

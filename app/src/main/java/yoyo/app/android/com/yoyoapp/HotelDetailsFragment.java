@@ -30,7 +30,6 @@ public class HotelDetailsFragment extends Fragment {
     private GradientButton bookButton;
     private ImageView backImageview;
     private ScrollView scrollView;
-    private GradientButton gradientButton;
     private ImageView hotelImageview;
     private ExpandableTextView expTv1, expTv2;
     private View view;
@@ -94,11 +93,11 @@ public class HotelDetailsFragment extends Fragment {
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 if (scrollY > 0)
                 {
-                    gradientButton.setVisibility(View.GONE);
+                    bookButton.setVisibility(View.GONE);
                 }
                 else
                 {
-                    gradientButton.setVisibility(View.VISIBLE);
+                    bookButton.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -116,7 +115,7 @@ public class HotelDetailsFragment extends Fragment {
         backImageview = view.findViewById(R.id.iv_hotel_detail_back);
         expTv1 =  view.findViewById(R.id.expand_text_view);
         expTv2 =  view.findViewById(R.id.expand_text_view2);
-        bookButton = view.findViewById(R.id.fb_hotel_details);
+        bookButton = view.findViewById(R.id.button_hotel_details);
         hotelImageview = view.findViewById(R.id.iv_hotel_detail_img);
         scrollView = view.findViewById(R.id.sv_hoteldetails);
         moreFeauturesButton = view.findViewById(R.id.iv_hoteldetails_features_more );

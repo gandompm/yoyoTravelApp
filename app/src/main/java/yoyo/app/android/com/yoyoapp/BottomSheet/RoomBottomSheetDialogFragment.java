@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Toast;
+import com.dagang.library.GradientButton;
 import yoyo.app.android.com.yoyoapp.Addapters.RoomsRecyclerviewAddaptor;
 import yoyo.app.android.com.yoyoapp.DataModels.Room;
 import yoyo.app.android.com.yoyoapp.R;
@@ -20,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RoomBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
 
-
+    private GradientButton gradientButton;
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,7 +39,20 @@ public class RoomBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     private void setupRecyclerview() {
         RecyclerView recyclerView = view.findViewById(R.id.rv_room_hotel);
-        RoomsRecyclerviewAddaptor roomsRecyclerviewAddaptor = new RoomsRecyclerviewAddaptor(getContext(),getFakeRooms());
+        RoomsRecyclerviewAddaptor roomsRecyclerviewAddaptor = new RoomsRecyclerviewAddaptor(getContext(), getFakeRooms(), new RoomsRecyclerviewAddaptor.OnPlusClickedListner() {
+            @Override
+            public void onPlusClicked(boolean plusClicked) {
+                gradientButton.setVisibility(View.VISIBLE);
+                if (plusClicked)
+                {
+                    Toast.makeText(getContext(), "apear", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "disapear", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(roomsRecyclerviewAddaptor);
@@ -45,7 +60,7 @@ public class RoomBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
 
     private void init() {
-
+        gradientButton = view.findViewById(R.id.button_room_book);
     }
 
     public static RoomBottomSheetDialogFragment newInstance()
@@ -63,6 +78,8 @@ public class RoomBottomSheetDialogFragment extends BottomSheetDialogFragment {
         }
         return rooms;
     }
+
+
 
 
 }

@@ -5,323 +5,317 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:scrollbars="none">
 
-    <com.ramotion.directselect.DSListView
-        android:id="@+id/ds_county_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ds_list_bg"
-        android:visibility="invisible"
-        ds:picker_box_view="@id/ds_country_picker"
-        ds:scale_animations="true"
-        ds:scale_animations_factor="1.15"
-        ds:scale_animations_pivot_center="true"
-        ds:selected_index="5"
-        ds:selector_background="@drawable/curve_shape_direct_select" />
-
-    <com.ramotion.directselect.DSListView
-        android:id="@+id/ds_months_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ds_list_bg"
-        android:visibility="invisible"
-        ds:data_array="@array/months"
-        ds:picker_box_view="@id/ds_month_picker"
-        ds:scale_animations="true"
-        ds:scale_animations_factor="1.2"
-        ds:scale_animations_pivot_center="false"
-        ds:selected_index="5"
-        ds:selector_background="@drawable/curve_shape_direct_select" />
-
-    <com.ramotion.directselect.DSListView
-        android:id="@+id/ds_days_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ds_list_bg"
-        android:visibility="invisible"
-        ds:data_array="@array/days"
-        ds:picker_box_view="@id/ds_day_picker"
-        ds:scale_animations="true"
-        ds:scale_animations_factor="1.2"
-        ds:scale_animations_pivot_center="false"
-        ds:selected_index="14"
-        ds:selector_background="@drawable/curve_shape_direct_select" />
-
-    <com.ramotion.directselect.DSListView
-        android:id="@+id/ds_years_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/ds_list_bg"
-        android:visibility="invisible"
-        ds:data_array="@array/years"
-        ds:picker_box_view="@id/ds_year_picker"
-        ds:scale_animations="true"
-        ds:scale_animations_factor="1.2"
-        ds:scale_animations_pivot_center="false"
-        ds:selected_index="8"
-        ds:selector_background="@drawable/curve_shape_direct_select" />
-<!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context="yoyo.app.android.com.yoyoapp.EditProfileFragment">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_left_v"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_right_v"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95" />
-
-        <FrameLayout
-            android:id="@+id/iv_edit_profile_img_shape"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.github.florent37.shapeofview.shapes.RoundRectView
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:shape_roundRect_bottomLeftRadius="50dp"
-                app:shape_roundRect_bottomRightRadius="50dp"
-                app:shape_roundRect_topLeftRadius="50dp"
-                app:shape_roundRect_topRightRadius="50dp">
+                android:layout_margin="@dimen/standard_margin"
+                ds:cardCornerRadius="4dp"
 
-                <ImageView
-                    android:id="@+id/iv_edit_profile_img"
+        >
+            <com.ramotion.directselect.DSListView
+                    android:id="@+id/ds_county_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/avatar" />
-            </com.github.florent37.shapeofview.shapes.RoundRectView>
-
-            <ImageView
-                android:id="@+id/iv_edit_profile_change_photo_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="bottom|end"
-                android:src="@drawable/ic_sync_black_24dp" />
-        </FrameLayout>
+                    android:background="@color/ds_list_bg"
+                    android:visibility="invisible"
+                    ds:scale_animations="true"
+                    ds:scale_animations_factor="1.15"
+                    ds:scale_animations_pivot_center="true"
+                    ds:selected_index="5"
+                    ds:selector_background="@drawable/curve_shape_direct_select"/>
+            <!--ds:picker_box_view="@id/ds_country_picker"-->
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_search_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/iv_edit_profile_img_shape"
-            ds:errorEnabled="true"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
-
-            <EditText
-                android:id="@+id/et_edit_profile_firstname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="@string/et_complete_info_firstName"
-                android:inputType="text"
-                android:textAllCaps="false"
-                android:textSize="@dimen/standard"
-                tools:ignore="HardcodedText" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/til_search_bar"
-            ds:errorEnabled="true"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
-
-            <EditText
-                android:id="@+id/et_edit_profile_lastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="@string/et_complete_info_lastName"
-                android:inputType="text"
-                android:textAllCaps="false"
-                android:textSize="@dimen/standard"
-                tools:ignore="HardcodedText" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            <com.ramotion.directselect.DSListView
+                    android:id="@+id/ds_months_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ds_list_bg"
+                    android:visibility="invisible"
+                    ds:data_array="@array/months"
+                    ds:scale_animations="true"
+                    ds:scale_animations_factor="1.2"
+                    ds:scale_animations_pivot_center="false"
+                    ds:selected_index="5"
+                    ds:selector_background="@drawable/curve_shape_direct_select"/>
+            <!--ds:picker_box_view="@id/ds_month_picker"-->
 
 
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-            ds:errorEnabled="true"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
-
-            <EditText
-                android:id="@+id/et_edit_profile_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="@string/et_complete_info_email"
-                android:inputType="text"
-                android:textAllCaps="false"
-                android:textSize="@dimen/standard"
-                tools:ignore="HardcodedText" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <yoyo.app.android.com.yoyoapp.DirectSelect.AdvancedExampleCountryPickerBox
-            android:id="@+id/ds_country_picker"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/ds_country_picker"
-            ds:errorEnabled="true"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
-
-            <EditText
-                android:id="@+id/et_edit_profile_phonenumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="@string/et_complete_info_personal_phone_number"
-                android:inputType="number"
-                android:textAllCaps="false"
-                android:textSize="@dimen/standard"
-                tools:ignore="HardcodedText" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.ramotion.directselect.DSListView
+                    android:id="@+id/ds_days_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ds_list_bg"
+                    android:visibility="invisible"
+                    ds:data_array="@array/days"
+                    ds:scale_animations="true"
+                    ds:scale_animations_factor="1.2"
+                    ds:scale_animations_pivot_center="false"
+                    ds:selected_index="14"
+                    ds:selector_background="@drawable/curve_shape_direct_select"/>
+            <!--ds:picker_box_view="@id/ds_day_picker"-->
 
 
-        <com.ramotion.directselect.DSDefaultPickerBox
-            android:id="@+id/ds_year_picker"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/bottom_line"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ds_month_picker"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ds_month_picker"
-            app:layout_constraintTop_toTopOf="@+id/ds_month_picker" />
-
-        <com.ramotion.directselect.DSDefaultPickerBox
-            android:id="@+id/ds_month_picker"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/bottom_line"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ds_day_picker"
-            app:layout_constraintEnd_toStartOf="@+id/ds_year_picker"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ds_day_picker"
-            app:layout_constraintTop_toTopOf="@+id/ds_day_picker" />
-
-        <com.ramotion.directselect.DSDefaultPickerBox
-            android:id="@+id/ds_day_picker"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/bottom_line"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/ds_month_picker"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-            app:layout_constraintTop_toBottomOf="@+id/ds_month_picker"
-            tools:ignore="RtlHardcoded,RtlSymmetry">
-
-            <EditText
-                android:id="@+id/et_edit_profile_introducer_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:hint="@string/et_complete_info_personal_introducer_code"
-                android:inputType="number"
-                android:textAllCaps="false"
-                android:textSize="@dimen/standard"
-                tools:ignore="HardcodedText" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/button_edit_profile_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:text="save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button_edit_profile_cancel"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
-
-        <Button
-            android:id="@+id/button_edit_profile_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cancel"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button_edit_profile_save"
-            app:layout_constraintEnd_toStartOf="@+id/button_edit_profile_save"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/guideline_left_v" />
+            <com.ramotion.directselect.DSListView
+                    android:id="@+id/ds_years_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ds_list_bg"
+                    android:visibility="invisible"
+                    ds:data_array="@array/years"
+                    ds:scale_animations="true"
+                    ds:scale_animations_factor="1.2"
+                    ds:scale_animations_pivot_center="false"
+                    ds:selected_index="8"
+                    ds:selector_background="@drawable/curve_shape_direct_select"/>
+            <!--ds:picker_box_view="@id/ds_year_picker"-->
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-<!--</ScrollView>-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/large_margin"
+                    android:clipToPadding="false"
+                    tools:context="yoyo.app.android.com.yoyoapp.EditProfileFragment">
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_left_v"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.05"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline_right_v"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.95"/>
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/iv_edit_profile_img"
+                        android:layout_width="99dp"
+                        android:layout_height="102dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/avatar"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+
+                <ImageView
+                        android:id="@+id/iv_edit_profile_change_photo_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom|end"
+                        android:src="@drawable/ic_photo_camera"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_edit_profile_img"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_edit_profile_img"
+                        app:layout_constraintStart_toStartOf="@+id/iv_edit_profile_img"
+                        app:layout_constraintHorizontal_bias="0.94"/>
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textColor="#c2c2c2"
+                        android:textSize="13.3sp"
+                        android:id="@+id/textView23"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintTop_toBottomOf="@+id/iv_edit_profile_img"/>
+
+                <TextView
+                        android:id="@+id/tv_edit_profile_email"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/grey_cursor_color"
+                        android:textSize="15sp"
+                        android:paddingStart="8dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_gray_editprofile_item"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView23"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:elevation="4dp"/>
+
+
+                <EditText
+                        android:id="@+id/et_edit_profile_phonenumber"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:hint="@string/phone_number"
+                        android:inputType="number"
+                        android:textAllCaps="false"
+                        android:paddingStart="8dp"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:textSize="@dimen/standard"
+                        tools:ignore="HardcodedText" app:layout_constraintTop_toBottomOf="@+id/textView3"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"/>
+
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" ds:srcCompat="@drawable/ic_check_green_24dp"
+                        android:id="@+id/imageView" app:layout_constraintEnd_toEndOf="@+id/tv_edit_profile_email"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toTopOf="@+id/tv_edit_profile_email"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_edit_profile_email" android:elevation="5dp"/>
+                <TextView
+                        android:text="@string/phone_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#c2c2c2"
+                        android:id="@+id/textView3" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_edit_profile_email"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
+                <TextView
+                        android:text="@string/full_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView4"
+                        app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_phonenumber"
+                        android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                />
+                <RadioGroup
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        android:id="@+id/radioGroup" android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v" android:orientation="horizontal"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v">
+                    <RadioButton
+                            android:text="Mr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/radioButton3" android:layout_weight="1"/>
+                    <RadioButton
+                            android:text="Ms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/radioButton2"
+                            android:layout_weight="1"/>
+                    <RadioButton
+                            android:text="Mrs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:id="@+id/radioButton"
+                            android:layout_weight="1"/>
+                </RadioGroup>
+
+                <EditText
+                        android:id="@+id/et_edit_profile_firstname"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:hint="@string/first_name"
+                        android:inputType="text"
+                        android:textAllCaps="false"
+                        android:paddingStart="8dp"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:textSize="@dimen/standard"
+                        tools:ignore="HardcodedText" app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        android:layout_marginTop="8dp" app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toStartOf="@+id/et_edit_profile_lastname"
+                        app:layout_constraintHorizontal_chainStyle="packed" android:layout_marginEnd="16dp"/>
+
+                <EditText
+                        android:id="@+id/et_edit_profile_lastname"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:hint="@string/last_name"
+                        android:textAllCaps="false"
+                        android:paddingStart="8dp"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:textSize="@dimen/standard"
+                        tools:ignore="HardcodedText" app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                        android:inputType="text" app:layout_constraintStart_toEndOf="@+id/et_edit_profile_firstname"
+                        app:layout_constraintHorizontal_bias="0.5"/>
+
+
+                <EditText
+                        android:id="@+id/et_edit_profile_introducer_code"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textAllCaps="false"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:textSize="@dimen/standard"
+                        tools:ignore="HardcodedText"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                        android:paddingStart="8dp"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView10"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        android:text="@string/et_complete_info_personal_introducer_code"
+                        app:layout_constraintTop_toBottomOf="@+id/editText2" android:layout_marginTop="16dp"/>
+                <TextView
+                        android:text="@string/date_of_birth_optional"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView20" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_firstname"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:inputType="date"
+                        android:ems="10"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:id="@+id/editText" app:layout_constraintTop_toBottomOf="@+id/textView20"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                        android:paddingStart="8dp"/>
+                <TextView
+                        android:text="@string/country_optional"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView21" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/editText"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:inputType="text"
+                        android:ems="10"
+                        android:background="@drawable/bg_light_editprofile_item"
+                        android:id="@+id/editText2" app:layout_constraintTop_toBottomOf="@+id/textView21"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                        android:paddingStart="8dp"/>
+                <Button
+                        android:text="@string/save"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_button_colorprimary_round"
+                        android:id="@+id/button3" android:layout_marginTop="24dp"
+                        app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_introducer_code"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                        app:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
 </FrameLayout>

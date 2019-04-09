@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/tv_item_hotel_price2"
+        android:text="@string/from_small"
         android:textAllCaps="false"
         android:textSize="@dimen/small"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_hotel_item_price1"
@@ -111,7 +111,7 @@
         app:layout_constraintGuide_percent="0.05" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tv_profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -130,7 +130,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/small"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
 
     <TextView
         android:id="@+id/textView6"
@@ -149,8 +149,8 @@
         android:layout_marginStart="8dp"
         android:text="40 $"
         android:textSize="@dimen/small"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/textView4" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_profile_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_profile_name" />
 
     <TextView
         android:id="@+id/textView8"

@@ -348,7 +348,7 @@
     </ScrollView>
 
     <com.dagang.library.GradientButton
-        android:id="@+id/fb_hotel_details"
+        android:id="@+id/button_hotel_details"
         android:layout_width="160dp"
         android:layout_height="75dp"
         app:button_end_color="@color/colorPrimary"

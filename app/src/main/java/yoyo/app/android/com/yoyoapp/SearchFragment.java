@@ -36,7 +36,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
     private TextView filterPriceTextview;
     private String incommingBundle;
     private Button searchButton;
-    private ImageView backButton;
+    private ImageView backButton , calendarLogo1, calendarLogo2 , searchCityLogo, filterLogo;
     private BottomSheetBehavior bottomSheetBehavior;
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
     private FragmentManager fragmentManager;
@@ -50,11 +50,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
         datePickerBottomSheet = new DatePickerBottomSheet(getContext(),view);
         init();
         setupBundle();
-        setupDatePicker();
+        setupOnclickListner();
         setupSearchbutton();
         setupBackButton();
-        setupSearchDialog();
-        setupFilterPriceButtonsheet();
 
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
 
@@ -64,15 +62,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
 
     private void setupFilterPriceButtonsheet() {
 
-        filterPriceTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                priceFilterBottomSheetFragment = PriceFilterBottomSheetDialogFragment.newInstance();
-                priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
-
-            }
-        });
+        priceFilterBottomSheetFragment = PriceFilterBottomSheetDialogFragment.newInstance();
+        priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
+;
     }
 
     private void init() {
@@ -89,6 +81,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
         fragmentManager = getFragmentManager();
         checkInTitle = view.findViewById(R.id.tv_search_check_in_txt);
         checkOutTitle = view.findViewById(R.id.tv_search_check_out_txt);
+        calendarLogo2 = view.findViewById(R.id.iv_search_calender_logo2);
+        calendarLogo1 = view.findViewById(R.id.iv_search_calender_logo1);
+        searchCityLogo = view.findViewById(R.id.iv_search_search_city);
+        filterLogo = view.findViewById(R.id.iv_search_filter);
         // init the bottom sheet behavior
         bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
     }
@@ -99,17 +95,23 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
 
         if (incommingBundle.contains("tour"))
         {
-            titleTextview.setText("Tour");
-            smallTitleTextview.setText("Going anywhere?");
-            searchTextView.setText("Tour near me");
+            titleTextview.setText(getString(R.string.tours));
+            smallTitleTextview.setText(getString(R.string.going_anywhere));
+            searchTextView.setText(getString(R.string.tour_near_me));
         }
     }
 
-    private void setupDatePicker() {
+    private void setupOnclickListner() {
         checkInEditText.setOnClickListener(this);
         checkOutEditText.setOnClickListener(this);
         checkInTitle.setOnClickListener(this);
         checkOutTitle.setOnClickListener(this);
+        calendarLogo1.setOnClickListener(this);
+        calendarLogo2.setOnClickListener(this);
+        searchTextView.setOnClickListener(this);
+        searchCityLogo.setOnClickListener(this);
+        filterLogo.setOnClickListener(this);
+        filterPriceTextview.setOnClickListener(this);
     }
 
     private void setupBackButton() {
@@ -151,26 +153,21 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
                 }
             }
         });
+
     }
 
     private void setupSearchDialog()
     {
+        new SimpleSearchDialogCompat(getContext(), getString(R.string.search_with_dot),
+                getString(R.string.what_are_you_looking_for), null, createSampleData(),
+                new SearchResultListener<SampleSearchModel>() {
+                    @Override
+                    public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
 
-        searchTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SimpleSearchDialogCompat(getContext(), "Search...",
-                        "What are you looking for...?", null, createSampleData(),
-                        new SearchResultListener<SampleSearchModel>() {
-                            @Override
-                            public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
-
-                                searchTextView.setText( item.getTitle());
-                                dialog.dismiss();
-                            }
-                        }).show();
-            }
-        });
+                        searchTextView.setText( item.getTitle());
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     private ArrayList<SampleSearchModel> createSampleData(){
@@ -192,9 +189,23 @@ public class SearchFragment extends Fragment implements View.OnClickListener  {
         if (v.getId() == R.id.tv_search_check_in_txt
                 || v.getId() == R.id.tv_search_check_out_txt
                 || v.getId() == R.id.tv_search_check_in
-                || v.getId() == R.id.tv_search_check_out)
+                || v.getId() == R.id.tv_search_check_out
+                || v.getId() == R.id.iv_search_calender_logo1
+                || v.getId() == R.id.iv_search_calender_logo2)
         {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
+
+        if (v.getId() == R.id.iv_search_search_city
+                || v.getId() == R.id.et_search_bar)
+        {
+            setupSearchDialog();
+        }
+
+        if (v.getId() == R.id.iv_search_filter
+                || v.getId() == R.id.tv_search_price_filter)
+        {
+            setupFilterPriceButtonsheet();
         }
     }
 }

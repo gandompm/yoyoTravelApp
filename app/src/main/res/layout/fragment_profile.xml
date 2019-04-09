@@ -1,183 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     tools:context=".ProfileFragment"
+                                                     android:background="@color/background">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/cl_profile"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context="yoyo.app.android.com.yoyoapp.ProfileFragment"
-    tools:layout_editor_absoluteY="25dp"
-    android:background="@color/background"
-    android:layout_marginBottom="50dp">
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" app:layout_constraintGuide_percent="0.5" android:id="@+id/guideline4"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" app:layout_constraintGuide_percent="0.75" android:id="@+id/guideline5"/>
 
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.github.florent37.shapeofview.shapes.RoundRectView
-        android:id="@+id/iv_edit_profile_img_shape"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:shape_roundRect_bottomLeftRadius="50dp"
-        app:shape_roundRect_bottomRightRadius="50dp"
-        app:shape_roundRect_topLeftRadius="50dp"
-        app:shape_roundRect_topRightRadius="50dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_height="100dp"
+                android:layout_width="100dp"
+                android:id="@+id/iv_profile"
+                android:elevation="10dp"
+                app:civ_border_width="5dp"
+                app:civ_border_color="@color/colorPrimaryLight"
+                android:src="@drawable/avatar"
+                android:layout_marginTop="32dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_background_image" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/avatar" />
-    </com.github.florent37.shapeofview.shapes.RoundRectView>
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/iv_profile_background_image"
+                app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/profile_background" android:scaleType="centerCrop"/>
 
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                android:id="@+id/iv_profile_rules"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile_travel_companion" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_travel_companion"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_travel_companion" app:layout_constraintDimensionRatio="1:1"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <TextView
-        android:id="@+id/tv_profile_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/roboto_thin"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/header_0"
-        app:layout_constraintBottom_toTopOf="@+id/iv_edit_profile_img_shape"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        android:text="@string/client_name_mock" />
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                android:id="@+id/iv_profile_travel_companion"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile_edit" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/iv_profile_rules"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_edit" app:layout_constraintDimensionRatio="1:1"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <TextView
-        android:id="@+id/tv_profile_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="edward.norton@gmail.com"
-        android:textColor="@color/black4"
-        android:textSize="@dimen/standard"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/tv_profile_name"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7" />
+        <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                android:id="@+id/iv_profile_edit" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/iv_profile_travel_companion"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintDimensionRatio="1:1" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile_background_image" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline5" app:layout_constraintVertical_bias="0.8"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <Button
-        android:id="@+id/button_profile_edit_profile"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_edit_profile"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/iv_edit_profile_img_shape" />
+        <ImageView
+                android:src="@color/white"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/iv_profile_setting"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/iv_profile_report_problem"
+                android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/guideline5"
+                app:layout_constraintVertical_bias="0.19999999"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <Button
-        android:id="@+id/button_profile_travellers_list"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_trlavlers_list"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_edit_profile" />
+        <ImageView
+                android:src="@color/white"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/iv_profile_report_problem"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile_setting"
+                app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/iv_profile_sign_out"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_setting"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_setting"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <Button
-        android:id="@+id/button_profile_edit_rules"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_rules"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_travellers_list" />
+        <ImageView
+                android:src="@color/white"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/iv_profile_sign_out"
+                app:layout_constraintStart_toEndOf="@+id/iv_profile_report_problem" app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_report_problem"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_report_problem"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_profile_name"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:gravity="center_horizontal"
+                android:text="Edward Norton" android:textColor="@color/white"
+                android:textSize="@dimen/header_1" app:layout_constraintHorizontal_bias="1.0"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
+        <TextView
+                android:text="@string/all_trips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView44" app:layout_constraintStart_toStartOf="@+id/iv_profile_edit"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_edit" android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline4" android:textColor="@color/colorPrimaryLight"/>
+        <TextView
+                android:text="@string/upcoming_trips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView45"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_travel_companion"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_travel_companion"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView44"
+                android:textColor="@color/colorPrimaryLight"/>
+        <TextView
+                android:text="@string/flying_rewards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView46" app:layout_constraintEnd_toEndOf="@+id/iv_profile_rules"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_rules"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView45"
+                android:textColor="@color/colorPrimaryLight"/>
+        <TextView
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView47" app:layout_constraintStart_toStartOf="@+id/textView44"
+                app:layout_constraintEnd_toEndOf="@+id/textView44" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView44" android:textColor="@color/white"/>
+        <TextView
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView48" app:layout_constraintStart_toStartOf="@+id/textView45"
+                app:layout_constraintEnd_toEndOf="@+id/textView45"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView47" android:textColor="@color/white"/>
+        <TextView
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView49" app:layout_constraintStart_toStartOf="@+id/textView46"
+                app:layout_constraintEnd_toEndOf="@+id/textView46"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView48" android:textColor="@color/white"/>
+        <ImageView
+                android:src="@color/white"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:id="@+id/imageView21" app:layout_constraintEnd_toStartOf="@+id/iv_profile_travel_companion"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toEndOf="@+id/iv_profile_edit"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView44"/>
+        <ImageView
+                android:src="@color/white"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:id="@+id/imageView27" app:layout_constraintEnd_toStartOf="@+id/iv_profile_rules"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toEndOf="@+id/iv_profile_travel_companion"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView46"/>
+        <ImageView
+                android:src="@drawable/ic_edit_profile"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView30"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_edit" app:layout_constraintEnd_toEndOf="@+id/textView50"
+                app:layout_constraintStart_toStartOf="@+id/textView50"/>
+        <TextView
+                android:text="@string/edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView50"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_edit"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_edit" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_edit" android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView30" android:textSize="@dimen/small"/>
+        <TextView
+                android:text="@string/travel_companions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView51" app:layout_constraintStart_toStartOf="@+id/iv_profile_travel_companion"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_travel_companion" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_travel_companion" android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView31" android:gravity="center_horizontal"
+                android:textSize="@dimen/small"/>
+        <ImageView
+                android:src="@drawable/ic_traveller_companions"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView31" app:layout_constraintStart_toStartOf="@+id/textView51"
+                app:layout_constraintEnd_toEndOf="@+id/textView51" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_travel_companion"/>
+        <TextView
+                android:text="@string/rules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView52" app:layout_constraintStart_toStartOf="@+id/iv_profile_rules"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_rules" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_rules" android:textSize="@dimen/small"
+                android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/imageView32"/>
+        <TextView
+                android:text="@string/setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView53" app:layout_constraintStart_toStartOf="@+id/iv_profile_setting"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_setting" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_setting" android:textSize="@dimen/small"
+                android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/imageView33"/>
+        <TextView
+                android:text="@string/report_an_app_problem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView54" app:layout_constraintStart_toStartOf="@+id/iv_profile_report_problem"
+                app:layout_constraintEnd_toEndOf="@+id/iv_profile_report_problem" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_report_problem" android:gravity="center_horizontal"
+                android:textSize="@dimen/small" android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView34"/>
+        <TextView
+                android:text="@string/sign_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView55" app:layout_constraintEnd_toEndOf="@+id/iv_profile_sign_out"
+                app:layout_constraintStart_toStartOf="@+id/iv_profile_sign_out" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_profile_sign_out" android:textSize="@dimen/small"
+                android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/imageView35"/>
+        <ImageView
+                android:src="@drawable/ic_rules"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView32" app:layout_constraintStart_toStartOf="@+id/textView52"
+                app:layout_constraintEnd_toEndOf="@+id/textView52" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_rules"/>
+        <ImageView
+                android:src="@drawable/ic_setting"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView33" app:layout_constraintStart_toStartOf="@+id/textView53"
+                app:layout_constraintEnd_toEndOf="@+id/textView53" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_setting"/>
+        <ImageView
+                android:src="@drawable/ic_report"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView34" app:layout_constraintStart_toStartOf="@+id/textView54"
+                app:layout_constraintEnd_toEndOf="@+id/textView54" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_report_problem"/>
+        <ImageView
+                android:src="@drawable/ic_exit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView35" app:layout_constraintStart_toStartOf="@+id/textView55"
+                app:layout_constraintEnd_toEndOf="@+id/textView55" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toTopOf="@+id/iv_profile_sign_out"/>
 
-    <Button
-        android:id="@+id/button_profile_setting"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_setting"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_edit_rules" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button_profile_report_a_problem"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_report_an_app_problem"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_setting" />
-
-    <Button
-        android:id="@+id/button_profile_log_out"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/ds_bg_list_selector"
-        android:text="@string/button_profile_sign_out"
-        android:textColor="@color/black"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/button_profile_report_a_problem" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
     <include layout="@layout/fragment_signup"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

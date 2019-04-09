@@ -51,7 +51,7 @@
             android:id="@+id/cv_hotel_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:cardCornerRadius="0dp">
         <RelativeLayout
             android:id="@+id/rl_hotel_list"
             android:layout_width="match_parent"

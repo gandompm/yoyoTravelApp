@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import yoyo.app.android.com.yoyoapp.R;
@@ -22,17 +23,27 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
     private RangeBar rangeBar;
     private String leftIndex ,rightIndex;
     private BotomSheetListener bottomSheetListener;
+    private ImageView closeImageview;
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_sheet_filter_price,container,false);
 
-
         init();
         setupApplyButton();
         setupRangeBar();
+        setupCloseButton();
 
         return view;
+    }
+
+    private void setupCloseButton() {
+        closeImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
     }
 
     private void setupRangeBar() {
@@ -63,6 +74,7 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
         rangebarTextview = view.findViewById(R.id.tv_filter_price_filter);
         applyButton = view.findViewById(R.id.button_filter_price_apply);
         rangeBar = view.findViewById(R.id.rangebar_filter_price);
+        closeImageview = view.findViewById(R.id.iv_filter_price_close);
     }
 
     public static PriceFilterBottomSheetDialogFragment newInstance()

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    >
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_room_hotel"
@@ -9,6 +10,30 @@
         android:layout_height="match_parent"
         android:paddingTop="8dp"
         android:clipToPadding="false"/>
+
+    <com.dagang.library.GradientButton
+            android:id="@+id/button_room_book"
+            android:layout_width="160dp"
+            android:layout_height="75dp"
+            android:visibility="gone"
+            app:button_end_color="@color/colorPrimary"
+            app:button_gradient_orientation="LEFT_RIGHT"
+            app:button_is_shadowed="true"
+            app:button_press_end_color="@color/colorPrimaryDark"
+            app:button_press_start_color="@color/colorPrimaryDark"
+            app:button_radius="30dp"
+            app:button_shadow_angle="90"
+            app:button_shadow_color="@color/colorPrimaryShadow"
+            app:button_shadow_distance="5dp"
+            app:button_shadow_radius="10dp"
+            app:button_size="4sp"
+            app:button_start_color="@color/colorPrimary"
+            app:button_text="BOOK NOW"
+            app:button_text_color="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/standard_margin"
+            />
 
 
 </RelativeLayout>

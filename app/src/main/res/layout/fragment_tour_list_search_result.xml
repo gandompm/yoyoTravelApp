@@ -49,17 +49,17 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_tour_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways">
+                android:id="@+id/cv_tour_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="0dp">
 
-        <RelativeLayout
-            android:id="@+id/rl_tour_list"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:padding="2dp">
+            <RelativeLayout
+                    android:id="@+id/rl_tour_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:padding="2dp">
 
             <TextView
                 android:id="@+id/tv_search_check_in"

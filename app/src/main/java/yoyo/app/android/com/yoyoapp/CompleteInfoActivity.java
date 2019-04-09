@@ -1,5 +1,6 @@
 package yoyo.app.android.com.yoyoapp;
 
+import android.widget.*;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 
+import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Client;
 import yoyo.app.android.com.yoyoapp.DirectSelect.AdvancedExampleCountryAdapter;
 import yoyo.app.android.com.yoyoapp.DirectSelect.AdvancedExampleCountryPOJO;
@@ -23,7 +22,9 @@ import java.util.List;
 public class CompleteInfoActivity extends AppCompatActivity {
 
     private Button submitInfoButton;
-    private EditText firstnameEditText, emailEditText,lastnameEditText,phoneNumberEditText;
+    private EditText firstnameEditText,lastnameEditText,phoneNumberEditText;
+    private ImageView userImageview;
+    private TextView emailTextview;
     private Client client;
 
 
@@ -55,16 +56,18 @@ public class CompleteInfoActivity extends AppCompatActivity {
     private void updateViewsSharedPref() {
         firstnameEditText.setText(client.getFirstName());
         lastnameEditText.setText(client.getLastName());
-        emailEditText.setText(client.getEmail());
+        emailTextview.setText(client.getEmail());
+        Picasso.with(CompleteInfoActivity.this).load(client.getPicture()).into(userImageview);
     }
 
     private void init() {
-        submitInfoButton = findViewById(R.id.button_compinfo_submit);
+        submitInfoButton = findViewById(R.id.button_compinfo_continue);
         firstnameEditText = findViewById(R.id.et_compinfo_firstname);
         lastnameEditText = findViewById(R.id.et_compinfo_lastname);
-        //phoneNumberEditText = findViewById(R.id.et_compinfo_phonenumber);
-        emailEditText = findViewById(R.id.et_compinfo_email);
-        emailEditText.setKeyListener(null);
+        phoneNumberEditText = findViewById(R.id.et_compinfo_phonenumber);
+        emailTextview = findViewById(R.id.tv_compinfo_email_address);
+        userImageview = findViewById(R.id.iv_compinfo_img);
+        emailTextview.setKeyListener(null);
     }
 
     private void setupCountrySelector() {
@@ -87,19 +90,19 @@ public class CompleteInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (firstnameEditText.getText().toString().trim().isEmpty())
                 {
-                    firstnameEditText.setError("first name cannot be empty");
+                    firstnameEditText.setError(getString(R.string.first_name_cannot_be_empty));
                 }
                 if (lastnameEditText.getText().toString().trim().isEmpty())
                 {
-                    lastnameEditText.setError("last name cannot be empty");
+                    lastnameEditText.setError(getString(R.string.last_name_cannot_be_empty));
                 }
-//                if (phoneNumberEditText.getText().toString().trim().isEmpty())
-//                {
-//                    phoneNumberEditText.setError("phone number cannot be empty");
-//                }
-                if (emailEditText.getText().toString().trim().isEmpty())
+                if (phoneNumberEditText.getText().toString().trim().isEmpty())
                 {
-                    emailEditText.setError("email cannot be empty");
+                    phoneNumberEditText.setError(getString(R.string.phone_number_cannot_be_empty));
+                }
+                if (emailTextview.getText().toString().trim().isEmpty())
+                {
+                    emailTextview.setError(getString(R.string.email_cannot_be_empty));
                 }
                 startActivity(new Intent(CompleteInfoActivity.this,MainActivity.class));
             }

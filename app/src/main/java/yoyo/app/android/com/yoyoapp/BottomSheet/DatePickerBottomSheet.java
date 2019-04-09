@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,8 @@ public class DatePickerBottomSheet {
     private GradientButton fromDateButton ,toDateButton;
     private TextView toDateTextView, fromDateTextView;
     private BottomSheetBehavior bottomSheetBehavior;
+    private ImageView closeButton;
+    private Snackbar okSnackbar;
     private View view;
     private Typeface typeface;
 
@@ -44,6 +47,16 @@ public class DatePickerBottomSheet {
         init();
         setupDefaultDateValue();
         setupCalendar();
+        setupCloseButton();
+    }
+
+    private void setupCloseButton() {
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+        });
     }
 
     private void setupDefaultDateValue() {
@@ -85,7 +98,7 @@ public class DatePickerBottomSheet {
             }
         });
 
-        fromDateButton.setOnClickListener(new View.OnClickListener() {
+        fromDateButton.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -117,6 +130,7 @@ public class DatePickerBottomSheet {
         calendar = view.findViewById(R.id.calendar_datepicker);
         fromDateButton = view.findViewById(R.id.button_datepicker_from);
         toDateButton = view.findViewById(R.id.button_datepicker_to);
+        closeButton = view.findViewById(R.id.iv_datepicker_close);
         nightNumCalendarTextview = view.findViewById(R.id.tv_datepicker_night_num);
         fromDateTextView =  fromDateButton.getButton();
         toDateTextView =  toDateButton.getButton();
@@ -134,13 +148,19 @@ public class DatePickerBottomSheet {
         toDateTextView.setTextColor(Color.parseColor("#0265d3"));
         toDateTextView.setText(endDateString);
         fromDateTextView.setText(startDateString);
-        calendar.setEditable(false);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setupOkButton();
-            }
-        }, 1000);
+        okSnackbar = Snackbar.make(view, "Setting this Date?", Snackbar.LENGTH_INDEFINITE)
+                .setAction("OK", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setupOkButton();
+                    }
+                }).setActionTextColor(Color.parseColor("#ffffffff"));
+        View sbView = okSnackbar.getView();
+        sbView.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
+        TextView errorDatePicker = (TextView) sbView.findViewById(R.id.snackbar_text);
+        errorDatePicker.setTextColor(ContextCompat.getColor(context, R.color.white));
+        errorDatePicker.setTypeface(typeface);
+        okSnackbar.show();
     }
 
     private void checkInFunc() {

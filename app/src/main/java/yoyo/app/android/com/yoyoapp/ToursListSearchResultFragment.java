@@ -85,7 +85,7 @@ public class ToursListSearchResultFragment extends Fragment implements View.OnCl
     }
 
     private void setupSnackBar() {
-        Snackbar snackbar = Snackbar.make(view, listSize  +" Results", com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
+        Snackbar snackbar = Snackbar.make(view, listSize  +" " + getString(R.string.results), com.google.android.material.snackbar.Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
         View sbView = snackbar.getView();
 
@@ -106,7 +106,7 @@ public class ToursListSearchResultFragment extends Fragment implements View.OnCl
         cityNameTextview.setText(searchText);
         startDateTextview.setText(startDate);
         endDateTextview.setText(endDate);
-        durationTextview.setText(duration+" Nights");
+        durationTextview.setText(duration+ " " + getString(R.string.nights));
     }
 
     private void init() {
@@ -117,7 +117,7 @@ public class ToursListSearchResultFragment extends Fragment implements View.OnCl
         endDateTextview = view.findViewById(R.id.tv_search_check_out);
         durationTextview = view.findViewById(R.id.tv_search_night_num);
         startDateTextview = view.findViewById(R.id.tv_search_check_in);
-        shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.shimmer_recycler_view);
+        shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
         relativeLayout = view.findViewById(R.id.bottom_sheet_tour_filter);
         bottomSheetBehaviorFilter = BottomSheetBehavior.from(relativeLayout);
         LinearLayout llBottomSheet = (LinearLayout) view.findViewById(R.id.ll_datepicker_bottom_sheet);

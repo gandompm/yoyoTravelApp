@@ -7,20 +7,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.widget.*;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.os.strictmode.CleartextNetworkViolation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import yoyo.app.android.com.yoyoapp.DataModels.Client;
 import yoyo.app.android.com.yoyoapp.DirectSelect.AdvancedExampleCountryAdapter;
@@ -38,7 +32,8 @@ import static android.app.Activity.RESULT_OK;
 public class EditProfileFragment extends Fragment {
 
     private Button submitInfoButton;
-    private EditText firstnameEditText,phoneNumberEditText,lastnameEditText,emailEditText;
+    private EditText firstnameEditText,phoneNumberEditText,lastnameEditText;
+    private TextView emailTextview;
     private ImageView userImageview;
     private Uri imageUri = null;
     private Client client;
@@ -63,7 +58,7 @@ public class EditProfileFragment extends Fragment {
         firstnameEditText = view.findViewById(R.id.et_edit_profile_firstname);
         lastnameEditText = view.findViewById(R.id.et_edit_profile_lastname);
        // phoneNumberEditText = view.findViewById(R.id.et_edit_profile_lastname);
-        emailEditText = view.findViewById(R.id.et_edit_profile_email);
+        emailTextview = view.findViewById(R.id.tv_edit_profile_email);
         userImageview = view.findViewById(R.id.iv_edit_profile_img);
     }
 
@@ -75,7 +70,7 @@ public class EditProfileFragment extends Fragment {
         {
             firstnameEditText.setText(client.getFirstName());
             lastnameEditText.setText(client.getLastName());
-            emailEditText.setText(client.getEmail());
+            emailTextview.setText(client.getEmail());
             Picasso.with(getContext()).load(client.getPicture()).into(userImageview);
         }
     }
@@ -99,19 +94,19 @@ public class EditProfileFragment extends Fragment {
             public void onClick(View v) {
                 if (firstnameEditText.getText().toString().trim().isEmpty())
                 {
-                    firstnameEditText.setError("first name cannot be empty");
+                    firstnameEditText.setError(getString(R.string.first_name_cannot_be_empty));
                 }
                 if (lastnameEditText.getText().toString().trim().isEmpty())
                 {
-                    lastnameEditText.setError("last name cannot be empty");
+                    lastnameEditText.setError(getString(R.string.last_name_cannot_be_empty));
                 }
                 if (phoneNumberEditText.getText().toString().trim().isEmpty())
                 {
-                    phoneNumberEditText.setError("phone number cannot be empty");
+                    phoneNumberEditText.setError(getString(R.string.phone_number_cannot_be_empty));
                 }
-                if (emailEditText.getText().toString().trim().isEmpty())
+                if (emailTextview.getText().toString().trim().isEmpty())
                 {
-                    emailEditText.setError("email cannot be empty");
+                    emailTextview.setError(getString(R.string.email_cannot_be_empty));
                 }
                 startActivity(new Intent(getContext(),MainActivity.class));
             }

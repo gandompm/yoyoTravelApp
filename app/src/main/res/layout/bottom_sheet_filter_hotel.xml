@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
             android:gravity="center"
-            android:text="@string/tv_filter_hotel_title"
+            android:text="@string/filter"
             android:textSize="@dimen/header_1" />
 
         <ImageView

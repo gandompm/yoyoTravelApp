@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import yoyo.app.android.com.yoyoapp.AboutCityFragment;
-import yoyo.app.android.com.yoyoapp.Addapters.CitiesRecyclerviewAddaptor;
-import yoyo.app.android.com.yoyoapp.CityFragment;
-import yoyo.app.android.com.yoyoapp.R;
+
+import androidx.appcompat.widget.Toolbar;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
@@ -20,10 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import yoyo.app.android.com.yoyoapp.AboutCityFragment;
+import yoyo.app.android.com.yoyoapp.Addapters.CitiesRecyclerviewAddaptor;
+import yoyo.app.android.com.yoyoapp.CityFragment;
+import yoyo.app.android.com.yoyoapp.R;
 
 public class CitiyViewPagerFragment extends Fragment {
 
@@ -31,6 +32,7 @@ public class CitiyViewPagerFragment extends Fragment {
     private View view;
     private String cityImage;
     private String cityName;
+
     @RequiresApi(api = Build.VERSION_CODES.P)
     @SuppressLint("ResourceAsColor")
     @Nullable
@@ -151,11 +153,6 @@ public class CitiyViewPagerFragment extends Fragment {
         });
 
         mViewPager.getToolbar().setTitle("");
-
-
-
-
-
 
 
         return view;

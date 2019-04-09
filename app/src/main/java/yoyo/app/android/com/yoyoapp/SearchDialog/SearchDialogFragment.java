@@ -37,6 +37,7 @@ public class SearchDialogFragment extends Fragment {
                     }
                 }).show();
 
+
         return view;
     }
     private ArrayList<SampleSearchModel> createSampleData(){

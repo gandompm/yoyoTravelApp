@@ -28,7 +28,7 @@
                 android:layout_toEndOf="@+id/iv_search_back"
                 android:gravity="center_vertical"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/tv_hotelsearch_hotel"
+                android:text="@string/hotels"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/header_2" />
@@ -85,7 +85,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/iv_search_search_city"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="8dp"
@@ -103,11 +103,11 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Hotel near  me"
+                android:text="@string/hotel_near_me"
                 android:textColor="@color/black"
                 android:textSize="@dimen/header_2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintStart_toEndOf="@+id/iv_search_search_city"
                 app:layout_constraintTop_toBottomOf="@+id/tv_search_title" />
 
             <ImageView
@@ -133,7 +133,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line_search">
 
                 <ImageView
-                    android:id="@+id/iv_search_calender_1"
+                    android:id="@+id/iv_search_calender_logo1"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentBottom="true"
@@ -147,7 +147,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black2"
                     android:textSize="@dimen/header_2"
-                    android:text="Check In" />
+                    android:text="@string/tv_date_picker_check_in" />
 
                 <TextView
                     android:id="@+id/tv_search_check_in"
@@ -155,10 +155,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="4dp"
-                    android:layout_toEndOf="@+id/iv_search_calender_1"
+                    android:layout_toEndOf="@+id/iv_search_calender_logo1"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Select a date"
+                    android:text="@string/tv_datepicker_select_date"
                     android:textColor="@color/black"
                     android:textSize="@dimen/standard" />
 
@@ -182,12 +182,12 @@
                     android:layout_alignParentTop="true"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Check Out"
+                    android:text="@string/tv_date_picker_check_out"
                     android:textColor="@color/black2"
                     android:textSize="@dimen/header_2" />
 
                 <ImageView
-                    android:id="@+id/iv_search_calender"
+                    android:id="@+id/iv_search_calender_logo2"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_alignParentBottom="true"
@@ -199,10 +199,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="4dp"
-                    android:layout_toEndOf="@+id/iv_search_calender"
+                    android:layout_toEndOf="@+id/iv_search_calender_logo2"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Select a date"
+                    android:text="@string/tv_datepicker_select_date"
                     android:textColor="@color/black"
                     android:textSize="@dimen/standard" />
 
@@ -283,7 +283,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="Filter"
+                    android:text="@string/filter"
                     android:textColor="@color/black2"
                     android:textSize="@dimen/header_2" />
 
@@ -301,7 +301,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="2dp"
                     android:layout_toEndOf="@id/iv_search_filter"
-                    android:text="Filter by price (optional)"
+                    android:text="@string/filter_by_price_optional"
                     android:textColor="@color/black"
                     android:fontFamily="@font/roboto_regular"
                     android:textSize="@dimen/header_2"/>
@@ -333,7 +333,7 @@
                 android:background="@drawable/curve_shape_fill_yellow"
                 android:fontFamily="@font/roboto_medium"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="Search"
+                android:text="@string/search"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/button_standard_font"
