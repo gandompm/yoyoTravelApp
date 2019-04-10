@@ -86,4 +86,9 @@
         <item>#00F000</item>
         <item>#F00000</item>
     </string-array>
+
+    <array name="gradient_blue">
+        <item>#184890</item>
+        <item>#12d4fa</item>
+    </array>
 </resources>

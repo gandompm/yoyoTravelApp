@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -18,13 +19,14 @@ import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragm
 import com.cpacm.library.SimpleViewPager;
 import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
+import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 
 
 public class MainPageFragment extends Fragment {
 
     public static final String KEY_BUNDLE_MAIN_PAGE_CODE = "Mainpage";
     private TextView searchEditText;
-    private CardView searchHotelCardview, toursCardview;
+    private CardView searchHotelCardview, toursCardview , flightCardview;
     private SimpleViewPager simpleSlider;
     private BasicPagerAdapter sliderAdapter;
     private FragmentManager fragmentManager;
@@ -46,6 +48,7 @@ public class MainPageFragment extends Fragment {
         searchHotelCardview = view.findViewById(R.id.cv_mainpage_hotels);
         fragmentManager = getFragmentManager();
         searchEditText = view.findViewById(R.id.sv_mainpage_search);
+        flightCardview = view.findViewById(R.id.cv_mainpage_flight);
     }
 
     private void setupBannerSlider() {
@@ -82,6 +85,14 @@ public class MainPageFragment extends Fragment {
             public void onClick(View v) {
 
                 sendingToSearchHotelFragment("tour");
+            }
+        });
+
+        flightCardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), MainFlightActivity.class));
+                getActivity().finish();
             }
         });
     }

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:id="@+id/cl_flightlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ab_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/tb_flightsearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_background"
+                app:layout_scrollFlags="scroll|enterAlways"
+                android:layoutDirection="ltr">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+
+                <ImageView
+                        android:src="@drawable/dot_shape"
+                        android:layout_width="140dp"
+                        android:layout_height="17dp"
+                        android:id="@+id/imageView9"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="8dp"/>
+                <ImageView
+                        android:src="@drawable/ic_airplane1_white_24dp"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/imageView10" app:layout_constraintEnd_toStartOf="@+id/imageView9"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView9"/>
+                <ImageView
+                        android:src="@drawable/ic_airplane2_white_24dp"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/imageView11" app:layout_constraintStart_toEndOf="@+id/imageView9"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView9"/>
+                <TextView
+                        android:id="@+id/tv_flightresults_origin_iata"
+                        android:text="TEH"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_medium"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView10" android:layout_marginEnd="8dp"
+                        android:layout_marginTop="4dp"/>
+                <TextView
+                        android:id="@+id/tv_flightresults_origin"
+                        android:text="Tehran"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@+id/tv_flightresults_origin_iata"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_flightresults_origin_iata"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_flightresults_origin_iata"
+                        android:textColor="@color/white"
+                        android:textSize="10sp" android:fontFamily="@font/roboto_bold"/>
+                <TextView
+                        android:text="LON"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_medium"
+                        android:id="@+id/tv_flightresults_destination_iata" android:layout_marginTop="4dp"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/imageView11"
+                        android:layout_marginStart="8dp"
+                />
+                <TextView
+                        android:id="@+id/tv_flightresults_destination_city"
+                        android:text="London"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_flightresults_destination_iata"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_flightresults_destination_iata"
+                        app:layout_constraintStart_toStartOf="@+id/tv_flightresults_destination_iata"
+                        android:fontFamily="@font/roboto_bold"/>
+                <TextView
+                        android:id="@+id/tv_flightresults_adult_num"
+                        android:text="2 Adults"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="10sp"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        android:layout_marginBottom="4dp" app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toStartOf="@+id/textView16"/>
+                <TextView
+                        android:text="|"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:id="@+id/textView16"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toTopOf="@+id/tv_flightresults_adult_num"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_flightresults_adult_num"
+                        app:layout_constraintStart_toEndOf="@+id/tv_flightresults_adult_num"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_flightresults_child_num"
+                        android:fontFamily="@font/roboto_bold"/>
+                <TextView
+                        android:id="@+id/tv_flightresults_child_num"
+                        android:text="2 Child"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white" android:textSize="10sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
+                        app:layout_constraintStart_toEndOf="@+id/textView16" android:layout_marginStart="4dp"
+                        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toStartOf="@+id/textView19"
+                        android:fontFamily="@font/roboto_bold"/>
+
+                <TextView
+                        android:text="|"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        app:layout_constraintTop_toTopOf="@+id/tv_flightresults_child_num"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_flightresults_child_num"
+                        android:id="@+id/textView19"
+                        app:layout_constraintStart_toEndOf="@+id/tv_flightresults_child_num"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_flightresults_infant_num"
+                        android:fontFamily="@font/roboto_bold"/>
+                <TextView
+                        android:id="@+id/tv_flightresults_infant_num"
+                        android:text="1 Infant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@+id/textView19"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                        android:textColor="@color/white" android:textSize="10sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView19" android:layout_marginStart="4dp"
+                        app:layout_constraintHorizontal_bias="0.5" app:layout_constraintEnd_toEndOf="parent"
+                        android:fontFamily="@font/roboto_bold"/>
+                <ImageView
+                        android:id="@+id/iv_flightresults_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_back_light_24dp"
+                        android:padding="8dp"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_flightresult_calender"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/white"
+                android:orientation="horizontal"/>
+
+        <flight.app.android.com.flightbookingapp.Utils.ToggleSwitch
+                android:id="@+id/toggleSwitch_filter_tour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:textToggleLeft="@string/price"
+                app:textToggleCenter="@string/departure_time"
+                app:textToggleRight="@string/capacity"
+                android:textSize="@dimen/small"
+                app:checkedBackgroundColor="@color/colorPrimaryLight"
+                app:checkedTextColor="@color/black1"
+                app:uncheckedBackgroundColor="@color/white"
+                app:uncheckedTextColor="@color/black1"
+                app:separatorColor="@color/white1"
+                app:borderRadius="0dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+            android:id="@+id/shimmer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/small_margin"
+            android:elevation="5dp"
+            android:clipToPadding="false"
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_layout="@layout/shimmer_item_flight"
+            app:shimmer_demo_layout_manager_type="linear_vertical"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_shimmer_color="@color/white"
+            app:shimmer_demo_view_holder_item_background="@color/background"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_flightresult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:paddingTop="@dimen/small_margin"
+            android:paddingBottom="@dimen/large_margin"
+            android:clipToPadding="false"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_flightresult"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <com.cunoraz.continuouscrollable.ContinuousScrollableImageView
+                android:id="@+id/iv_flightresult_noresult"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:direction="right"
+                app:duration="12000"
+                app:imageSrc="@drawable/noresultfluy"
+                android:scaleType="centerCrop" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <TextView
+                android:id="@+id/tv_flightresult_noresult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:gravity="center"
+                android:text="@string/whoops"
+                android:layout_below="@+id/iv_flightresult_noresult"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/header_1"
+                android:textColor="@color/black2"
+                android:fontFamily="@font/roboto_medium" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/iv_flightresult_noresult"/>
+
+        <TextView
+                android:id="@+id/tv_flightresult_noresult2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_centerHorizontal="true"
+                android:text="@string/we_coudln_t_find_any_flight_for_you"
+                android:layout_below="@+id/tv_flightresult_noresult"
+                android:layout_gravity="center"
+                android:textSize="@dimen/header_2"
+                android:textColor="@color/black3"
+                android:fontFamily="@font/roboto_medium"
+                app:layout_constraintTop_toBottomOf="@+id/tv_flightresult_noresult" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+                android:id="@+id/bg_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/tv_flightresult_noresult2"
+                android:src="@drawable/bg_no_item_cactus" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbutton_flightresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:src="@drawable/ic_filter_list_white_24dp"
+            app:fabSize="normal"
+    />
+
+    <include layout="@layout/bottom_sheet_filter_flight"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

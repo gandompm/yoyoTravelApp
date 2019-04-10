@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+android:layoutDirection="ltr">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_flight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="horizontal"
+                      android:gravity="center">
+
+            <com.cbr.gradienttextview.GradientTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YoYo App"
+                    app:gt_color_list="@array/gradient_blue"
+                    android:gravity="center"
+                    android:id="@+id/imageView17"
+                    android:layout_gravity="center"
+                    android:fontFamily="cursive"
+                    android:textSize="@dimen/header_0"
+                    android:textColor="@color/colorPrimary"/>
+
+            <ImageView android:layout_width="40dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="4dp"
+                       android:paddingTop="2dp"
+                       android:src="@drawable/yoyo_logo"/>
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_flight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.cunoraz.continuouscrollable.ContinuousScrollableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:direction="right"
+                    app:duration="10000"
+                    app:imageSrc="@drawable/flight_back"
+                    android:scaleType="centerCrop" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2" android:id="@+id/iv_flight_banner"
+                    app:scaleType="centerCrop"/>
+
+            <ImageView android:layout_width="216dp" android:layout_height="48dp"
+                       android:background="@drawable/white_roundshape"
+                       android:padding="10dp"
+                       app:layout_constraintEnd_toStartOf="@+id/guideline"
+                       app:layout_constraintStart_toStartOf="@+id/guideline"
+                       app:layout_constraintBottom_toBottomOf="@+id/tv_flight_oneway"
+                       app:layout_constraintTop_toTopOf="@+id/tv_flight_oneway"
+                       android:id="@+id/imageView7" android:visibility="visible"/>
+
+            <TextView
+                    android:text="@string/one_way"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/tv_flight_oneway"
+                    android:background="@drawable/colorprimary_roundshape"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    android:layout_marginEnd="4dp" android:textAlignment="center"
+                    android:gravity="center"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toTopOf="@+id/tv_flight_roundway"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_flight_roundway"
+                    android:textColor="@color/white" android:visibility="visible"/>
+            <TextView
+                    android:text="@string/round_trip"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/tv_flight_roundway"
+                    android:background="@drawable/white_roundshape"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:textAlignment="center"
+                    android:gravity="center" android:layout_marginStart="4dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2" android:visibility="visible"/>
+
+            <com.jackandphantom.customtogglebutton.CustomToggle
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:ctg_addLeftIcon="@drawable/ic_close_white_24dp"
+                    app:ctg_addRightIcon="@drawable/ic_arrow_white_24dp"
+                    app:ctg_addSlideColor="#ff67"
+                    app:ctg_addSlideBackgroundColor="#6c817a"
+                    app:ctg_addAnimationType="jack_animation"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    android:id="@+id/customToggle" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+
+            <ImageView
+                    android:id="@+id/iv_flight_departure"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="4dp"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_destination"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_flight_destination"
+                    app:layout_constraintDimensionRatio="16:9"
+            />
+
+            <ImageView
+                    android:id="@+id/iv_flight_destination"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintStart_toStartOf="@+id/guideline" android:layout_marginStart="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/iv_flight_person_num"
+                    app:layout_constraintDimensionRatio="16:9" android:layout_marginTop="16dp"/>
+
+            <ImageView
+                    android:id="@+id/iv_flight_datepicker"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginEnd="4dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_flight_departure"
+                    app:layout_constraintDimensionRatio="16:9"/>
+
+
+
+
+
+            <ImageView
+                    android:id="@+id/iv_flight_person_num"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline" android:layout_marginStart="4dp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_flight_destination" android:layout_marginTop="8dp"
+                    app:layout_constraintDimensionRatio="16:9"/>
+
+
+
+
+            <com.skydoves.elasticviews.ElasticImageView
+                    android:id="@+id/iv_flight_switch"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    app:imageview_duration="500"
+                    app:imageview_scale="0.7"
+                    android:elevation="5sp"
+                    android:src="@drawable/right_left_arrow"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_destination"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_flight_destination"
+                    app:layout_constraintStart_toStartOf="@+id/guideline" android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"/>
+
+
+            <Button
+                    android:id="@+id/button_flight_search"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/search_flights"
+                    android:background="@drawable/gradient_rectangle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_marginStart="16dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp" android:layout_marginTop="40dp"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_flight_person_num"
+                    android:textColor="@color/white" android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/progressBar_flight_booking"
+                    android:visibility="gone"
+                    android:elevation="2dp" app:layout_constraintBottom_toTopOf="@+id/customToggle"
+                    android:layout_marginBottom="8dp" app:layout_constraintEnd_toEndOf="@+id/button_flight_search"
+                    android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/button_flight_search"
+                    android:layout_marginEnd="8dp"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/guideline"
+                    app:layout_constraintGuide_begin="20dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5"/>
+            <TextView
+                    android:id="@+id/tv_flight_city_departure"
+                    android:text="THR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_departure"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_flight_departure"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline" android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto_bold" android:textColor="@color/black"
+                    android:textSize="@dimen/header_0"/>
+            <TextView
+                    android:id="@+id/tv_flight_city_complete_departure"
+                    android:text="@string/tehran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_flight_city_departure"
+                    app:layout_constraintStart_toStartOf="@+id/tv_flight_city_departure"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_flight_city_departure"
+                    android:textColor="@color/black3"/>
+            <TextView
+                    android:text="MHD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_flight_city_destination"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_destination"
+                    app:layout_constraintStart_toStartOf="@+id/guideline"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="@+id/iv_flight_destination"
+                    android:layout_marginEnd="8dp" app:layout_constraintBottom_toBottomOf="@+id/iv_flight_destination"
+                    android:textSize="@dimen/header_0" android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"/>
+            <TextView
+                    android:id="@+id/tv_flight_city_complete_destination"
+                    android:text="@string/mashhad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_flight_city_destination"
+                    app:layout_constraintStart_toStartOf="@+id/tv_flight_city_destination"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_flight_city_destination"
+                    android:textColor="@color/black3"/>
+            <TextView
+                    android:id="@+id/tv_flight_date_picker_month"
+                    android:text="@string/today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_datepicker"
+                    app:layout_constraintStart_toStartOf="@+id/iv_flight_datepicker"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_flight_datepicker"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_flight_datepicker"
+                    android:textSize="@dimen/header_1"
+                    android:textColor="@color/black" android:fontFamily="@font/roboto_medium"/>
+            <TextView
+                    android:id="@+id/tv_flight_date_picker_weekday"
+                    tools:text="Mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_flight_date_picker_month"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_flight_date_picker_month"
+                    app:layout_constraintStart_toStartOf="@+id/tv_flight_date_picker_month"
+                    android:textColor="@color/black3"/>
+            <TextView
+                    android:id="@+id/tv_flight_travellers_num"
+                    android:text="1 Traveler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/iv_flight_person_num"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_flight_person_num"
+                    app:layout_constraintTop_toTopOf="@+id/iv_flight_person_num"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_flight_person_num"
+                    android:textSize="@dimen/header_1"
+                    android:textColor="@color/black" android:fontFamily="@font/roboto_medium"/>
+            <TextView
+                    android:id="@+id/tv_flight_adult_num"
+                    android:text="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black3"
+                    app:layout_constraintStart_toStartOf="@+id/tv_flight_travellers_num"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView40" app:layout_constraintHorizontal_bias="0.5"
+                    android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/tv_flight_travellers_num"
+                    android:textSize="@dimen/small"/>
+            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/guideline2"
+                                                        android:orientation="horizontal"
+                                                        app:layout_constraintGuide_percent="0.26"/>
+
+            <ImageView
+                    android:src="@drawable/ic_adult_black"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:id="@+id/imageView40"
+                    app:layout_constraintTop_toTopOf="@+id/tv_flight_adult_num"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_flight_adult_num"
+                    app:layout_constraintStart_toEndOf="@+id/tv_flight_adult_num"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_flight_child_num"/>
+            <TextView
+                    android:id="@+id/tv_flight_child_num"
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView40"
+                    app:layout_constraintTop_toTopOf="@+id/imageView40"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView40" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView47" android:textSize="@dimen/small"/>
+            <ImageView
+                    android:src="@drawable/ic_adult_black"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:id="@+id/imageView47"
+                    app:layout_constraintStart_toEndOf="@+id/tv_flight_child_num"
+                    app:layout_constraintTop_toTopOf="@+id/tv_flight_child_num"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_flight_child_num"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_flight_infant_num" android:paddingTop="2dp"
+                    android:paddingBottom="2dp"/>
+            <TextView
+                    android:id="@+id/tv_flight_infant_num"
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView47"
+                    app:layout_constraintTop_toTopOf="@+id/imageView47"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView47" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView48" android:textSize="@dimen/small"/>
+            <ImageView
+                    android:src="@drawable/ic_child_friendly_black_24dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:id="@+id/imageView48"
+                    app:layout_constraintStart_toEndOf="@+id/tv_flight_infant_num"
+                    app:layout_constraintTop_toTopOf="@+id/tv_flight_infant_num"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_flight_infant_num"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_flight_travellers_num"/>
+
+            <com.nightonke.jellytogglebutton.JellyToggleButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:jtbLeftText="One Way"
+                    app:jtbRightText="Round Way"
+                    app:jtbLeftTextSize="8sp"
+                    app:jtbRightTextSize="8sp"
+                    app:jtbTextMarginLeft="8dp"
+                    app:jtbTextMarginRight="8dp"
+                    app:jtbTextMarginBottom="8dp"
+                    app:jtbTextMarginTop="8dp"
+                    app:jtbTextMarginCenter="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2" android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:id="@+id/jellyToggleButton2"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <!-- include bottom sheet -->
+    <include layout="@layout/bottom_sheet_date_picker_flight"/>
+    <include layout="@layout/bottom_sheet_date_picker_shamsi_flight"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

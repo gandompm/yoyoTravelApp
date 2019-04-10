@@ -2,7 +2,6 @@ package yoyo.app.android.com.yoyoapp.Addapters;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import yoyo.app.android.com.yoyoapp.DataModels.Hotel;
 import yoyo.app.android.com.yoyoapp.HotelDetailsFragment;
-import yoyo.app.android.com.yoyoapp.MaterialViewPager.CitiyViewPagerFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
@@ -41,7 +39,7 @@ public class HotelsRecyclerviewAddaptor extends RecyclerView.Adapter<HotelsRecyc
     @Override
     public HotelsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_hotel_final,parent,false);
+        View view = layoutInflater.inflate(R.layout.item_hotel,parent,false);
         return new HotelsViewholder(view);
     }
 

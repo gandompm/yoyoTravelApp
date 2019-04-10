@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet_flight_filter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:cardCornerRadius="8dp"
+    android:background="@color/white"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:layoutDirection="ltr">
+    <TextView
+            android:id="@+id/tv_filter_flight_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/small_margin"
+            android:paddingBottom="4dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:elevation="2dp"
+            android:text="@string/filter"
+            android:textSize="@dimen/header_1" android:textColor="@color/colorPrimaryDark"/>
+
+    <ImageView
+        android:id="@+id/iv_filter_flight_close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:elevation="2dp"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close_blue_24dp" />
+
+    <TextView
+            android:id="@+id/tv_flight_filter_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:text="@string/reset_filter"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="@dimen/small_margin"
+            android:paddingBottom="@dimen/small_margin"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:textSize="@dimen/small" android:textColor="@color/black2"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/iv_filter_flight_close">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04136253" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96107054" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.18"/>
+
+        <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Airlines : "
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/groupbutton_filterflight"
+                android:layout_marginTop="16dp"/>
+
+        <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
+                android:id="@+id/groupbutton_filterflight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+                app:tbgChildSpacingForLastRow="align"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+        >
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/button_filterflight_midnight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/midnight"
+            />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/button_filterflight_morning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/morning"
+            />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/button_filterflight_afternoon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/afternoon"
+            />
+
+            <com.nex3z.togglebuttongroup.button.LabelToggle
+                    android:id="@+id/button_filterflight_night"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/night"
+            />
+
+        </com.nex3z.togglebuttongroup.MultiSelectToggleGroup>
+
+        <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/departure_daytime"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/rangebar_filterflight_price"/>
+
+
+        <TextView
+                android:id="@+id/tv_filterflight_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price_2"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+
+        <TextView
+                android:id="@+id/tv_filterflight_price_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="25 - 5,500,000 "
+                app:layout_constraintStart_toEndOf="@+id/tv_filterflight_price"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_filterflight_price"/>
+
+
+        <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
+                                               android:id="@+id/rangebar_filterflight_price"
+                                               android:layout_width="0dp"
+                                               android:layout_height="70dp"
+                                               app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                                               app:layout_constraintStart_toStartOf="@+id/guideline"
+                                               app:layout_constraintTop_toBottomOf="@+id/tv_filterflight_price"
+                                               app:mrb_connectingLineColor="@color/colorPrimary"
+                                               app:mrb_pinColor="@color/colorPrimary"
+                                               app:mrb_selectorColor="@color/white"
+                                               app:mrb_selectorBoundaryColor="@color/colorPrimary"
+                                               app:mrb_pinTextColor="@color/white"
+                                               app:mrb_rangeBarColor="@color/light_gray"
+                                               app:mrb_tickColor="@android:color/transparent"
+                                               app:mrb_pinMaxFont="15sp"
+                                               app:mrb_pinMinFont="12sp"
+                                               app:mrb_pinRadius="14dp"
+                                               app:mrb_rangeBar="true"
+                                               app:mrb_rangeBarPaddingBottom="20dp"
+                                               app:mrb_rangeBar_rounded="true"
+                                               app:mrb_selectorBoundarySize="2dp"
+                                               app:mrb_selectorSize="10dp"
+                                               app:mrb_temporaryPins="true"
+                                               app:mrb_tickEnd="5500"
+                                               app:mrb_tickInterval="25"
+                                               app:mrb_tickStart="25"/>
+
+        <Button
+                android:text="Choose Airline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:background="@drawable/blue_round_border_bg"
+                android:padding="8dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true" android:id="@+id/button_flightresult_airline"
+                app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"/>
+
+        <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aircrafts : "
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/button_flightresult_airline" android:layout_marginTop="16dp"/>
+        <Button
+                android:text="Choose Aircraft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:background="@drawable/blue_round_border_bg"
+                android:padding="8dp"
+                android:id="@+id/button_flightresult_aircraft"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+        <TextView
+                android:text="@string/toman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView14" app:layout_constraintStart_toEndOf="@+id/tv_filterflight_price_num"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_filterflight_price_num"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_filterflight_price_num"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.dagang.library.GradientButton
+        android:id="@+id/button_filterflight_apply"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:button_end_color="@color/colorPrimary"
+        app:button_gradient_orientation="LEFT_RIGHT"
+        app:button_is_shadowed="true"
+        app:button_press_end_color="@color/colorPrimaryDark"
+        app:button_press_start_color="@color/colorPrimaryDark"
+        app:button_radius="30dp"
+        app:button_shadow_angle="90"
+        app:button_shadow_color="@color/colorPrimaryLight"
+        app:button_shadow_distance="5dp"
+        app:button_shadow_radius="10dp"
+        app:button_size="6sp"
+        app:button_start_color="@color/colorPrimary"
+        app:button_text="@string/apply"
+        app:button_text_color="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

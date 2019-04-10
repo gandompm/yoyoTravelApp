@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="150dp"
+                                                   android:minWidth="250dp"
+                                                   android:minHeight="150dp">
+
+
+    <TextView
+            android:text="@string/continue_without_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView18" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="32dp" android:textSize="@dimen/header_2" android:textColor="@color/black1"/>
+
+    <Button
+            android:text="@string/sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/green"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/textView18"
+            android:id="@+id/button_dialog_yes" app:layout_constraintEnd_toStartOf="@+id/button_dialog_no"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"/>
+    <Button
+            android:text="@string/cancel_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_dialog_no"
+            android:background="@drawable/border_gray"
+            app:layout_constraintStart_toEndOf="@+id/button_dialog_yes" app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/button_dialog_yes" app:layout_constraintBottom_toBottomOf="@+id/button_dialog_yes"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

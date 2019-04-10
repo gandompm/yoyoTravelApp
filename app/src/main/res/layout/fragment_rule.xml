@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:ds="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/background">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_flight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white" ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintEnd_toEndOf="parent" ds:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="horizontal"
+        >
+            <ImageView
+                    android:id="@+id/iv_rules_back"
+                    android:src="@drawable/ic_arrow_back_colorprimary_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:elevation="5dp"
+                    android:layout_centerVertical="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rules"
+                    android:gravity="center"
+                    android:id="@+id/imageView17"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="cursive" android:textSize="@dimen/header_2"
+                    android:textColor="?attr/colorPrimaryDark" ds:fontFamily="@font/roboto_medium"/>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".AboutFragment">
+
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:text="Traveling by plane is not nearly as simple as buying a ticket, checking your luggage, and taking your seat. A host of legal systems works to protect your ability to board an airplane and help ensure your luggage gets to the destination written on the baggage claim ticket. However, these systems do not always work as planned, so there are additional protections in place to help you resolve disputes with the airline company. FindLaw's Airline Rules section provides information about the various rules and regulations governing air travel, including security procedures and rules with regard to luggage and carry-on items. In this section, you can find articles about travel scams, the pros and cons of using a travel agent, and the benefits of travel insurance."
+                android:textAlignment="textStart" android:textColor="@color/black" android:lineSpacingExtra="4sp"/>
+
+    </ScrollView>
+</LinearLayout>

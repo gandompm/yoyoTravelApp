@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_traveller_details"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   app:behavior_hideable="true"
+                                                   app:behavior_peekHeight="0dp"
+                                                   android:elevation="6dp"
+                                                   app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/relativeLayout"
+            android:layoutDirection="ltr" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+
+        <TextView
+                android:id="@+id/textView62"
+                android:text="@string/add_traveller"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+        />
+        <ImageView
+                android:id="@+id/iv_travellers_details_close"
+                android:src="@drawable/ic_close_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+        />
+
+
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/button_traveller_details_save"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/scrollView2"
+                android:layoutDirection="locale"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+            <Button
+                    android:id="@+id/button_traveller_details_select_travellers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:elevation="5dp"
+                    android:text="@string/select_traveller_from_your_acount" android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintTop_toTopOf="parent" android:fontFamily="@font/roboto_medium"/>
+
+            <ImageView
+                    android:src="@android:color/white"
+                    android:layout_width="0dp"
+                    android:layout_height="450dp" android:id="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginTop="20dp"
+                    app:layout_constraintHorizontal_bias="1.0"/>
+            <TextView
+                    android:text="@string/traveller_1_adult"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_traveller_details_title"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/iv_travellerdetails_bg" android:textColor="@color/black2"
+                    android:textSize="@dimen/standard" android:fontFamily="@font/roboto_medium"/>
+            <TextView
+                    android:text="@string/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView71" app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traveller_details_title" android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"/>
+
+            <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
+                    android:id="@+id/toggleSwitch_traveller_details"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:textToggleLeft="@string/male"
+                    app:textToggleRight="@string/female"
+                    app:checkedBackgroundColor="@color/colorAccent"
+                    app:checkedTextColor="@android:color/white"
+                    app:uncheckedBackgroundColor="@color/white"
+                    app:uncheckedTextColor="@color/black1"
+                    app:separatorColor="@color/white1"
+                    app:borderRadius="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView71"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_bg" android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_name"
+                    android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"
+                    android:id="@+id/tv_signin_email_username"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/toggleSwitch_traveller_details"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"/>
+
+            <EditText
+                    android:id="@+id/et_traveller_details_firstname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/grey_cursor_color"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_bg"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_signin_email_username" android:layout_marginEnd="16dp"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:inputType="textPersonName"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/last_name"
+                    android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"
+                    android:id="@+id/tv_flightdetails_departure_time_toop"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/et_traveller_details_firstname"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"/>
+
+            <EditText
+                    android:id="@+id/et_traveller_details_lastname"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/grey_cursor_color"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_bg"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_flightdetails_departure_time_toop"
+                    android:layout_marginEnd="16dp" android:inputType="textPersonName"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nationality"
+                    android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"
+                    android:id="@+id/textView30"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/et_traveller_details_lastname"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Iranian National Code"
+                    android:textColor="#c2c2c2"
+                    android:visibility="gone"
+                    android:textSize="@dimen/standard"
+                    android:id="@+id/tv_traveller_details_iranian_code"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traveller_details_nationality"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"/>
+
+            <EditText
+                    android:id="@+id/et_traveller_details_iranian_nationality_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:visibility="gone"
+                    android:textCursorDrawable="@drawable/grey_cursor_color"
+                    android:textSize="15sp"
+                    android:inputType="number"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traveller_details_iranian_code"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_bg" android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/passport_number"
+                    android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"
+                    android:id="@+id/tv_traveller_details_passport_number"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traveller_details_nationality"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg" android:layout_marginTop="8dp"/>
+
+            <EditText
+                    android:id="@+id/et_traveller_details_passport_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/grey_cursor_color"
+                    android:textSize="15sp"
+                    android:inputType="textPostalAddress"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_traveller_details_passport_number"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_bg"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_bg" android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:text="@string/or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView10"
+                    app:layout_constraintTop_toBottomOf="@+id/button_traveller_details_select_travellers"
+                    android:layout_marginTop="8dp"
+                    android:elevation="2dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp" app:srcCompat="@color/white"
+                    android:id="@+id/iv_travellerdetails_dateofbirth_bg" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_travellerdetails_bg" android:visibility="visible"/>
+            <TextView
+                    android:id="@+id/tv_travellerdetails_dateofbirth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date_of_birth"
+                    android:textColor="#c2c2c2"
+                    android:textSize="@dimen/standard"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="@+id/iv_travellerdetails_dateofbirth_bg"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_dateofbirth_bg"
+                    android:visibility="visible"/>
+
+            <TextView
+                    android:id="@+id/et_traveller_details_dateofbirth"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@drawable/grey_cursor_color"
+                    android:background="@drawable/border_top_bottom"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_travellerdetails_dateofbirth_bg"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_travellerdetails_dateofbirth"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_bias="0.666"
+                    app:layout_constraintStart_toStartOf="@+id/iv_travellerdetails_dateofbirth_bg"
+                    android:layout_marginTop="8dp" android:layout_marginStart="8dp" android:inputType="date"
+                    android:visibility="visible" tools:text="2019." android:fontFamily="@font/roboto_medium"/>
+            <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:id="@+id/group_date_of_birth"
+                                                    app:constraint_referenced_ids="et_traveller_details_dateofbirth,iv_travellerdetails_dateofbirth_bg,tv_travellerdetails_dateofbirth"
+                                                    android:visibility="gone"/>
+            <TextView
+                    android:text="(English)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_signin_email_username"
+                    app:layout_constraintStart_toEndOf="@+id/tv_signin_email_username"
+                    android:layout_marginStart="8dp"/>
+            <TextView
+                    android:text="(English)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView7"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_flightdetails_departure_time_toop"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_flightdetails_departure_time_toop"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:background="@drawable/border_top_bottom"
+                    android:id="@+id/tv_traveller_details_nationality" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView30" android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/et_traveller_details_lastname"/>
+            <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" app:srcCompat="@color/background"
+                    android:id="@+id/imageView28" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/iv_travellerdetails_bg"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    <Button
+            android:id="@+id/button_traveller_details_save"
+            android:text="@string/save"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:background="@color/green"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

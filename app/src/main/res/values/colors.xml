@@ -51,4 +51,13 @@
     <color name="ds_list_bg">#ffffff</color>
     <color name="picker_list_text">#232323</color>
 
+    // flight app
+    <color name="gradiantColor">#9acfe2</color>
+    <color name="white1">#e7e7e7</color>
+    <color name="transparent_white">#efffffff</color>
+    <color name="grey">#f1f1f1</color>
+    <color name="blue_theme">#58a9c6</color>
+    <color name="persiangard_green">#05a0cf</color>
+    <color name="blue">#184890</color>
+
 </resources>
