@@ -21,8 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shape_arc_cropDirection="outside"
             app:shape_arc_height="30dp"
-            app:shape_arc_position="bottom"
-            >
+            app:shape_arc_position="bottom">
 
 
             <RelativeLayout

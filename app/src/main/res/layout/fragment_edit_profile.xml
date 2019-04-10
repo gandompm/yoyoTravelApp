@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:ds="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:ds="http://schemas.android.com/apk/res-auto"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/background">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_flight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white" ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintEnd_toEndOf="parent" ds:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="horizontal">
+            <ImageView
+                    android:id="@+id/iv_editprofile_back"
+                    android:src="@drawable/ic_arrow_back_colorprimary_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:elevation="5dp"
+                    android:layout_centerVertical="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit_profile"
+                    android:gravity="center"
+                    android:id="@+id/imageView17"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="cursive" android:textSize="@dimen/header_2"
+                    android:textColor="?attr/colorPrimaryDark" ds:fontFamily="@font/roboto_medium"/>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent" android:scrollbars="none">
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/standard_margin"
-                ds:cardCornerRadius="4dp"
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        >
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/standard_margin"
+                    ds:cardCornerRadius="4dp"
+                    android:layout_marginTop="8dp"
+                    ds:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" ds:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+                    ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintTop_toTopOf="parent">
+
             <com.ramotion.directselect.DSListView
                     android:id="@+id/ds_county_list"
                     android:layout_width="match_parent"
@@ -149,13 +192,12 @@
 
 
                 <EditText
-                        android:id="@+id/et_edit_profile_phonenumber"
+                        android:id="@+id/et_edit_profile_username"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:ems="10"
-                        android:hint="@string/phone_number"
-                        android:inputType="number"
+                        android:inputType="textPersonName"
                         android:textAllCaps="false"
                         android:paddingStart="8dp"
                         android:background="@drawable/bg_light_editprofile_item"
@@ -173,7 +215,7 @@
                         app:layout_constraintTop_toTopOf="@+id/tv_edit_profile_email"
                         app:layout_constraintBottom_toBottomOf="@+id/tv_edit_profile_email" android:elevation="5dp"/>
                 <TextView
-                        android:text="@string/phone_number"
+                        android:text="@string/user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#c2c2c2"
@@ -185,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView4"
-                        app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_phonenumber"
+                        app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_username"
                         android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                 />
                 <RadioGroup
@@ -303,12 +345,16 @@
                         app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
                         android:paddingStart="8dp"/>
+
+
                 <Button
                         android:text="@string/save"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_button_colorprimary_round"
-                        android:id="@+id/button3" android:layout_marginTop="24dp"
+                        android:background="@drawable/gradient_rectangle"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:textColor="@android:color/white" android:fontFamily="@font/roboto_medium"
+                        android:id="@+id/button_edit_profile_save" android:layout_marginTop="24dp"
                         app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_introducer_code"
                         app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
                         app:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
@@ -316,6 +362,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</ScrollView>
+
+</LinearLayout>

@@ -15,14 +15,12 @@
     <dimen name="title_small_font_size">28sp</dimen>
     <dimen name="standard_font_size">22sp</dimen>
     <dimen name="button_standard_font">18sp</dimen>
+    <dimen name="header_extra">40sp</dimen>
     <dimen name="header_0">34sp</dimen>
     <dimen name="header_1">28sp</dimen>
     <dimen name="header_2">20sp</dimen>
     <dimen name="standard">16sp</dimen>
     <dimen name="small">12sp</dimen>
-
-
-
 
 
     <dimen name="cardview_mainpage_service">130dp</dimen>

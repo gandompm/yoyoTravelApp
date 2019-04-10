@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_flight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="horizontal"
+                      android:gravity="center">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tickets"
+                    android:gravity="center"
+                    android:id="@+id/imageView17"
+                    android:layout_gravity="center"
+                    android:fontFamily="cursive" android:textSize="@dimen/header_0"
+                    android:textColor="@color/colorPrimary"/>
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <TextView
+            android:id="@+id/tv_tickets_inform"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/you_don_t_have_any_ticket"
+            android:layout_gravity="center"
+            android:elevation="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/rv_reservation"
+            app:layout_constraintTop_toTopOf="@+id/appbar_flight" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/rv_reservation" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:textSize="@dimen/header_1"
+            android:textColor="@color/black" android:fontFamily="@font/roboto_medium"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_reservation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="@dimen/standard_margin"
+            android:clipToPadding="false"
+            android:background="@color/background"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_flight"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
