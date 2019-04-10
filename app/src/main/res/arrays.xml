@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="gradient_blue">
+        <item>#184890</item>
+        <item>#12d4fa</item>
+
+    </array>
+</resources>
+

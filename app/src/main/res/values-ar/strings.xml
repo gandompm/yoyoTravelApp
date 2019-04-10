@@ -4,8 +4,6 @@
     <string name="tv_complete_info_main_title">یرجی استکمال المعلومات</string>
     <string name="account_information">معلومات الحساب</string>
     <string name="personal_information">معلومات شخصية</string>
-    <string name="first_name">الاسم الاول</string>
-    <string name="last_name">الاسم الثلاثی</string>
     <string name="email">البرید الالکترونی</string>
     <string name="tv_complete_info_personal_country">البلد/المنطقه</string>
     <string name="phone_number">رقم الهاتف</string>
@@ -66,7 +64,6 @@
     //direct select
     <string name="picker_box_arrows_icon">picker box arrows icon</string>
     <string name="cell_image">cell image</string>
-    <string name="type">Direct Select for Android</string>
     <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly,
         if you have any questions, please create an issue on our GitHub account.
     </string>
@@ -94,7 +91,6 @@
     <string name="tv_tour_item_big_end_date">تاريخ الانتهاء</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
     <string name="button_profile_sign_out">تسجيل الخروج</string>
     <string name="button_profile_report_an_app_problem">الإبلاغ عن مشكلة في التطبيق</string>
     <string name="button_profile_setting">الإعدادات</string>
@@ -109,8 +105,6 @@
     <string name="tv_hotel_details_rules">قواعد:</string>
     <string name="change_the_language">تغييراللغة</string>
     <string name="iran">ایران</string>
-    <string name="filter">فلتر</string>
-    <string name="country">بلد</string>
 
 
     //new
@@ -118,27 +112,13 @@
     <string name="filter_by_price_optional">تصفية حسب السعر (اختياري)</string>
     <string name="going_anywhere">أذهب إلى أي مكان?</string>
     <string name="tour_near_me">جولة قريب مني</string>
-    <string name="rules">قواعد</string>
-    <string name="travel_companions">رفقا السفر</string>
-    <string name="edit_profile">تعديل الملف الشخصي</string>
-    <string name="setting">ضبط</string>
-    <string name="report_an_app_problem">الإبلاغ عن مشكلة في التطبيق</string>
-    <string name="sign_out">تسجيل الخروج</string>
-    <string name="all_trips">جميع الرحلات</string>
-    <string name="upcoming_trips">الرحلات القادمة</string>
-    <string name="flying_rewards">مكافآت الطيران</string>
     <string name="what_are_you_looking_for">ما الذي تبحث عنه؟</string>
     <string name="search_with_dot">بحث...</string>
-    <string name="first_name_cannot_be_empty">الاسم الأول لا يمكن أن يكون فارغا</string>
-    <string name="last_name_cannot_be_empty">اللقب لايمكن أن يكون فارغأ</string>
-    <string name="phone_number_cannot_be_empty">رقم الهاتف لایمکن أن يكون فارغا</string>
-    <string name="email_cannot_be_empty">البريد الإلكتروني لا يمكن أن يكون فارغًا</string>
     <string name="nights">لیالی</string>
     <string name="results">النتائج</string>
     <string name="from_capital">من</string>
     <string name="to">الي</string>
     <string name="reset">إعادة تعيين</string>
-    <string name="staying_dates">البقاء التواريخ</string>
     <string name="advanture">تقدم</string>
     <string name="health">الصحة</string>
     <string name="nature">طبيعة</string>
@@ -148,27 +128,206 @@
     <string name="persian">اللغة الفارسية</string>
     <string name="english">الإنجليزية</string>
     <string name="arabic">العربية</string>
-    <string name="duration">مدة :</string>
-    <string name="age_range">نطاق العمر :</string>
-    <string name="price">السعر:</string>
-    <string name="apply">اطبق</string>
-    <string name="travellers_companions">مرافق المسافرين</string>
     <string name="edit_traveller">تصحيح المسافر</string>
+
+
+
+    // flight app
+    <string name="ticket">حجز</string>
+    <string name="flight">الطیران</string>
+    <string name="my_profile">الملف الشخصی</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">مرحباجز فارغ</string>
+    <string name="traveller_info">معلومات المسافر</string>
+    <string name="payment">دفع</string>
+    <string name="success">نجاح</string>
+    <string name="check_out">دفع ويغادر الفندق</string>
+    <string name="total_price">السعرالكلي</string>
+    <string name="continue_booking">متابعة الحجز</string>
+    <string name="staying_dates">البقاء التواريخ</string>
+    <string name="check_in">تحقق في</string>
+    <string name="register_with_us_and">سجل معنا و</string>
+    <string name="get_exclusive_deals_and_offers">الحصول على صفقات وعروض حصرية</string>
+    <string name="add_traveller">أضف مسافر</string>
+    <string name="select_traveller_from_your_acount">اختر المسافر من حسابك</string>
+    <string name="or">أو</string>
+    <string name="traveller_1_adult">المسافر 1 (الكبار)</string>
+    <string name="choose_a_bank_portal">اختر بوابة البنك</string>
+    <string name="thank_you">شكرا لكم</string>
+    <string name="cancel_2">إلغاء</string>
+    <string name="your_payment_has_been_successfully_processed">تم بنجاح الدفع الخاص بك</string>
+
+    <string name="full_name">الاسم الكامل</string>
+    <string name="date_of_birth_optional">تاريخ الولادة (اختياري)</string>
+    <string name="introducer_code">رقم التعریف</string>
+    <string name="are_you_sure_you_want_to_exit">هل أنت متأكد أنك تريد الخروج?</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="one_way">اتجاه واحد</string>
+    <string name="round_trip">جولة</string>
+    <string name="search_flights">البحث عن الرحلات الجوية</string>
+    <string name="flight_details">تفاصيل الرحلة</string>
+    <string name="book_now">احجز الآن</string>
+    <string name="adult">الكبار</string>
+    <string name="child">طفل</string>
+    <string name="infant">رضيع</string>
+    <string name="book">كتاب</string>
+    <string name="total_price_button">السعر الكلي:</string>
+    <string name="date">التاريخ</string>
+    <string name="time">الوقت</string>
+    <string name="capacity">سعه</string>
+    <string name="flight_class">فئة الطيران</string>
+    <string name="flight_no">رقم الرحلة</string>
+    <string name="type">نوع</string>
+    <string name="flight_path">مسار الطيران</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="all_trips">جميع الرحلات</string>
+    <string name="upcoming_trips">الرحلات القادمة</string>
+    <string name="flying_rewards">مكافآت الطيران</string>
+    <string name="travel_companions">رفقاء السفر</string>
+    <string name="rules">قواعد</string>
+    <string name="setting">ضبط</string>
+    <string name="apply">تطبيق</string>
+    <string name="price">السعر</string>
+    <string name="age_range">الفئة العمرية</string>
+    <string name="duration">المده</string>
+    <string name="report_an_app_problem">الإبلاغ عن مشكلة في التطبيق</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="email_or_username">البريد الإلكتروني أو اسم المستخدم</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="email_address">عنوان البريد الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="sign_up">اشترك</string>
+    <string name="travellers">مسافرين</string>
+    <string name="travellers_companions">مرافق المسافرين</string>
+    <string name="edit_travellers">تصحیح المسافرین</string>
     <string name="gender">جنس</string>
     <string name="male">ذكر</string>
-    <string name="female">الانثي</string>
+    <string name="female">أنثى</string>
+    <string name="first_name">الاسم الكامل</string>
+    <string name="last_name">اللقب</string>
+    <string name="mobile_number">رقم الهاتف المحمول</string>
     <string name="date_of_birth">تاريخ الولادة</string>
+    <string name="country">بلد</string>
     <string name="iranian_national_code">القانون الوطني الايراني</string>
-    <string name="passport_expiry_date">تاريخ انتهاء صلاحية جواز السفر</string>
     <string name="passport_number">رقم جواز السفر</string>
-    <string name="delete">حذف</string>
+    <string name="passport_expiry_date">وقت نفاذ صلاحيه جواز السفر</string>
     <string name="save">حفظ</string>
-    <string name="full_name">الاسم الكامل</string>
-    <string name="date_of_birth_optional">تاريخ الولادة( الاختياري)</string>
-    <string name="country_optional">البلد (الاختياري)</string>
-
-
-
+    <string name="delete">حذف</string>
+    <string name="enter_your_details">أدخل التفاصيل الخاصة بك</string>
+    <string name="adult_parentheses">(الكبار)</string>
+    <string name="chiled_parentheses">الاطفال)</string>
+    <string name="infant_parentheses">(رضيع)</string>
+    <string name="back_to_main_page">العودة إلى الصفحة الرئيسية</string>
+    <string name="first_name_cannot_be_empty">الاسم الأول لا يمكن أن يكون فارغا</string>
+    <string name="last_name_cannot_be_empty">اللقب لايمكن أن يكون فارغأ</string>
+    <string name="phone_number_cannot_be_empty">رقم الهاتف لا يمكن أن يكون فارغا</string>
+    <string name="email_cannot_be_empty">البريد الإلكتروني لا يمكن أن يكون فارغا</string>
+    <string name="duration_must_be_less_than_10_nights">يجب أن تكون المدة أقل من 10 ليال</string>
+    <string name="minimum_Duration_is_1_night">الحد الأدنى للمدة هو ليلة واحدة</string>
+    <string name="select_the_date">اختر التاريخ</string>
+    <string name="select_date">حدد تاريخ</string>
+    <string name="please_select_a_date_range">يرجى تحديد نطاق زمني</string>
+    <string name="select_these_dates">حدد هذه التواريخ</string>
+    <string name="change_language">تغييراللغة</string>
+    <string name="flight_language">لغة الطيران</string>
+    <string name="filter">فلتر</string>
+    <string name="night">الیل</string>
+    <string name="afternoon">بعد الظهر</string>
+    <string name="morning">الصباح</string>
+    <string name="midnight">منتصف الليل</string>
+    <string name="cancel_this_transaction">إلغاء هذه الصفقة؟</string>
+    <string name="nationality">جنسية</string>
+    <string name="foreigner">أجنبي</string>
+    <string name="irainain">إيراني</string>
+    <string name="saved">تم الحفظ</string>
+    <string name="please_complete_firstname">من فضلك أكمل حقل الاسم الأول</string>
+    <string name="please_complete_lastname">يرجى استكمال اسم الحقل</string>
+    <string name="please_complete_username">من فضلك أكمل حقل اسم المستخدم</string>
+    <string name="farsi_fa">فارسي (Fa)</string>
+    <string name="settings">الإعدادات</string>
+    <string name="country_region">البلد / المنطقة</string>
+    <string name="language">لغة</string>
+    <string name="about">حول</string>
+    <string name="privacy_settings">إعدادات الخصوصية</string>
+    <string name="united_states">الولايات المتحدة الامريكانية</string>
+    <string name="english_us">الإنجليزية (الولايات المتحدة)</string>
+    <string name="english_en">الإنجليزية (En)</string>
+    <string name="arabic_ar">العربية (Ar)</string>
+    <string name="please_try_again">حاول مرة اخرى</string>
+    <string name="toman">Toman</string>
+    <string name="welcome_to_yoyo_app">مرحبًا بك في تطبيق YoYo</string>
+    <string name="thanks_for_joining">شكرا للانضمام الى يويو</string>
+    <string name="departure_time">وقت المغادرة</string>
+    <string name="order_by">ترتيب حسب :</string>
+    <string name="price_2">السعر :</string>
+    <string name="please_complete_all_fields">يرجى استكمال جميع الحقول</string>
+    <string name="the_tourism_industry">Tانه صناعة السياحة في ايران لديها امكانات عالية جدا للنمو و
+                 تطوير. وفقا لمنظمة السياحة العالمية ، تحتل إيران المرتبة العاشرة في التاريخ القديم والتاريخي
+                 الجذب السياحي والمرتبة الخامسة في مناطق الجذب الطبيعية في العالم. يقول الخبراء أن الصناعة لم تتمتع بها
+                 التطور الذي يستحقه. عدم وجود البنى التحتية الاقتصادية المناسبة ودعاية ضعيفة و
+                 نشر الأخبار السلبية هي العوائق الرئيسية أمام نمو صناعة السياحة في إيران. كنا نعمل
+                 على هذا التطبيق لإدخال المعالم التاريخية والطبيعية لإيران وتوفير احتياجات رحلة مثل
+                 شراء التذاكر وحجوزات الفنادق والمرشدين المحليين وتقديم الجولات الإيرانية وغيرها. من أجل المساعدة على إزالة
+                 تلك الحواجز التي تمنع النمو الاقتصادي في إيران.
+    </string>
+    <string name="please_enter_lastname">يرجى إدخال اسمك الأخير</string>
+    <string name="please_enter_firstname">يرجى ادخال الاسم الاول</string>
+    <string name="pl_enter_date_of_birth">الرجاء ادخال تاريخ ميلادك</string>
+    <string name="pl_enter_iranian_code">يرجى إدخال رمزك القومي الإيراني</string>
+    <string name="pl_enter_passport">يرجى إدخال رمز جواز السفر الخاص بك</string>
+    <string name="tickets">تذاكر</string>
+    <string name="you_don_t_have_any_ticket">ليس لديك أي تذكرة.</string>
+    <string name="flights">Flights</string>
+    <string name="you_have_not_added_any_traveller_yet">لم تقم بإضافة أي مسافر حتى الآن</string>
+    <string name="youserUsername_can_not_be_emp_y">اسم المستخدم لا يمكن أن يكون فارغا</string>
+    <string name="Password_can_not_be_empty">لا يمكن أن تكون كلمة المرور فارغة</string>
+    <string name="failed">فشل</string>
+    <string name="first_name_not_empty">لا يمكن أن يكون الاسم الأول فارغًا</string>
+    <string name="lastname_not_empty">لا يمكن أن يكون الاسم الأخير فارغًا</string>
+    <string name="email_can_not_empty">البريد الإلكتروني لا يمكن أن يكون فارغا</string>
+    <string name="date_birth_can_not_empty">تاريخ الولادة لا يمكن أن يكون فارغا</string>
+    <string name="iranian_code_not_empty">لا يمكن أن يكون رمز الوطنية الإيرانية فارغة</string>
+    <string name="passport_not_empty">لا يمكن أن يكون رقم جواز السفر فارغًا</string>
+    <string name="booking_process">عملية الحجز</string>
+    <string name="contact_details">بيانات المتصل</string>
+    <string name="traveler">المسافر</string>
+    <string name="please_complete_passernger">يرجى استكمال الراكب</string>
+    <string name="info">معلومات</string>
+    <string name="today">اليوم</string>
+    <string name="sorry_find_flight">عذرا ، لم نتمكن من العثور على أي رحلة بالنسبة لك!</string>
+    <string name="iranina_national_code_not_valid">رمزك الوطني غير صالح</string>
+    <string name="departure_time_colon">: وقت المغادرة</string>
+    <string name="aircraft_colon">: الطائرات</string>
+    <string name="capacity_colon">: سعة</string>
+    <string name="payment_code">: رمز الدفع</string>
+    <string name="new_version_available">النسخة الجديدة المتاحة</string>
+    <string name="please_update_your_app_to_new_version">يرجى تحديث تطبيقك إلى الإصدار الجديد.</string>
+    <string name="no_thanks">لا شكرا</string>
+    <string name="update">تحديث</string>
+    <string name="customer_service">خدمة العملاء</string>
+    <string name="about_company">عن الشركة</string>
+    <string name="tap_to_retry">لا يوجد اتصال بالإنترنت ، انقر لإعادة المحاولة</string>
+    <string name="downloading">جارى التحميل...</string>
+    <string name="please_enter_nationality">من فضلك ادخل جنسيتك</string>
+    <string name="reset_filter">تصفية إعادة تعيين</string>
+    <string name="departure_daytime">وقت المغادرة:</string>
+    <string name="you_havnt_signed_in_yet">لم تقم بتسجيل الدخول بعد!</string>
+    <string name="same_destination_origin">نفس الوجهة والأصل</string>
+    <string name="oops_no_result">عفوا ، لا نتيجة</string>
+    <string name="continue_without_sign_up">تابع بدون اشتراك؟</string>
+    <string name="skip">تخطى</string>
+    <string name="tehran">تهران</string>
+    <string name="mashhad">مشهد</string>
+    <string name="voucher_number">voucher Number</string>
+    <string name="get_ticket">Get Ticket</string>
+    <string name="get_your_ticket">Get your Ticket</string>
+    <string name="download">Download</string>
+    <string name="whoops">Whoops !!!!</string>
+    <string name="we_coudln_t_find_any_flight_for_you">We coudln\'t find any flight for you</string>
+    <string name="country_optional">country (optional)</string>
 
 
 </resources>

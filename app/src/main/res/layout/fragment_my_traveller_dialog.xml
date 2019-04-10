@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_mytraveller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:paddingBottom="@dimen/standard_margin"
+            android:clipToPadding="false"
+            />
+    <TextView
+            android:id="@+id/tv_travellerdialog_message"
+            android:text="@string/you_have_not_added_any_traveller_yet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:textSize="@dimen/standard"
+            android:fontFamily="@font/roboto_medium"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="visible"
+             android:layout_weight="1"/>
+
+</FrameLayout>

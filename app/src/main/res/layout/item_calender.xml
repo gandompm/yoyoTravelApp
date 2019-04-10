@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="80dp"
+                                                   android:layout_height="80dp"
+                                                   android:foreground="?attr/selectableItemBackgroundBorderless"
+>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="25"
+            app:layout_constraintTop_toTopOf="parent" android:id="@+id/tv_calenderitem_day"
+            app:layout_constraintBottom_toTopOf="@+id/tv_calenderitem_day_of_week"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:textColor="@color/black2"
+            android:fontFamily="@font/roboto_medium"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Fri"
+            android:id="@+id/tv_calenderitem_day_of_week"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calenderitem_day"
+            app:layout_constraintBottom_toTopOf="@+id/tv_calenderitem_price" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:textColor="@color/black2"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100$"
+            android:id="@+id/tv_calenderitem_price"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calenderitem_day_of_week"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:textColor="@color/black3"
+            app:layout_constraintBottom_toBottomOf="parent" android:textSize="@dimen/small"/>
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="4dp" app:srcCompat="@color/colorPrimaryDark"
+            android:id="@+id/iv_calenderitem" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/email_or_username"
+                android:textColor="#c2c2c2"
+                android:textSize="13.3sp"
+                android:id="@+id/tv_signin_email_username"
+                app:layout_constraintStart_toStartOf="@+id/et_signin_email_username"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+        />
+
+        <EditText
+                android:id="@+id/et_signin_email_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textCursorDrawable="@drawable/grey_cursor_color"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_email_username" android:inputType="textEmailAddress"
+                android:layout_marginStart="32dp" android:layout_marginEnd="32dp"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textColor="#c2c2c2"
+                android:textSize="13.3sp"
+                app:layout_constraintStart_toStartOf="@+id/et_signin_password"
+                android:id="@+id/tv_signin_password" android:layout_marginTop="32dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_signin_email_username"/>
+
+        <EditText
+                android:id="@+id/et_signin_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:paddingRight="44.3dp"
+                android:textCursorDrawable="@drawable/grey_cursor_color"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signin_password" android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"/>
+
+        <Button
+                android:id="@+id/Button_signin_signin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/gradient_rectangle"
+                android:layout_marginTop="24dp" app:layout_constraintTop_toBottomOf="@+id/et_signin_password"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:textColor="@color/white" android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/progressbar"
+                android:visibility="gone"
+                android:elevation="2dp"
+                app:layout_constraintEnd_toEndOf="@+id/Button_signin_signin"
+                app:layout_constraintTop_toTopOf="@+id/Button_signin_signin"
+                android:layout_marginEnd="8dp" app:layout_constraintBottom_toBottomOf="@+id/Button_signin_signin"
+        />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

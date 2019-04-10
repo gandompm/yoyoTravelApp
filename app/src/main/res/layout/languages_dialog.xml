@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="@string/english_en"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:id="@+id/tv_language_english"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_flight"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+    <TextView
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="@string/arabic_ar"
+            android:id="@+id/tv_language_arabic"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_flight"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+    <TextView
+            android:padding="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="@string/farsi_fa"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:id="@+id/tv_language_farsi"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_medium"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/appbar_flight"
+            android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+</LinearLayout>

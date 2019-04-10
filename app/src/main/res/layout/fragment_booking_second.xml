@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".BookingSecondFragment">
+
+    <flight.app.android.com.flightbookingapp.Utils.SnapUpCountDownTimerView
+            android:id="@+id/RushBuyCountDownTimerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:viewSize="12"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            app:layout_constraintTop_toTopOf="@+id/tv_booking_second_destination"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_booking_second_destination">
+    </flight.app.android.com.flightbookingapp.Utils.SnapUpCountDownTimerView>
+
+    <TextView
+            android:text="Price details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/header_1" android:textColor="@color/black"/>
+    <ImageView
+            android:src="@drawable/zarinpal"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView23"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView86" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true" android:scaleType="centerCrop"/>
+
+    <TextView
+
+            android:text="Flight path: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView40" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:textColor="@color/black"/>
+    <TextView
+            android:id="@+id/tv_booking_second_departure"
+            app:layout_constraintStart_toEndOf="@+id/textView40"
+            android:text="Mashhad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp" android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView40"/>
+    <TextView
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView43"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_booking_second_departure"
+            app:layout_constraintStart_toEndOf="@+id/tv_booking_second_departure" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:text="Tehran"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_destination"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_booking_second_departure"
+            app:layout_constraintStart_toEndOf="@+id/textView43" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView59" android:text="@string/adult"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView64"
+            app:layout_constraintStart_toEndOf="@+id/textView64" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_adult_count" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_booking_second_departure" android:textColor="@color/black"
+            tools:text="2"/>
+    <TextView
+            android:text="x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView64" app:layout_constraintStart_toEndOf="@+id/tv_booking_second_adult_count"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_booking_second_adult_count" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_adult_price"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView59" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:textColor="@color/black" tools:text="200"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:id="@+id/tv_booking_second_child_count" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView64" android:textColor="@color/black" tools:text="1"/>
+    <TextView
+            android:text="x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView76"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_booking_second_child_count"
+            app:layout_constraintStart_toEndOf="@+id/tv_booking_second_child_count" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:text="@string/child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView77"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView76"
+            app:layout_constraintStart_toEndOf="@+id/textView76" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_child_price"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView77" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:textColor="@color/black" tools:text="100"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_infant_count" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_booking_second_child_count"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp" android:textColor="@color/black" tools:text="3"/>
+    <TextView
+            android:text="x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView80"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_booking_second_infant_count"
+            app:layout_constraintStart_toEndOf="@+id/tv_booking_second_infant_count" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:text="@string/infant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView81"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView80"
+            app:layout_constraintStart_toEndOf="@+id/textView80" android:layout_marginStart="4dp"
+            android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_infant_price"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView81" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:textColor="@color/black" tools:text="150"/>
+    <ImageView
+            android:src="@color/black2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:id="@+id/imageView24" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView81" android:layout_marginTop="8dp"/>
+    <TextView
+            android:text="@string/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView83" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp" app:layout_constraintTop_toBottomOf="@+id/imageView24"
+            android:layout_marginTop="8dp" android:textColor="@color/black"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_booking_second_total_price" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView83" android:textColor="@color/black"
+            tools:text="400"/>
+    <TextView
+            android:text="Please select your bank gateway:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView86" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView83" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:textColor="@color/blue" android:textSize="@dimen/header_2"/>
+
+    <com.uniquestudio.library.CircleCheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            app:tick_color="@color/green"
+            app:border_color="@color/black1"
+            app:background_color="@color/background"
+            android:id="@+id/circlecheckbox_bookingsecond" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/imageView23" app:layout_constraintEnd_toEndOf="@+id/imageView23"
+            app:layout_constraintStart_toStartOf="@+id/imageView23"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+

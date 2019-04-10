@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ll_datepicker_bottom_sheet_shamsi"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        android:elevation="6dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background">
+
+        <ImageView
+                android:id="@+id/iv_datepicker_shamsi_close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_close_blue_24dp"/>
+
+        <TextView
+                android:id="@+id/tv_datepicker_checkin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/select_date"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/header_2"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:weightSum="6"
+            android:background="@color/white"
+            android:paddingTop="8dp">
+
+        <TextView
+                android:id="@+id/tv_datepicker_checkin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/departure_time"
+                android:layout_weight="2"
+                android:textSize="@dimen/standard"
+                android:textColor="@color/black2"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/ll_persiancalender"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:gravity="center"
+            android:background="@color/white">
+
+        <com.dagang.library.GradientButton
+                android:id="@+id/button_datepickershamsi_from"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                app:button_radius="60dp"
+                android:gravity="center"
+                app:button_start_color="@color/colorAccent"
+                app:button_end_color="@color/colorAccent"
+                app:button_text_color="@color/white"
+                app:button_press_end_color="@color/colorAccent"
+                app:button_press_start_color="@color/colorAccent"
+                app:button_is_shadowed="false"
+                app:button_text="@string/select_date"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/background"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/small_margin"
+            android:gravity="center">
+
+        <ImageView
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_keyboard_arrow_left_black_24dp"/>
+
+
+        <TextView
+                android:id="@+id/tv_calendershamsi_month"
+                android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_gravity="center"
+                  android:text="فروردین"
+                  android:textColor="@color/black"
+                  android:textSize="@dimen/header_0"/>
+
+
+        <ImageView
+                android:layout_width="35dp" android:layout_height="match_parent"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:layout_gravity="end"/>
+
+    </LinearLayout>
+
+    <ir.mirrajabi.persiancalendar.PersianCalendarView
+            android:id="@+id/persian_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            app:pcv_colorBackground="@color/white"
+            app:pcv_fontSize="@dimen/header_1"
+            app:pcv_headersFontSize="@dimen/header_0"
+            app:pcv_colorHoliday="@color/red"
+            app:pcv_colorHolidaySelected="@color/blue"
+            app:pcv_colorNormalDay="@color/black"
+            app:pcv_colorNormalDaySelected="@color/blue"
+            app:pcv_todayBackground="@drawable/iv_circle_outline_date"
+            app:pcv_selectedDayBackground="@drawable/circle"
+            app:pcv_eventUnderlineColor="@android:color/transparent"
+    />
+
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"/>
+
+
+</LinearLayout>

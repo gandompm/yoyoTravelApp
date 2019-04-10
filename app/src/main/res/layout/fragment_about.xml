@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:ds="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:orientation="vertical"
+                                                   android:background="@color/background">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_flight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white" ds:layout_constraintStart_toStartOf="parent"
+            ds:layout_constraintEnd_toEndOf="parent" ds:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:orientation="horizontal">
+            <ImageView
+                    android:id="@+id/iv_about_back"
+                    android:src="@drawable/ic_arrow_back_colorprimary_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:elevation="5dp"
+                    android:layout_centerVertical="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about"
+                    android:gravity="center"
+                    android:id="@+id/imageView17"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="cursive" android:textSize="@dimen/header_2"
+                    android:textColor="?attr/colorPrimaryDark" ds:fontFamily="@font/roboto_medium"/>
+
+        </RelativeLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:context=".AboutFragment"
+                ds:layout_constraintStart_toStartOf="parent"
+                ds:layout_constraintEnd_toEndOf="parent"
+                ds:layout_constraintTop_toBottomOf="@+id/appbar_flight" android:layout_marginBottom="8dp"
+                ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintHorizontal_bias="0.0"
+                ds:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <TextView
+                    android:text="@string/about_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView75" android:layout_marginTop="16dp"
+                    ds:layout_constraintTop_toTopOf="parent" ds:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:textColor="@color/black"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:textSize="@dimen/standard"
+                    android:text="@string/the_tourism_industry"
+                    android:textColor="@color/black" android:textAlignment="textStart" android:elegantTextHeight="false"
+                    android:lineSpacingExtra="4sp"
+                    ds:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:id="@+id/textView70"
+                    ds:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/textView75" android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:text="@string/customer_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView66" android:layout_marginTop="16dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/textView70" ds:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:textColor="@color/black"/>
+
+            <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" ds:srcCompat="@drawable/call_icon"
+                    android:id="@+id/imageView14" android:layout_marginTop="8dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/textView66" ds:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"/>
+            <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" ds:srcCompat="@drawable/call_icon"
+                    android:id="@+id/imageView25" android:layout_marginTop="8dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/imageView14" ds:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp" ds:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="16dp"/>
+
+            <TextView
+                    android:text="+982128427330"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_about_phone1"
+                    ds:layout_constraintTop_toTopOf="@+id/imageView14"
+                    ds:layout_constraintBottom_toBottomOf="@+id/imageView14"
+                    ds:layout_constraintStart_toEndOf="@+id/imageView14" android:layout_marginStart="8dp"
+                    android:textColor="@color/colorPrimary"/>
+            <TextView
+                    android:text="+989109040384"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_about_phone2"
+                    ds:layout_constraintTop_toTopOf="@+id/imageView25"
+                    ds:layout_constraintBottom_toBottomOf="@+id/imageView25"
+                    ds:layout_constraintStart_toEndOf="@+id/imageView25" android:layout_marginStart="8dp"
+                    android:textColor="@color/colorPrimary"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
