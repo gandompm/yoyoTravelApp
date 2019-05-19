@@ -13,7 +13,7 @@
     <string name="tv_mainpage_services">خدمات الحجز •</string>
     <string name="tv_mainpage_available_services">2 خدمات في الوقت الراهن</string>
     <string name="tv_mainpage_more_services">المزيد من الخدمات قريبا</string>
-    <string name="tours">الکروب</string>
+    <string name="tirps">الکروب</string>
     <string name="button_mainpage_flights">رحلات الطيران</string>
     <string name="button_mainpage_specialOffers">عروض</string>
     <string name="tv_hotelsearch_title">البقاء في اي مكان؟</string>
@@ -79,16 +79,16 @@
     <string name="tv_filterhotel_hotel_quality">جودة الفندق:</string>
     <string name="tv_filterhotel_pricerange">نطاق السعر (لكل الغرفة,لليلة الواحدة) :</string>
     <string name="button_filterhotel">تطبيق</string>
-    <string name="tv_toursearch_tour">جولة</string>
+    <string name="tv_tirpsearch_tirp">جولة</string>
     <string name="hotels">الفنادق</string>
-    <string name="tv_toursearch_title">ابحث عن جولتك</string>
+    <string name="tv_tirpsearch_title">ابحث عن جولتك</string>
     <string name="tv_date_picker_check_in">نزل في فندق تحقق في</string>
     <string name="tv_date_picker_check_out">دفع ويغادر الفندق</string>
     <string name="tv_datepicker_select_date">حددالتاريخ</string>
-    <string name="tour_leader">قائد الجولة</string>
-    <string name="buton_tour_item_big_details">تفاصيل</string>
-    <string name="tv_tour_item_big_start_date">تاريخ البدء</string>
-    <string name="tv_tour_item_big_end_date">تاريخ الانتهاء</string>
+    <string name="tirp_leader">قائد الجولة</string>
+    <string name="buton_tirp_item_big_details">تفاصيل</string>
+    <string name="tv_tirp_item_big_start_date">تاريخ البدء</string>
+    <string name="tv_tirp_item_big_end_date">تاريخ الانتهاء</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="button_profile_sign_out">تسجيل الخروج</string>
@@ -111,7 +111,7 @@
     <string name="hotel_near_me">فندق قريب مني</string>
     <string name="filter_by_price_optional">تصفية حسب السعر (اختياري)</string>
     <string name="going_anywhere">أذهب إلى أي مكان?</string>
-    <string name="tour_near_me">جولة قريب مني</string>
+    <string name="tirp_near_me">جولة قريب مني</string>
     <string name="what_are_you_looking_for">ما الذي تبحث عنه؟</string>
     <string name="search_with_dot">بحث...</string>
     <string name="nights">لیالی</string>
@@ -124,7 +124,7 @@
     <string name="nature">طبيعة</string>
     <string name="sport">رياضة</string>
     <string name="food">طعام</string>
-    <string name="tour_language">لغة السياح :</string>
+    <string name="tirp_language">لغة السياح :</string>
     <string name="persian">اللغة الفارسية</string>
     <string name="english">الإنجليزية</string>
     <string name="arabic">العربية</string>
@@ -176,7 +176,7 @@
     <string name="total_price_button">السعر الكلي:</string>
     <string name="date">التاريخ</string>
     <string name="time">الوقت</string>
-    <string name="capacity">سعه</string>
+    <string name="remainingCapacity">سعه</string>
     <string name="flight_class">فئة الطيران</string>
     <string name="flight_no">رقم الرحلة</string>
     <string name="type">نوع</string>
@@ -264,7 +264,7 @@
     <string name="order_by">ترتيب حسب :</string>
     <string name="price_2">السعر :</string>
     <string name="please_complete_all_fields">يرجى استكمال جميع الحقول</string>
-    <string name="the_tourism_industry">Tانه صناعة السياحة في ايران لديها امكانات عالية جدا للنمو و
+    <string name="the_tirpism_industry">Tانه صناعة السياحة في ايران لديها امكانات عالية جدا للنمو و
                  تطوير. وفقا لمنظمة السياحة العالمية ، تحتل إيران المرتبة العاشرة في التاريخ القديم والتاريخي
                  الجذب السياحي والمرتبة الخامسة في مناطق الجذب الطبيعية في العالم. يقول الخبراء أن الصناعة لم تتمتع بها
                  التطور الذي يستحقه. عدم وجود البنى التحتية الاقتصادية المناسبة ودعاية ضعيفة و

@@ -19,11 +19,9 @@ import java.util.Map;
 
 public class ApiServiceFlight {
     private static final String TAG = "ApiServiceFlight";
-//    public static String IP = "192.168.1.52:80";
     public static String IP = "yoyoapp.ir";
     private String apiKey = "4626d28e5ef2edcc21e7d4d371fb91be0620bebf";
     private String JWT;
-//  private String apiKey = BuildConfig.ApiKey;
     private UserSharedManagerFlight userSharedManager;
     private Context context;
     private String language;

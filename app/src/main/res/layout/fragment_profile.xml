@@ -154,8 +154,8 @@
                 android:gravity="center_horizontal"
                 android:text="Edward Norton" android:textColor="@color/white"
                 android:textSize="@dimen/header_1" app:layout_constraintHorizontal_bias="1.0"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/iv_profile"
-                android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/textView47"/>
+                app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+        />
         <TextView
                 android:text="@string/all_trips"
                 android:layout_width="wrap_content"

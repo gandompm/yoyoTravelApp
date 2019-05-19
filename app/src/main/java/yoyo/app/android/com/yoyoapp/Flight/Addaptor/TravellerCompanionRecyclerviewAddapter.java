@@ -18,22 +18,15 @@ import yoyo.app.android.com.yoyoapp.R;
 import java.util.ArrayList;
 
 public class TravellerCompanionRecyclerviewAddapter extends RecyclerView.Adapter<TravellerCompanionRecyclerviewAddapter.TravellerViewholder> {
-
     private ArrayList<Traveller> travellers;
     private Context context;
-    private Boolean fromMyTravellerDialogFragment;
     private OnItemSelected onItemSelected;
 
-    public TravellerCompanionRecyclerviewAddapter(boolean fromMyTravellerDialogFragment, ArrayList<Traveller> travellers, Context context) {
-        this.travellers = travellers;
-        this.context = context;
-        this.fromMyTravellerDialogFragment = fromMyTravellerDialogFragment;
-    }
 
-    public TravellerCompanionRecyclerviewAddapter(boolean fromMyTravellerDialogFragment, ArrayList<Traveller> travellers, Context context, OnItemSelected onItemSelected) {
+
+    public TravellerCompanionRecyclerviewAddapter( ArrayList<Traveller> travellers, Context context, OnItemSelected onItemSelected) {
         this.travellers = travellers;
         this.context = context;
-        this.fromMyTravellerDialogFragment = fromMyTravellerDialogFragment;
         this.onItemSelected = onItemSelected;
     }
 
@@ -52,35 +45,9 @@ public class TravellerCompanionRecyclerviewAddapter extends RecyclerView.Adapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
                 Traveller traveller = travellers.get(position);
-                bundle.putString("firstName",traveller.getFirstName());
-                bundle.putString("lastName",traveller.getLastName());
-                bundle.putString("gender",traveller.getGender());
-                bundle.putString("nationality",traveller.getNationality());
 
-                bundle.putBoolean("isIranian",traveller.isIranian());
-                bundle.putString("iranianCode",traveller.getIranianNationalCode());
-                bundle.putString("passport",traveller.getPassportNumber());
-                bundle.putString("dateOfBirth",traveller.getDateOfBirth());
-                bundle.putString("ageClass",traveller.getAgeClass());
-                bundle.putInt("id",traveller.getTravellerId());
-
-                if (!fromMyTravellerDialogFragment)
-                {
-                    TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
-                    detailsFragment.setArguments(bundle);
-                    FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,detailsFragment).addToBackStack("traveller companion edit");
-                    fragmentTransaction.commit();
-                }
-                else
-                {
-                    onItemSelected.onSendResult(traveller);
-                }
-
-
+                onItemSelected.onSendResult(traveller);
             }
         });
     }
@@ -105,10 +72,9 @@ public class TravellerCompanionRecyclerviewAddapter extends RecyclerView.Adapter
             nameTextview.setText(traveller.getFirstName() + " " + traveller.getLastName());
         }
     }
-    // callback for when user click on one item of traveller companion list
+    // callback for when user click on one item of traveller list
     public interface OnItemSelected
     {
         void onSendResult(Traveller traveller);
     }
-
 }

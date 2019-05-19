@@ -11,9 +11,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
-public class SignOutFragment extends Fragment {
+public class SignOutFragment extends BaseFragment {
 
     private TextView signoutTextview;
     private UserSharedManagerFlight userSharedManager;
@@ -46,7 +47,7 @@ public class SignOutFragment extends Fragment {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
 

@@ -11,10 +11,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 
-public class AboutFragment extends Fragment {
+public class AboutFragment extends BaseFragment {
 
     private ImageView backImageView;
     TextView phonenumTextview, phonenumTextview2;
@@ -46,7 +47,7 @@ public class AboutFragment extends Fragment {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
 

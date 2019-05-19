@@ -15,9 +15,9 @@ import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
 
 import androidx.cardview.widget.CardView;
 
-public class TourFilterBottomSheet implements RangeBar.OnRangeBarChangeListener {
+public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener {
 
-    private static final String TAG = "TourFilterBottomSheet";
+    private static final String TAG = "TripFilterBottomSheet";
     private Context context;
     private View view;
     private RangeBar rangeBarPrice ,rangeBarDuration, rangeBarAge;
@@ -28,7 +28,7 @@ public class TourFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     private RelativeLayout relativeLayout;
     private ImageView closeImageview;
 
-    public TourFilterBottomSheet(Context context, View view) {
+    public TripFilterBottomSheet(Context context, View view) {
         this.context = context;
         this.view = view;
         init();
@@ -79,19 +79,19 @@ public class TourFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     }
 
     private void init() {
-        relativeLayout = view.findViewById(R.id.bottom_sheet_tour_filter);
+        relativeLayout = view.findViewById(R.id.bottom_sheet_tirp_filter);
         bottomSheetBehavior = BottomSheetBehavior.from(relativeLayout);
-        rangebarPriceTextview = view.findViewById(R.id.tv_filtertour_price_num);
-        rangeBarPrice = view.findViewById(R.id.rangebar_filtertour_price);
-        rangebarAgeTextview = view.findViewById(R.id.tv_filtertour_age_num);
-        rangeBarAge = view.findViewById(R.id.rangebar_filtertour_age);
-        rangebarDurationTextview = view.findViewById(R.id.tv_filtertour_duration_num);
-        rangeBarDuration = view.findViewById(R.id.rangebar_filtertour_duration);
-        gradientButton = view.findViewById(R.id.button_filtertour_apply);
+        rangebarPriceTextview = view.findViewById(R.id.tv_filtertirp_price_num);
+        rangeBarPrice = view.findViewById(R.id.rangebar_filtertirp_price);
+        rangebarAgeTextview = view.findViewById(R.id.tv_filtertirp_age_num);
+        rangeBarAge = view.findViewById(R.id.rangebar_filtertirp_age);
+        rangebarDurationTextview = view.findViewById(R.id.tv_filtertirp_duration_num);
+        rangeBarDuration = view.findViewById(R.id.rangebar_filtertirp_duration);
+        gradientButton = view.findViewById(R.id.button_filtertirp_apply);
         gradientButton.setVisibility(View.GONE);
-        multiTypes = view.findViewById(R.id.groupbutton_filtertour);
-        multiLanguage = view.findViewById(R.id.group_choices_filtertour_language);
-        closeImageview = view.findViewById(R.id.iv_filter_tour_close);
+        multiTypes = view.findViewById(R.id.groupbutton_filtertirp);
+        multiLanguage = view.findViewById(R.id.group_choices_filtertirp_language);
+        closeImageview = view.findViewById(R.id.iv_filter_tirp_close);
     }
 
 
@@ -106,13 +106,13 @@ public class TourFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
         switch (rangeBar.getId())
         {
-            case R.id.rangebar_filtertour_age:
+            case R.id.rangebar_filtertirp_age:
                 rangebarAgeTextview.setText(String.valueOf(leftPinValue) + " - " + String.valueOf(rightPinValue));
                 break;
-            case R.id.rangebar_filtertour_duration:
+            case R.id.rangebar_filtertirp_duration:
                 rangebarDurationTextview.setText(String.valueOf(rightPinIndex +1) + " × Day");
                 break;
-            case R.id.rangebar_filtertour_price:
+            case R.id.rangebar_filtertirp_price:
                 rangebarPriceTextview.setText(String.valueOf(leftPinValue) + " - " + String.valueOf(rightPinValue) + " $");
                 break;
                 default:

@@ -27,15 +27,15 @@
             />
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_night_num"
+            android:id="@+id/tv_tirp_item_small_night_num"
             android:layout_width="25dp"
             android:layout_height="15dp"
             android:background="@color/demo_dark_transparent"
-            android:layout_above="@id/tv_tour_item_small_day_num"
+            android:layout_above="@id/tv_tirp_item_small_day_num"
             android:layout_centerHorizontal="true"/>
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_day_num"
+            android:id="@+id/tv_tirp_item_small_day_num"
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
@@ -59,7 +59,7 @@
 
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_tour_group"
+            android:id="@+id/tv_tirp_item_small_tirp_title"
             android:layout_width="100dp"
             android:layout_height="12dp"
             android:background="@color/demo_dark_transparent"
@@ -68,12 +68,12 @@
             />
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_tour_title"
+            android:id="@+id/tv_tirp_item_small_tirp_group"
             android:layout_width="80dp"
             android:layout_height="15dp"
             android:background="@color/demo_dark_transparent"
             android:layout_marginTop="4dp"
-            android:layout_below="@+id/tv_tour_item_small_tour_group"
+            android:layout_below="@+id/tv_tirp_item_small_tirp_title"
             android:layout_marginBottom="4dp"/>
 
 
@@ -85,10 +85,10 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="3dp"
             android:src="@drawable/from_to_purple"
-            android:layout_below="@+id/tv_tour_item_small_tour_title"/>
+            android:layout_below="@+id/tv_tirp_item_small_tirp_group"/>
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_start_date"
+            android:id="@+id/tv_tirp_item_small_start_date"
             android:layout_width="35dp"
             android:layout_height="12dp"
             android:layout_alignTop="@+id/title_from_to_dots"
@@ -97,13 +97,13 @@
             android:layout_toEndOf="@+id/title_from_to_dots"
             android:fadingEdge="horizontal"
             android:background="@color/demo_dark_transparent"
-            android:layout_below="@+id/tv_tour_item_small_tour_title"/>
+            android:layout_below="@+id/tv_tirp_item_small_tirp_group"/>
 
         <ImageView
             android:id="@+id/title_from_to_dots_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/tv_tour_item_small_start_date"
+            android:layout_below="@id/tv_tirp_item_small_start_date"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/title_from_to_dots"
@@ -111,7 +111,7 @@
             android:src="@color/contentDividerLine" />
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_end_date"
+            android:id="@+id/tv_tirp_item_small_end_date"
             android:layout_width="35dp"
             android:layout_height="12dp"
             android:layout_below="@id/title_from_to_dots_divider"
@@ -125,44 +125,44 @@
 
 
         <ImageView
-            android:id="@+id/tv_tour_item_destination_text"
+            android:id="@+id/tv_tirp_item_destination_text"
             android:layout_width="35dp"
             android:layout_height="10dp"
-            android:layout_alignStart="@id/tv_tour_item_destination"
-            android:layout_below="@+id/tv_tour_item_small_end_date"
+            android:layout_alignStart="@id/tv_tirp_item_destination"
+            android:layout_below="@+id/tv_tirp_item_small_end_date"
             android:background="@color/demo_dark_transparent"
             android:layout_marginTop="4dp" />
 
         <ImageView
-            android:id="@+id/tv_tour_item_destination"
+            android:id="@+id/tv_tirp_item_destination"
             android:layout_width="35dp"
             android:layout_height="15dp"
             android:layout_marginTop="4dp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_tour_item_destination_text"
+            android:layout_below="@+id/tv_tirp_item_destination_text"
             android:background="@color/demo_dark_transparent"
             android:layout_centerHorizontal="true" />
 
         <ImageView
             android:layout_width="35dp"
             android:layout_height="10dp"
-            android:layout_above="@id/tv_tour_item_small_language"
-            android:layout_alignTop="@+id/tv_tour_item_destination_text"
+            android:layout_above="@id/tv_tirp_item_small_language"
+            android:layout_alignTop="@+id/tv_tirp_item_destination_text"
             android:background="@color/demo_dark_transparent"
             android:layout_centerHorizontal="true" />
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_language"
+            android:id="@+id/tv_tirp_item_small_language"
             android:layout_width="35dp"
             android:layout_height="15dp"
             android:layout_marginTop="4dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignTop="@+id/tv_tour_item_destination"
+            android:layout_alignTop="@+id/tv_tirp_item_destination"
             android:background="@color/demo_dark_transparent"/>
 
 
         <ImageView
-            android:id="@+id/tv_tour_item_small_capacity"
+            android:id="@+id/tv_tirp_item_small_capacity"
             android:layout_width="35dp"
             android:layout_height="15dp"
             android:layout_alignParentEnd="true"

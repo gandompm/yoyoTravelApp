@@ -17,11 +17,12 @@ import yoyo.app.android.com.yoyoapp.Flight.Dialog.SignUpDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.text.DecimalFormat;
 
-public class FlightDetailsFragment extends Fragment implements View.OnClickListener{
+public class FlightDetailsFragment extends BaseFragment implements View.OnClickListener{
 
     private static final String TAG = "FlightDetailsFragment";
     private ImageView plusAdultImageview, minusAdultImageview, plusChildImageview, minusChildImageview, plusinfantImageview, minusInfantImageview ;
@@ -282,7 +283,7 @@ public class FlightDetailsFragment extends Fragment implements View.OnClickListe
                 }
                 break;
             case R.id.iv_flightdetails_back:
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
                 break;
         }
     }

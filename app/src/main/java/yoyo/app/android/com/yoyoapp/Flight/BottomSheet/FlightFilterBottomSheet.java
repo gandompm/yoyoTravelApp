@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class FlightFilterBottomSheet  {
 
-    private static final String TAG = "TourFilterBottomSheet";
+    private static final String TAG = "TripFilterBottomSheet";
     private FloatingActionButton floatingActionButton;
     private Context context;
     private View view;
@@ -37,7 +37,7 @@ public class FlightFilterBottomSheet  {
     private ImageView closeImageview;
     private ArrayList<String> daytimesString;
     private OnsendDataToResultPage onsendDataToResultPage;
-    private String minPrice = "25000", maxPrice = "9000000";
+    private String minPrice = "25000", maxPrice = "20000000";
 
 
     public FlightFilterBottomSheet(final Context context, final View view , OnsendDataToResultPage onsendDataToResultPage) {

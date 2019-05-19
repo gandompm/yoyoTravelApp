@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.City;
 import yoyo.app.android.com.yoyoapp.MaterialViewPager.CitiyViewPagerFragment;
 import yoyo.app.android.com.yoyoapp.R;
@@ -59,7 +58,7 @@ public class CitiesRecyclerviewAddaptor extends RecyclerView.Adapter<CitiesRecyc
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 CitiyViewPagerFragment citiyViewPagerFragment = new CitiyViewPagerFragment();
                 citiyViewPagerFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_framelayout, citiyViewPagerFragment).addToBackStack("cities");
+                fragmentTransaction.replace(R.id.container, citiyViewPagerFragment).addToBackStack("cities");
                 fragmentTransaction.commit();
 
                 itemListener.recyclerViewListClicked();

@@ -18,16 +18,16 @@
         android:paddingTop="7dp">
 
         <TextView
-            android:id="@+id/tv_tour_item_big_group_name"
+            android:id="@+id/tv_tirp_item_big_group_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Natioal park tour"
+            android:text="Natioal park tirp"
             android:textColor="@android:color/white"
             android:textSize="@dimen/standard" />
 
         <TextView
-            android:id="@+id/tv_tour_item_big_price"
+            android:id="@+id/tv_tirp_item_big_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -57,7 +57,7 @@
         android:layout_height="150dp">
 
         <ImageView
-            android:id="@+id/iv_tour_item_big_tour_img"
+            android:id="@+id/iv_tirp_item_big_tirp_img"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
@@ -171,23 +171,23 @@
                 <!--android:layout_alignParentLeft="true"-->
                 <!--android:layout_alignParentStart="true"-->
                 <!--android:layout_marginBottom="5dp"-->
-                <!--android:text="@string/tour_leader" />-->
+                <!--android:text="@string/tirp_leader" />-->
 
             <com.github.florent37.shapeofview.shapes.RoundRectView
-                android:id="@+id/iv_tour_item_big_tour_leader_img_container"
+                android:id="@+id/iv_tirp_item_big_tirp_leader_img_container"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:shape_roundRect_bottomLeftRadius="2dp"
                 app:shape_roundRect_bottomRightRadius="2dp"
                 app:shape_roundRect_topLeftRadius="2dp"
-                app:shape_roundRect_topRightRadius="2dp"
-                >
+                app:shape_roundRect_topRightRadius="2dp">
+
                 <ImageView
-                    android:id="@+id/iv_tour_item_big_tour_leader_img"
+                    android:id="@+id/iv_tirp_item_big_tirp_leader_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/avatar"
+                    android:src="@drawable/tour_leader"
                     />
 
 
@@ -195,36 +195,36 @@
             </com.github.florent37.shapeofview.shapes.RoundRectView>
 
             <TextView
-                android:id="@+id/tv_tour_item_big_tour_leader_name"
+                android:id="@+id/tv_tirp_item_big_tirp_leader_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_tour_item_big_tour_leader_img_container"
+                android:layout_alignTop="@id/iv_tirp_item_big_tirp_leader_img_container"
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/iv_tour_item_big_tour_leader_img_container"
+                android:layout_toEndOf="@id/iv_tirp_item_big_tirp_leader_img_container"
                 android:text="@string/client_name_mock"
                 android:textColor="@color/black"
                 android:textSize="@dimen/standard"
                 android:fontFamily="@font/roboto_medium" />
 
             <TextView
-                android:id="@+id/tv_tour_item_big_tourleade_txt"
+                android:id="@+id/tv_tirp_item_big_tirpleade_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_tour_item_big_tour_leader_name"
-                android:layout_below="@id/tv_tour_item_big_tour_leader_name"
-                android:text="@string/tour_leader"
+                android:layout_alignStart="@id/tv_tirp_item_big_tirp_leader_name"
+                android:layout_below="@id/tv_tirp_item_big_tirp_leader_name"
+                android:text="@string/tirp_leader"
                 android:textSize="@dimen/small"/>
 
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignBottom="@+id/tv_tour_item_big_tourleade_txt"-->
+                <!--android:layout_alignBottom="@+id/tv_tirp_item_big_tirpleade_txt"-->
                 <!--android:layout_marginBottom="-2dp"-->
                 <!--android:layout_marginLeft="3dp"-->
                 <!--android:layout_marginStart="3dp"-->
-                <!--android:layout_toEndOf="@id/tv_tour_item_big_tourleade_txt"-->
-                <!--android:layout_toRightOf="@id/tv_tour_item_big_tourleade_txt"-->
+                <!--android:layout_toEndOf="@id/tv_tirp_item_big_tirpleade_txt"-->
+                <!--android:layout_toRightOf="@id/tv_tirp_item_big_tirpleade_txt"-->
                 <!--android:text="@string/rating_mock"-->
                 <!--android:textColor="@color/contentBadgeTitle"-->
                 <!--android:textSize="12sp" />-->
@@ -270,7 +270,7 @@
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_start_point"
+                    android:id="@+id/tv_tirp_item_big_start_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_from_badge"
@@ -281,11 +281,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_start_point_address"
+                    android:id="@+id/tv_tirp_item_big_start_point_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_tour_item_big_start_point"
-                    android:layout_below="@id/tv_tour_item_big_start_point"
+                    android:layout_alignStart="@id/tv_tirp_item_big_start_point"
+                    android:layout_below="@id/tv_tirp_item_big_start_point"
                     android:text="@string/content_from2_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small" />
@@ -307,7 +307,7 @@
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_end_point"
+                    android:id="@+id/tv_tirp_item_big_end_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_to_badge"
@@ -318,11 +318,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_end_point_address"
+                    android:id="@+id/tv_tirp_item_big_end_point_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_tour_item_big_end_point"
-                    android:layout_below="@id/tv_tour_item_big_end_point"
+                    android:layout_alignStart="@id/tv_tirp_item_big_end_point"
+                    android:layout_below="@id/tv_tirp_item_big_end_point"
                     android:text="@string/content_to2_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small" />
@@ -366,11 +366,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/tv_tour_item_big_start_date"
+                    android:text="@string/tv_tirp_item_big_start_date"
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_start_day_and_time"
+                    android:id="@+id/tv_tirp_item_big_start_day_and_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_delivery_date_badge"
@@ -381,11 +381,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_start_date"
+                    android:id="@+id/tv_tirp_item_big_start_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_tour_item_big_start_day_and_time"
-                    android:layout_below="@id/tv_tour_item_big_start_day_and_time"
+                    android:layout_alignStart="@id/tv_tirp_item_big_start_day_and_time"
+                    android:layout_below="@id/tv_tirp_item_big_start_day_and_time"
                     android:text="@string/delivery_date_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/standard" />
@@ -403,11 +403,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/tv_tour_item_big_end_date"
+                    android:text="@string/tv_tirp_item_big_end_date"
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_end_day_and_time"
+                    android:id="@+id/tv_tirp_item_big_end_day_and_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_deadline_badge"
@@ -418,12 +418,12 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_tour_item_big_end_date"
+                    android:id="@+id/tv_tirp_item_big_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/tv_tour_item_big_end_day_and_time"
-                    android:layout_alignStart="@id/tv_tour_item_big_end_day_and_time"
-                    android:layout_below="@id/tv_tour_item_big_end_day_and_time"
+                    android:layout_alignLeft="@id/tv_tirp_item_big_end_day_and_time"
+                    android:layout_alignStart="@id/tv_tirp_item_big_end_day_and_time"
+                    android:layout_below="@id/tv_tirp_item_big_end_day_and_time"
                     android:text="may 16,2016"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/standard" />
@@ -439,8 +439,10 @@
             android:layout_marginTop="8dp"
             app:button_start_color="@color/colorAccent"
             app:button_end_color="@color/colorAccent"
-            app:button_text="@string/buton_tour_item_big_details"
+            app:button_text="@string/buton_tirp_item_big_details"
             app:button_text_color="@color/black"
+            app:button_press_end_color="@color/colorPrimaryDark"
+            app:button_press_start_color="@color/colorPrimaryDark"
             android:textAlignment="center"
             android:textSize="@dimen/standard"
             app:button_radius="4dp"
@@ -450,7 +452,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="5 people have purchased this tour"
+            android:text="5 people have purchased this tirp"
             android:textAlignment="center"
             android:textColor="@color/contentBadgeTitle"
             android:textSize="12sp" />

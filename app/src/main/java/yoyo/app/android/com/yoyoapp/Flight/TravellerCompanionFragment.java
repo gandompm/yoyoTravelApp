@@ -15,12 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import yoyo.app.android.com.yoyoapp.Flight.Addaptor.TravellerCompanionRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Traveller;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
 
-public class TravellerCompanionFragment extends Fragment {
+public class TravellerCompanionFragment extends BaseFragment {
 
     private static final String TAG = "TravellerCompanionFragm";
     private RecyclerView recyclerView;
@@ -47,7 +48,7 @@ public class TravellerCompanionFragment extends Fragment {
                 TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,detailsFragment).addToBackStack("traveller companion edit");
+                fragmentTransaction.replace(R.id.container,detailsFragment).addToBackStack("traveller companion edit");
                 fragmentTransaction.commit();
             }
         });
@@ -55,7 +56,7 @@ public class TravellerCompanionFragment extends Fragment {
         backImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
 
@@ -93,7 +94,28 @@ public class TravellerCompanionFragment extends Fragment {
 
     // setup recycler view for traveller companions
     private void setupRecyclerview() {
-        travellerRecyclerviewaddapter = new TravellerCompanionRecyclerviewAddapter(false,travellers, getActivity());
+        travellerRecyclerviewaddapter = new TravellerCompanionRecyclerviewAddapter(travellers, getActivity(), new TravellerCompanionRecyclerviewAddapter.OnItemSelected() {
+            @Override
+            public void onSendResult(Traveller traveller) {
+                Bundle bundle = new Bundle();
+                bundle.putString("firstName",traveller.getFirstName());
+                bundle.putString("lastName",traveller.getLastName());
+                bundle.putString("gender",traveller.getGender());
+                bundle.putString("nationality",traveller.getNationality());
+                bundle.putBoolean("isIranian",traveller.isIranian());
+                bundle.putString("iranianCode",traveller.getIranianNationalCode());
+                bundle.putString("passport",traveller.getPassportNumber());
+                bundle.putString("dateOfBirth",traveller.getDateOfBirth());
+                bundle.putString("ageClass",traveller.getAgeClass());
+                bundle.putInt("id",traveller.getTravellerId());
+
+                TravellerCompanionsEditFragment travellerCompanionsEditFragment = new TravellerCompanionsEditFragment();
+                travellerCompanionsEditFragment.setArguments(bundle);
+                if (mFragmentNavigation != null) {
+                    mFragmentNavigation.pushFragment(travellerCompanionsEditFragment);
+                }
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(travellerRecyclerviewaddapter);

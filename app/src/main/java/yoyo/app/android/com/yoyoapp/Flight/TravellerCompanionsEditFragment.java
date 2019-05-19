@@ -24,11 +24,12 @@ import yoyo.app.android.com.yoyoapp.Flight.Enum.Gender;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.DateCalenderSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.NationalCodeUtil;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
-public class TravellerCompanionsEditFragment extends Fragment {
+public class TravellerCompanionsEditFragment extends BaseFragment {
 
     private static final String TAG = "TravellerCompanionsEdit";
     private EditText firstnameEditText, lastnameEditText;
@@ -73,7 +74,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
         backImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
         nationalityTextview.setOnClickListener(new View.OnClickListener() {
@@ -352,28 +353,28 @@ public class TravellerCompanionsEditFragment extends Fragment {
         bundle = getArguments();
         fragmentManager = getFragmentManager();
         countryList = new ArrayList<>();
-//        nationalityTextview = view.findViewById(R.id.tv_traveller_companion_nationality);
-//        saveButton = view.findViewById(R.id.button_travellercompanion_edit_save);
-//        firstnameEditText = view.findViewById(R.id.et_travellercompanion_edit_firstname);
-//        lastnameEditText = view.findViewById(R.id.et_travellercompanion_edit_lastname);
-//        titleTextview = view.findViewById(R.id.tv_travellercompanion_title);
-//        deleteButton = view.findViewById(R.id.button_travellercompanions_edit_delete);
-//        backImageview = view.findViewById(R.id.iv_travellercompanion_edit_back);
-//        dateOfBirthTextview = view.findViewById(R.id.et_travellercompanion_edit_date_of_birth);
-//        passportEditText = view.findViewById(R.id.et_travellercompanion_edit_passport_number);
-//        iraninanNationalCodeEditText = view.findViewById(R.id.et_travellercompanion_edit_irainian_national_code);
-//        genderToggleButton = view.findViewById(R.id.toggleSwitch_traveller_details);
-//        countryCodePicker = view.findViewById(R.id.ccp_traveller_companion);
-//        iraninanNationalCodeTextview = view.findViewById(R.id.tv_travellercompanion_edit_irainian_national_code);
-//        passportTextview = view.findViewById(R.id.tv_travellercompanion_edit_passport_number);
-//        progressBar1 = view.findViewById(R.id.progressBar1);
-//        progressBar2 = view.findViewById(R.id.progressBar2);
-//        genderToggleButton.setCheckedPosition(0);
-//        ageClass = AgeClass.ADULT;
-//        gender = Gender.MALE;
-//        isIranian = true;
-//        apiServiceFlight = new ApiServiceFlight(getContext());
-//        ageClassToggleSwitch = view.findViewById(R.id.toggleSwitch_traveller_age_class);
+        nationalityTextview = view.findViewById(R.id.tv_traveller_companion_nationality);
+        saveButton = view.findViewById(R.id.button_travellercompanion_edit_save);
+        firstnameEditText = view.findViewById(R.id.et_travellercompanion_edit_firstname);
+        lastnameEditText = view.findViewById(R.id.et_travellercompanion_edit_lastname);
+        titleTextview = view.findViewById(R.id.tv_travellercompanion_title);
+        deleteButton = view.findViewById(R.id.button_travellercompanions_edit_delete);
+        backImageview = view.findViewById(R.id.iv_travellercompanion_edit_back);
+        dateOfBirthTextview = view.findViewById(R.id.et_travellercompanion_edit_date_of_birth);
+        passportEditText = view.findViewById(R.id.et_travellercompanion_edit_passport_number);
+        iraninanNationalCodeEditText = view.findViewById(R.id.et_travellercompanion_edit_irainian_national_code);
+        genderToggleButton = view.findViewById(R.id.toggleSwitch_traveller_details);
+        countryCodePicker = view.findViewById(R.id.ccp_traveller_companion);
+        iraninanNationalCodeTextview = view.findViewById(R.id.tv_travellercompanion_edit_irainian_national_code);
+        passportTextview = view.findViewById(R.id.tv_travellercompanion_edit_passport_number);
+        progressBar1 = view.findViewById(R.id.progressBar1);
+        progressBar2 = view.findViewById(R.id.progressBar2);
+        genderToggleButton.setCheckedPosition(0);
+        ageClass = AgeClass.ADULT;
+        gender = Gender.MALE;
+        isIranian = true;
+        apiServiceFlight = new ApiServiceFlight(getContext());
+        ageClassToggleSwitch = view.findViewById(R.id.toggleSwitch_traveller_age_class);
         ageClassToggleSwitch.setCheckedPosition(0);
     }
 }

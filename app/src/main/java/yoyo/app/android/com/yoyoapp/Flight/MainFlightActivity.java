@@ -2,39 +2,45 @@ package yoyo.app.android.com.yoyoapp.Flight;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 import yoyo.app.android.com.yoyoapp.Flight.BottomSheet.TravellerBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.FlightSearch.FlightSearchFragment;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.Versioning;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.Utils.FragmentHistory;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.Utils.Utilss;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.Views.FragNavController;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class MainFlightActivity extends AppCompatActivity implements TravellerBottomSheetDialogFragment.BotomSheetListener {
+public class MainFlightActivity extends AppCompatActivity  implements TravellerBottomSheetDialogFragment.BotomSheetListener
+        , BaseFragment.FragmentNavigation, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
 
     private static final String TAG = "MainFlightActivity";
     public BottomNavigationView bottomNavigation;
     public int adultCount =1, childCount =0, infantCount =0, sum =1;
     public Calendar standardDate;
     public boolean isDateChanged = false;
-    public ArrayList<String> iataCodeAirlines ;
+    public ArrayList<String> iataCodeAirlines;
     public ArrayList<String> idAircrafts;
     public ArrayList<String> dayTimes;
-    private LanguageSetup languageSetup;
-    private FlightSearchFragment flightSearchFragment;
-    private ProfileFragment profileFragment;
-    private TicketFragment ticketFragment;
-    private boolean isSingnedIn = false;
+    private String[] TABS = {"Ticket","Flight","Setting"};
+    private TabLayout bottomTabLayout;
+    private FragNavController navController;
+    private FragmentHistory fragmentHistory;
+    private int[] tabIconsSelected = {
+            R.drawable.shopping_cart,
+            R.drawable.tab_home,
+            R.drawable.tab_profile
+    };
 
 
     @Override
@@ -43,75 +49,65 @@ public class MainFlightActivity extends AppCompatActivity implements TravellerBo
         setContentView(R.layout.activity_main_flight);
 
         init();
-        languageSetup.loadLanguageFromSharedPref();
-        checkingSignIn();
-        Versioning versioning = new Versioning();
-        versioning.checkingUpdates(this);
-        setupSeperateFragmentStack();
-
+        initTab();
+        setupBottomTabLayout(savedInstanceState);
     }
 
-    private void setupSeperateFragmentStack() {
-        setupBottomNavigation();
-    }
+    private void setupBottomTabLayout(Bundle savedInstanceState) {
+        fragmentHistory = new FragmentHistory();
+        navController = FragNavController.newBuilder(savedInstanceState, getSupportFragmentManager(), R.id.container)
+                .transactionListener(this)
+                .rootFragmentListener(this, TABS.length)
+                .build();
 
-    // setup bottom navigation
-    private void setupBottomNavigation() {
-        bottomNavigation.setSelectedItemId(R.id.bn_flight);
-        addFragment(new FlightSearchFragment(),"search");
 
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        switchTab(1);
+        updateTabSelection(1);
+        bottomTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.bn_flight:
-                        startActivity(new Intent(MainFlightActivity.this, MainActivity.class));
-                        return true;
-                    case R.id.bn_profile:
-                        addFragment(new ProfileFragment(),"profile");
-                        return true;
-                    case R.id.bn_orders:
-                        if (isSingnedIn)
-                            addFragment(new TicketFragment(),"ticket");
-                        else
-                            addFragment(new TicketNotSignedInFragment(), "ticket");
-                        return true;
-                    default:
-                        return false;
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                fragmentHistory.push(tab.getPosition());
+                switchTab(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+                navController.clearStack();
+                switchTab(tab.getPosition());
             }
         });
     }
 
-    // setup fragment
-    public void addFragment(Fragment fragment, String tag) {
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main_framelayout, fragment, tag);
-        ft.addToBackStack(null);
-        ft.commit();
+    private void initTab() {
+        if (bottomTabLayout != null) {
+            for (int i = 0; i < TABS.length; i++) {
+                bottomTabLayout.addTab(bottomTabLayout.newTab());
+                TabLayout.Tab tab = bottomTabLayout.getTabAt(i);
+                if (tab != null)
+                    tab.setCustomView(getTabView(i));
+            }
+        }
     }
 
-    // check if the user has before signed in or not
-    private void checkingSignIn() {
-        UserSharedManagerFlight userSharedManager = new UserSharedManagerFlight(MainFlightActivity.this);
-        userSharedManager.getClient();
-        if (!userSharedManager.getToken().equals(""))
-        {
-            isSingnedIn = true;
-        }
+    private View getTabView(int position) {
+        View view = LayoutInflater.from(this).inflate(R.layout.tab_item_bottom, null);
+        ImageView icon = view.findViewById(R.id.tab_icon);
+        icon.setImageDrawable(Utilss.setDrawableSelector(this, tabIconsSelected[position], tabIconsSelected[position]));
+        return view;
     }
 
     private void init() {
         standardDate = Calendar.getInstance();
-        bottomNavigation = findViewById(R.id.bn_main);
-        languageSetup = new LanguageSetup(this);
         iataCodeAirlines = new ArrayList<>();
         idAircrafts =   new ArrayList<>();
         dayTimes = new ArrayList<>();
-        flightSearchFragment = new FlightSearchFragment();
-        profileFragment = new ProfileFragment();
-        ticketFragment = new TicketFragment();
+        bottomTabLayout = findViewById(R.id.bottom_tab_layout);
     }
 
     // override the interface method (the interface in TravellerBottomSheetDialogFragment)
@@ -132,5 +128,86 @@ public class MainFlightActivity extends AppCompatActivity implements TravellerBo
         this.infantCount = infantNum;
     }
 
+    @Override
+    public void pushFragment(Fragment fragment) {
+        if (navController != null) {
+            navController.pushFragment(fragment);
+        }
+    }
 
+    @Override
+    public Fragment getRootFragment(int index) {
+        switch (index) {
+
+            case FragNavController.TAB1:
+                if (MainActivity.isSingnedIn)
+                    return new TicketFragment();
+                else
+                    return new TicketNotSignedInFragment();
+            case FragNavController.TAB2:
+                return new FlightSearchFragment();
+            case FragNavController.TAB3:
+                return new ProfileFragment();
+        }
+        throw new IllegalStateException("Need to send an index that we know");
+    }
+
+    @Override
+    public void onTabTransaction(Fragment fragment, int index) {
+        // If we have a backstack, show the back button
+        if (getSupportActionBar() != null && navController != null) {
+//            updateToolbar();
+        }
+    }
+
+    @Override
+    public void onFragmentTransaction(Fragment fragment, FragNavController.TransactionType transactionType) {
+        //do fragmentty stuff. Maybe change title, I'm not going to tell you how to live your life
+        // If we have a backstack, show the back button
+        if (getSupportActionBar() != null && navController != null) {
+//            updateToolbar();
+        }
+    }
+    private void updateTabSelection(int currentTab){
+
+        for (int i = 0; i <  TABS.length; i++) {
+            TabLayout.Tab selectedTab = bottomTabLayout.getTabAt(i);
+            if(currentTab != i) {
+                selectedTab.getCustomView().setSelected(false);
+            }else{
+                selectedTab.getCustomView().setSelected(true);
+            }
+        }
+    }
+    @Override
+    public void onBackPressed() {
+
+        if (!navController.isRootFragment()) {
+            navController.popFragment();
+        } else {
+
+            if (fragmentHistory.isEmpty()) {
+                startActivity(new Intent(this,MainActivity.class));
+                finish();
+            } else {
+
+                if (fragmentHistory.getStackSize() > 1) {
+
+                    int position = fragmentHistory.popPrevious();
+                    switchTab(position);
+                    updateTabSelection(position);
+
+                } else {
+
+                    switchTab(1);
+                    updateTabSelection(1);
+                    fragmentHistory.emptyStack();
+                }
+            }
+        }
+    }
+    private void switchTab(int position) {
+        navController.switchTab(position);
+//      updateToolbarTitle(position);
+    }
 }

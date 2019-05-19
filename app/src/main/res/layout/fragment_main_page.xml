@@ -162,7 +162,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_mainpage_tours"
+            android:id="@+id/cv_mainpage_tirps"
             android:layout_width="0dp"
             android:layout_height="@dimen/cardview_mainpage_service"
             android:layout_marginStart="4dp"
@@ -181,29 +181,29 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tv_iran_cardview_tour_mainpage"
+                    android:id="@+id/tv_iran_cardview_tirp_mainpage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/roboto_thin"
                     android:text="@string/iran"
                     android:textSize="@dimen/header_1"
-                    app:layout_constraintStart_toStartOf="@+id/tv_tour_cardview_offer_mainpage"
+                    app:layout_constraintStart_toStartOf="@+id/tv_tirp_cardview_offer_mainpage"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_tour_cardview_offer_mainpage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/tours"
-                    android:textColor="@color/black1"
-                    android:textSize="@dimen/header_1"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline7"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_iran_cardview_tour_mainpage" />
+                        android:id="@+id/tv_tirp_cardview_offer_mainpage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/tours"
+                        android:textColor="@color/black1"
+                        android:textSize="@dimen/header_1"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_iran_cardview_tirp_mainpage"/>
 
                 <ImageView
                     android:id="@+id/iv_cardview_service_mainpage"

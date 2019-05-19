@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_margin="2dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/tv_categoryitem"
+          tools:text="IranAir"
+          android:textSize="@dimen/standard"
+          android:textColor="@color/black1"
+          android:background="@drawable/blue_round_border_bg" android:padding="8dp"
+          android:fontFamily="@font/roboto_regular"/>

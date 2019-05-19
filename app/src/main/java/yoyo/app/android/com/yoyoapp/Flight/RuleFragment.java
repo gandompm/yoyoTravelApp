@@ -8,10 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 
-public class RuleFragment extends Fragment {
+public class RuleFragment extends BaseFragment {
 
     private ImageView backImageView;
     private View view;
@@ -29,7 +30,7 @@ public class RuleFragment extends Fragment {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
 

@@ -14,7 +14,7 @@
     <string name="tv_mainpage_available_services">2 services for now</string>
     <string name="tv_mainpage_more_services">more services is coming soon</string>
     <string name="hotels">Hotels</string>
-    <string name="tours">Tours</string>
+    <string name="tirps">Trips</string>
     <string name="button_mainpage_flights">Flights</string>
     <string name="button_mainpage_specialOffers">Offers</string>
     <string name="tv_hotelsearch_title">Staying anywhere?</string>
@@ -27,10 +27,10 @@
     <string name="button_signup_facebook">Sign in with Facebook</string>
     <string name="button_signup_loginasguest">Login As Guest</string>
     <string name="tv_item_hotel_name">Hotel Name</string>
-    <string name="tv_item_hotel_type">Type : </string>
+    <string name="tv_item_hotel_type">Type :</string>
     <string name="tv_item_hotel_address">City, District :</string>
-    <string name="tv_item_hotel_price">Price : </string>
-    <string name="from_small"> from </string>
+    <string name="tv_item_hotel_price">Price :</string>
+    <string name="from_small">from</string>
     <string name="navigation_bn_order">Orders</string>
     <string name="navigation_bn_home">Home</string>
     <string name="navigation_bn_profile">Profile</string>
@@ -65,7 +65,9 @@
     //direct select
     <string name="picker_box_arrows_icon">picker box arrows icon</string>
     <string name="cell_image">cell image</string>
-    <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly, if you have any questions, please create an issue on our GitHub account.</string>
+    <string name="subtitle">New iOS and Android control for you and your company. Please make sure to use it properly,
+        if you have any questions, please create an issue on our GitHub account.
+    </string>
     <string name="customized_picker">Here a fully customized picker with custom background and cell layout:</string>
     <string name="picker_with_custom_bg">Here a picker with default cell but custom background:</string>
     <string name="footer_text">by Ramotion inc.</string>
@@ -78,15 +80,15 @@
     <string name="tv_filterhotel_hotel_quality">Hotel Quality :</string>
     <string name="tv_filterhotel_pricerange">Price Range (per Room,per Night) :</string>
     <string name="button_filterhotel">Apply</string>
-    <string name="tv_toursearch_tour">Tour</string>
-    <string name="tv_toursearch_title">Find your Tour</string>
+    <string name="tv_tirpsearch_tirp">Trip</string>
+    <string name="tv_tirpsearch_title">Find your Trip</string>
     <string name="tv_date_picker_check_in">Check-in</string>
     <string name="tv_date_picker_check_out">Check-out</string>
     <string name="tv_datepicker_select_date">Select Date</string>
-    <string name="tour_leader">Tour Leader</string>
-    <string name="buton_tour_item_big_details">Details</string>
-    <string name="tv_tour_item_big_start_date">Start date</string>
-    <string name="tv_tour_item_big_end_date">End date</string>
+    <string name="tirp_leader">Trip Leader</string>
+    <string name="buton_tirp_item_big_details">Details</string>
+    <string name="tv_tirp_item_big_start_date">Start date</string>
+    <string name="tv_tirp_item_big_end_date">End date</string>
 
     <string name="button_profile_sign_out">Sign Out</string>
     <string name="button_profile_report_an_app_problem">Report an app problem</string>
@@ -97,8 +99,8 @@
     <string name="tv_sign_out">Are you sure you want to Sign Out?</string>
     <string name="tv_about_city_title">About City</string>
     <string name="server_client_id">181467561755-7uedee591j3jcb4pj09u79t70akkkn0t.apps.googleusercontent.com</string>
-    <string name="tv_hotel_details_des">Description: </string>
-    <string name="tv_hotel_details_rules">Rules: </string>
+    <string name="tv_hotel_details_des">Description:</string>
+    <string name="tv_hotel_details_rules">Rules:</string>
     <string name="change_the_language">change the language</string>
     <string name="iran">Iran</string>
 
@@ -107,7 +109,7 @@
     <string name="hotel_near_me">Hotel near me</string>
     <string name="filter_by_price_optional">Filter by price (optional)</string>
     <string name="going_anywhere">Going anywhere?</string>
-    <string name="tour_near_me">Tour near me</string>
+    <string name="tirp_near_me">Trip near me</string>
     <string name="what_are_you_looking_for">What are you looking for...?</string>
     <string name="search_with_dot">Search...</string>
     <string name="nights">Nights</string>
@@ -120,7 +122,7 @@
     <string name="nature">Nature</string>
     <string name="sport">Sport</string>
     <string name="food">Food</string>
-    <string name="tour_language">Tour Language :</string>
+    <string name="tirp_language">Trip Language :</string>
     <string name="persian">Persian</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
@@ -169,10 +171,9 @@
     <string name="total_price_button">Total Price:</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
-    <string name="capacity">Capacity</string>
+    <string name="remainingCapacity">Capacity</string>
     <string name="flight_class">Flight Class</string>
     <string name="flight_no">Flight NO</string>
-    <string name="type">Type</string>
     <string name="flight_path">Flight Path</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="all_trips">All Trips</string>
@@ -258,13 +259,13 @@
     <string name="order_by">Order By :</string>
     <string name="price_2">Price :</string>
     <string name="please_complete_all_fields">please complete all Fields</string>
-    <string name="the_tourism_industry">The tourism industry in Iran has a very high potential for growth and
-        development. According to the World Tourism Organization, Iran ranked tenth in the ancient and historical
+    <string name="the_tirpism_industry">The tirpism industry in Iran has a very high potential for growth and
+        development. According to the World Tripism Organization, Iran ranked tenth in the ancient and historical
         attractions and ranked fifth in the natural attractions in the world. Experts say the industry have not enjoyed
         the development that it deserves. The lack of suitable economic infrastructures, poor propaganda and the
-        publication of negative news are the main barriers to growth of tourism industry in Iran. We have been working
+        publication of negative news are the main barriers to growth of tirpism industry in Iran. We have been working
         on this app to introduce the historical and natural attractions of Iran and provide the needs of a trip such as
-        buying tickets, hotel reservations, local guides, introducing Iranian tours ,etc. in order to help removing
+        buying tickets, hotel reservations, local guides, introducing Iranian tirps ,etc. in order to help removing
         those barriers that have been blocking Iran\'s economic growth.
     </string>
     <string name="please_enter_lastname">Please enter your lastname</string>
@@ -322,6 +323,16 @@
     <string name="whoops">Whoops !!!!</string>
     <string name="we_coudln_t_find_any_flight_for_you">We coudln\'t find any flight for you</string>
     <string name="country_optional">country (optional)</string>
+
+    <string name="googleMapsGooglePlaces" translatable="false">AIzaSyBN9IEPGzA_Ufw2vOvfuMLkk4edhTMIeGI</string>
+    <string name="welcome_back">welcome back to Yoyo app</string>
+    <string name="tour">Tour</string>
+    <string name="tours">Tours</string>
+    <string name="tours_near_me">Tours near me</string>
+    <string name="name">Category</string>
+    <string name="type">Type</string>
+    <string name="choose_tour_type">Choose Tour Type</string>
+    <string name="overview">Overview</string>
 
 
 </resources>

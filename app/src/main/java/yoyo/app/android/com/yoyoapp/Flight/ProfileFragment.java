@@ -14,10 +14,11 @@ import androidx.fragment.app.FragmentTransaction;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends BaseFragment {
 
     private ApiServiceFlight apiServiceFlight;
     private FragmentManager fragmentManager;
@@ -40,10 +41,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // before sending to the next fragment, check that if the user has before signed in or not
-                if (isSignedIn)
+                if (mFragmentNavigation != null && isSignedIn) {
+                    mFragmentNavigation.pushFragment(new TravellerCompanionFragment());
+                }
+                else if (isSignedIn)
                 {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new TravellerCompanionFragment()).addToBackStack("traveller companion");
+                    fragmentTransaction.replace(R.id.container,new TravellerCompanionFragment()).addToBackStack("traveller companion");
                     fragmentTransaction.commit();
                 }
             }
@@ -52,9 +56,14 @@ public class ProfileFragment extends Fragment {
         rulesImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,new RuleFragment()).addToBackStack("rules");
-                fragmentTransaction.commit();
+                if (mFragmentNavigation != null) {
+                    mFragmentNavigation.pushFragment(new RuleFragment());
+                }
+                else {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container,new RuleFragment()).addToBackStack("rules");
+                    fragmentTransaction.commit();
+                }
             }
         });
 
@@ -62,10 +71,12 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // before sending to the next fragment, check that if the user has before signed in or not
-                if (isSignedIn)
-                {
+                if (mFragmentNavigation != null && isSignedIn) {
+                    mFragmentNavigation.pushFragment(new EditProfileFragment());
+                }
+                else if (isSignedIn){
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new EditProfileFragment()).addToBackStack("edit profile");
+                    fragmentTransaction.replace(R.id.container,new EditProfileFragment()).addToBackStack("edit profile");
                     fragmentTransaction.commit();
                 }
             }
@@ -75,11 +86,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // before sending to the next fragment, check that if the user has before signed in or not
-                if (isSignedIn)
-                {
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new SignOutFragment()).addToBackStack("signout");
-                    fragmentTransaction.commit();
+                if (mFragmentNavigation != null && isSignedIn) {
+                    mFragmentNavigation.pushFragment(new SignOutFragment());
+                }
+                else if (isSignedIn){
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container,new SignOutFragment()).addToBackStack("signout");
+                        fragmentTransaction.commit();
                 }
             }
         });
@@ -96,12 +109,16 @@ public class ProfileFragment extends Fragment {
         aboutImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,new AboutFragment()).addToBackStack("about");
-                fragmentTransaction.commit();
+                if (mFragmentNavigation != null) {
+                    mFragmentNavigation.pushFragment(new AboutFragment());
+                }
+                else {
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.container,new AboutFragment()).addToBackStack("about");
+                    fragmentTransaction.commit();
+                }
             }
         });
-
 
 
         return view;

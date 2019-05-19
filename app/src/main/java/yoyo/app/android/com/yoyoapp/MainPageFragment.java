@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragment;
@@ -20,13 +19,14 @@ import com.cpacm.library.SimpleViewPager;
 import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
+import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
 
 
 public class MainPageFragment extends Fragment {
 
-    public static final String KEY_BUNDLE_MAIN_PAGE_CODE = "Mainpage";
     private TextView searchEditText;
-    private CardView searchHotelCardview, toursCardview , flightCardview;
+    private CardView searchHotelCardview, tirpsCardview , flightCardview;
     private SimpleViewPager simpleSlider;
     private BasicPagerAdapter sliderAdapter;
     private FragmentManager fragmentManager;
@@ -44,7 +44,7 @@ public class MainPageFragment extends Fragment {
     }
 
     private void init() {
-        toursCardview = view.findViewById(R.id.cv_mainpage_tours);
+        tirpsCardview = view.findViewById(R.id.cv_mainpage_tirps);
         searchHotelCardview = view.findViewById(R.id.cv_mainpage_hotels);
         fragmentManager = getFragmentManager();
         searchEditText = view.findViewById(R.id.sv_mainpage_search);
@@ -76,15 +76,17 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                sendingToSearchHotelFragment("hotel");
+                sendingToSearchFragment("hotel");
             }
         });
 
-        toursCardview.setOnClickListener(new View.OnClickListener() {
+        tirpsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                sendingToSearchHotelFragment("tour");
+                startActivity(new Intent(getContext(), TripActivity.class));
+                getActivity().overridePendingTransition(0,  0);
+
             }
         });
 
@@ -92,20 +94,20 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), MainFlightActivity.class));
-                getActivity().finish();
+                getActivity().overridePendingTransition(0,  0);
             }
         });
     }
 
-
-    private void sendingToSearchHotelFragment(String destination) {
+    private void sendingToSearchFragment(String destination) {
         Bundle bundle = new Bundle();
-        bundle.putString(KEY_BUNDLE_MAIN_PAGE_CODE,destination);
+        bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,destination);
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        SearchFragment searchFragment = new SearchFragment();
-        searchFragment.setArguments(bundle);
-        fragmentTransaction.replace(R.id.main_framelayout,searchFragment).addToBackStack(destination+"search");
+        HotelSearchFragment hotelSearchFragment = new HotelSearchFragment();
+        hotelSearchFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.container, hotelSearchFragment).addToBackStack(destination + "search");
         fragmentTransaction.commit();
     }
+
 }

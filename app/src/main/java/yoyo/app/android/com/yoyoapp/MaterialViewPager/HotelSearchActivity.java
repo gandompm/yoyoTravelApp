@@ -66,7 +66,7 @@ public class HotelSearchActivity extends AppCompatActivity {
                     case 0:
                         return "Hotels";
                     case 1:
-                        return "Tours";
+                        return "Trips";
 //                    case 2:
 //                        return "Professionnel";
 //                    case 3:

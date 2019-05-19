@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     xmlns:tools="http://schemas.android.com/tools"
+                                                     android:id="@+id/main_content"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent"
+                                                     android:fitsSystemWindows="true">
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:fitsSystemWindows="true">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="64dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:fitsSystemWindows="true"
+                    app:layout_collapseMode="parallax"
+                    android:orientation="vertical">
+
+                <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#cccccc" />
+
+                <LinearLayout
+                        android:id="@+id/layout_dots"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_alignBottom="@+id/pager"
+                        android:orientation="horizontal" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_tripdetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+            <TextView
+                    android:id="@+id/tv_tripdetails_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Yazd Deseert Tour"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@color/black1"
+                    android:textSize="@dimen/header_2"/>
+
+            <TextView
+                    android:id="@+id/tv_tripdetails_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dsrt Sadiq Abad tourist, Yazd Proviece, Iran"
+                    android:fontFamily="@font/roboto_medium" android:textColor="@color/black2"
+                    android:textSize="@dimen/standard" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_title"
+                    android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp"
+            />
+
+            <ImageView
+                    android:layout_width="match_parent" android:layout_height="110dp"
+                    android:background="@color/grey"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_title2"
+                    android:layout_marginTop="16dp" android:id="@+id/imageView22"
+            />
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" app:srcCompat="@drawable/ic_euro_symbol_black_24dp"
+                    android:id="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView22"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+                    app:layout_constraintStart_toEndOf="@+id/imageView37" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="16dp"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" app:srcCompat="@drawable/ic_brightness_4_black_24dp"
+                    android:id="@+id/imageView37" app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+                    app:layout_constraintTop_toTopOf="@+id/imageView22"
+                    app:layout_constraintStart_toEndOf="@+id/imageView39" app:layout_constraintHorizontal_bias="0.5"
+                    android:layout_marginBottom="16dp"/>
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" app:srcCompat="@drawable/ic_people_black_24dp"
+                    android:id="@+id/imageView39" app:layout_constraintEnd_toStartOf="@+id/imageView37"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView22"
+                    app:layout_constraintTop_toTopOf="@+id/imageView22"
+                    app:layout_constraintHorizontal_bias="0.5" app:layout_constraintStart_toStartOf="@+id/imageView22"
+                    android:layout_marginStart="8dp" android:layout_marginBottom="16dp"/>
+            <TextView
+                    android:text="People 4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_people_num" app:layout_constraintEnd_toEndOf="@+id/imageView39"
+                    app:layout_constraintStart_toStartOf="@+id/imageView39"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView39"
+                    android:fontFamily="@font/roboto_medium" android:textSize="@dimen/small"/>
+
+            <TextView
+                    android:text="Days 2 Nights 3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_daynightnum"
+                    android:fontFamily="@font/roboto_medium" app:layout_constraintTop_toBottomOf="@+id/imageView37"
+                    app:layout_constraintStart_toStartOf="@+id/imageView37"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView37" android:textSize="@dimen/small"/>
+
+            <TextView
+                    android:text="120.00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_price"
+                    android:fontFamily="@font/roboto_medium"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
+                    app:layout_constraintStart_toStartOf="@+id/imageView4" android:textSize="@dimen/small"/>
+
+            <ImageView android:layout_width="match_parent" android:layout_height="4dp"
+                       android:background="@color/black3" app:layout_constraintBottom_toBottomOf="@+id/iv_tripdetails_tourleader"
+                       app:layout_constraintTop_toTopOf="@+id/iv_tripdetails_tourleader" app:layout_constraintEnd_toEndOf="parent"
+                       android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                       android:layout_marginStart="8dp" android:id="@+id/imageView42"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:id="@+id/iv_tripdetails_tourleader"
+                    android:elevation="2dp"
+                    app:civ_border_color="@color/colorPrimaryLight"
+                    android:src="@drawable/tour_leader"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="8dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_name" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView22" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView42"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_tripdetails_tourleader" android:layout_marginEnd="8dp"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto_thin" android:textColor="@color/black1" android:text="Roshanak"/>
+            <TextView
+                    android:text="Torabi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_tourleader_familyname" app:layout_constraintStart_toEndOf="@+id/iv_tripdetails_tourleader"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView22" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView42" android:fontFamily="@font/roboto_thin"
+                    android:textColor="@color/black1"/>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_language_black_24dp"
+                    android:id="@+id/imageView43" app:layout_constraintTop_toBottomOf="@+id/imageView42"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_tripdetails_tourleader" android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp" app:layout_constraintStart_toEndOf="@+id/imageView44"
+                    app:layout_constraintHorizontal_bias="0.5"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" app:srcCompat="@drawable/ic_featured_certificate_black_24dp"
+                    android:id="@+id/imageView44"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView43" android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView43"
+                    app:layout_constraintTop_toTopOf="@+id/imageView43" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_tripdetails_tourleader_language" app:layout_constraintEnd_toEndOf="@+id/imageView43"
+                    app:layout_constraintStart_toStartOf="@+id/imageView43"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView43" android:text="English"
+                    android:textSize="@dimen/small"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView68" app:layout_constraintEnd_toEndOf="@+id/imageView44"
+                    app:layout_constraintStart_toStartOf="@+id/imageView44"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView44" android:textSize="@dimen/small"
+                    android:text="certificate"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/standard_margin"
+                    android:paddingTop="@dimen/small_margin"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/grey"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_tripdetails_tourleader"
+                    android:id="@+id/linearLayout">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/overview"
+                        android:textSize="@dimen/standard" android:textColor="@color/persiangard_blue"
+                        android:fontFamily="@font/roboto_medium"/>
+
+                <TextView
+                        android:id="@+id/tv_tripdetails_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A tour description is the marketing content that explains what your tour is and it's unique selling points. The purpose of a tour description is to supply potential customers with details about the features of the tour, so they're compelled to purchase their ticket."
+                        android:background="@color/grey" android:fontFamily="@font/roboto_regular"/>
+
+            </LinearLayout>
+
+            <include
+                    android:id="@+id/il_tripdetails_desc"
+                    layout="@layout/layout_trip_details"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                     tools:layout_editor_absoluteX="0dp"
+                     android:layout_marginTop="8dp"
+                     android:layout_marginBottom="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tripdetails_day_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    app:layout_constraintTop_toBottomOf="@+id/il_tripdetails_desc"/>
+
+            <TextView
+                    android:id="@+id/tv_tripdetails_day_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:padding="@dimen/standard_margin"
+                    android:background="@color/grey"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_tripdetails_day_plan"
+                    android:text="Site selection including venue comparisons, Conference management,Incentive travel qualificationsPgra,administration,Conference registration,Budgeting analysis,Trip promotion,Participant list management"
+            />
+
+            <Button
+                    android:id="@+id/button_tripdetails_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_tripdetails_day_plan"
+                    android:background="@color/persiangard_green"
+                    android:textColor="@color/white"
+                    android:text="Book this Tour"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/fb_tripdetails"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|right|end"
+            app:backgroundTint="@color/persiangard_blue"
+            android:src="@drawable/ic_map_white_24dp"
+            android:layout_margin="@dimen/standard_margin"
+            android:clickable="true"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

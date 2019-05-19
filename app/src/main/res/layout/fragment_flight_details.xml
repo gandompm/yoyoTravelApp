@@ -230,10 +230,10 @@
                             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
                             app:layout_constraintTop_toBottomOf="@+id/textView34"/>
                     <TextView
-                            android:text="@string/capacity"
+                            android:text="@string/remainingCapacity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView36"
+                            android:id="@+id/tv_tripdetails_daynightnum"
                             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"
                             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/imageView15"
                             android:textColor="@color/black4" android:textSize="@dimen/standard"/>
@@ -242,7 +242,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/tv_flightdetails_capacity"
-                            app:layout_constraintTop_toBottomOf="@+id/textView36"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_daynightnum"
                             app:layout_constraintStart_toStartOf="@+id/guideline_vertical_2"/>
                     <TextView
                             android:text="@string/flight_class"

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/ll_datepicker_bottom_sheet"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:custom="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+        <ImageView
+                android:id="@+id/iv_datepicker_close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_close_white_24dp" />
+
+        <TextView
+                android:id="@+id/tv_datepicker_checkin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/staying_dates"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/header_2" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:weightSum="6"
+            android:background="@color/colorPrimary">
+
+        <TextView
+                android:id="@+id/tv_datepicker_checkin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/tv_date_picker_check_in"
+                android:layout_weight="2"
+                android:textSize="@dimen/standard"
+                android:textColor="@color/white"/>
+
+        <TextView
+                android:id="@+id/tv_datepicker_night_num"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="1"/>
+
+        <TextView
+                android:id="@+id/tv_datepicker_checkout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/tv_date_picker_check_out"
+                android:textSize="@dimen/standard"
+                android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:gravity="center"
+            android:background="@color/colorPrimary">
+
+        <com.dagang.library.GradientButton
+                android:id="@+id/button_datepicker_from"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                app:button_radius="60dp"
+                android:gravity="center"
+                app:button_start_color="@color/colorAccent"
+                app:button_end_color="@color/colorAccent"
+                app:button_text_color="@color/colorPrimary"
+                app:button_press_end_color="@color/colorAccent"
+                app:button_press_start_color="@color/colorAccent"
+                app:button_is_shadowed="false"
+                app:button_text="@string/tv_datepicker_select_date"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_weight="1"/>
+
+        <com.dagang.library.GradientButton
+                android:id="@+id/button_datepicker_to"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                app:button_radius="60dp"
+                app:button_start_color="@android:color/transparent"
+                app:button_end_color="@android:color/transparent"
+                app:button_text_color="@color/white"
+                app:button_press_end_color="@color/colorAccent"
+                app:button_press_start_color="@color/colorAccent"
+                app:button_is_shadowed="false"
+                app:button_text="@string/tv_datepicker_select_date" />
+
+    </LinearLayout>
+
+    <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
+            android:id="@+id/calendar_datepicker"
+            custom:disable_date_color="@color/black4"
+            custom:selected_date_circle_color="@color/colorAccent"
+            custom:selected_date_color="@color/colorPrimary"
+            custom:default_date_color="@color/black2"
+            custom:title_color="@color/black"
+            custom:week_color="@color/black2"
+            custom:range_date_color="@color/black1"
+            custom:text_size_title="@dimen/header_2"
+            custom:text_size_week="@dimen/standard"
+            custom:header_bg="@drawable/ds_bg_list_selector"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/cl_datepicker"
+            app:range_color="@color/colorAccentLight" />
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="400dp" />
+
+
+
+</LinearLayout>

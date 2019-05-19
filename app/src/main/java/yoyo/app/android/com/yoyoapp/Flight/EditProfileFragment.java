@@ -14,10 +14,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.User;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 
-public class EditProfileFragment extends Fragment {
+public class EditProfileFragment extends BaseFragment {
 
     private Button saveButton;
     private EditText firstnameEditText,phoneNumberEditText,lastnameEditText, usernameEditText;
@@ -95,7 +96,7 @@ public class EditProfileFragment extends Fragment {
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.popBackStack();
+                getActivity().onBackPressed();
             }
         });
     }

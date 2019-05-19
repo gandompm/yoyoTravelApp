@@ -61,7 +61,7 @@ public class MyTravellerDialogFragment extends DialogFragment {
 
     // recycler view for travellers
     private void setupRecyclerview() {
-        travellerRecyclerviewaddapter = new TravellerCompanionRecyclerviewAddapter(true, travellers, getActivity(), new TravellerCompanionRecyclerviewAddapter.OnItemSelected() {
+        travellerRecyclerviewaddapter = new TravellerCompanionRecyclerviewAddapter(travellers, getActivity(), new TravellerCompanionRecyclerviewAddapter.OnItemSelected() {
             @Override
             public void onSendResult(Traveller traveller) {
                 ((BookingActivity)getActivity()).initializeViews(traveller);

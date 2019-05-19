@@ -18,11 +18,12 @@ import androidx.fragment.app.Fragment;
 import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Ticket;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
-public class TicketNotSignedInFragment extends Fragment {
+public class TicketNotSignedInFragment extends BaseFragment {
 
     private ApiServiceFlight apiServiceFlight;
     private UserSharedManagerFlight userSharedManager;

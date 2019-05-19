@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/cl_tourlist"
+    android:id="@+id/cl_tirplist"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f1f1f1"
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_tour_list_city"
+                android:id="@+id/tv_tirp_list_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -37,7 +37,7 @@
 
 
             <ImageView
-                android:id="@+id/iv_tour_list_search_icon"
+                android:id="@+id/iv_tirp_list_search_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_search_white_24dp"
@@ -49,13 +49,13 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.cardview.widget.CardView
-                android:id="@+id/cv_tour_list"
+                android:id="@+id/cv_tirp_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="0dp">
 
             <RelativeLayout
-                    android:id="@+id/rl_tour_list"
+                    android:id="@+id/rl_tirp_list"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@color/white"
@@ -123,7 +123,7 @@
         android:paddingTop="@dimen/small_margin"
         android:clipToPadding="false"
         app:shimmer_demo_child_count="10"
-        app:shimmer_demo_layout="@layout/shimmer_item_tour"
+        app:shimmer_demo_layout="@layout/shimmer_item_trip"
         app:shimmer_demo_layout_manager_type="linear_vertical"
         app:shimmer_demo_angle="20"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
@@ -153,7 +153,7 @@
             android:paddingTop="@dimen/standard_margin"
             android:scrollbars="none"
             android:nestedScrollingEnabled="true"
-            android:layout_below="@+id/tv_tour_list_results_num"
+            android:layout_below="@+id/tv_tirp_list_results_num"
            />
     </androidx.core.widget.NestedScrollView>
 
@@ -168,10 +168,7 @@
         android:src="@drawable/ic_filter_list_black_24dp"
         app:fabSize="normal" />
 
-    <include layout="@layout/bottom_sheet_filter_tour" />
-    <include layout="@layout/bottom_sheet_date_picker" />
-
-
+    <include layout="@layout/bottom_sheet_filter_trip" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

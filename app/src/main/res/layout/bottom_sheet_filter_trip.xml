@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bottom_sheet_tour_filter"
+    android:id="@+id/bottom_sheet_tirp_filter"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
@@ -12,7 +12,7 @@
     android:background="@color/white"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
     <TextView
-        android:id="@+id/tv_filter_tour_title"
+        android:id="@+id/tv_filter_tirp_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/small_margin"
@@ -24,7 +24,7 @@
         android:textSize="@dimen/header_1" />
 
     <ImageView
-        android:id="@+id/iv_filter_tour_close"
+        android:id="@+id/iv_filter_tirp_close"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentStart="true"
@@ -67,16 +67,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Tour Type :"
+            android:text="Trip Type :"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
 
         <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
-            android:id="@+id/groupbutton_filtertour"
+            android:id="@+id/groupbutton_filtertirp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_filterhotel_quality"
             android:layout_centerInParent="true"
             android:layout_marginTop="8dp"
             app:tbgChildSpacingForLastRow="align"
@@ -129,13 +128,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/tour_language"
+            android:text="@string/tirp_language"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/groupbutton_filtertour" />
+            app:layout_constraintTop_toBottomOf="@+id/groupbutton_filtertirp" />
 
 
         <com.nex3z.togglebuttongroup.MultiSelectToggleGroup
-            android:id="@+id/group_choices_filtertour_language"
+            android:id="@+id/group_choices_filtertirp_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -166,31 +165,31 @@
 
 
     <TextView
-        android:id="@+id/tv_filtertour_duration"
+        android:id="@+id/tv_filtertirp_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/duration"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/group_choices_filtertour_language" />
+        app:layout_constraintTop_toBottomOf="@+id/group_choices_filtertirp_language" />
 
     <TextView
-        android:id="@+id/tv_filtertour_duration_num"
+        android:id="@+id/tv_filtertirp_duration_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="20 * Day"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertour_duration"
-        app:layout_constraintStart_toEndOf="@+id/tv_filtertour_duration" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertirp_duration"
+        app:layout_constraintStart_toEndOf="@+id/tv_filtertirp_duration" />
 
     <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/rangebar_filtertour_duration"
+        android:id="@+id/rangebar_filtertirp_duration"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="0dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tv_filtertour_duration_num"
+        app:layout_constraintTop_toBottomOf="@+id/tv_filtertirp_duration_num"
         app:mrb_pinMaxFont="15sp"
         app:mrb_pinMinFont="12sp"
         app:mrb_pinRadius="14dp"
@@ -214,33 +213,33 @@
 
 
     <TextView
-        android:id="@+id/tv_filtertour_age"
+        android:id="@+id/tv_filtertirp_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/age_range"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertour_duration" />
+        app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertirp_duration" />
 
     <TextView
-        android:id="@+id/tv_filtertour_age_num"
+        android:id="@+id/tv_filtertirp_age_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="1 - 100"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertour_age"
-        app:layout_constraintStart_toEndOf="@+id/tv_filtertour_age" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertirp_age"
+        app:layout_constraintStart_toEndOf="@+id/tv_filtertirp_age" />
 
         <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rangebar_filtertour_age"
+            android:id="@+id/rangebar_filtertirp_age"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_filtertour_price"
+            app:layout_constraintBottom_toTopOf="@+id/tv_filtertirp_price"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tv_filtertour_age"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filtertirp_age"
             app:mrb_connectingLineColor="@color/colorPrimary"
             app:mrb_pinColor="@color/colorPrimary"
             app:mrb_selectorColor="@color/white"
@@ -262,26 +261,26 @@
             app:mrb_tickStart="1" />
 
     <TextView
-        android:id="@+id/tv_filtertour_price"
+        android:id="@+id/tv_filtertirp_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/price"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertour_age" />
+        app:layout_constraintTop_toBottomOf="@+id/rangebar_filtertirp_age" />
 
     <TextView
-        android:id="@+id/tv_filtertour_price_num"
+        android:id="@+id/tv_filtertirp_price_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="50 - 1500 $"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertour_price"
-        app:layout_constraintStart_toEndOf="@+id/tv_filtertour_price" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_filtertirp_price"
+        app:layout_constraintStart_toEndOf="@+id/tv_filtertirp_price" />
 
 
         <com.appyvet.materialrangebar.RangeBar xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/rangebar_filtertour_price"
+            android:id="@+id/rangebar_filtertirp_price"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_marginTop="0dp"
@@ -289,7 +288,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline11"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tv_filtertour_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filtertirp_price"
             app:mrb_connectingLineColor="@color/colorPrimary"
             app:mrb_pinColor="@color/colorPrimary"
             app:mrb_selectorColor="@color/white"
@@ -314,7 +313,7 @@
     </ScrollView>
 
     <com.dagang.library.GradientButton
-        android:id="@+id/button_filtertour_apply"
+        android:id="@+id/button_filtertirp_apply"
         android:layout_width="160dp"
         android:layout_height="75dp"
         android:layout_marginTop="24dp"
