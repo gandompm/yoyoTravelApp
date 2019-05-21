@@ -55,11 +55,14 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.style_json));
+
         LatLng latLng1 = new LatLng(35.715298, 51.404343);
         LatLng latLng2 = new LatLng(33.98308, 51.43644);
         LatLng latLng3 = new LatLng(32.6539, 51.6660);
 
         moveCamera(googleMap, new LatLng(35.715298, 51.404343));
+
 
         Polyline polyline = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)

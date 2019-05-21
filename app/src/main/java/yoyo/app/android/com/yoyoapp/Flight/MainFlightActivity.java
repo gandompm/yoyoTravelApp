@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import yoyo.app.android.com.yoyoapp.Flight.BottomSheet.TravellerBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.FlightSearch.FlightSearchFragment;
+import yoyo.app.android.com.yoyoapp.Profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.Utils.FragmentHistory;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.Utils.Utilss;

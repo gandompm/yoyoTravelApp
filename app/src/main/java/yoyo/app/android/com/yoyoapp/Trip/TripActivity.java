@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
-import yoyo.app.android.com.yoyoapp.Flight.ProfileFragment;
+import yoyo.app.android.com.yoyoapp.Profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
 import yoyo.app.android.com.yoyoapp.MainActivity;

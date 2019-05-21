@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp.Flight;
+package yoyo.app.android.com.yoyoapp.Booking;
 
 
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import com.uniquestudio.library.CircleCheckBox;
-import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
+import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Payment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.SnapUpCountDownTimerView;
 import yoyo.app.android.com.yoyoapp.R;

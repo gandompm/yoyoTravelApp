@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp.Flight.Booking;
+package yoyo.app.android.com.yoyoapp.Booking;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;

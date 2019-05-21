@@ -396,7 +396,7 @@ public class ApiServiceFlight {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    interface OnTravellerAdded
+    public interface OnTravellerAdded
     {
         void onAdded(Boolean result);
     }
@@ -458,7 +458,7 @@ public class ApiServiceFlight {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    interface OnTravellerEdited
+    public interface OnTravellerEdited
     {
         void onEdited(Boolean result);
     }
@@ -499,7 +499,7 @@ public class ApiServiceFlight {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    interface OnTravellerDeleted
+    public interface OnTravellerDeleted
     {
         void onDeleted(Boolean result);
     }
@@ -586,7 +586,7 @@ public class ApiServiceFlight {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    interface onSignOutDone{
+    public interface onSignOutDone{
         void onDone(boolean result);
     }
 

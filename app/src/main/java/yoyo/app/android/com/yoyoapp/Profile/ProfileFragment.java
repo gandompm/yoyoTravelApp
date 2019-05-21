@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp.Flight;
+package yoyo.app.android.com.yoyoapp.Profile;
 
 
 import android.content.Intent;
@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
+import yoyo.app.android.com.yoyoapp.Flight.SignUpSignInActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;

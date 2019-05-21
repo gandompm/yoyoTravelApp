@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp.Flight;
+package yoyo.app.android.com.yoyoapp.Booking;
 
 
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
-import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.Tools;
 import yoyo.app.android.com.yoyoapp.R;
 

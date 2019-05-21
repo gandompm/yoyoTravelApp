@@ -57,7 +57,7 @@ public class ApiService {
                                 tirp.setEndDate(getStandardDate(cal2));
 
                                 tirp.setPrice(jsonObject.getString("price"));
-                                tirp.setImage(jsonObject.getString("image_url"));
+                                tirp.setImage(IP + jsonObject.getString("image_url"));
                                 tirp.setCategory(jsonObject.getString("category"));
                                 tirp.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
                                 tirp.setPreviousPrice("225");

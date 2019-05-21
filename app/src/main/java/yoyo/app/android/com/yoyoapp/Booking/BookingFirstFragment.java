@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp.Flight;
+package yoyo.app.android.com.yoyoapp.Booking;
 
 
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.hbb20.CountryCodePicker;
 import yoyo.app.android.com.yoyoapp.Flight.Addaptor.TravellerRecyclerviewAddapter;
-import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Traveller;
 import yoyo.app.android.com.yoyoapp.R;
 

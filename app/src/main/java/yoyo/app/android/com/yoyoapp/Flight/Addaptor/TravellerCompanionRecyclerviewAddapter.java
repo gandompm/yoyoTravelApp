@@ -1,18 +1,13 @@
 package yoyo.app.android.com.yoyoapp.Flight.Addaptor;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Traveller;
-import yoyo.app.android.com.yoyoapp.Flight.TravellerCompanionsEditFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
