@@ -34,7 +34,7 @@ public class TripDetailsFragment extends Fragment {
     private ViewPager viewPager;
     private LinearLayout layout_dots;
     private AdapterImageSlider adapterImageSlider;
-    private TripDetailsViewModel tirpDetailsViewModel;
+    private TripDetailsViewModel tripDetailsViewModel;
     private TextView tourNameTextview,dayPlanTextview;
     private FloatingActionButton floatingActionButton;
 
@@ -117,9 +117,9 @@ public class TripDetailsFragment extends Fragment {
     private void getTripDetails() {
         Bundle bundle = getArguments();
         String tripId = bundle.getString("tripId");
-        tirpDetailsViewModel = ViewModelProviders.of(getActivity()).get(TripDetailsViewModel.class);
-        tirpDetailsViewModel.initDetails(tripId);
-        tirpDetailsViewModel.getDetails().observe(getActivity(), new Observer<Trip>() {
+        tripDetailsViewModel = ViewModelProviders.of(getActivity()).get(TripDetailsViewModel.class);
+        tripDetailsViewModel.initDetails(tripId);
+        tripDetailsViewModel.getDetails().observe(getActivity(), new Observer<Trip>() {
             @Override
             public void onChanged(Trip trip) {
                 if (trip != null) {

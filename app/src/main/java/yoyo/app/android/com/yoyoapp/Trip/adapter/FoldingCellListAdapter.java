@@ -44,8 +44,8 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        // get tirp for selected view
-        Trip tirp = getItem(position);
+        // get trip for selected view
+        Trip trip = getItem(position);
         // if cell is exists - reuse it, if not - create the new one from resource
         FoldingCell cell = (FoldingCell) convertView;
         ViewHolder viewHolder;
@@ -55,25 +55,25 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
             cell = (FoldingCell) vi.inflate(R.layout.item_trip, parent, false);
             // binding view parts to view holder
             viewHolder.price = cell.findViewById(R.id.title_price);
-            viewHolder.previousPrice = cell.findViewById(R.id.title_previous_price);
-            viewHolder.nightNum = cell.findViewById(R.id.tv_tirp_item_small_night_num);
-            viewHolder.dayNum = cell.findViewById(R.id.tv_tirp_item_small_day_num);
-            viewHolder.startDate = cell.findViewById(R.id.tv_tirp_item_small_start_date);
-            viewHolder.endDate = cell.findViewById(R.id.tv_tirp_item_small_end_date);
-            viewHolder.destination = cell.findViewById(R.id.tv_tirp_item_destination);
-            viewHolder.language = cell.findViewById(R.id.tv_tirp_item_small_language);
+            viewHolder.previousPrice = cell.findViewById(R.id.tv_trip_item_small_price);
+            viewHolder.nightNum = cell.findViewById(R.id.tv_trip_item_small_operator_title);
+            viewHolder.dayNum = cell.findViewById(R.id.tv_trip_item_small_operator);
+            viewHolder.startDate = cell.findViewById(R.id.tv_trip_item_small_start_date);
+            viewHolder.endDate = cell.findViewById(R.id.tv_trip_item_small_end_date);
+            viewHolder.destination = cell.findViewById(R.id.tv_trip_item_small_type);
+            viewHolder.language = cell.findViewById(R.id.tv_trip_item_small_language);
             viewHolder.contentRequestBtn = cell.findViewById(R.id.content_request_btn);
-            viewHolder.capacity = cell.findViewById(R.id.tv_tirp_item_small_capacity);
-            viewHolder.tirpGroup = cell.findViewById(R.id.tv_tirp_item_small_tirp_group);
-            viewHolder.tirpTitle = cell.findViewById(R.id.tv_tirp_item_small_tirp_title);
-            viewHolder.tirpLeaderName = cell.findViewById(R.id.tv_tirp_item_big_tirp_leader_name);
-            viewHolder.tirpLeaderImg = cell.findViewById(R.id.iv_tirp_item_big_tirp_leader_img);
-            viewHolder.startPoint = cell.findViewById(R.id.tv_tirp_item_big_start_point_address);
-            viewHolder.endPoint = cell.findViewById(R.id.tv_tirp_item_big_end_point_address);
-            viewHolder.moveTime = cell.findViewById(R.id.tv_tirp_item_big_start_day_and_time);
-            viewHolder.endTime = cell.findViewById(R.id.tv_tirp_item_big_end_day_and_time);
-            viewHolder.tirpImg = cell.findViewById(R.id.iv_tirp_item_big_tirp_img);
-            viewHolder.priceBig = cell.findViewById(R.id.tv_tirp_item_big_price);
+            viewHolder.capacity = cell.findViewById(R.id.tv_trip_item_small_capacity);
+            viewHolder.tripGroup = cell.findViewById(R.id.tv_trip_item_small_trip_group);
+            viewHolder.tripTitle = cell.findViewById(R.id.tv_trip_item_small_trip_title);
+            viewHolder.tripLeaderName = cell.findViewById(R.id.tv_trip_item_big_trip_leader_name);
+            viewHolder.tripLeaderImg = cell.findViewById(R.id.iv_trip_item_big_trip_leader_img);
+            viewHolder.startPoint = cell.findViewById(R.id.tv_trip_item_big_start_point_address);
+            viewHolder.endPoint = cell.findViewById(R.id.tv_trip_item_big_end_point_address);
+            viewHolder.moveTime = cell.findViewById(R.id.tv_trip_item_big_start_day_and_time);
+            viewHolder.endTime = cell.findViewById(R.id.tv_trip_item_big_end_day_and_time);
+            viewHolder.tripImg = cell.findViewById(R.id.iv_trip_item_big_trip_img);
+            viewHolder.priceBig = cell.findViewById(R.id.tv_trip_item_big_price);
 
 
 
@@ -88,50 +88,50 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
             viewHolder = (ViewHolder) cell.getTag();
         }
 
-        if (null == tirp)
+        if (null == trip)
             return cell;
 
         // bind data from selected element to view through view holder
-        viewHolder.price.setText(tirp.getPrice());
+        viewHolder.price.setText(trip.getPrice());
         viewHolder.previousPrice.setPaintFlags(viewHolder.previousPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        viewHolder.previousPrice.setText(tirp.getPreviousPrice());
-        viewHolder.nightNum.setText(String.valueOf(tirp.getDayNum())+ " Day");
-        viewHolder.dayNum.setText(String.valueOf(tirp.getNightNum())+ " Night");
-        viewHolder.startDate.setText(tirp.getStartDate());
-        viewHolder.endDate.setText(tirp.getEndDate());
-        viewHolder.destination.setText(tirp.getDestination());
-        viewHolder.language.setText(tirp.getLanguage());
-        viewHolder.capacity.setText(String.valueOf(tirp.getRemainingCapacity()));
-        viewHolder.tirpLeaderName.setText(tirp.getTripLeaderName());
-//        Picasso.with(context).load(tirp.getTripLeaderImg()).into(viewHolder.tirpLeaderImg);
-        viewHolder.startPoint.setText(tirp.getStartPoint());
-        viewHolder.endPoint.setText(tirp.getEndPoint());
-        viewHolder.moveTime.setText(tirp.getStartTime());
-        viewHolder.endTime.setText(tirp.getEndTime());
-        viewHolder.tirpGroup.setText(tirp.getCategory());
-        viewHolder.tirpTitle.setText(tirp.getTitle());
-        Picasso.with(context).load(tirp.getImage()).into(viewHolder.tirpImg);
-        viewHolder.priceBig.setText(tirp.getPrice());
+        viewHolder.previousPrice.setText(trip.getPreviousPrice());
+        viewHolder.nightNum.setText(String.valueOf(trip.getDayNum())+ " Day");
+        viewHolder.dayNum.setText(String.valueOf(trip.getNightNum())+ " Night");
+        viewHolder.startDate.setText(trip.getStartDate());
+        viewHolder.endDate.setText(trip.getEndDate());
+        viewHolder.destination.setText(trip.getDestination());
+        viewHolder.language.setText(trip.getLanguage());
+        viewHolder.capacity.setText(String.valueOf(trip.getRemainingCapacity()));
+//        viewHolder.tripLeaderName.setText(trip.getTripLeaderName());
+//        Picasso.with(context).load(trip.getTripLeaderImg()).into(viewHolder.tripLeaderImg);
+        viewHolder.startPoint.setText(trip.getStartPoint());
+        viewHolder.endPoint.setText(trip.getEndPoint());
+        viewHolder.moveTime.setText(trip.getStartTime());
+        viewHolder.endTime.setText(trip.getEndTime());
+        viewHolder.tripGroup.setText(trip.getCategory());
+        viewHolder.tripTitle.setText(trip.getTitle());
+        Picasso.with(context).load(trip.getImage()).into(viewHolder.tripImg);
+        viewHolder.priceBig.setText(trip.getPrice());
         viewHolder.contentRequestBtn.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("tripId", tirp.getTripId());
-                TripDetailsFragment tirpDetailsFragment = new TripDetailsFragment();
-                tirpDetailsFragment.setArguments(bundle);
+                bundle.putString("tripId", trip.getTripId());
+                TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
+                tripDetailsFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.container, tirpDetailsFragment,"tirpdetails");
+                fragmentTransaction.add(R.id.container, tripDetailsFragment,"tripdetails");
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
 
 
-        // set custom btn handler for list tirp from that tirp
-        if (tirp.getRequestBtnClickListener() != null) {
-            viewHolder.contentRequestBtn.setOnClickListener(tirp.getRequestBtnClickListener());
+        // set custom btn handler for list trip from that trip
+        if (trip.getRequestBtnClickListener() != null) {
+            viewHolder.contentRequestBtn.setOnClickListener(trip.getRequestBtnClickListener());
         } else {
-            // (optionally) add "default" handler if no handler found in tirp
+            // (optionally) add "default" handler if no handler found in trip
             viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
         }
 
@@ -174,15 +174,15 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
         private TextView dayNum;
         private TextView nightNum;
         private TextView capacity;
-        private TextView tirpLeaderName;
-        private ImageView tirpLeaderImg;
+        private TextView tripLeaderName;
+        private ImageView tripLeaderImg;
         private TextView startPoint;
         private TextView endPoint;
         private TextView moveTime;
         private TextView endTime;
-        private TextView tirpGroup;
-        private TextView tirpTitle;
-        private ImageView tirpImg;
+        private TextView tripGroup;
+        private TextView tripTitle;
+        private ImageView tripImg;
         private TextView priceBig;
     }
 }

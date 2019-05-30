@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import yoyo.app.android.com.yoyoapp.BottomSheet.TripFilterBottomSheet;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
-import yoyo.app.android.com.yoyoapp.Trip.DatePickerFragment;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellListAdapter;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -46,13 +46,13 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
     private Bundle bundle;
     private TextView cityNameTextview ,startDateTextview ,endDateTextview , durationTextview;
     private int listSize;
-    private TripFilterBottomSheet tirpFilterBottomSheet;
+    private TripFilterBottomSheet tripFilterBottomSheet;
     private ShimmerRecyclerView shimmerRecycler;
     private BottomSheetBehavior bottomSheetBehaviorFilter;
     private RelativeLayout relativeLayout;
-    private ArrayList<Trip> tirpArrayList;
+    private ArrayList<Trip> tripArrayList;
     private FoldingCellListAdapter adapter;
-    private TripListViewModel tirpListViewModel;
+    private TripListViewModel tripListViewModel;
     private TripQuery tripQuery;
     private View view;
     @Nullable
@@ -62,9 +62,9 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
 
         bundle = getArguments();
         init();
-        tirpFilterBottomSheet = new TripFilterBottomSheet(getContext(),view);
+        tripFilterBottomSheet = new TripFilterBottomSheet(getContext(),view);
         setupDate();
-        getTirps();
+        gettrips();
         floatingActionButtonFunction();
         setupToolbar();
 
@@ -74,20 +74,20 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
 
 
 
-    private void getTirps() {
+    private void gettrips() {
         shimmerRecycler.showShimmerAdapter();
-        tirpArrayList = new ArrayList<>();
+        tripArrayList = new ArrayList<>();
 
 
-        tirpListViewModel = ViewModelProviders.of(getActivity()).get(TripListViewModel.class);
-        tirpListViewModel.initTripList(tripQuery);
-        tirpListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
+        tripListViewModel = ViewModelProviders.of(getActivity()).get(TripListViewModel.class);
+//        tripListViewModel.initTripList(page, tripQuery);
+        tripListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
             @Override
-            public void onChanged(List<Trip> tirps) {
-                if (tirps != null) {
+            public void onChanged(List<Trip> trips) {
+                if (trips != null) {
                     shimmerRecycler.hideShimmerAdapter();
-                    tirpArrayList.clear();
-                    tirpArrayList.addAll(tirps);
+                    tripArrayList.clear();
+                    tripArrayList.addAll(trips);
 
                     if (adapter == null) {
                         setupFoldingcell();
@@ -137,13 +137,13 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
     private void init() {
         floatingActionButton = view.findViewById(R.id.fbutton_hotellistsearchresult);
         theListView = view.findViewById(R.id.mainListView);
-        cityNameTextview = view.findViewById(R.id.tv_tirp_list_city);
+        cityNameTextview = view.findViewById(R.id.tv_trip_list_city);
         toolbar = view.findViewById(R.id.tb_hotelsearch);
         endDateTextview = view.findViewById(R.id.tv_search_check_out);
         durationTextview = view.findViewById(R.id.tv_search_night_num);
         startDateTextview = view.findViewById(R.id.tv_search_check_in);
         shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
-        relativeLayout = view.findViewById(R.id.bottom_sheet_tirp_filter);
+        relativeLayout = view.findViewById(R.id.bottom_sheet_trip_filter);
         bottomSheetBehaviorFilter = BottomSheetBehavior.from(relativeLayout);
     }
 
@@ -164,7 +164,7 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
 
 
 //        // add custom btn handler to first list item
-//        tirpArrayList.get(0).setRequestBtnClickListener(new View.OnClickListener() {
+//        tripArrayList.get(0).setRequestBtnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Toast.makeText(getContext().getApplicationContext(), "CUSTOM HANDLER FOR FIRST BUTTON", Toast.LENGTH_SHORT).show();
@@ -172,7 +172,7 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
 //        });
 
         // create custom adapter that holds elements and their state (we need hold a id's of unfolded elements for reusable elements)
-        adapter = new FoldingCellListAdapter(getContext(), tirpArrayList);
+        adapter = new FoldingCellListAdapter(getContext(), tripArrayList);
 
 
         // add default btn handler for each request btn on each item if custom handler not found
@@ -197,7 +197,7 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
             }
         });
 
-        listSize = tirpArrayList.size();
+        listSize = tripArrayList.size();
     }
     private void floatingActionButtonFunction() {
 
@@ -231,7 +231,7 @@ public class TripListSearchResultFragment extends Fragment implements View.OnCli
 
     public void expandBottonSheet(final BottomSheetBehavior bottomSheetBehavior)
     {
-        final CardView filterCardView = view.findViewById(R.id.cv_tirp_list);
+        final CardView filterCardView = view.findViewById(R.id.cv_trip_list);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override

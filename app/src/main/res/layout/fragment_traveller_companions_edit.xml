@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
-            android:layoutDirection="ltr">
+            android:layoutDirection="ltr" app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
         >

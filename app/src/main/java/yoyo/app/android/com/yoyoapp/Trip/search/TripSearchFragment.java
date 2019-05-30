@@ -12,8 +12,7 @@ import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
-import yoyo.app.android.com.yoyoapp.Trip.DatePickerFragment;
-import yoyo.app.android.com.yoyoapp.HotelListSearchResultFragment;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
 
@@ -29,7 +28,6 @@ import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
-import yoyo.app.android.com.yoyoapp.Trip.result.TripListSearchResultFragment;
 import yoyo.app.android.com.yoyoapp.Trip.result.TripResultFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
@@ -141,7 +139,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         Bundle bundle = getArguments();
         incommingBundle = bundle.getString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE);
 
-        if (incommingBundle.contains("tirp"))
+        if (incommingBundle.contains("trip"))
         {
             titleTextview.setText(getString(R.string.tours));
             smallTitleTextview.setText(getString(R.string.going_anywhere));
@@ -183,10 +181,10 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).location);
 
 
-                TripResultFragment tirpListSearchResultFragment = new TripResultFragment();
-                tirpListSearchResultFragment.setArguments(bundle);
-                fragmentTransaction.add(R.id.container, tirpListSearchResultFragment);
-                fragmentTransaction.addToBackStack("tirplist");
+                TripResultFragment tripListSearchResultFragment = new TripResultFragment();
+                tripListSearchResultFragment.setArguments(bundle);
+                fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
+                fragmentTransaction.addToBackStack("triplist");
                 fragmentTransaction.commit();
 
             }
@@ -206,7 +204,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 || v.getId() == R.id.iv_search_calender_logo2)
         {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.slide_up,R.anim.no_animation);
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in_up,R.anim.no_animation);
             fragmentTransaction.add(R.id.container,new DatePickerFragment(arrayList -> {
                  checkInTextview.setText(arrayList.get(0));
                  checkOutTextview.setText(arrayList.get(1));

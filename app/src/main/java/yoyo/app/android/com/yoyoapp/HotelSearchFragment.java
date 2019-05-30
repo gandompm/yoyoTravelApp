@@ -20,7 +20,7 @@ import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.BottomSheet.DatePickerBottomSheet;
-import yoyo.app.android.com.yoyoapp.Trip.DatePickerFragment;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
@@ -130,7 +130,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         Bundle bundle = getArguments();
         incommingBundle = bundle.getString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE);
 
-        if (incommingBundle.contains("tirp"))
+        if (incommingBundle.contains("trip"))
         {
             titleTextview.setText(getString(R.string.tours));
             smallTitleTextview.setText(getString(R.string.going_anywhere));
@@ -171,12 +171,12 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putStringArrayList(Utils.KEY_BUNDLE_CATEGORIES_CODE,((TripActivity)getActivity()).categories);
                 bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).location);
 
-                if (incommingBundle.equals("tirp"))
+                if (incommingBundle.equals("trip"))
                 {
-                    TripListSearchResultFragment tirpListSearchResultFragment = new TripListSearchResultFragment();
-                    tirpListSearchResultFragment.setArguments(bundle);
-                    fragmentTransaction.replace(R.id.container, tirpListSearchResultFragment);
-                    fragmentTransaction.addToBackStack("tirplist");
+                    TripListSearchResultFragment tripListSearchResultFragment = new TripListSearchResultFragment();
+                    tripListSearchResultFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.container, tripListSearchResultFragment);
+                    fragmentTransaction.addToBackStack("triplist");
                     fragmentTransaction.commit();
                 }
                 else

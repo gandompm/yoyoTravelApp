@@ -10,23 +10,23 @@ import java.util.List;
 
 public class TripListViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Trip>> tirpArraylist;
-    private TripListRepository tirpListRepository;
+    private MutableLiveData<List<Trip>> tripArraylist;
+    private TripListRepository tripListRepository;
 
     public TripListViewModel(@NonNull Application application) {
         super(application);
-        tirpListRepository = TripListRepository.getInstance(getApplication());
+        tripListRepository = TripListRepository.getInstance(getApplication());
     }
 
-    public void initTripList(TripQuery tripQuery)
+    public void initTripList(int page, TripQuery tripQuery)
     {
-        tirpArraylist = new MutableLiveData<>();
-        tirpArraylist = tirpListRepository.getTripList(tripQuery);
+        tripArraylist = new MutableLiveData<>();
+        tripArraylist = tripListRepository.getTripList(page, tripQuery);
     }
 
     public LiveData<List<Trip>> getTripList()
     {
-        return tirpArraylist;
+        return tripArraylist;
     }
 
 

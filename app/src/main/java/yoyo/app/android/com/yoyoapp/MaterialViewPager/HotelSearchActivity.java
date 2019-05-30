@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import yoyo.app.android.com.yoyoapp.Profile.SignOutFragment;
+import yoyo.app.android.com.yoyoapp.Flight.Profile.SignOutFragment;
 import yoyo.app.android.com.yoyoapp.R;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;

@@ -1,7 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.adapter;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,17 +20,22 @@ import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.details.TripDetailsFragment;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<FoldingCellRecyclerviewAdapter.TripViewholder> {
 
     private static final String TAG = "FoldingCellRecyclerview";
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private Context context;
-    private ArrayList<Trip> tripArrayList;
+    private ArrayList<Trip> tripArrayList = new ArrayList<>();
 
-    public FoldingCellRecyclerviewAdapter(Context context, ArrayList<Trip> tripArrayList) {
+    public FoldingCellRecyclerviewAdapter(Context context) {
         this.context = context;
-        this.tripArrayList = tripArrayList;
+    }
+
+    public void addTrips(List<Trip> trips) {
+        tripArrayList.addAll(trips);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -49,10 +53,10 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         holder.contentRequestBtn.getButton().setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putString("tripId", tripArrayList.get(position).getTripId());
-            TripDetailsFragment tirpDetailsFragment = new TripDetailsFragment();
-            tirpDetailsFragment.setArguments(bundle);
+            TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
+            tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.container, tirpDetailsFragment,"tirpdetails");
+            fragmentTransaction.add(R.id.container, tripDetailsFragment,"tripdetails");
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
@@ -97,71 +101,73 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     public class TripViewholder extends RecyclerView.ViewHolder{
 
         private TextView price;
-        private TextView previousPrice;
         private GradientButton contentRequestBtn;
         private TextView language;
         private TextView startDate;
         private TextView endDate;
-        private TextView destination;
-        private TextView dayNum;
-        private TextView nightNum;
+        private TextView from;
+        private TextView to;
+        private TextView type;
+        private TextView operator;
         private TextView capacity;
-        private TextView tirpLeaderName;
-        private ImageView tirpLeaderImg;
-        private TextView startPoint;
-        private TextView endPoint;
+        private TextView tripLeaderName;
+        private TextView duraion;
+        private ImageView tripLeaderImg;
+        private TextView fromBig;
+        private TextView toBig;
         private TextView moveTime;
         private TextView endTime;
-        private TextView tirpGroup;
-        private TextView tirpTitle;
-        private ImageView tirpImg;
+        private TextView tripGroup;
+        private TextView tripTitle;
+        private ImageView tripImg;
         private TextView priceBig;
 
         public TripViewholder(@NonNull View itemView) {
             super(itemView);
-            price = itemView.findViewById(R.id.title_price);
-            previousPrice = itemView.findViewById(R.id.title_previous_price);
-            nightNum = itemView.findViewById(R.id.tv_tirp_item_small_night_num);
-            dayNum = itemView.findViewById(R.id.tv_tirp_item_small_day_num);
-            startDate = itemView.findViewById(R.id.tv_tirp_item_small_start_date);
-            endDate = itemView.findViewById(R.id.tv_tirp_item_small_end_date);
-            destination = itemView.findViewById(R.id.tv_tirp_item_destination);
-            language = itemView.findViewById(R.id.tv_tirp_item_small_language);
+            tripTitle = itemView.findViewById(R.id.tv_trip_item_small_trip_title);
+            tripGroup = itemView.findViewById(R.id.tv_trip_item_small_trip_group);
+            startDate = itemView.findViewById(R.id.tv_trip_item_small_start_date);
+            endDate = itemView.findViewById(R.id.tv_trip_item_small_end_date);
+            from = itemView.findViewById(R.id.tv_trip_item_small_from);
+            to = itemView.findViewById(R.id.tv_trip_item_small_to);
+            price = itemView.findViewById(R.id.tv_trip_item_small_price);
+            operator = itemView.findViewById(R.id.tv_trip_item_small_operator);
+            type = itemView.findViewById(R.id.tv_trip_item_small_type);
+            language = itemView.findViewById(R.id.tv_trip_item_small_language);
             contentRequestBtn = itemView.findViewById(R.id.content_request_btn);
-            capacity = itemView.findViewById(R.id.tv_tirp_item_small_capacity);
-            tirpGroup = itemView.findViewById(R.id.tv_tirp_item_small_tirp_group);
-            tirpTitle = itemView.findViewById(R.id.tv_tirp_item_small_tirp_title);
-            tirpLeaderName = itemView.findViewById(R.id.tv_tirp_item_big_tirp_leader_name);
-            tirpLeaderImg = itemView.findViewById(R.id.iv_tirp_item_big_tirp_leader_img);
-            startPoint = itemView.findViewById(R.id.tv_tirp_item_big_start_point_address);
-            endPoint = itemView.findViewById(R.id.tv_tirp_item_big_end_point_address);
-            moveTime = itemView.findViewById(R.id.tv_tirp_item_big_start_day_and_time);
-            endTime = itemView.findViewById(R.id.tv_tirp_item_big_end_day_and_time);
-            tirpImg = itemView.findViewById(R.id.iv_tirp_item_big_tirp_img);
-            priceBig = itemView.findViewById(R.id.tv_tirp_item_big_price);
+            capacity = itemView.findViewById(R.id.tv_trip_item_small_capacity);
+            duraion = itemView.findViewById(R.id.tv_trip_item_small_duration);
+            tripLeaderName = itemView.findViewById(R.id.tv_trip_item_big_trip_leader_name);
+            tripLeaderImg = itemView.findViewById(R.id.iv_trip_item_big_trip_leader_img);
+            fromBig = itemView.findViewById(R.id.tv_trip_item_big_start_point_address);
+            toBig = itemView.findViewById(R.id.tv_trip_item_big_end_point_address);
+            moveTime = itemView.findViewById(R.id.tv_trip_item_big_start_day_and_time);
+            endTime = itemView.findViewById(R.id.tv_trip_item_big_end_day_and_time);
+            tripImg = itemView.findViewById(R.id.iv_trip_item_big_trip_img);
+            priceBig = itemView.findViewById(R.id.tv_trip_item_big_price);
         }
 
         public void bindTrip(Trip trip) {
             // bind data from selected element to view through view holder
             price.setText(trip.getPrice());
-            previousPrice.setPaintFlags(previousPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            previousPrice.setText(trip.getPreviousPrice());
-            nightNum.setText(String.valueOf(trip.getDayNum())+ " Day");
-            dayNum.setText(String.valueOf(trip.getNightNum())+ " Night");
+            operator.setText("Homa Sa'adat");
             startDate.setText(trip.getStartDate());
             endDate.setText(trip.getEndDate());
-            destination.setText(trip.getDestination());
+            from.setText(trip.getStartPoint());
+            to.setText(trip.getEndPoint());
+            type.setText(trip.getCategory());
             language.setText(trip.getLanguage());
             capacity.setText(String.valueOf(trip.getRemainingCapacity()));
-            tirpLeaderName.setText(trip.getTripLeaderName());
-//        Picasso.with(context).load(trip.getTripLeaderImg()).into(tirpLeaderImg);
-            startPoint.setText(trip.getStartPoint());
-            endPoint.setText(trip.getEndPoint());
+//            tripLeaderName.setText(trip.getTripLeaderName());
+            duraion.setText(String.valueOf(trip.getDayNum()));
+//          Picasso.with(context).load(trip.getTripLeaderImg()).into(tripLeaderImg);
+            fromBig.setText(trip.getStartPoint());
+            toBig.setText(trip.getEndPoint());
             moveTime.setText(trip.getStartTime());
             endTime.setText(trip.getEndTime());
-            tirpGroup.setText(trip.getCategory());
-            tirpTitle.setText(trip.getTitle());
-            Picasso.with(context).load(trip.getImage()).into(tirpImg);
+            tripGroup.setText("Kavir Mesr");
+            tripTitle.setText(trip.getTitle());
+            Picasso.with(context).load(trip.getImage()).into(tripImg);
             priceBig.setText(trip.getPrice());
         }
     }

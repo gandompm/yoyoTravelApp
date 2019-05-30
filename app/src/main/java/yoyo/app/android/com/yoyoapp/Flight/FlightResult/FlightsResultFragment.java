@@ -252,7 +252,7 @@ public class FlightsResultFragment extends BaseFragment {
         noResultImageview = view.findViewById(R.id.iv_flightresult_noresult);
         userSharedManager = new UserSharedManagerFlight(getContext());
         shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
-        filterToggleswitch = view.findViewById(R.id.toggleSwitch_filter_tirp);
+        filterToggleswitch = view.findViewById(R.id.toggleSwitch_filter_trip);
         filterToggleswitch.setCheckedPosition(0);
         flightArrayList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.rv_flightresult);

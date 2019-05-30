@@ -20,23 +20,18 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     private static final String TAG = "TripFilterBottomSheet";
     private Context context;
     private View view;
-    private RangeBar rangeBarPrice ,rangeBarDuration, rangeBarAge;
-    private TextView rangebarPriceTextview, rangebarDurationTextview, rangebarAgeTextview;
+    private RangeBar rangeBarPrice ,rangeBarDuration;
+    private TextView rangebarPriceTextview, rangebarDurationTextview;
     private GradientButton gradientButton;
-    private BottomSheetBehavior bottomSheetBehavior;
-    private MultiSelectToggleGroup multiTypes, multiLanguage;
-    private RelativeLayout relativeLayout;
     private ImageView closeImageview;
 
     public TripFilterBottomSheet(Context context, View view) {
         this.context = context;
         this.view = view;
         init();
-        setupMultySelect();
         setupCloseBottomSheet();
         setupApplyButton();
         rangeBarPrice.setOnRangeBarChangeListener(this);
-        rangeBarAge.setOnRangeBarChangeListener(this);
         rangeBarDuration.setOnRangeBarChangeListener(this);
     }
 
@@ -44,7 +39,7 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
         gradientButton.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
             }
         });
     }
@@ -53,45 +48,20 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
         closeImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
             }
         });
     }
 
-    private void setupMultySelect() {
-        multiTypes.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
-            @Override
-            public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
-
-                Log.d(TAG, "onCheckedStateChanged(): group.getCheckedIds() = " + group.getCheckedIds());
-                showApplyButton();
-            }
-        });
-
-        multiLanguage.setOnCheckedChangeListener(new MultiSelectToggleGroup.OnCheckedStateChangeListener() {
-            @Override
-            public void onCheckedStateChanged(MultiSelectToggleGroup group, int checkedId, boolean isChecked) {
-
-                Log.d(TAG, "onCheckedStateChanged(): group.getCheckedIds() = " + group.getCheckedIds());
-                showApplyButton();
-            }
-        });
-    }
 
     private void init() {
-        relativeLayout = view.findViewById(R.id.bottom_sheet_tirp_filter);
-        bottomSheetBehavior = BottomSheetBehavior.from(relativeLayout);
-        rangebarPriceTextview = view.findViewById(R.id.tv_filtertirp_price_num);
-        rangeBarPrice = view.findViewById(R.id.rangebar_filtertirp_price);
-        rangebarAgeTextview = view.findViewById(R.id.tv_filtertirp_age_num);
-        rangeBarAge = view.findViewById(R.id.rangebar_filtertirp_age);
-        rangebarDurationTextview = view.findViewById(R.id.tv_filtertirp_duration_num);
-        rangeBarDuration = view.findViewById(R.id.rangebar_filtertirp_duration);
-        gradientButton = view.findViewById(R.id.button_filtertirp_apply);
+        rangebarPriceTextview = view.findViewById(R.id.tv_filtertrip_price_num);
+        rangeBarPrice = view.findViewById(R.id.rangebar_filtertrip_price);
+        rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
+        rangeBarDuration = view.findViewById(R.id.rangebar_filtertrip_duration);
+        gradientButton = view.findViewById(R.id.button_filtertrip_apply);
         gradientButton.setVisibility(View.GONE);
-        multiTypes = view.findViewById(R.id.groupbutton_filtertirp);
-        multiLanguage = view.findViewById(R.id.group_choices_filtertirp_language);
-        closeImageview = view.findViewById(R.id.iv_filter_tirp_close);
+        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
     }
 
 
@@ -106,13 +76,10 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
         switch (rangeBar.getId())
         {
-            case R.id.rangebar_filtertirp_age:
-                rangebarAgeTextview.setText(String.valueOf(leftPinValue) + " - " + String.valueOf(rightPinValue));
-                break;
-            case R.id.rangebar_filtertirp_duration:
+            case R.id.rangebar_filtertrip_duration:
                 rangebarDurationTextview.setText(String.valueOf(rightPinIndex +1) + " × Day");
                 break;
-            case R.id.rangebar_filtertirp_price:
+            case R.id.rangebar_filtertrip_price:
                 rangebarPriceTextview.setText(String.valueOf(leftPinValue) + " - " + String.valueOf(rightPinValue) + " $");
                 break;
                 default:

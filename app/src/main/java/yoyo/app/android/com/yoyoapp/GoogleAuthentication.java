@@ -38,7 +38,7 @@ public class GoogleAuthentication {
 //                .requestServerAuthCode(context.getString(R.string.server_client_id))
 ////                .requestIdToken(context.getString(R.string.server_client_id))
 //                .build();
-//        googleSignInClient = GoogleSignIn.getClient(context, gso);
+//        googleSignInClient = GoogleSignIn.getUser(context, gso);
 //
 //
 //    }

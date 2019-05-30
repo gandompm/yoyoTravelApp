@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import com.squareup.picasso.Picasso;
-import yoyo.app.android.com.yoyoapp.Booking.BookingActivity;
+import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.SignUpDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;

@@ -2,7 +2,7 @@ package yoyo.app.android.com.yoyoapp.Trip.search;
 
 import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
-import yoyo.app.android.com.yoyoapp.ApiService;
+import yoyo.app.android.com.yoyoapp.Trip.ApiService;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 

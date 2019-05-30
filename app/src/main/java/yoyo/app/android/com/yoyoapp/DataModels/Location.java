@@ -4,6 +4,7 @@ public class Location {
     private String locationId;
     private String code;
     private String title;
+    private int order;
     private int lat;
     private int lon;
 
@@ -45,5 +46,13 @@ public class Location {
 
     public void setLon(int lon) {
         this.lon = lon;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }

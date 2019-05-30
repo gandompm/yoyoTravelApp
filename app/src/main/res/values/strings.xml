@@ -6,7 +6,6 @@
     <string name="personal_information">Personal Information</string>
     <string name="email">Email</string>
     <string name="tv_complete_info_personal_country">Country/Region</string>
-    <string name="phone_number">Phone Number</string>
     <string name="tv_complete_info_personal_date_of_birth">Date of Birth(optional)</string>
     <string name="et_complete_info_personal_introducer_code">Introducer\'\s Code(optional)</string>
     <string name="button_complete_info_personal_submit">Submit</string>
@@ -14,7 +13,7 @@
     <string name="tv_mainpage_available_services">2 services for now</string>
     <string name="tv_mainpage_more_services">more services is coming soon</string>
     <string name="hotels">Hotels</string>
-    <string name="tirps">Trips</string>
+    <string name="trips">Trips</string>
     <string name="button_mainpage_flights">Flights</string>
     <string name="button_mainpage_specialOffers">Offers</string>
     <string name="tv_hotelsearch_title">Staying anywhere?</string>
@@ -80,15 +79,15 @@
     <string name="tv_filterhotel_hotel_quality">Hotel Quality :</string>
     <string name="tv_filterhotel_pricerange">Price Range (per Room,per Night) :</string>
     <string name="button_filterhotel">Apply</string>
-    <string name="tv_tirpsearch_tirp">Trip</string>
-    <string name="tv_tirpsearch_title">Find your Trip</string>
+    <string name="tv_tripsearch_trip">Trip</string>
+    <string name="tv_tripsearch_title">Find your Trip</string>
     <string name="tv_date_picker_check_in">Check-in</string>
     <string name="tv_date_picker_check_out">Check-out</string>
     <string name="tv_datepicker_select_date">Select Date</string>
-    <string name="tirp_leader">Trip Leader</string>
-    <string name="buton_tirp_item_big_details">Details</string>
-    <string name="tv_tirp_item_big_start_date">Start date</string>
-    <string name="tv_tirp_item_big_end_date">End date</string>
+    <string name="trip_leader">Trip Leader</string>
+    <string name="buton_trip_item_big_details">Details</string>
+    <string name="tv_trip_item_big_start_date">Start date</string>
+    <string name="tv_trip_item_big_end_date">End date</string>
 
     <string name="button_profile_sign_out">Sign Out</string>
     <string name="button_profile_report_an_app_problem">Report an app problem</string>
@@ -109,7 +108,7 @@
     <string name="hotel_near_me">Hotel near me</string>
     <string name="filter_by_price_optional">Filter by price (optional)</string>
     <string name="going_anywhere">Going anywhere?</string>
-    <string name="tirp_near_me">Trip near me</string>
+    <string name="trip_near_me">Trip near me</string>
     <string name="what_are_you_looking_for">What are you looking for...?</string>
     <string name="search_with_dot">Search...</string>
     <string name="nights">Nights</string>
@@ -122,7 +121,7 @@
     <string name="nature">Nature</string>
     <string name="sport">Sport</string>
     <string name="food">Food</string>
-    <string name="tirp_language">Trip Language :</string>
+    <string name="trip_language">Trip Language :</string>
     <string name="persian">Persian</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
@@ -259,13 +258,13 @@
     <string name="order_by">Order By :</string>
     <string name="price_2">Price :</string>
     <string name="please_complete_all_fields">please complete all Fields</string>
-    <string name="the_tirpism_industry">The tirpism industry in Iran has a very high potential for growth and
+    <string name="the_tripism_industry">The tripism industry in Iran has a very high potential for growth and
         development. According to the World Tripism Organization, Iran ranked tenth in the ancient and historical
         attractions and ranked fifth in the natural attractions in the world. Experts say the industry have not enjoyed
         the development that it deserves. The lack of suitable economic infrastructures, poor propaganda and the
-        publication of negative news are the main barriers to growth of tirpism industry in Iran. We have been working
+        publication of negative news are the main barriers to growth of tripism industry in Iran. We have been working
         on this app to introduce the historical and natural attractions of Iran and provide the needs of a trip such as
-        buying tickets, hotel reservations, local guides, introducing Iranian tirps ,etc. in order to help removing
+        buying tickets, hotel reservations, local guides, introducing Iranian trips ,etc. in order to help removing
         those barriers that have been blocking Iran\'s economic growth.
     </string>
     <string name="please_enter_lastname">Please enter your lastname</string>
@@ -333,6 +332,7 @@
     <string name="type">Type</string>
     <string name="choose_tour_type">Choose Tour Type</string>
     <string name="overview">Overview</string>
+    <string name="phone_number">Phone Number</string>
 
 
 </resources>

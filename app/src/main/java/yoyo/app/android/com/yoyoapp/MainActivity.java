@@ -10,12 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import yoyo.app.android.com.yoyoapp.Profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.Versioning;
+import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity{
 

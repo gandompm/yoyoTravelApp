@@ -9,20 +9,20 @@ import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 
 public class TripDetailsViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Trip> tirpMutableLiveData;
-    private TripDetailsRepository tirpDetailsRepository;
+    private MutableLiveData<Trip> tripMutableLiveData;
+    private TripDetailsRepository tripDetailsRepository;
 
     public TripDetailsViewModel(@NonNull Application application) {
         super(application);
-        tirpDetailsRepository = TripDetailsRepository.getInstance(getApplication());
+        tripDetailsRepository = TripDetailsRepository.getInstance(getApplication());
     }
 
     public void initDetails(String tripId) {
-        tirpMutableLiveData = new MutableLiveData<>();
-        tirpMutableLiveData = tirpDetailsRepository.getDetails(tripId);
+        tripMutableLiveData = new MutableLiveData<>();
+        tripMutableLiveData = tripDetailsRepository.getDetails(tripId);
     }
 
     public LiveData<Trip> getDetails() {
-        return tirpMutableLiveData;
+        return tripMutableLiveData;
     }
 }

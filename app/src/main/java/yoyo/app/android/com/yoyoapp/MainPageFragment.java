@@ -1,32 +1,27 @@
 package yoyo.app.android.com.yoyoapp;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragment;
 import com.cpacm.library.SimpleViewPager;
 import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
-import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
 
 
 public class MainPageFragment extends Fragment {
 
     private TextView searchEditText;
-    private CardView searchHotelCardview, tirpsCardview , flightCardview;
+    private CardView searchHotelCardview, tripsCardview , flightCardview;
     private SimpleViewPager simpleSlider;
     private BasicPagerAdapter sliderAdapter;
     private FragmentManager fragmentManager;
@@ -44,7 +39,7 @@ public class MainPageFragment extends Fragment {
     }
 
     private void init() {
-        tirpsCardview = view.findViewById(R.id.cv_mainpage_tirps);
+        tripsCardview = view.findViewById(R.id.cv_mainpage_trips);
         searchHotelCardview = view.findViewById(R.id.cv_mainpage_hotels);
         fragmentManager = getFragmentManager();
         searchEditText = view.findViewById(R.id.sv_mainpage_search);
@@ -53,7 +48,7 @@ public class MainPageFragment extends Fragment {
 
     private void setupBannerSlider() {
         sliderAdapter = new BasicPagerAdapter(getContext());
-        simpleSlider = (SimpleViewPager) view.findViewById(R.id.banner_slider_mainpage);
+        simpleSlider = view.findViewById(R.id.banner_slider_mainpage);
         simpleSlider.setAdapter(sliderAdapter);
         simpleSlider.startAutoScroll(true);
         simpleSlider.setPageTransformer(new CyclePageTransformer(simpleSlider));
@@ -80,7 +75,7 @@ public class MainPageFragment extends Fragment {
             }
         });
 
-        tirpsCardview.setOnClickListener(new View.OnClickListener() {
+        tripsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

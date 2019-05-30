@@ -2,17 +2,11 @@ package yoyo.app.android.com.yoyoapp.Flight.DataModel;
 
 public class User {
 
-//    @SerializedName("username")
     private String userName;
-//    @SerializedName("first_name")
     private String firstName;
-//    @SerializedName("last_name")
     private String lastName;
-//    @SerializedName("email")
     private String email;
-//    @SerializedName("expires")
     private String expireDate;
-//    @SerializedName("token")
     private String token;
 
     private String language;

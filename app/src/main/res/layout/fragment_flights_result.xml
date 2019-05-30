@@ -169,7 +169,7 @@
                 android:orientation="horizontal"/>
 
         <flight.app.android.com.flightbookingapp.Utils.ToggleSwitch
-                android:id="@+id/toggleSwitch_filter_tirp"
+                android:id="@+id/toggleSwitch_filter_trip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textToggleLeft="@string/price"

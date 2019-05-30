@@ -2,7 +2,7 @@ package yoyo.app.android.com.yoyoapp.Trip.result;
 
 import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
-import yoyo.app.android.com.yoyoapp.ApiService;
+import yoyo.app.android.com.yoyoapp.Trip.ApiService;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery;
 
@@ -13,7 +13,7 @@ public class TripListRepository {
     private Context context;
     private ApiService apiService;
     private static TripListRepository instance;
-    private MutableLiveData<List<Trip>> tirpListMutableLiveData;
+    private MutableLiveData<List<Trip>> tripListMutableLiveData;
 
     public TripListRepository(Context context) {
         this.context = context;
@@ -28,16 +28,16 @@ public class TripListRepository {
         return instance;
     }
 
-    public MutableLiveData<List<Trip>> getTripList(TripQuery tripQuery)
+    public MutableLiveData<List<Trip>> getTripList(int page, TripQuery tripQuery)
     {
-        tirpListMutableLiveData = new MutableLiveData<>();
-        setTripList(tripQuery);
-        return tirpListMutableLiveData;
+        tripListMutableLiveData = new MutableLiveData<>();
+        setTripList(page ,tripQuery);
+        return tripListMutableLiveData;
     }
 
-    private void setTripList(TripQuery tripQuery) {
-        apiService.getTripListRequest(tripQuery,tirpList ->
-                tirpListMutableLiveData.postValue(tirpList));
+    private void setTripList(int page, TripQuery tripQuery) {
+        apiService.getTripListRequest(page, tripQuery,tripList ->
+                tripListMutableLiveData.postValue(tripList));
     }
 
 

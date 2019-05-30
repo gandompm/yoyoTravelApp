@@ -59,6 +59,11 @@
     <color name="blue_theme">#58a9c6</color>
     <color name="persiangard_blue">#05a0cf</color>
     <color name="persiangard_green">#0EE3B8</color>
+    <color name="result_trip_blue">#2AA2B8</color>
+    <color name="result_trip_green">#66B0BC</color>
+    <color name="result_trip_white">#A1E2E2</color>
+    <color name="blue2">#0071BB</color>
+    <color name="blue_light">#BFE6F1</color>
     <color name="blue">#184890</color>
 
 </resources>

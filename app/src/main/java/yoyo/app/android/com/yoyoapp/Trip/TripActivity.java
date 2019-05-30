@@ -13,11 +13,11 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
-import yoyo.app.android.com.yoyoapp.Profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
@@ -59,6 +59,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
                 switch (item.getItemId()) {
                     case R.id.bn_home:
                         finish();
+                        overridePendingTransition(0,  0);
                         return true;
                     case R.id.bn_profile:
                         addFragment(new ProfileFragment(),"profile");
@@ -85,13 +86,6 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         ft.commit();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            fragment.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 
     @Override
     public void onApplyClicked(String min, String max) {
@@ -111,7 +105,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
 
     private void sendingToSearchFragment() {
         Bundle bundle = new Bundle();
-        bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,"tirp");
+        bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,"trip");
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         TripSearchFragment tripSearchFragment = new TripSearchFragment();
@@ -142,6 +136,14 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         categories = catNames;
         if (catNames.size()==0)
             categoryTextview.setText(getResources().getString(R.string.choose_tour_type));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
 

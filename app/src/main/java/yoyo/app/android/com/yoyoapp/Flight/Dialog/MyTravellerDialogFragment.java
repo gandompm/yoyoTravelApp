@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.Flight.Addaptor.TravellerCompanionRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight;
-import yoyo.app.android.com.yoyoapp.Booking.BookingActivity;
+import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Traveller;
 import yoyo.app.android.com.yoyoapp.R;
 

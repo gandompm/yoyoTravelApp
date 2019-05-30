@@ -2,12 +2,12 @@ package yoyo.app.android.com.yoyoapp.Trip.details;
 
 import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
-import yoyo.app.android.com.yoyoapp.ApiService;
+import yoyo.app.android.com.yoyoapp.Trip.ApiService;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 
 public class TripDetailsRepository{
 
-    private MutableLiveData<Trip> tirpMutableLiveData;
+    private MutableLiveData<Trip> tripMutableLiveData;
     private Context context;
     private ApiService apiService;
     private static TripDetailsRepository instance;
@@ -28,14 +28,14 @@ public class TripDetailsRepository{
 
 
     public MutableLiveData<Trip> getDetails(String tripId) {
-        tirpMutableLiveData = new MutableLiveData<>();
+        tripMutableLiveData = new MutableLiveData<>();
         setTripDetails(tripId);
-        return tirpMutableLiveData;
+        return tripMutableLiveData;
     }
 
     private void setTripDetails(String tripId) {
-        apiService.getTripDetailsRequest( tripId , tirp -> {
-            tirpMutableLiveData.postValue(tirp);
+        apiService.getTripDetailsRequest( tripId , trip -> {
+            tripMutableLiveData.postValue(trip);
         });
     }
 }
