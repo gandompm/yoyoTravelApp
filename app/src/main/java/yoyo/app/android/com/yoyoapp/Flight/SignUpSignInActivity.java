@@ -1,9 +1,11 @@
 package yoyo.app.android.com.yoyoapp.Flight;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
@@ -15,10 +17,13 @@ import yoyo.app.android.com.yoyoapp.R;
 
 public class SignUpSignInActivity extends AppCompatActivity {
 
-    private MyPagerAdapter myPagerAdapter;
+    private static final String TAG = "SignUpSignInActivity";
+    private MyPagerAdapter adapter;
     private ImageView closeImageview;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+    private TextView signupMessage1;
+    private TextView signupMessage2;
     private FragmentManager fragmentManager;
     private Button changeLanButton;
     private LanguageSetup languageSetup;
@@ -32,16 +37,45 @@ public class SignUpSignInActivity extends AppCompatActivity {
         setupSignInSignUpBottomSheet();
         setupCloseImageview();
         setupChangeLang();
-        myPagerAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
+        changeTheTitle();
+    }
+
+    private void changeTheTitle() {
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d(TAG, "onPageSelected:qqq onPageSelected");
+                if (position == 1)
+                {
+                    signupMessage1.setText(getResources().getString(R.string.sign_in));
+                    signupMessage2.setText(getString(R.string.welcome_back));
+                }
+                if (position == 0)
+                {
+                    signupMessage1.setText(getResources().getString(R.string.register_with_us_and));
+                    signupMessage2.setText(getResources().getString(R.string.get_exclusive_deals_and_offers));
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
     private void init() {
-        myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         mViewPager = findViewById(R.id.viewPager_signinsignup);
         tabLayout = findViewById(R.id.tabs_signinsignup);
         closeImageview = findViewById(R.id.iv_signinsignup_close);
         fragmentManager = getSupportFragmentManager();
         changeLanButton = findViewById(R.id.button_signupsignin_language);
+        signupMessage1 = findViewById(R.id.signup_title_1);
+        signupMessage2 = findViewById(R.id.signup_title_2);
     }
 
     // setup view pager
@@ -52,7 +86,7 @@ public class SignUpSignInActivity extends AppCompatActivity {
 
     // view pager for navigating between sign up and sign in fragment
     private void setupViewPager(ViewPager viewPager) {
-        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
+        adapter = new MyPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new SignUpFragment(),getResources().getString(R.string.sign_up));
         adapter.addFragment(new SignInFragment(), getResources().getString(R.string.sign_in));
         viewPager.setAdapter(adapter);

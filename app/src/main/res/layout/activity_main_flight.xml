@@ -7,20 +7,19 @@
                 android:layoutDirection="ltr">
 
     <FrameLayout
-            android:id="@+id/main_framelayout"
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="50dp"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bn_main"
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/bottom_tab_layout"
+            style="@style/BottomTabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_menu_flight"
-            app:labelVisibilityMode="labeled"
-            android:background="@color/white"
-    />
+            android:layout_alignBottom="@+id/container"
+            android:background="@color/white" />
 
 
 </RelativeLayout>

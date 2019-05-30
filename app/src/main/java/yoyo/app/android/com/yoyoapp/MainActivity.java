@@ -4,35 +4,50 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
-import yoyo.app.android.com.yoyoapp.BottomSheet.PriceFilterBottomSheetDialogFragment;
+import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import yoyo.app.android.com.yoyoapp.Flight.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
+import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
+import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup;
+import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.Flight.Utils.Versioning;
+import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements PriceFilterBottomSheetDialogFragment.BotomSheetListener{
+public class MainActivity extends AppCompatActivity{
 
-    private FragmentTransaction transaction;
     public BottomNavigationView bottomNavigation;
+    private LanguageSetup languageSetup;
+    public static boolean isSingnedIn = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init();
+        languageSetup.loadLanguageFromSharedPref();
+        checkingSignIn();
+        Versioning versioning = new Versioning();
+        versioning.checkingUpdates(this);
         setupBottomNavigation();
+    }
+
+
+    private void init() {
+        languageSetup = new LanguageSetup(this);
+        bottomNavigation = findViewById(R.id.bn_main);
     }
 
 
     private void setupBottomNavigation() {
 
-        bottomNavigation = findViewById(R.id.bn_main);
-
-        replaceFragment(new MainPageFragment());
+        addFragment(new MainPageFragment(),"mainpage");
         bottomNavigation.setSelectedItemId(R.id.bn_home);
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,13 +55,16 @@ public class MainActivity extends AppCompatActivity implements PriceFilterBottom
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bn_home:
-                        replaceFragment(new MainPageFragment());
+                        addFragment(new MainPageFragment(),"mainpage");
                         return true;
                     case R.id.bn_profile:
-                        replaceFragment(new ProfileFragment());
+                        addFragment(new ProfileFragment(),"profile");
                         return true;
                     case R.id.bn_orders:
-                        replaceFragment(new TicketFragment());
+                        if (isSingnedIn)
+                            addFragment(new TicketFragment(),"ticket");
+                        else
+                            addFragment(new TicketNotSignedInFragment(), "ticket");
                         return true;
                     default:
                         return false;
@@ -56,10 +74,12 @@ public class MainActivity extends AppCompatActivity implements PriceFilterBottom
 
     }
 
-    private void replaceFragment(Fragment fragment) {
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.main_framelayout, fragment);
-        transaction.commit();
+    // setup fragment
+    public void addFragment(Fragment fragment, String tag) {
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.container, fragment, tag);
+        ft.commit();
     }
 
     @Override
@@ -71,10 +91,14 @@ public class MainActivity extends AppCompatActivity implements PriceFilterBottom
     }
 
 
-    @Override
-    public void onApplyClicked(String s) {
-         TextView filterPriceTextview = findViewById(R.id.tv_search_price_filter);
-         filterPriceTextview.setText(s);
+    // check if the user has before signed in or not
+    private void checkingSignIn() {
+        UserSharedManagerFlight userSharedManager = new UserSharedManagerFlight(MainActivity.this);
+        userSharedManager.getClient();
+        if (!userSharedManager.getToken().equals(""))
+        {
+            isSingnedIn = true;
+        }
     }
 
 }

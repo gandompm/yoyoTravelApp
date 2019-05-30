@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.Flight.Addaptor.TicketRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Ticket;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
-public class TicketFragment extends Fragment {
+public class TicketFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private TicketRecyclerviewAddapter addapter;

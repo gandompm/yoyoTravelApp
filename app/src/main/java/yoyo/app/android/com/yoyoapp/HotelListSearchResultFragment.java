@@ -109,10 +109,10 @@ public class HotelListSearchResultFragment extends Fragment implements View.OnCl
     }
 
     private void setupToolbarViews() {
-        String searchText = bundle.getString(SearchFragment.KEY_BUNDLE_SEARCH_STRING_CODE);
-        String startDate = bundle.getString(SearchFragment.KEY_BUNDLE_FROM_DATE_CODE);
-        String endDate = bundle.getString(SearchFragment.KEY_BUNDLE_TO_DATE_CODE);
-        long duration = bundle.getLong(SearchFragment.KEY_BUNDLE_NIGHT_NUM_CODE);
+        String searchText = bundle.getString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE);
+        String startDate = bundle.getString(Utils.KEY_BUNDLE_FROM_DATE_CODE);
+        String endDate = bundle.getString(Utils.KEY_BUNDLE_TO_DATE_CODE);
+        long duration = bundle.getLong(Utils.KEY_BUNDLE_NIGHT_NUM_CODE);
         startDateTextview.setOnClickListener(this);
         endDateTextview.setOnClickListener(this);
 

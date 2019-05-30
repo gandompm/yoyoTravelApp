@@ -59,7 +59,7 @@ public class HotelDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction =  getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,new MoreFeatureFragment()).addToBackStack("more feature");
+                fragmentTransaction.replace(R.id.container,new MoreFeatureFragment()).addToBackStack("more feature");
                 fragmentTransaction.commit();
             }
         });

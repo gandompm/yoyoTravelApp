@@ -169,12 +169,12 @@
                 android:orientation="horizontal"/>
 
         <flight.app.android.com.flightbookingapp.Utils.ToggleSwitch
-                android:id="@+id/toggleSwitch_filter_tour"
+                android:id="@+id/toggleSwitch_filter_trip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:textToggleLeft="@string/price"
                 app:textToggleCenter="@string/departure_time"
-                app:textToggleRight="@string/capacity"
+                app:textToggleRight="@string/remainingCapacity"
                 android:textSize="@dimen/small"
                 app:checkedBackgroundColor="@color/colorPrimaryLight"
                 app:checkedTextColor="@color/black1"
@@ -215,7 +215,7 @@
             android:id="@+id/cl_flightresult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -281,8 +281,7 @@
             android:layout_marginEnd="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:src="@drawable/ic_filter_list_white_24dp"
-            app:fabSize="normal"
-    />
+            app:fabSize="normal"/>
 
     <include layout="@layout/bottom_sheet_filter_flight"/>
 

@@ -10,6 +10,7 @@ import android.widget.*;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.skydoves.elasticviews.ElasticImageView;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -26,6 +27,7 @@ import yoyo.app.android.com.yoyoapp.Flight.FlightResult.FlightsResultFragment;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +35,7 @@ import java.util.Calendar;
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_STATIC_DP;
 
 
-public class FlightSearchFragment extends Fragment implements View.OnClickListener {
+public class FlightSearchFragment extends BaseFragment implements View.OnClickListener {
 
     private static final String TAG = "FlightSearchFragment";
     private ImageView datePickerCardImageview, departureCardImageview, destinationCardImageview ,travellerCardImageview;
@@ -52,10 +54,13 @@ public class FlightSearchFragment extends Fragment implements View.OnClickListen
     private DatePickerShamsiBottomSheet datePickerShamsiBottomSheet;
     private FlightSearchPresenter flightPresenter;
     private ConstraintLayout constraintLayout;
+    private LottieAnimationView lottieAnimationView;
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_flight, container, false);
+
+        lottieAnimationView = view.findViewById(R.id.lottie_loading_bar);
 
         init();
         chooseDatePicker();
@@ -161,6 +166,8 @@ public class FlightSearchFragment extends Fragment implements View.OnClickListen
         searchFlightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                lottieAnimationView.playAnimation();
+                lottieAnimationView.setVisibility(View.VISIBLE);
 
                 if (!departureCityTextview.getText().equals(destinationCityTextview.getText()))
                 {
@@ -194,11 +201,12 @@ public class FlightSearchFragment extends Fragment implements View.OnClickListen
                 ((MainFlightActivity)getContext()).iataCodeAirlines.clear();
                 ((MainFlightActivity)getContext()).dayTimes.clear();
 
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
-                fragmentTransaction.add(R.id.main_framelayout,flightsResultFragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (mFragmentNavigation != null) {
+                    mFragmentNavigation.pushFragment(flightsResultFragment);
+                    lottieAnimationView.setVisibility(View.GONE);
+                    lottieAnimationView.pauseAnimation();
+                }
+
 
                 }
                 else
@@ -312,8 +320,6 @@ public class FlightSearchFragment extends Fragment implements View.OnClickListen
                 });
 
         simpleSearchDialogCompat.show();
-        final String s = simpleSearchDialogCompat.getTitleTextView().toString();
-        Log.d(TAG, "setupSearchDialog: "+ s);
     }
 
     // converting date to a standard format for sending to server

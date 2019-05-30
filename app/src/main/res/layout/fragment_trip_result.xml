@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/cl_hotellist"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_trip_result">
+
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ab_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        <LinearLayout
+                android:id="@+id/cl_triplist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_trip_result"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
+                    android:id="@+id/button3"
+                    android:paddingTop="@dimen/small"
+                    android:paddingBottom="@dimen/small"
+                    android:paddingStart="@dimen/small"
+                    android:layout_gravity="center_vertical"/>
+
+            <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Back"
+                      android:textColor="@color/white"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginEnd="@dimen/small"/>
+
+            <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
+                    android:id="@+id/toggleSwitch_traveller_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textToggleLeft="Flexible"
+                    app:textToggleRight="Fixed"
+                    app:checkedBackgroundColor="@color/blue2"
+                    app:checkedTextColor="@android:color/white"
+                    app:uncheckedBackgroundColor="@android:color/transparent"
+                    app:uncheckedTextColor="@color/black1"
+                    app:separatorColor="@color/black3"
+                    app:borderRadius="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView71"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+            android:id="@+id/shimmer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/small_margin"
+            android:clipToPadding="false"
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_layout="@layout/shimmer_item_trip"
+            app:shimmer_demo_layout_manager_type="linear_vertical"
+            app:shimmer_demo_angle="20"
+            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainrv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"
+                android:paddingBottom="@dimen/large_margin"
+                android:paddingLeft="@dimen/small_margin"
+                android:paddingRight="@dimen/small_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:scrollbars="none"
+                android:nestedScrollingEnabled="true"
+                android:layout_below="@+id/tv_trip_list_results_num"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fbutton_hotellistsearchresult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:background="@drawable/curve_shape_fill_blue"
+            android:src="@drawable/ic_filter_list_black_24dp"
+            app:fabSize="normal" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

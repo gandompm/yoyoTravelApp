@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.User;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 
 import java.util.Locale;
 
@@ -20,7 +21,7 @@ public class LanguageSetup {
 
     public void setLocale(String lang) {
         changeLocale(lang);
-        Intent refresh = new Intent(context, MainFlightActivity.class);
+        Intent refresh = new Intent(context, MainActivity.class);
         context.startActivity(refresh);
     }
 

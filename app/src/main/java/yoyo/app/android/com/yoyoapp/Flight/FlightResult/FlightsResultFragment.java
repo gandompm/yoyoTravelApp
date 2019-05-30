@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Flight.FlightResult;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +23,16 @@ import yoyo.app.android.com.yoyoapp.Flight.BottomSheet.FlightFilterBottomSheet;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Flight;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.MyCalender;
 import yoyo.app.android.com.yoyoapp.Flight.Enum.FilterFlight;
+import yoyo.app.android.com.yoyoapp.Flight.FlightDetails.FlightDetailsFragment;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
+import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class FlightsResultFragment extends Fragment {
+public class FlightsResultFragment extends BaseFragment {
     private static final String TAG = "FlightsResultFragment";
     private TextView adultNumTextview, childNumTextview, infantNumTextview, originIataTextview,
             destinationIataTextview, originCityTextview, destinationCityTextview, noResultTextview, noResult2Textview;
@@ -77,6 +80,7 @@ public class FlightsResultFragment extends Fragment {
         return view;
     }
 
+
     // setup order toggle switch for ordering flights based on price, capacity and departure time
     private void setupOrderToggleSwitch() {
 
@@ -110,7 +114,7 @@ public class FlightsResultFragment extends Fragment {
         backImageview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().popBackStack();
+                getActivity().onBackPressed();
             }
         });
     }
@@ -248,7 +252,7 @@ public class FlightsResultFragment extends Fragment {
         noResultImageview = view.findViewById(R.id.iv_flightresult_noresult);
         userSharedManager = new UserSharedManagerFlight(getContext());
         shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
-        filterToggleswitch = view.findViewById(R.id.toggleSwitch_filter_tour);
+        filterToggleswitch = view.findViewById(R.id.toggleSwitch_filter_trip);
         filterToggleswitch.setCheckedPosition(0);
         flightArrayList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.rv_flightresult);
@@ -271,7 +275,18 @@ public class FlightsResultFragment extends Fragment {
 
     // setup flight recyclerview
     private void setupRecyclerview() {
-        flightRecyclerviewAddapter = new FlightRecyclerviewAddapter(flightArrayList, getContext());
+        flightRecyclerviewAddapter = new FlightRecyclerviewAddapter(getContext() ,flightArrayList , new FlightRecyclerviewAddapter.OnFlightClicked() {
+            @Override
+            public void onClicked(int flightId) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("flightId",flightId);
+                FlightDetailsFragment flightDetailsFragment = new FlightDetailsFragment();
+                flightDetailsFragment.setArguments(bundle);
+                if (mFragmentNavigation != null) {
+                    mFragmentNavigation.pushFragment(flightDetailsFragment);
+                }
+            }
+        });
         recyclerView.setLayoutManager(llManager);
         recyclerView.setAdapter(flightRecyclerviewAddapter);
     }

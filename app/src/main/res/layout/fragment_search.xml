@@ -6,10 +6,8 @@
     android:layout_height="match_parent"
     >
 
-
-
     <!-- include main content -->
-    <include layout="@layout/search_items" />
+    <include layout="@layout/fragment_search_trip" />
 
     <!-- include bottom sheet -->
     <include layout="@layout/bottom_sheet_date_picker" />

@@ -49,7 +49,6 @@ public class AirlineRecyclerviewAddapter extends RecyclerView.Adapter<AirlineRec
                 holder.greenCircleImageview.setVisibility(View.VISIBLE);
                 else
                     holder.greenCircleImageview.setVisibility(View.GONE);
-
             }
         });
     }

@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/bn_orders"
-        android:icon="@drawable/ic_add_shopping_cart_black_24dp"
+        android:icon="@drawable/shopping_cart"
         android:name="@string/navigation_bn_order"
         android:title="@string/navigation_bn_order"/>
     <item
         android:id="@+id/bn_home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/tab_home"
         android:name="@string/navigation_bn_home"
         android:title="@string/navigation_bn_home"/>
     <item
         android:id="@+id/bn_profile"
-        android:icon="@drawable/ic_person_black_24dp"
+        android:icon="@drawable/tab_profile"
         android:name="@string/navigation_bn_profile"
         android:title="@string/navigation_bn_profile"/>
 </menu>

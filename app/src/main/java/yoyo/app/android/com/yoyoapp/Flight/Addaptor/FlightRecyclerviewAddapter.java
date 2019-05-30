@@ -25,13 +25,15 @@ public class FlightRecyclerviewAddapter extends RecyclerView.Adapter<FlightRecyc
     private ArrayList<Flight> flights;
     private Context context;
     private DecimalFormat decimalFormat;
+    private OnFlightClicked onFlightClicked;
     private boolean on_attach = true;
     private int animation_type = 1;
     private int lastPosition = -1;
 
-    public FlightRecyclerviewAddapter(ArrayList<Flight> flights, Context context) {
+    public FlightRecyclerviewAddapter(Context context ,ArrayList<Flight> flights, OnFlightClicked onFlightClicked) {
         this.flights = flights;
         this.context = context;
+        this.onFlightClicked = onFlightClicked;
         decimalFormat = new DecimalFormat("#,###,###");
     }
 
@@ -50,14 +52,7 @@ public class FlightRecyclerviewAddapter extends RecyclerView.Adapter<FlightRecyc
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("flightId",flights.get(position).getFlightId());
-                FlightDetailsFragment flightDetailsFragment = new FlightDetailsFragment();
-                flightDetailsFragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction =  ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.main_framelayout,flightDetailsFragment,"details");
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                onFlightClicked.onClicked(flights.get(position).getFlightId());
             }
         });
     }
@@ -139,5 +134,9 @@ public class FlightRecyclerviewAddapter extends RecyclerView.Adapter<FlightRecyc
             Picasso.with(context).load(flight.getAirlineLogo()).placeholder(context.getResources().getDrawable(R.drawable.airline_default_logo))
                     .error(context.getResources().getDrawable(R.drawable.airline_default_logo)).into(companyLogoImageview);
         }
+    }
+    public interface OnFlightClicked
+    {
+        void onClicked(int flightId);
     }
 }

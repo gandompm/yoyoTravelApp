@@ -95,9 +95,9 @@
             app:mrb_selectorBoundarySize="2dp"
             app:mrb_selectorSize="10dp"
             app:mrb_temporaryPins="true"
-            app:mrb_tickEnd="1500"
-            app:mrb_tickInterval="25"
-            app:mrb_tickStart="50" />
+           app:mrb_tickEnd="5500"
+           app:mrb_tickInterval="10"
+           app:mrb_tickStart="10" />
 
         <TextView
             android:id="@+id/tv_filter_price_filter"
@@ -108,7 +108,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto_medium"
             android:gravity="center"
-            android:text="From 100$ to 150$"
+            android:text="From 10$ to 5,500$"
             android:textColor="@color/black"
             android:textSize="@dimen/header_2"
             app:layout_constraintBottom_toTopOf="@+id/iv_filter_price_divider"

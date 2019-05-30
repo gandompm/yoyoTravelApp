@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
     android:baselineAligned="false"
     android:orientation="horizontal">
 
@@ -12,61 +11,59 @@
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_weight="4"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/round_trip_item"
         android:paddingBottom="20dp"
         android:paddingTop="8dp">
 
         <TextView
-            android:id="@+id/title_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textColor="@android:color/white"
-            android:layout_alignParentTop="true"
-            android:textSize="26sp"
-            tools:text="40$" />
+                android:id="@+id/title_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/blue_light"
+                android:layout_alignParentTop="true"
+                android:textSize="12sp"
+                android:text="Euro"/>
 
         <TextView
-            android:id="@+id/title_previous_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_price"
-            android:layout_centerHorizontal="true"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            tools:text="50$" />
+                android:id="@+id/tv_trip_item_small_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_price"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:text="50$"/>
 
         <TextView
-            android:id="@+id/tv_tour_item_small_night_num"
+            android:id="@+id/tv_trip_item_small_operator_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/tv_tour_item_small_day_num"
-            android:textColor="@android:color/white"
+            android:layout_above="@id/tv_trip_item_small_operator"
+            android:textColor="@color/blue_light"
             android:textSize="12sp"
-            tools:text="3 night"
+            android:text="Operator"
             android:layout_centerHorizontal="true"/>
 
         <TextView
-            android:id="@+id/tv_tour_item_small_day_num"
+            android:id="@+id/tv_trip_item_small_operator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
-            tools:text="4 days"
+            android:gravity="center"
+            android:textSize="10sp"
+            tools:text="Homaye Sa'adat"
             android:layout_centerHorizontal="true"/>
 
-
-
-
     </RelativeLayout>
-    <!-- RIGHT TITLE PART -->
 
+    <!-- RIGHT TITLE PART -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@drawable/round_trip_content_item"
         android:paddingBottom="8dp"
         android:paddingEnd="8dp"
         android:paddingLeft="8dp"
@@ -76,98 +73,141 @@
 
 
         <TextView
-            android:id="@+id/tv_tour_item_small_tour_group"
+            android:id="@+id/tv_trip_item_small_trip_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/roboto_medium"
             android:text="National Parks Tour"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             />
 
         <TextView
-            android:id="@+id/tv_tour_item_small_tour_title"
+            android:id="@+id/tv_trip_item_small_trip_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_thin"
+            android:fontFamily="@font/roboto_regular"
             android:text="Bus, vip , 35"
             android:textColor="@color/black"
-            android:layout_below="@+id/tv_tour_item_small_tour_group"
+            android:layout_below="@+id/tv_trip_item_small_trip_title"
             android:layout_marginBottom="4dp"/>
 
 
-
-
         <ImageView
-            android:id="@+id/title_from_to_dots"
-            android:layout_width="wrap_content"
-            android:layout_height="33dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/from_to_purple"
-            android:layout_below="@+id/tv_tour_item_small_tour_title"/>
+                android:id="@+id/title_from_to_dots_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_trip_item_small_trip_group"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_toEndOf="@+id/title_from_to_dots"
+                android:layout_toRightOf="@+id/title_from_to_dots"
+                android:src="@drawable/dot" android:layout_marginEnd="8dp"/>
 
         <TextView
-            android:id="@+id/tv_tour_item_small_start_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/title_from_to_dots"
-            android:layout_marginTop="-5dp"
-            android:layout_toEndOf="@+id/title_from_to_dots"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/standard"
-            tools:text="2018"
-            android:layout_below="@+id/tv_tour_item_small_tour_title"/>
-
-        <ImageView
-            android:id="@+id/title_from_to_dots_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/tv_tour_item_small_start_date"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_toEndOf="@+id/title_from_to_dots"
-            android:layout_toRightOf="@+id/title_from_to_dots"
-            android:src="@color/contentDividerLine" />
+                android:id="@+id/tv_trip_item_small_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="8sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_alignStart="@+id/title_from_to_dots_divider"
+                tools:text="2018"
+                android:layout_below="@+id/tv_trip_item_small_from"/>
 
         <TextView
-            android:id="@+id/tv_tour_item_small_end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title_from_to_dots_divider"
-            android:layout_toEndOf="@id/title_from_to_dots"
-            android:layout_toRightOf="@id/title_from_to_dots"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/standard"
-            tools:text="2019"
-            android:layout_marginBottom="2dp"/>
-
+                android:id="@+id/tv_trip_item_small_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_alignStart="@+id/title_from_to_dots_divider"
+                android:textSize="8sp"
+                tools:text="Tehran"
+                android:layout_below="@+id/title_from_to_dots_divider"/>
 
 
         <TextView
-            android:id="@+id/tv_tour_item_destination_text"
+                android:id="@+id/tv_trip_item_small_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_alignEnd="@+id/title_from_to_dots_divider"
+                android:textSize="8sp"
+                tools:text="Shiraz"
+                android:layout_below="@+id/title_from_to_dots_divider"/>
+
+        <TextView
+                android:id="@+id/tv_trip_item_small_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="8sp"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_alignEnd="@+id/title_from_to_dots_divider"
+                tools:text="2018"
+                android:layout_below="@+id/tv_trip_item_small_to"/>
+
+        <TextView
+                android:id="@+id/tv_trip_item_small_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_centerHorizontal="true"
+                android:textSize="8sp"
+                tools:text="8 Days"
+                android:layout_below="@+id/title_from_to_dots_divider"/>
+
+        <TextView
+                android:id="@+id/tv_trip_item_small_duration_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                android:textColor="@color/black1"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_centerHorizontal="true"
+                android:textSize="8sp"
+                tools:text="Duration"
+                android:layout_below="@+id/tv_trip_item_small_duration"/>
+
+
+        <TextView
+            android:id="@+id/tv_trip_item_type_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/tv_tour_item_destination"
-            android:text="@string/tv_item_destination"
-            android:layout_below="@+id/tv_tour_item_small_end_date"
+            android:layout_alignStart="@id/title_from_to_dots_divider"
+            android:text="Tour Type"
+            android:layout_above="@+id/tv_trip_item_small_type"
             android:textSize="@dimen/small" />
 
         <TextView
-            android:id="@+id/tv_tour_item_destination"
+            android:id="@+id/tv_trip_item_small_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_tour_item_destination_text"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@id/title_from_to_dots_divider"
             tools:text="Qazvin"
             android:textColor="@color/black"
             android:textSize="@dimen/small"/>
@@ -175,34 +215,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/tv_tour_item_small_language"
-            android:layout_alignTop="@+id/tv_tour_item_destination_text"
             android:textSize="@dimen/small"
             android:layout_centerHorizontal="true"
+            android:layout_above="@+id/tv_trip_item_small_language"
             android:text="@string/tv_item_language" />
 
         <TextView
-            android:id="@+id/tv_tour_item_small_language"
+            android:id="@+id/tv_trip_item_small_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             tools:text="FA"
             android:textSize="@dimen/small"
-            android:textColor="@color/black"
-            android:layout_alignTop="@+id/tv_tour_item_destination" />
+            android:textColor="@color/black"/>
 
 
         <TextView
-            android:id="@+id/tv_tour_item_small_capacity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:text="aaaaaa"
-            android:textSize="@dimen/small"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/standard_margin"/>
+                android:id="@+id/tv_trip_item_small_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/title_from_to_dots_divider"
+                android:gravity="center"
+                tools:text="aaaaa"
+                android:textSize="@dimen/small"
+                android:layout_alignParentBottom="true"
+        />
 
 
 

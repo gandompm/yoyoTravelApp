@@ -57,7 +57,7 @@ public class HotelsRecyclerviewAddaptor extends RecyclerView.Adapter<HotelsRecyc
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 HotelDetailsFragment hotelDetailsFragment = new HotelDetailsFragment();
 //                citiyViewPagerFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.main_framelayout, hotelDetailsFragment).addToBackStack("hoteldetails");
+                fragmentTransaction.replace(R.id.container, hotelDetailsFragment).addToBackStack("hoteldetails");
                 fragmentTransaction.commit();
             }
         });

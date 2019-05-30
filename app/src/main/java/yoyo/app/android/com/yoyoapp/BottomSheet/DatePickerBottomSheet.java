@@ -4,13 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.dagang.library.GradientButton;
@@ -23,9 +27,11 @@ import java.util.Locale;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 
 public class DatePickerBottomSheet {
-    
+
+    private static final String TAG = "DatePickerBottomSheet";
     private Context context;
     private Calendar start ,end ,defaultC = Calendar.getInstance();
     private TextView checkInEditText ,checkOutEditText;
@@ -101,9 +107,7 @@ public class DatePickerBottomSheet {
         fromDateButton.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 resetCalendar();
-
             }
         });
     }
@@ -181,10 +185,16 @@ public class DatePickerBottomSheet {
     private void calculateEndDate() {
         endDateString = getDayFormat(end);
         startDateString = getDayFormat(start);
+        ((TripActivity)context).fromTime = start.getTimeInMillis();
+        ((TripActivity)context).toTime = end.getTimeInMillis();
+        Log.d(TAG, "calculateEndDate: "+ start.getTimeInMillis());
+        Log.d(TAG, "calculateStartDate2: "+ end.getTimeInMillis());
     }
 
     private void calculateStartDate() {
-       startDateString = getDayFormat(start);
+        startDateString = getDayFormat(start);
+        ((TripActivity)context).fromTime = start.getTimeInMillis();
+        Log.d(TAG, "calculateStartDate: "+ start.getTimeInMillis());
     }
 
     private void setupOkButton() {

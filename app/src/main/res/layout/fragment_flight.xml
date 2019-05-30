@@ -49,16 +49,17 @@ android:layoutDirection="ltr">
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <com.cunoraz.continuouscrollable.ContinuousScrollableImageView
+
+            <com.airbnb.lottie.LottieAnimationView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    app:direction="right"
-                    app:duration="10000"
-                    app:imageSrc="@drawable/flight_back"
-                    android:scaleType="centerCrop" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_gravity="center"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="a1203_airplane.json"
+                    app:lottie_loop="true"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline2" android:id="@+id/iv_flight_banner"
-                    app:scaleType="centerCrop"/>
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2" android:id="@+id/iv_flight_banner"/>
 
             <ImageView android:layout_width="216dp" android:layout_height="48dp"
                        android:background="@drawable/white_roundshape"
@@ -194,6 +195,8 @@ android:layoutDirection="ltr">
                     app:layout_constraintTop_toBottomOf="@+id/iv_flight_person_num"
                     android:textColor="@color/white" android:layout_marginBottom="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
             <ProgressBar
                     style="?android:attr/progressBarStyle"
@@ -373,6 +376,22 @@ android:layoutDirection="ltr">
                     app:layout_constraintTop_toTopOf="@+id/guideline2" android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
                     app:layout_constraintStart_toStartOf="parent" android:id="@+id/jellyToggleButton2"/>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_loading_bar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    app:lottie_autoPlay="false"
+                    app:lottie_fileName="loading_bar.json"
+                    app:lottie_loop="true"
+                    android:visibility="gone"
+                     android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/iv_flight_banner"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
