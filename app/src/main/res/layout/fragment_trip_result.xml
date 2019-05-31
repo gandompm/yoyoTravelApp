@@ -23,13 +23,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
-                    android:id="@+id/button3"
+                    android:id="@+id/iv_trip_search_back"
                     android:paddingTop="@dimen/small"
                     android:paddingBottom="@dimen/small"
                     android:paddingStart="@dimen/small"
                     android:layout_gravity="center_vertical"/>
 
             <TextView
+                      android:id="@+id/tv_trip_search_back"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Back"
@@ -41,8 +42,8 @@
                     android:id="@+id/toggleSwitch_traveller_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:textToggleLeft="Flexible"
-                    app:textToggleRight="Fixed"
+                    app:textToggleLeft="Fixed"
+                    app:textToggleRight="Flexible"
                     app:checkedBackgroundColor="@color/white"
                     app:checkedTextColor="@color/black1"
                     app:uncheckedBackgroundColor="@android:color/transparent"
@@ -72,7 +73,7 @@
             app:shimmer_demo_layout="@layout/shimmer_item_trip"
             app:shimmer_demo_layout_manager_type="linear_vertical"
             app:shimmer_demo_angle="20"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
+            app:layout_constraintTop_toBottomOf="@+id/iv_trip_search_back"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 

@@ -30,23 +30,23 @@
                 android:background="@color/colorPrimary">
 
                 <TextView
-                    android:id="@+id/sv_mainpage_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/search_mainpage_service"
-                    android:layout_marginStart="@dimen/standard_margin"
-                    android:layout_marginTop="@dimen/standard_margin"
-                    android:layout_marginEnd="@dimen/standard_margin"
-                    android:background="@drawable/curve_shape_searchview"
-                    android:elevation="0dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/roboto_medium"
-                    android:gravity="center_vertical"
-                    android:paddingStart="@dimen/small_margin"
-                    android:text="YoYoApp Cities"
-                    android:textAlignment="center"
-                    android:textColor="@color/black2"
-                    android:textSize="@dimen/standard"
-                    app:queryHint="where do you want to go?" />
+                        android:id="@+id/sv_mainpage_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/search_mainpage_service"
+                        android:layout_marginStart="@dimen/standard_margin"
+                        android:layout_marginTop="@dimen/standard_margin"
+                        android:layout_marginEnd="@dimen/standard_margin"
+                        android:background="@drawable/curve_shape_searchview"
+                        android:elevation="0dp"
+                        android:focusable="false"
+                        android:fontFamily="@font/roboto_medium"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/small_margin"
+                        android:text="YoYoApp Cities"
+                        android:textAlignment="center"
+                        android:textColor="@color/black2"
+                        android:textSize="@dimen/standard"
+                        app:queryHint="where do you want to go?"/>
 
             </RelativeLayout>
 
