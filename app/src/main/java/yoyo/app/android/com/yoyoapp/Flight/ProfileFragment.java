@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
+import yoyo.app.android.com.yoyoapp.Flight.Profile.TravellerCompanionFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.R;
 
@@ -43,7 +44,7 @@ public class ProfileFragment extends Fragment {
                 if (isSignedIn)
                 {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new TravellerCompanionFragment()).addToBackStack("traveller companion");
+                    fragmentTransaction.replace(R.id.container,new TravellerCompanionFragment()).addToBackStack("traveller companion");
                     fragmentTransaction.commit();
                 }
             }
@@ -53,7 +54,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,new RuleFragment()).addToBackStack("rules");
+                fragmentTransaction.replace(R.id.container,new RuleFragment()).addToBackStack("rules");
                 fragmentTransaction.commit();
             }
         });
@@ -65,7 +66,7 @@ public class ProfileFragment extends Fragment {
                 if (isSignedIn)
                 {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new EditProfileFragment()).addToBackStack("edit profile");
+                    fragmentTransaction.replace(R.id.container,new EditProfileFragment()).addToBackStack("edit profile");
                     fragmentTransaction.commit();
                 }
             }
@@ -78,7 +79,7 @@ public class ProfileFragment extends Fragment {
                 if (isSignedIn)
                 {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.main_framelayout,new SignOutFragment()).addToBackStack("signout");
+                    fragmentTransaction.replace(R.id.container,new SignOutFragment()).addToBackStack("signout");
                     fragmentTransaction.commit();
                 }
             }
@@ -97,7 +98,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_framelayout,new AboutFragment()).addToBackStack("about");
+                fragmentTransaction.replace(R.id.container,new AboutFragment()).addToBackStack("about");
                 fragmentTransaction.commit();
             }
         });

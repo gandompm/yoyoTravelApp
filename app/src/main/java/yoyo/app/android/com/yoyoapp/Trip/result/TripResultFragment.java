@@ -35,7 +35,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private Bundle bundle;
     private RecyclerView recyclerView;
     private ShimmerRecyclerView shimmerRecycler;
-    private ArrayList<Trip> tripArrayList;
     private FoldingCellRecyclerviewAdapter adapter;
     private TripListViewModel tripListViewModel;
     private TripQuery tripQuery;
@@ -68,6 +67,17 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             public void onLoadMore() {
                 Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
                 tripListViewModel.initTripList(page, tripQuery);
+                tripListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
+                    @Override
+                    public void onChanged(List<Trip> trips) {
+                        if (trips != null) {
+                            adapter.addTrips(trips);
+                            setupSnackBar();
+
+                            page++;
+                        }
+                    }
+                });
             }
         });
     }
@@ -75,7 +85,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
 
     private void getTrips() {
         shimmerRecycler.showShimmerAdapter();
-        tripArrayList = new ArrayList<>();
         tripListViewModel = ViewModelProviders.of(getActivity()).get(TripListViewModel.class);
         tripListViewModel.initTripList(page,tripQuery);
         tripListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
@@ -83,8 +92,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             public void onChanged(List<Trip> trips) {
                 if (trips != null) {
                     shimmerRecycler.hideShimmerAdapter();
-                    tripArrayList.clear();
-                    tripArrayList.addAll(trips);
 
                     adapter.addTrips(trips);
                     setupSnackBar();
@@ -96,7 +103,8 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
     private void setupSnackBar() {
-        Snackbar snackbar = Snackbar.make(view, tripArrayList.size()  +" " + getString(R.string.results), Snackbar.LENGTH_LONG)
+        // TODO: 5/30/2019 fixing showing sum of results
+        Snackbar snackbar = Snackbar.make(view, 27 +" " + getString(R.string.results), Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
         View sbView = snackbar.getView();
 

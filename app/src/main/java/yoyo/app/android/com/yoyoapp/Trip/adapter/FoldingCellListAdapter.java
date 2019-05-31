@@ -70,8 +70,8 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
             viewHolder.tripLeaderImg = cell.findViewById(R.id.iv_trip_item_big_trip_leader_img);
             viewHolder.startPoint = cell.findViewById(R.id.tv_trip_item_big_start_point_address);
             viewHolder.endPoint = cell.findViewById(R.id.tv_trip_item_big_end_point_address);
-            viewHolder.moveTime = cell.findViewById(R.id.tv_trip_item_big_start_day_and_time);
-            viewHolder.endTime = cell.findViewById(R.id.tv_trip_item_big_end_day_and_time);
+            viewHolder.moveTime = cell.findViewById(R.id.tv_trip_item_big_type);
+            viewHolder.endTime = cell.findViewById(R.id.tv_trip_item_big_transport);
             viewHolder.tripImg = cell.findViewById(R.id.iv_trip_item_big_trip_img);
             viewHolder.priceBig = cell.findViewById(R.id.tv_trip_item_big_price);
 
@@ -108,7 +108,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<Trip> {
         viewHolder.endPoint.setText(trip.getEndPoint());
         viewHolder.moveTime.setText(trip.getStartTime());
         viewHolder.endTime.setText(trip.getEndTime());
-        viewHolder.tripGroup.setText(trip.getCategory());
+//        viewHolder.tripGroup.setText(trip.getCategory());
         viewHolder.tripTitle.setText(trip.getTitle());
         Picasso.with(context).load(trip.getImage()).into(viewHolder.tripImg);
         viewHolder.priceBig.setText(trip.getPrice());
