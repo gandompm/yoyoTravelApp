@@ -24,7 +24,6 @@ import yoyo.app.android.com.yoyoapp.Trip.Utils.InfiniteScrollProvider;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
 import yoyo.app.android.com.yoyoapp.Utils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -156,7 +155,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.container ,new FilterTripFragment());
+                fragmentTransaction.add(R.id.container ,new TripFilterFragment());
                 fragmentTransaction.addToBackStack("trip_filter");
                 fragmentTransaction.commit();
                 floatingActionButton.hide();

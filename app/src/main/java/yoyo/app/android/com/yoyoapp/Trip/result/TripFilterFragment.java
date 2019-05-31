@@ -22,7 +22,7 @@ import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilterTripFragment extends Fragment implements RangeBar.OnRangeBarChangeListener{
+public class TripFilterFragment extends Fragment implements RangeBar.OnRangeBarChangeListener{
 
     private RangeBar rangeBarPrice ,rangeBarDuration;
     private TextView rangebarPriceTextview, rangebarDurationTextview;

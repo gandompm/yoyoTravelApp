@@ -57,7 +57,31 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         holder.bindTrip(tripArrayList.get(position));
         holder.contentRequestBtn.getButton().setOnClickListener(v -> {
             Bundle bundle = new Bundle();
-            bundle.putString("tripId", tripArrayList.get(position).getTripId());
+            Trip trip = tripArrayList.get(position);
+            bundle.putString("tripId", trip.getTripId());
+            bundle.putString("tourName", trip.getTour().getName());
+            bundle.putInt("passengersCount", trip.getTour().getPassengerCount());
+            bundle.putString("agencyName",trip.getAgency());
+            bundle.putString("leaderName",trip.getTripLeader().getName());
+            bundle.putString("leaderPicture",trip.getTripLeader().getPicture());
+            bundle.putString("language", trip.getLanguage());
+            bundle.putString("title",trip.getTitle());
+            bundle.putStringArrayList("itinerary",trip.getItineraries());
+            bundle.putStringArrayList("attractions",trip.getAttractions());
+            bundle.putStringArrayList("transportation",trip.getAttractions());
+            bundle.putStringArrayList("meals",trip.getMeals());
+            bundle.putStringArrayList("rules",trip.getRules());
+            bundle.putStringArrayList("categories",trip.getCategories());
+            bundle.putInt("days",trip.getDayNum());
+            bundle.putInt("nights",trip.getNightNum());
+            bundle.putStringArrayList("gallerry",trip.getGallery());
+            bundle.putString("locationTitleFrom", trip.getLocations().get(0).getTitle());
+            bundle.putString("locationTitleTo", trip.getLocations().get(1).getTitle());
+            bundle.putInt("fromLat",trip.getLocations().get(0).getLat());
+            bundle.putInt("fromLong",trip.getLocations().get(0).getLon());
+            bundle.putInt("toLat",trip.getLocations().get(1).getLat());
+            bundle.putInt("toLong",trip.getLocations().get(1).getLon());
+
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
@@ -186,8 +210,8 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             Picasso.with(context).load(trip.getTripLeader().getPicture()).into(tripLeaderImg);
             Log.d(TAG, "bindTrip: www "+ trip.getTripLeader().getPicture());
             type.setText(trip.getCategories().get(0));
-            fromBig.setText(trip.getStartPoint());
-            toBig.setText(trip.getEndPoint());
+            fromBig.setText(trip.getLocations().get(0).getTitle());
+            toBig.setText(trip.getLocations().get(1).getTitle());
             passengerCount.setText(trip.getTour().getPassengerCount()+ " people have purchased this tour");
             // transport
             String transports ="";
@@ -201,6 +225,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
                 types = type + " ";
             }
             typeBig.setText(types);
+
             priceBig.setText("20$");
             price.setText("20$");
             startDate.setText("");
