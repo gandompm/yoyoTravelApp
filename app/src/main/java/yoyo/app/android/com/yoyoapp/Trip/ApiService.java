@@ -111,6 +111,14 @@ public class ApiService {
                                 }
                                 trip.setRules(rules);
 
+                                // categories
+                                ArrayList<String> categories = new ArrayList<>();
+                                jsonArray = mainObject.getJSONArray("categories");
+                                for (int j = 0; j < jsonArray.length(); j++) {
+                                    categories.add(jsonArray.getString(j));
+                                }
+                                trip.setCategories(categories);
+
                                 // gallery
                                 ArrayList<String> galleries = new ArrayList<>();
                                 JSONArray galleryJsonArray = mainObject.getJSONArray("gallery");
@@ -224,7 +232,7 @@ public class ApiService {
 
                         trip.setPrice(jsonObject.getString("price"));
                         trip.setImage(jsonObject.getString("image_url"));
-                        trip.setCategory(jsonObject.getString("category"));
+//                        trip.setCategory(jsonObject.getString("category"));
                         trip.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
                         trip.setPreviousPrice("225");
                         trip.setNightNum(2);

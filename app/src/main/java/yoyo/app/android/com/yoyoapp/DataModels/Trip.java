@@ -12,7 +12,6 @@ public class Trip {
     private String endTime;
     private String price;
     private String image;
-    private String category;
     private int remainingCapacity;
     private String previousPrice;
     private String language;
@@ -32,6 +31,7 @@ public class Trip {
     private ArrayList<String> meals;
     private ArrayList<String> rules;
     private ArrayList<String> gallery;
+    private ArrayList<String> categories;
     private ArrayList<Location> locations;
 
 
@@ -51,7 +51,6 @@ public class Trip {
         this.endPoint = endPoint;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.category = category;
         this.title = title;
         this.image = image;
         this.remainingCapacity = remainingCapacity;
@@ -104,14 +103,6 @@ public class Trip {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
 
@@ -286,5 +277,13 @@ public class Trip {
 
     public void setLocations(ArrayList<Location> locations) {
         this.locations = locations;
+    }
+
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(ArrayList<String> categories) {
+        this.categories = categories;
     }
 }

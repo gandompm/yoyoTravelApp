@@ -17,7 +17,6 @@ import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Traveller;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.R;
-
 import java.util.ArrayList;
 
 

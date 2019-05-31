@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    tools:visibility="visible"
     android:visibility="gone">
 
     <!-- content header line -->
@@ -290,7 +291,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tv_trip_item_big_start_point"
                     android:layout_below="@id/tv_trip_item_big_start_point"
-                    android:text="@string/content_from2_mock"
+                    tools:text="@string/content_from2_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small" />
 
@@ -327,7 +328,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tv_trip_item_big_end_point"
                     android:layout_below="@id/tv_trip_item_big_end_point"
-                    android:text="@string/content_to2_mock"
+                    tools:text="@string/content_to2_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small" />
 
@@ -370,16 +371,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/tv_trip_item_big_start_date"
+                    android:text="@string/type"
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_trip_item_big_start_day_and_time"
+                    android:id="@+id/tv_trip_item_big_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_delivery_date_badge"
                     android:layout_below="@id/content_delivery_date_badge"
-                    android:text="@string/delivery_time_mock"
+                    tools:text="Health, Nature"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small"
                     android:textStyle="bold" />
@@ -388,9 +389,9 @@
                     android:id="@+id/tv_trip_item_big_start_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_trip_item_big_start_day_and_time"
-                    android:layout_below="@id/tv_trip_item_big_start_day_and_time"
-                    android:text="@string/delivery_date_mock"
+                    android:layout_alignStart="@id/tv_trip_item_big_type"
+                    android:layout_below="@id/tv_trip_item_big_type"
+                    tools:text="@string/delivery_date_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/standard" />
 
@@ -407,16 +408,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@string/tv_trip_item_big_end_date"
+                    android:text="@string/transport"
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_trip_item_big_end_day_and_time"
+                    android:id="@+id/tv_trip_item_big_transport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_deadline_badge"
                     android:layout_below="@id/content_deadline_badge"
-                    android:text="@string/deadline_time_mock"
+                    android:text="Bus and Car"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/small"
                     android:textStyle="bold" />
@@ -425,10 +426,10 @@
                     android:id="@+id/tv_trip_item_big_end_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/tv_trip_item_big_end_day_and_time"
-                    android:layout_alignStart="@id/tv_trip_item_big_end_day_and_time"
-                    android:layout_below="@id/tv_trip_item_big_end_day_and_time"
-                    android:text="may 16,2016"
+                    android:layout_alignLeft="@id/tv_trip_item_big_transport"
+                    android:layout_alignStart="@id/tv_trip_item_big_transport"
+                    android:layout_below="@id/tv_trip_item_big_transport"
+                    tools:text="may 16,2016"
                     android:textColor="@color/mainTextColor"
                     android:textSize="@dimen/standard" />
             </RelativeLayout>
@@ -453,13 +454,14 @@
             app:button_is_shadowed="false"/>
 
         <TextView
+            android:id="@+id/tv_trip_item_big_passenger_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="5 people have purchased this trip"
+            tools:text="5 people have purchased this trip"
             android:textAlignment="center"
             android:textColor="@color/contentBadgeTitle"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
     </LinearLayout>
 

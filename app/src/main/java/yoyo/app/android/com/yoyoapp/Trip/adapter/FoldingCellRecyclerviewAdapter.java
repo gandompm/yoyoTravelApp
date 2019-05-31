@@ -16,6 +16,7 @@ import com.dagang.library.GradientButton;
 import com.ramotion.foldingcell.FoldingCell;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
+import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.details.TripDetailsFragment;
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private Context context;
     private ArrayList<Trip> tripArrayList = new ArrayList<>();
+    private boolean on_attach = true;
+    private int animation_type = 2;
+    private int lastPosition = -1;
 
     public FoldingCellRecyclerviewAdapter(Context context) {
         this.context = context;
@@ -49,6 +53,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     @Override
     public void onBindViewHolder(@NonNull TripViewholder holder, int position) {
         FoldingCell cell = (FoldingCell) holder.itemView;
+        setAnimation(holder.itemView, position);
         holder.bindTrip(tripArrayList.get(position));
         holder.contentRequestBtn.getButton().setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -92,6 +97,24 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     public void registerUnfold(int position) {
         unfoldedIndexes.add(position);
     }
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                on_attach = false;
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    private void setAnimation(View view, int position) {
+        if (position > lastPosition) {
+            ItemAnimation.animate(view, on_attach ? position : -1, animation_type);
+            lastPosition = position;
+        }
+    }
 
     @Override
     public int getItemCount() {
@@ -115,12 +138,13 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         private ImageView tripLeaderImg;
         private TextView fromBig;
         private TextView toBig;
-        private TextView moveTime;
-        private TextView endTime;
+        private TextView typeBig;
+        private TextView transport;
         private TextView tripGroup;
         private TextView tripTitle;
         private ImageView tripImg;
         private TextView priceBig;
+        private TextView passengerCount;
 
         public TripViewholder(@NonNull View itemView) {
             super(itemView);
@@ -141,34 +165,47 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             tripLeaderImg = itemView.findViewById(R.id.iv_trip_item_big_trip_leader_img);
             fromBig = itemView.findViewById(R.id.tv_trip_item_big_start_point_address);
             toBig = itemView.findViewById(R.id.tv_trip_item_big_end_point_address);
-            moveTime = itemView.findViewById(R.id.tv_trip_item_big_start_day_and_time);
-            endTime = itemView.findViewById(R.id.tv_trip_item_big_end_day_and_time);
+            typeBig = itemView.findViewById(R.id.tv_trip_item_big_type);
+            transport = itemView.findViewById(R.id.tv_trip_item_big_transport);
             tripImg = itemView.findViewById(R.id.iv_trip_item_big_trip_img);
             priceBig = itemView.findViewById(R.id.tv_trip_item_big_price);
+            passengerCount = itemView.findViewById(R.id.tv_trip_item_big_passenger_count);
         }
 
         public void bindTrip(Trip trip) {
             // bind data from selected element to view through view holder
-            price.setText(trip.getPrice());
-            operator.setText("Homa Sa'adat");
-            startDate.setText(trip.getStartDate());
-            endDate.setText(trip.getEndDate());
-            from.setText(trip.getStartPoint());
-            to.setText(trip.getEndPoint());
-            type.setText(trip.getCategory());
-            language.setText(trip.getLanguage());
-            capacity.setText(String.valueOf(trip.getRemainingCapacity()));
-//            tripLeaderName.setText(trip.getTripLeaderName());
+            operator.setText(trip.getAgency());
+            tripTitle.setText(trip.getTitle());
+            tripGroup.setText(trip.getTour().getName());
+            Picasso.with(context).load(trip.getGallery().get(0)).into(tripImg);
+            from.setText(trip.getLocations().get(0).getTitle());
+            to.setText(trip.getLocations().get(1).getTitle());
+            language.setText(trip.getTripLeader().getLanguage());
             duraion.setText(String.valueOf(trip.getDayNum()));
-//          Picasso.with(context).load(trip.getTripLeaderImg()).into(tripLeaderImg);
+            tripLeaderName.setText(trip.getTripLeader().getName());
+            Picasso.with(context).load(trip.getTripLeader().getPicture()).into(tripLeaderImg);
+            Log.d(TAG, "bindTrip: www "+ trip.getTripLeader().getPicture());
+            type.setText(trip.getCategories().get(0));
             fromBig.setText(trip.getStartPoint());
             toBig.setText(trip.getEndPoint());
-            moveTime.setText(trip.getStartTime());
-            endTime.setText(trip.getEndTime());
-            tripGroup.setText("Kavir Mesr");
-            tripTitle.setText(trip.getTitle());
-            Picasso.with(context).load(trip.getImage()).into(tripImg);
-            priceBig.setText(trip.getPrice());
+            passengerCount.setText(trip.getTour().getPassengerCount()+ " people have purchased this tour");
+            // transport
+            String transports ="";
+            for (String transport : trip.getTransportations()) {
+                transports = transport + " ";
+            }
+            transport.setText(transports);
+            // type
+            String types ="";
+            for (String type : trip.getCategories()) {
+                types = type + " ";
+            }
+            typeBig.setText(types);
+            priceBig.setText("20$");
+            price.setText("20$");
+            startDate.setText("");
+            endDate.setText("");
+            capacity.setText("");
         }
     }
 }

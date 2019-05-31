@@ -1,8 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.result;
 
-
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,12 +17,10 @@ import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.CategoryRecyclerviewAddapter;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class FilterTripFragment extends Fragment implements RangeBar.OnRangeBarChangeListener{
 

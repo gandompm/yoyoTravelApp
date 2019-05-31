@@ -333,6 +333,7 @@
     <string name="choose_tour_type">Choose Tour Type</string>
     <string name="overview">Overview</string>
     <string name="phone_number">Phone Number</string>
+    <string name="transport">Transport</string>
 
 
 </resources>

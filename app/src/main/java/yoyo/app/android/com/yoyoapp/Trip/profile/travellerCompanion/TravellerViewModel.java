@@ -7,8 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
-import yoyo.app.android.com.yoyoapp.DataModels.User;
-import yoyo.app.android.com.yoyoapp.Trip.profile.editProfile.EditProfileRepository;
+
 
 import java.util.List;
 
