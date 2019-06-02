@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                     android:layout_width="match_parent"
+                                                     android:layout_height="match_parent">
+
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/ab_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_schedule"
@@ -18,56 +21,21 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 android:layoutDirection="ltr">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="200dp">
+
+
+                <ImageView android:layout_width="match_parent"
+                           android:layout_height="200dp"
+                            android:src="@color/blue2"/>
 
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="8"
-            android:layout_marginBottom="56dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-
-
-        <!--<com.cooltechworks.views.shimmer.ShimmerRecyclerView-->
-        <!--android:id="@+id/shimmer_recycler_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:paddingTop="@dimen/small_margin"-->
-        <!--android:elevation="5dp"-->
-        <!--android:clipToPadding="false"-->
-        <!--app:shimmer_demo_child_count="10"-->
-        <!--app:shimmer_demo_layout="@layout/shimmer_item_flight"-->
-        <!--app:shimmer_demo_layout_manager_type="linear_vertical"-->
-        <!--app:shimmer_demo_angle="20"-->
-        <!--app:shimmer_demo_shimmer_color="@color/white"-->
-        <!--app:shimmer_demo_view_holder_item_background="@color/background"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
-
-
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_schedule_result"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="7"
-                android:background="@color/background"
-                android:paddingTop="@dimen/small_margin"
-                android:paddingBottom="@dimen/large_margin"
-                android:clipToPadding="false"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_schedule_calender"
@@ -75,14 +43,83 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:elevation="2dp"
-                android:layout_gravity="bottom"
                 android:background="@color/white"
                 android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                app:layout_constraintBottom_toBottomOf="@+id/rv_schedule_result" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
 
-    </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+
+
+
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@drawable/gradient_trip_result">
+
+
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_schedule_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/small_margin"
+                    android:paddingBottom="@dimen/large_margin"
+                    android:clipToPadding="false"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other schedule"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="center"
+
+            />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

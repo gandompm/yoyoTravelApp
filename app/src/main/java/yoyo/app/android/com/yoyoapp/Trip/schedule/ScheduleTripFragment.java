@@ -19,7 +19,6 @@ import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleRecyclerviewAddapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 
 public class ScheduleTripFragment extends Fragment {

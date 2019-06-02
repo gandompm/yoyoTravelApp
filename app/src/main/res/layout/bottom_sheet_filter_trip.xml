@@ -9,33 +9,24 @@
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
     app:cardCornerRadius="8dp"
-    android:background="@color/white"
+    android:background="@android:color/transparent"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-    <TextView
-        android:id="@+id/tv_filter_trip_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/small_margin"
-        android:paddingBottom="4dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:elevation="2dp"
-        android:text="@string/filter"
-        android:textSize="@dimen/header_1" />
 
     <ImageView
         android:id="@+id/iv_filter_trip_close"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="@dimen/small_margin"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp"
         android:layout_marginTop="@dimen/small_margin"
         android:elevation="2dp"
-        android:src="@drawable/ic_close_black_24dp" />
+        android:src="@drawable/bg_circle" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -63,15 +54,24 @@
             app:layout_constraintGuide_percent="0.06" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Tour Type :"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toTopOf="@+id/guideline8" />
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tour Type :"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textView102" android:layout_marginTop="16dp"/>
 
 
+        <TextView
+                android:id="@+id/textView102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
+                android:textSize="25sp" android:fontFamily="serif-monospace"
+                tools:fontFamily="@font/roboto_bolditalic" android:textColor="#3F51B5"/>
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_filtertour_types"
                 android:layout_width="0dp"
