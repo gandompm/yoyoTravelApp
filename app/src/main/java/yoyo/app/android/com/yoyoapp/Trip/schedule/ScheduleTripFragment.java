@@ -27,13 +27,14 @@ public class ScheduleTripFragment extends Fragment {
     private static final String TAG = "ScheduleTripFragment";
     private ArrayList<ScheduleCalender> myCalenders;
     private RecyclerView calenderRecyclerview, scheduleResultRecyclerview;
-    private long startDate;
+    private long startDate, endDate;
     private ArrayList<Schedule> scheduleArrayList;
     private ScheduleViewModel scheduleViewModel;
     private ScheduleRecyclerviewAddapter addapter;
-    private int position = 0 ;
+    private int position = 0;
     private String tripId;
     private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_schedule_trip, container, false);
@@ -45,7 +46,7 @@ public class ScheduleTripFragment extends Fragment {
         scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
         scheduleArrayList = new ArrayList<>();
 
-//        getSchedules(startDate, endDate);
+//      getSchedules(startDate, endDate);
         setupCalenderRecyclerview();
 
 
@@ -109,11 +110,18 @@ public class ScheduleTripFragment extends Fragment {
         ArrayList<ScheduleCalender> myCalenders = new ArrayList<>();
         Calendar today = Calendar.getInstance();
         today.set(Calendar.DAY_OF_MONTH, 1);
-        today.set(Calendar.HOUR_OF_DAY, 1);
+//        today.set(Calendar.HOUR_OF_DAY, 0);
+//        today.set(Calendar.MINUTE, 0);
+//        today.set(Calendar.SECOND, 0);
+
+
 
         for (int i = 0; i <= 12; i++) {
             myCalenders.add(setupCalender(today));
             today.add(Calendar.MONTH, +1);
+            if (i == 0) {
+                getSchedules(tripId,startDate,endDate);
+            }
         }
 
 
@@ -125,13 +133,15 @@ public class ScheduleTripFragment extends Fragment {
         ScheduleCalender myCalender = new ScheduleCalender();
         month = theDay.get(Calendar.MONTH);
         myCalender.setMonth(month);
-        myCalender.setDate(theDay.getTimeInMillis()/1000);
+        startDate = theDay.getTimeInMillis()/1000;
+        myCalender.setDate(startDate);
 
         // next 30 days
         Calendar next30Days = Calendar.getInstance();
         next30Days.setTime(theDay.getTime());
-        next30Days.add(Calendar.MONTH,1);
-        myCalender.setEndDate(next30Days.getTimeInMillis()/1000);
+        next30Days.set(Calendar.DAY_OF_MONTH,next30Days.getActualMaximum(Calendar.DAY_OF_MONTH));
+        endDate = next30Days.getTimeInMillis()/1000;
+        myCalender.setEndDate(endDate);
 
         return myCalender;
     }

@@ -24,6 +24,7 @@ public class ApiService {
     private String JWT;
     private UserSharedManager userSharedManager;
 
+
     public ApiService(Context context) {
         this.context = context;
         userSharedManager = new UserSharedManager(context);
