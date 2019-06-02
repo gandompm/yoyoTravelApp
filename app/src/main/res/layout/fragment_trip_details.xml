@@ -96,7 +96,7 @@
                     android:background="@color/grey"
                     app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_title2"
                     android:layout_marginTop="16dp" android:id="@+id/imageView22"
-            />
+                    android:contentDescription="TODO"/>
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp" app:srcCompat="@drawable/ic_euro_symbol_black_24dp"
@@ -105,7 +105,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView22"
                     app:layout_constraintStart_toEndOf="@+id/imageView37" app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="16dp"
-            />
+                    android:contentDescription="TODO"/>
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp" app:srcCompat="@drawable/ic_brightness_4_black_24dp"
@@ -114,7 +114,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/imageView22"
                     app:layout_constraintTop_toTopOf="@+id/imageView22"
                     app:layout_constraintStart_toEndOf="@+id/imageView39" app:layout_constraintHorizontal_bias="0.5"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp" android:contentDescription="TODO"/>
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp" app:srcCompat="@drawable/ic_people_black_24dp"
@@ -195,7 +195,7 @@
                     android:id="@+id/imageView43" app:layout_constraintTop_toBottomOf="@+id/imageView42"
                     app:layout_constraintEnd_toStartOf="@+id/iv_tripdetails_tourleader" android:layout_marginEnd="16dp"
                     android:layout_marginTop="4dp" app:layout_constraintStart_toEndOf="@+id/imageView44"
-                    app:layout_constraintHorizontal_bias="0.5"/>
+                    app:layout_constraintHorizontal_bias="0.5" android:contentDescription="TODO"/>
 
             <ImageView
                     android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/imageView43" android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView43"
                     app:layout_constraintTop_toTopOf="@+id/imageView43" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"/>
+                    app:layout_constraintHorizontal_bias="0.5" android:contentDescription="TODO"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -300,6 +300,6 @@
             app:backgroundTint="@color/persiangard_blue"
             android:src="@drawable/ic_map_white_24dp"
             android:layout_margin="@dimen/standard_margin"
-            android:clickable="true"/>
+            android:clickable="true" android:focusable="true"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
