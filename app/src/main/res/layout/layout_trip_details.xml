@@ -52,7 +52,7 @@
             android:text="Mesr Village, Mesr Desert"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView84" app:layout_constraintStart_toStartOf="@+id/textView82"
+            android:id="@+id/tv_tripdetails_attractions" app:layout_constraintStart_toStartOf="@+id/textView82"
             app:layout_constraintTop_toBottomOf="@+id/textView82" android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" android:layout_marginEnd="8dp"
@@ -70,7 +70,7 @@
             android:text="camping at Desert, Desert Hike, Stargazing at Night"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView87" app:layout_constraintStart_toStartOf="@+id/textView85"
+            android:id="@+id/tv_tripdetails_itnarary" app:layout_constraintStart_toStartOf="@+id/textView85"
             app:layout_constraintTop_toBottomOf="@+id/textView85" android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
             android:text="Isfahan, Yazd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView88" app:layout_constraintStart_toEndOf="@+id/textView78"
+            android:id="@+id/tv_tripdetails_location_from" app:layout_constraintStart_toEndOf="@+id/textView78"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/textView78"
             app:layout_constraintBottom_toBottomOf="@+id/textView78" android:fontFamily="@font/roboto_regular"
@@ -107,7 +107,7 @@
             android:text="Isfahan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView91"
+            android:id="@+id/tv_tripdetails_location_to"
             app:layout_constraintTop_toTopOf="@+id/textView79"
             app:layout_constraintBottom_toBottomOf="@+id/textView79"
             app:layout_constraintStart_toEndOf="@+id/textView79" android:layout_marginStart="8dp"
@@ -138,7 +138,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView76"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Meals"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView87"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_itnarary"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
 
     <TextView
@@ -146,28 +146,29 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView77"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Transport"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView94"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_meals"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView80"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Excluded"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView95"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_transport"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView81"
-            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Options"
+            android:id="@+id/tv_tripdetails_rules"
+            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Rules"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView96"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
+
     <TextView
             android:text="Breakfast 0, Launch 2, Dinner 3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView94" android:layout_marginTop="4dp"
+            android:id="@+id/tv_tripdetails_meals" android:layout_marginTop="4dp"
             app:layout_constraintTop_toBottomOf="@+id/textView76" app:layout_constraintStart_toStartOf="@+id/textView76"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
@@ -176,7 +177,7 @@
             android:text="Bus and Car"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView95"
+            android:id="@+id/tv_tripdetails_transport"
             app:layout_constraintTop_toBottomOf="@+id/textView77" app:layout_constraintStart_toStartOf="@+id/textView77"
             android:layout_marginTop="4dp" android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +196,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView97" android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView81" app:layout_constraintStart_toStartOf="@+id/textView81"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_rules" app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_rules"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"/>
@@ -205,8 +206,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView98" android:textColor="@color/green_teal"
             android:fontFamily="@font/roboto_medium" android:text="Physical Rating" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView84"
-            app:layout_constraintStart_toStartOf="@+id/textView84"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_attractions"
+            app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_attractions"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -219,7 +220,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView86" android:textColor="@color/green_teal"
-            android:fontFamily="@font/roboto_medium" android:text="Included" android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_medium" android:text="Type" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/textView101"
             app:layout_constraintStart_toStartOf="@+id/textView101"/>
     <TextView
@@ -227,8 +228,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView83" android:textColor="@color/green_teal"
             android:fontFamily="@font/roboto_medium" android:text="Accomodation Group" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView102"
-            app:layout_constraintStart_toStartOf="@+id/textView102" android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_type"
+            app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_type" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"/>
     <TextView
             android:text="out of 5.2"
@@ -252,7 +253,7 @@
             android:text="Transport by bus from yazd to Khur and vice verca to Mesr and by car"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView102" app:layout_constraintStart_toStartOf="@+id/textView86"
+            android:id="@+id/tv_tripdetails_type" app:layout_constraintStart_toStartOf="@+id/textView86"
             android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/textView86"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" android:layout_marginEnd="8dp"

@@ -21,7 +21,7 @@ public class CitiesListBottomSheetDialogFragment extends BottomSheetDialogFragme
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_cities_list, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.rv_cities);
+//        RecyclerView recyclerView = view.findViewById(R.id.rv_cities);
         CitiesRecyclerviewAddaptor citiesRecyclerviewAddaptor = new CitiesRecyclerviewAddaptor(City.getFakeCities(), getContext(), new CitiesRecyclerviewAddaptor.RecyclerViewClickListener() {
             @Override
             public void recyclerViewListClicked() {
@@ -30,8 +30,8 @@ public class CitiesListBottomSheetDialogFragment extends BottomSheetDialogFragme
         });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(citiesRecyclerviewAddaptor);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setAdapter(citiesRecyclerviewAddaptor);
 
 
         return view;

@@ -13,7 +13,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.*;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -21,7 +20,7 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IP = "http://192.168.1.60:9000/";
+    private String IP = "http://192.168.1.63:9000/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -135,8 +134,8 @@ public class ApiService {
                                     JSONObject locationObject = locationJsonArray.getJSONObject(j);
                                     Location location = new Location();
                                     location.setTitle(locationObject.getString("title"));
-                                    location.setLon(locationObject.getInt("longitude"));
-                                    location.setLat(locationObject.getInt("latitude"));
+                                    location.setLon(locationObject.getDouble("longitude"));
+                                    location.setLat(locationObject.getDouble("latitude"));
                                     location.setOrder(locationObject.getInt("order"));
                                     locations.add(location);
                                 }
@@ -301,8 +300,8 @@ public class ApiService {
                                 location.setLocationId(jsonObject.getString("location_id"));
                                 location.setTitle(jsonObject.getString("title"));
                                 location.setCode(jsonObject.getString("code"));
-                                location.setLat(jsonObject.getInt("latitude"));
-                                location.setLon(jsonObject.getInt("longitude"));
+                                location.setLat(jsonObject.getDouble("latitude"));
+                                location.setLon(jsonObject.getDouble("longitude"));
 
                                 locations.add(location);
                         }
@@ -651,6 +650,51 @@ public class ApiService {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_MAX_RETRIES));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
+
+
+
+    public void getScheduleRequest(String tripId,long startDate, long endDate,Consumer<ArrayList<Schedule>> scheduleConsumer)
+    {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                IP + "api/trips/"+ tripId+ "?start_date=" + startDate + "&end_date=" + endDate ,null,
+                response -> {
+
+                    ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+                            Schedule schedule = new Schedule();
+
+                            JSONObject jsonObject = response.getJSONObject(i);
+
+                            schedule.setId(jsonObject.getString("schedule_id"));
+                            schedule.setPrice(jsonObject.getInt("price"));
+                            schedule.setMinCapacity(jsonObject.getInt("min_capacity"));
+                            schedule.setMaxCapacity(jsonObject.getInt("max_capacity"));
+                            schedule.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
+                            schedule.setStartTimeStamp(jsonObject.getLong("start_timestamp"));
+
+                            scheduleArrayList.add(schedule);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    scheduleConsumer.accept(scheduleArrayList);
+                }, e -> {
+            scheduleConsumer.accept(null);
+            e.printStackTrace();
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+//                params.put("Authorization", "JWT "+ JWT);
+                return params;
+            }
+        };
+
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
+    }
+
 
 
 

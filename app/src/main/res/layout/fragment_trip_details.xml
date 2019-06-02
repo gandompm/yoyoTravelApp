@@ -89,8 +89,7 @@
                     android:textSize="@dimen/standard" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_title"
                     android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="8dp"
-            />
+                    android:layout_marginTop="8dp"/>
 
             <ImageView
                     android:layout_width="match_parent" android:layout_height="110dp"
@@ -105,7 +104,8 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView22"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView22"
                     app:layout_constraintStart_toEndOf="@+id/imageView37" app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="16dp"/>
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="16dp"
+            />
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp" app:srcCompat="@drawable/ic_brightness_4_black_24dp"

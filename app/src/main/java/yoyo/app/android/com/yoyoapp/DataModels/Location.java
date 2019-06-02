@@ -5,8 +5,8 @@ public class Location {
     private String code;
     private String title;
     private int order;
-    private int lat;
-    private int lon;
+    private Double lat;
+    private Double lon;
 
     public String getLocationId() {
         return locationId;
@@ -32,21 +32,6 @@ public class Location {
         this.title = title;
     }
 
-    public int getLat() {
-        return lat;
-    }
-
-    public void setLat(int lat) {
-        this.lat = lat;
-    }
-
-    public int getLon() {
-        return lon;
-    }
-
-    public void setLon(int lon) {
-        this.lon = lon;
-    }
 
     public int getOrder() {
         return order;
@@ -54,5 +39,21 @@ public class Location {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 }

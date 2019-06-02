@@ -16,6 +16,7 @@ import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+import yoyo.app.android.com.yoyoapp.Trip.schedule.ScheduleTripFragment;
 
 
 public class MainPageFragment extends Fragment {
