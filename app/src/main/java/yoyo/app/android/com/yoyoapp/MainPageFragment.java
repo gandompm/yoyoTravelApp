@@ -18,6 +18,7 @@ import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.schedule.ScheduleTripFragment;
+import yoyo.app.android.com.yoyoapp.Trip.schedule.request.RequestFragment;
 
 
 public class MainPageFragment extends Fragment {
@@ -75,7 +76,11 @@ public class MainPageFragment extends Fragment {
 
 //                sendingToSearchFragment("hotel");
                 Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
-
+                RequestFragment requestFragment = new RequestFragment();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.container,requestFragment);
+                fragmentTransaction.addToBackStack("request");
+                fragmentTransaction.commit();
             }
         });
 

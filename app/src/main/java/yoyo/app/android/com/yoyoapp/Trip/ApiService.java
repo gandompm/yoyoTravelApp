@@ -696,6 +696,30 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
+    public void sendTripRequest(String tripId,JSONObject jsonObject, Consumer<Boolean> isRequestSuccessfull)
+    {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                IP + "api/trips/request/" + tripId, jsonObject,
+                response -> {
+                    isRequestSuccessfull.accept(true);
+                }, e -> {
+            isRequestSuccessfull.accept(false);
+            e.printStackTrace();
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT "+ JWT);
+                return params;
+            }
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+
+
 
 
 
