@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -72,7 +73,9 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                sendingToSearchFragment("hotel");
+//                sendingToSearchFragment("hotel");
+                Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
+
             }
         });
 

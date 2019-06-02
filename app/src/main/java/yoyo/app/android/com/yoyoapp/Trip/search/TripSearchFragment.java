@@ -35,12 +35,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
     private static final String TAG = "SearchActivity";
     private TextView checkInTextview, checkOutTextview, checkInTitle, checkOutTitle, nightNumTextview;
-    private TextView searchTextView;
+    private TextView searchOriginTextView,searchDestinationTextView;
     private TextView smallTitleTextview ,titleTextview;
-    private TextView filterPriceTextview, categoryTextview;
+    private TextView filterPriceTextview;
     private String incommingBundle;
     private Button searchButton;
-    private ImageView backButton , calendarLogo1, calendarLogo2 , searchCityLogo, filterLogo, categoryLogo;
+    private ImageView backButton , calendarLogo1, calendarLogo2 , searchCityLogo, filterLogo, searchCityLogo2;
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
     private CategotyFilterBottomSheetDialogFragment categotyFilterBottomSheetDialogFragment;
     private FragmentManager fragmentManager;
@@ -82,15 +82,33 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     }
 
     // setup cities search dialog
-    private void setupSearchDialog()
+    private void setupSearchDestination()
     {
         SimpleSearchDialogCompat<Searchable> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
-                "What are you looking for...?", null, locationsList,
+                "Where do you like to go?", null, locationsList,
                 new SearchResultListener<SampleSearchModel>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
 
-                        searchTextView.setText(item.getTitle());
+                        searchDestinationTextView.setText(item.getTitle());
+                        ((TripActivity)getActivity()).location = item.getTitle();
+                        dialog.dismiss();
+                    }
+                });
+
+        simpleSearchDialogCompat.show();
+    }
+
+    // setup cities search dialog
+    private void setupSearchOrigin()
+    {
+        SimpleSearchDialogCompat<Searchable> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
+                "Where do you want to start?", null, locationsList,
+                new SearchResultListener<SampleSearchModel>() {
+                    @Override
+                    public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
+
+                        searchOriginTextView.setText(item.getTitle());
                         ((TripActivity)getActivity()).location = item.getTitle();
                         dialog.dismiss();
                     }
@@ -121,7 +139,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         smallTitleTextview = view.findViewById(R.id.tv_search_title);
         searchButton = view.findViewById(R.id.button_search_search);
         backButton = view.findViewById(R.id.iv_search_back);
-        searchTextView = view.findViewById(R.id.et_search_bar);
+        searchOriginTextView = view.findViewById(R.id.et_search_bar_origin);
+        searchDestinationTextView = view.findViewById(R.id.et_search_bar_destination);
         filterPriceTextview = view.findViewById(R.id.tv_search_price_filter);
         fragmentManager = getFragmentManager();
         checkInTitle = view.findViewById(R.id.tv_search_check_in_txt);
@@ -129,9 +148,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         calendarLogo2 = view.findViewById(R.id.iv_search_calender_logo2);
         calendarLogo1 = view.findViewById(R.id.iv_search_calender_logo1);
         searchCityLogo = view.findViewById(R.id.iv_search_search_city);
+        searchCityLogo2 = view.findViewById(R.id.iv_search_search_city3);
         filterLogo = view.findViewById(R.id.iv_search_filter);
-        categoryTextview = view.findViewById(R.id.tv_search_type);
-        categoryLogo = view.findViewById(R.id.iv_search_type);
         nightNumTextview = view.findViewById(R.id.tv_search_night_num);
     }
 
@@ -143,7 +161,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         {
             titleTextview.setText(getString(R.string.tours));
             smallTitleTextview.setText(getString(R.string.going_anywhere));
-            searchTextView.setText(getString(R.string.tours_near_me));
+            searchOriginTextView.setText("Origin");
         }
     }
 
@@ -154,12 +172,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         checkOutTitle.setOnClickListener(this);
         calendarLogo1.setOnClickListener(this);
         calendarLogo2.setOnClickListener(this);
-        searchTextView.setOnClickListener(this);
+        searchOriginTextView.setOnClickListener(this);
         searchCityLogo.setOnClickListener(this);
         filterLogo.setOnClickListener(this);
         filterPriceTextview.setOnClickListener(this);
-        categoryTextview.setOnClickListener(this);
-        categoryLogo.setOnClickListener(this);
+        searchDestinationTextView.setOnClickListener(this);
+
     }
 
     private void setupSearchbutton() {
@@ -169,7 +187,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Bundle bundle = new Bundle();
 
-                bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchTextView.getText().toString());
+                bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
                 bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
                 bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
                 bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
@@ -219,9 +237,15 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         }
 
         if (v.getId() == R.id.iv_search_search_city
-                || v.getId() == R.id.et_search_bar)
+                || v.getId() == R.id.et_search_bar_origin)
         {
-            setupSearchDialog();
+            setupSearchOrigin();
+        }
+
+        if (v.getId() == R.id.iv_search_search_city3
+                || v.getId() == R.id.et_search_bar_destination)
+        {
+            setupSearchDestination();
         }
 
         if (v.getId() == R.id.iv_search_filter
@@ -230,11 +254,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
             setupFilterPriceButtomsheet();
         }
 
-        if (v.getId() == R.id.iv_search_type
-                || v.getId() == R.id.tv_search_type)
-        {
-            setupFilterCategoryButtomsheet();
-        }
+
     }
 
 

@@ -28,7 +28,7 @@
                     android:layout_toEndOf="@+id/iv_search_back"
                     android:gravity="center_vertical"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/hotels"
+                    android:text="@string/tour"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/header_2" />
@@ -75,7 +75,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center"
-                    android:text="@string/tv_hotelsearch_title"
+                    android:text="@string/going_anywhere"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/header_1"
@@ -90,26 +90,49 @@
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
                     android:src="@drawable/marker"
-                    app:layout_constraintBottom_toBottomOf="@+id/et_search_bar"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_search_bar_origin"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/et_search_bar"/>
+                    app:layout_constraintTop_toTopOf="@+id/et_search_bar_origin"/>
 
 
+            <ImageView
+                    android:id="@+id/iv_search_search_city3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/marker"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_search_bar_origin"
+                    app:layout_constraintStart_toStartOf="@+id/guideline20"
+                    app:layout_constraintTop_toTopOf="@+id/et_search_bar_origin" android:layout_marginStart="8dp"/>
             <TextView
-                    android:id="@+id/et_search_bar"
+                    android:id="@+id/et_search_bar_origin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@string/hotel_near_me"
+                    android:text="Origin"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/header_2"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:lines="1"
+                    android:autoSizeTextType="uniform"
                     app:layout_constraintStart_toEndOf="@+id/iv_search_search_city"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_search_title" android:padding="8dp"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tv_search_title" android:padding="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline20"/>
 
+            <TextView
+                    android:id="@+id/et_search_bar_destination"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/tv_item_destination"
+                    android:textColor="@color/black"
+                    android:autoSizeTextType="uniform"
+                    android:lines="1"
+                    android:padding="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline19" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/et_search_bar_origin"
+                    app:layout_constraintBottom_toBottomOf="@+id/et_search_bar_origin"/>
             <ImageView
                     android:id="@+id/line_search"
                     android:layout_width="match_parent"
@@ -120,7 +143,7 @@
                     android:src="@color/black4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_search_bar"/>
+                    app:layout_constraintTop_toBottomOf="@+id/et_search_bar_origin"/>
 
 
             <ImageView
@@ -148,6 +171,7 @@
                     android:id="@+id/tv_search_check_in"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:lines="1"
                     android:layout_alignParentBottom="true"
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@+id/iv_search_calender_logo1"
@@ -155,7 +179,7 @@
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/tv_datepicker_select_date"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/standard"
+                    android:autoSizeTextType="uniform"
                     app:layout_constraintStart_toEndOf="@+id/iv_search_calender_logo1"
                     app:layout_constraintTop_toTopOf="@+id/iv_search_calender_logo1"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_search_calender_logo1" android:padding="8dp"
@@ -187,13 +211,15 @@
                     android:id="@+id/tv_search_check_out"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:lines="1"
                     android:layout_alignParentBottom="true"
                     android:layout_toEndOf="@+id/iv_search_calender_logo2"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto_regular"
                     android:text="@string/tv_datepicker_select_date"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/standard" android:layout_marginTop="8dp"
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_search_check_out_txt"
                     app:layout_constraintStart_toEndOf="@+id/iv_search_calender_logo2"
                     android:layout_marginStart="8dp" android:padding="8dp"
@@ -249,43 +275,7 @@
                     android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_search_check_out"/>
 
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/type"
-                    android:textColor="@color/black2"
-                    android:textSize="@dimen/header_2"
-                    app:layout_constraintTop_toBottomOf="@+id/title_from_to_dots_divider"
-                    android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="16dp" android:id="@+id/textView36"/>
-
-            <ImageView
-                    android:id="@+id/iv_search_type"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:src="@drawable/ic_dehaze_black_24dp" app:layout_constraintTop_toBottomOf="@+id/textView36"
-                    app:layout_constraintStart_toStartOf="@+id/textView36" android:layout_marginTop="8dp"/>
-
-            <TextView
-                    android:id="@+id/tv_search_type"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@id/iv_search_type"
-                    android:text="@string/choose_tour_type"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="@dimen/standard"
-                    app:layout_constraintTop_toTopOf="@+id/iv_search_type"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_search_type"
-                    app:layout_constraintStart_toEndOf="@+id/iv_search_type" android:layout_marginStart="8dp"
-                    android:padding="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
-
-
-            <ImageView
+                       <ImageView
                     android:id="@+id/line_search_filter"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -305,9 +295,10 @@
                     android:text="@string/filter"
                     android:textColor="@color/black2"
                     android:textSize="@dimen/header_2" android:id="@+id/textView35"
-                    app:layout_constraintTop_toBottomOf="@+id/line_search_filter2"
+                    app:layout_constraintTop_toBottomOf="@+id/title_from_to_dots_divider"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"/>
+                    android:layout_marginTop="16dp"
+            />
 
             <ImageView
                     android:id="@+id/iv_search_filter"
@@ -334,18 +325,6 @@
                     android:padding="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
 
 
-            <ImageView
-                    android:id="@+id/line_search_filter2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@color/black4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_search_type"/>
-
-
             <Button
                     android:id="@+id/button_search_search"
                     android:layout_width="0dp"
@@ -368,12 +347,17 @@
                                                         android:layout_height="wrap_content"
                                                         android:id="@+id/guideline18"
                                                         android:orientation="vertical"
-                                                        app:layout_constraintGuide_percent="0.4"/>
+                                                        app:layout_constraintGuide_percent="0.40897098"/>
+            <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/guideline20"
+                                                        android:orientation="vertical"
+                                                        app:layout_constraintGuide_percent="0.5"/>
             <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"
                                                         android:id="@+id/guideline19"
                                                         android:orientation="vertical"
-                                                        app:layout_constraintGuide_percent="0.6"/>
+                                                        app:layout_constraintGuide_percent="0.5989446"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

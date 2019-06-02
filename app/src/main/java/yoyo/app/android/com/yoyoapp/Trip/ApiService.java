@@ -55,7 +55,7 @@ public class ApiService {
                                 JSONObject leaderObject = mainObject.getJSONObject("leader");
                                 tripLeader.setName(leaderObject.getString("name"));
                                 JSONObject pictureObject = leaderObject.getJSONObject("picture");
-                                tripLeader.setPicture(IP + pictureObject.getString("thumbnail_url"));
+                                tripLeader.setPicture(IP + pictureObject.getString("original_url"));
                                 tripLeader.setLanguage(leaderObject.getString("language"));
                                 trip.setTripLeader(tripLeader);
 
