@@ -49,7 +49,6 @@ public class ScheduleTripFragment extends Fragment {
 //      getSchedules(startDate, endDate);
         setupCalenderRecyclerview();
 
-
         return view;
     }
 
