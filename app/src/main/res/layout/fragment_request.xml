@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:background="@color/background"
+                                                   xmlns:ds="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   tools:context=".Trip.schedule.request.RequestFragment">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/standard_margin"
+            ds:cardCornerRadius="4dp"
+            android:layout_marginTop="8dp"
+            ds:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" ds:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/large_margin"
+                android:clipToPadding="false"
+                tools:context="yoyo.app.android.com.yoyoapp.EditProfileFragment">
+
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_left_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.95"/>
+
+            <TextView
+                    android:id="@+id/tv_request_fullname"
+                    android:text="@string/full_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_username"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+
+            <EditText
+                    android:id="@+id/et_request_firstname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:hint="@string/first_name"
+                    android:inputType="text"
+                    android:textAllCaps="false"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/bg_light_editprofile_item"
+                    android:textSize="@dimen/standard"
+                    tools:ignore="HardcodedText" app:layout_constraintTop_toBottomOf="@+id/tv_request_fullname"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    android:layout_marginTop="8dp" app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintEnd_toStartOf="@+id/et_edit_profile_lastname"
+                    app:layout_constraintHorizontal_chainStyle="packed" android:layout_marginEnd="16dp"/>
+
+            <EditText
+                    android:id="@+id/et_request_lastname"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:hint="@string/last_name"
+                    android:textAllCaps="false"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/bg_light_editprofile_item"
+                    android:textSize="@dimen/standard"
+                    tools:ignore="HardcodedText"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    android:inputType="text" app:layout_constraintStart_toEndOf="@+id/et_request_firstname"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toTopOf="@+id/et_request_firstname"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:textColor="@color/black2"
+                    android:textSize="13.3sp"
+                    android:id="@+id/textView23"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v" android:layout_marginTop="8dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/et_request_firstname"/>
+
+
+            <EditText
+                    android:id="@+id/et_request_email"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textAllCaps="false"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/bg_light_editprofile_item"
+                    android:textSize="@dimen/standard"
+                    tools:ignore="HardcodedText"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/textView23"/>
+
+
+            <TextView
+                    android:text="@string/phone_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView20"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintTop_toBottomOf="@+id/et_request_email" android:layout_marginTop="8dp"/>
+
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:background="@drawable/bg_light_editprofile_item"
+                    android:id="@+id/et_request_phone_number" app:layout_constraintTop_toBottomOf="@+id/textView20"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_right_v" android:layout_marginTop="8dp"
+                    android:paddingStart="8dp"/>
+
+            <TextView
+                    android:text="Passengers Count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView21"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintTop_toBottomOf="@+id/et_request_phone_number"
+                    android:layout_marginTop="8dp"/>
+
+            <Button
+                    android:text="Send Request"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_round_blue"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:textColor="@android:color/white" android:fontFamily="@font/roboto_medium"
+                    android:id="@+id/button_request_send"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v" android:layout_marginTop="16dp"
+                    ds:layout_constraintTop_toBottomOf="@+id/tv_request_date1"/>
+
+
+            <ImageView
+                    android:id="@+id/iv_request_plus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_add_circle_outline_blue_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintStart_toEndOf="@+id/tv_request_num" android:layout_marginStart="8dp"
+                    ds:layout_constraintTop_toTopOf="@+id/tv_request_num"
+                    ds:layout_constraintBottom_toBottomOf="@+id/tv_request_num"/>
+
+            <TextView
+                    android:id="@+id/tv_request_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/black1"
+                    android:gravity="center_horizontal" android:textSize="@dimen/header_1"
+                    android:layout_marginTop="16dp" ds:layout_constraintTop_toBottomOf="@+id/textView21"
+                    android:layout_marginEnd="8dp" ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    android:layout_marginStart="8dp" ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
+
+            <ImageView
+                    android:id="@+id/iv_request_minus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_remove_circle_outline_light_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintBottom_toBottomOf="@+id/tv_request_num"
+                    ds:layout_constraintTop_toTopOf="@+id/tv_request_num"
+                    ds:layout_constraintEnd_toStartOf="@+id/tv_request_num" android:layout_marginEnd="8dp"/>
+
+
+            <TextView
+                    android:text="Your first desire date:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView25" ds:layout_constraintTop_toBottomOf="@+id/iv_request_minus"
+                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    android:layout_marginTop="16dp"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:background="@drawable/bg_light_editprofile_item"
+                    android:id="@+id/tv_request_date1" ds:layout_constraintTop_toBottomOf="@+id/textView25"
+                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    android:layout_marginTop="8dp"/>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
