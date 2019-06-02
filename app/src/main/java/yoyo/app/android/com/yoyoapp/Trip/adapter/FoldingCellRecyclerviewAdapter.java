@@ -29,9 +29,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private Context context;
     private ArrayList<Trip> tripArrayList = new ArrayList<>();
-    private boolean on_attach = true;
-    private int animation_type = 2;
-    private int lastPosition = -1;
+
 
     public FoldingCellRecyclerviewAdapter(Context context) {
         this.context = context;
@@ -53,7 +51,6 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     @Override
     public void onBindViewHolder(@NonNull TripViewholder holder, int position) {
         FoldingCell cell = (FoldingCell) holder.itemView;
-        setAnimation(holder.itemView, position);
         holder.bindTrip(tripArrayList.get(position));
         holder.contentRequestBtn.getButton().setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -68,20 +65,19 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putString("title",trip.getTitle());
             bundle.putStringArrayList("itinerary",trip.getItineraries());
             bundle.putStringArrayList("attractions",trip.getAttractions());
-            bundle.putStringArrayList("transportation",trip.getAttractions());
+            bundle.putStringArrayList("transportation",trip.getTransportations());
             bundle.putStringArrayList("meals",trip.getMeals());
             bundle.putStringArrayList("rules",trip.getRules());
             bundle.putStringArrayList("categories",trip.getCategories());
+            bundle.putStringArrayList("gallery",trip.getGallery());
             bundle.putInt("days",trip.getDayNum());
             bundle.putInt("nights",trip.getNightNum());
-            bundle.putStringArrayList("gallerry",trip.getGallery());
             bundle.putString("locationTitleFrom", trip.getLocations().get(0).getTitle());
             bundle.putString("locationTitleTo", trip.getLocations().get(1).getTitle());
-            bundle.putInt("fromLat",trip.getLocations().get(0).getLat());
-            bundle.putInt("fromLong",trip.getLocations().get(0).getLon());
-            bundle.putInt("toLat",trip.getLocations().get(1).getLat());
-            bundle.putInt("toLong",trip.getLocations().get(1).getLon());
-
+            bundle.putDouble("fromLat",trip.getLocations().get(0).getLat());
+            bundle.putDouble("fromLong",trip.getLocations().get(0).getLon());
+            bundle.putDouble("toLat",trip.getLocations().get(1).getLat());
+            bundle.putDouble("toLong",trip.getLocations().get(1).getLon());
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
@@ -121,24 +117,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     public void registerUnfold(int position) {
         unfoldedIndexes.add(position);
     }
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                on_attach = false;
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
-        super.onAttachedToRecyclerView(recyclerView);
-    }
 
-    private void setAnimation(View view, int position) {
-        if (position > lastPosition) {
-            ItemAnimation.animate(view, on_attach ? position : -1, animation_type);
-            lastPosition = position;
-        }
-    }
 
     @Override
     public int getItemCount() {

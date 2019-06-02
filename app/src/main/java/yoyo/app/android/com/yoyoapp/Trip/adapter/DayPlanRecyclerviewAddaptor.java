@@ -6,22 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.annotation.NonNull;
+import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.R;
+import java.util.ArrayList;
 
 
 public class DayPlanRecyclerviewAddaptor extends RecyclerView.Adapter<DayPlanRecyclerviewAddaptor.DayPlanViewPager> {
 
     private Context context;
-    private int days;
+    private ArrayList<String> dayPlans;
     private int selectedItem = 0;
-    private OnDayClickedListner onDayClickedListner;
+    private Consumer<String> dayPlan;
 
-    public DayPlanRecyclerviewAddaptor(Context context, int days, OnDayClickedListner onDayClickedListner)
+    public DayPlanRecyclerviewAddaptor(Context context, ArrayList<String> dayPlans, androidx.core.util.Consumer<String> dayPlan)
     {
         this.context = context;
-        this.days = days;
-        this.onDayClickedListner = onDayClickedListner;
+        this.dayPlans = dayPlans;
+        this.dayPlan = dayPlan;
     }
 
     @NonNull
@@ -39,7 +41,7 @@ public class DayPlanRecyclerviewAddaptor extends RecyclerView.Adapter<DayPlanRec
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onDayClickedListner.onClicked(position);
+                dayPlan.accept(dayPlans.get(position));
                 selectedItem = position;
                 notifyDataSetChanged();
             }
@@ -54,7 +56,7 @@ public class DayPlanRecyclerviewAddaptor extends RecyclerView.Adapter<DayPlanRec
 
     @Override
     public int getItemCount() {
-        return days;
+        return dayPlans.size();
     }
 
     public class DayPlanViewPager extends RecyclerView.ViewHolder
@@ -70,10 +72,5 @@ public class DayPlanRecyclerviewAddaptor extends RecyclerView.Adapter<DayPlanRec
         {
             dayPlanButton.setText("Day "+ position);
         }
-    }
-
-    public interface OnDayClickedListner
-    {
-        void onClicked(int position);
     }
 }

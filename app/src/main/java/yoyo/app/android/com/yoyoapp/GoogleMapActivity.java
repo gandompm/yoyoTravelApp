@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -15,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.constant.Language;
 import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -26,18 +28,25 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
-
 public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-
+    private LatLng startLatLng;
+    private LatLng finishLatLng;
     private static final String TAG = "MapActivity";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_map);
 
+
+        double lat1 = getIntent().getExtras().getDouble("lat1");
+        double long1 = getIntent().getExtras().getDouble("long1");
+        double lat2 = getIntent().getExtras().getDouble("lat2");
+        double long2 = getIntent().getExtras().getDouble("long2");
+        startLatLng = new LatLng(lat1,long1);
+        finishLatLng = new LatLng(lat2,long2);
         initMap();
     }
 
@@ -57,19 +66,16 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
 
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this,R.raw.style_json));
 
-        LatLng latLng1 = new LatLng(35.715298, 51.404343);
-        LatLng latLng2 = new LatLng(33.98308, 51.43644);
-        LatLng latLng3 = new LatLng(32.6539, 51.6660);
 
-        moveCamera(googleMap, new LatLng(35.715298, 51.404343));
+
+        moveCamera(googleMap, startLatLng);
 
 
         Polyline polyline = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(
-                        latLng1,
-                        latLng2,
-                        latLng3
+                        startLatLng,
+                        finishLatLng
                 ).geodesic(true));
 
         polyline.setEndCap(new RoundCap());
