@@ -213,13 +213,13 @@
                 android:fontFamily="@font/roboto_medium" />
 
             <TextView
-                android:id="@+id/tv_trip_item_big_tripleade_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@id/tv_trip_item_big_trip_leader_name"
-                android:layout_below="@id/tv_trip_item_big_trip_leader_name"
-                android:text="@string/trip_leader"
-                android:textSize="@dimen/small"/>
+                    android:id="@+id/tv_trip_item_big_tripleade_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/tv_trip_item_big_trip_leader_name"
+                    android:layout_below="@id/tv_trip_item_big_trip_leader_name"
+                    android:text="Tour Leader"
+                    android:textSize="@dimen/small"/>
 
             <!--<TextView-->
                 <!--android:layout_width="wrap_content"-->

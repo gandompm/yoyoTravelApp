@@ -60,51 +60,57 @@
 
     <!-- RIGHT TITLE PART -->
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@drawable/round_trip_content_item"
-        android:paddingBottom="8dp"
-        android:paddingEnd="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingStart="8dp"
-        android:paddingTop="8dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/round_trip_content_item"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp" android:layout_alignParentTop="true">
 
 
         <TextView
-            android:id="@+id/tv_trip_item_small_trip_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="National Parks Tour"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            />
+                android:id="@+id/tv_trip_item_small_trip_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:autoSizeTextType="uniform"
+                android:text="National Parks Tour"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+        />
 
         <TextView
-            android:id="@+id/tv_trip_item_small_trip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_regular"
-            android:text="Bus, vip , 35"
-            android:textColor="@color/black"
-            android:layout_below="@+id/tv_trip_item_small_trip_title"
-            android:layout_marginBottom="4dp"/>
+                android:id="@+id/tv_trip_item_small_trip_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Bus, vip , 35"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/black"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tv_trip_item_small_trip_title"
+                android:layout_marginBottom="4dp"/>
 
 
         <ImageView
                 android:id="@+id/title_from_to_dots_divider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="5dp"
                 android:layout_below="@id/tv_trip_item_small_trip_group"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_toEndOf="@+id/title_from_to_dots"
                 android:layout_toRightOf="@+id/title_from_to_dots"
-                android:src="@drawable/dot" android:layout_marginEnd="8dp"/>
+                android:src="@drawable/dot" android:layout_marginEnd="8dp" android:scaleType="fitXY"/>
 
         <TextView
                 android:id="@+id/tv_trip_item_small_start_date"
@@ -189,59 +195,57 @@
                 android:layout_centerHorizontal="true"
                 android:textSize="8sp"
                 tools:text="Duration"
-                android:layout_below="@+id/tv_trip_item_small_duration"/>
+                android:layout_below="@+id/tv_trip_item_small_duration" android:text="@string/duration"/>
 
 
         <TextView
-            android:id="@+id/tv_trip_item_type_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/title_from_to_dots_divider"
-            android:text="Tour Type"
-            android:layout_above="@+id/tv_trip_item_small_type"
-            android:textSize="@dimen/small" />
-
-        <TextView
-            android:id="@+id/tv_trip_item_small_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@id/title_from_to_dots_divider"
-            tools:text="Qazvin"
-            android:textColor="@color/black"
-            android:textSize="@dimen/small"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/small"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/tv_trip_item_small_language"
-            android:text="@string/tv_item_language" />
-
-        <TextView
-            android:id="@+id/tv_trip_item_small_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            tools:text="FA"
-            android:textSize="@dimen/small"
-            android:textColor="@color/black"/>
-
-
-        <TextView
-                android:id="@+id/tv_trip_item_small_capacity"
+                android:id="@+id/tv_trip_item_type_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/title_from_to_dots_divider"
-                android:gravity="center"
-                tools:text="aaaaa"
-                android:textSize="@dimen/small"
+                android:layout_alignStart="@id/title_from_to_dots_divider"
+                android:text="Tour Type"
+                android:layout_above="@+id/tv_trip_item_small_type"
+                android:textSize="12sp" android:lines="1"/>
+
+        <TextView
+                android:id="@+id/tv_trip_item_small_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignStart="@id/title_from_to_dots_divider"
+                android:layout_toStartOf="@id/tv_trip_item_small_language"
+                android:layout_marginEnd="8dp"
+                tools:text="Qazvin"
+                android:textColor="@color/black"
+                android:autoSizeTextType="uniform"
+                android:layout_alignBaseline="@+id/tv_trip_item_small_language"
+                android:lines="1"/>
+
+        <TextView
+                android:id="@+id/tv_trip_item_small_languages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:textSize="12sp"
+                android:lines="1"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/tv_trip_item_small_language"
+                android:text="Languages"
+                android:layout_toEndOf="@+id/tv_trip_item_small_duration_title"
         />
 
+        <TextView
+                android:id="@+id/tv_trip_item_small_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignStart="@+id/tv_trip_item_small_languages"
+                tools:text="FA"
+                android:textColor="@color/black"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"/>
 
 
     </RelativeLayout>

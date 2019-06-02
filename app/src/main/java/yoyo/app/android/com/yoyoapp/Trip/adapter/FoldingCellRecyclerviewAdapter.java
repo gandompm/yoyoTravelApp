@@ -230,7 +230,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             price.setText("20$");
             startDate.setText("");
             endDate.setText("");
-            capacity.setText("");
+//            capacity.setText("");
         }
     }
 }

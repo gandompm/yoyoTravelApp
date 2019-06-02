@@ -21,7 +21,7 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IP = "http://192.168.1.60:9000/";
+    private String IP = "http://192.168.1.50:8000/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -56,7 +56,7 @@ public class ApiService {
                                 JSONObject leaderObject = mainObject.getJSONObject("leader");
                                 tripLeader.setName(leaderObject.getString("name"));
                                 JSONObject pictureObject = leaderObject.getJSONObject("picture");
-                                tripLeader.setPicture(IP + pictureObject.getString("thumbnail_url"));
+                                tripLeader.setPicture(IP + pictureObject.getString("original_url"));
                                 tripLeader.setLanguage(leaderObject.getString("language"));
                                 trip.setTripLeader(tripLeader);
 

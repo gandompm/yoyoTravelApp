@@ -39,6 +39,8 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private TripQuery tripQuery;
     private int page = 1;
     private View view;
+    private ImageView backImageView;
+    private TextView backTextView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         setupDate();
         setupFloatingActionButton();
         getTrips();
+        setupOnclickListener();
 
         return view;
     }
@@ -61,23 +64,17 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         adapter = new FoldingCellRecyclerviewAdapter(getContext());
         recyclerView.setAdapter(adapter);
         InfiniteScrollProvider infiniteScrollProvider = new InfiniteScrollProvider();
-        infiniteScrollProvider.attach(recyclerView, new InfiniteScrollProvider.OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
-                tripListViewModel.initTripList(page, tripQuery);
-                tripListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
-                    @Override
-                    public void onChanged(List<Trip> trips) {
-                        if (trips != null) {
-                            adapter.addTrips(trips);
-                            setupSnackBar();
+        infiniteScrollProvider.attach(recyclerView, () -> {
+            Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
+            tripListViewModel.initTripList(page, tripQuery);
+            tripListViewModel.getTripList().observe(getActivity(), trips -> {
+                if (trips != null) {
+                    adapter.addTrips(trips);
+                    setupSnackBar();
 
-                            page++;
-                        }
-                    }
-                });
-            }
+                    page++;
+                }
+            });
         });
     }
 
@@ -132,6 +129,8 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private void init() {
         floatingActionButton = view.findViewById(R.id.fbutton_hotellistsearchresult);
         shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
+        backImageView = view.findViewById(R.id.iv_trip_search_back);
+        backTextView = view.findViewById(R.id.tv_trip_search_back);
 
     }
 
@@ -165,9 +164,29 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
 
 
 
+
+    private void setupOnclickListener() {
+
+        backTextView.setOnClickListener(this);
+        backImageView.setOnClickListener(this);
+
+    }
+
+
     @Override
     public void onClick(View v) {
+
+        if (v.getId() == R.id.iv_trip_search_back
+                || v.getId() == R.id.tv_trip_search_back)
+        {
+            getFragmentManager().popBackStack();
+
+        }
     }
+
+
+
+
 
 }
 

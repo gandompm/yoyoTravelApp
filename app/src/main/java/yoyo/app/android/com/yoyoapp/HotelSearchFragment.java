@@ -113,7 +113,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         smallTitleTextview = view.findViewById(R.id.tv_search_title);
         searchButton = view.findViewById(R.id.button_search_search);
         backButton = view.findViewById(R.id.iv_search_back);
-        searchTextView = view.findViewById(R.id.et_search_bar);
+        searchTextView = view.findViewById(R.id.et_search_bar_origin);
         filterPriceTextview = view.findViewById(R.id.tv_search_price_filter);
         fragmentManager = getFragmentManager();
         checkInTitle = view.findViewById(R.id.tv_search_check_in_txt);
@@ -212,7 +212,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         }
 
         if (v.getId() == R.id.iv_search_search_city
-                || v.getId() == R.id.et_search_bar)
+                || v.getId() == R.id.et_search_bar_origin)
         {
             setupSearchDialog();
         }
