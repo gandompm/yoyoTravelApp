@@ -26,12 +26,11 @@
                     android:layout_height="200dp">
 
 
-                <ImageView android:layout_width="match_parent"
+                <ImageView
+                        android:id="@+id/iv_schedule_trip_image"
+                        android:layout_width="match_parent"
                            android:layout_height="200dp"
                             android:src="@color/blue2"/>
-
-
-
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -48,17 +47,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
 
-
-
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
-
-
-
-
-
 
 
 
@@ -93,12 +82,12 @@
 
 
             <Button
+                    android:id="@+id/button_schedule_request_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Other schedule"
+                    android:text="Request your desire date"
                     android:background="@android:color/transparent"
                     android:layout_gravity="center"
-
             />
 
 

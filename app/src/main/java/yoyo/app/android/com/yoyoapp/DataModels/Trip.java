@@ -12,6 +12,7 @@ public class Trip {
     private String endTime;
     private String price;
     private String image;
+    private String summary;
     private int remainingCapacity;
     private String previousPrice;
     private String language;
@@ -285,5 +286,13 @@ public class Trip {
 
     public void setCategories(ArrayList<String> categories) {
         this.categories = categories;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }

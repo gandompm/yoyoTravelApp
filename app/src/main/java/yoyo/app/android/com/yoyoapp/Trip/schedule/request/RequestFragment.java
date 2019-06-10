@@ -21,9 +21,9 @@ import yoyo.app.android.com.yoyoapp.Trip.Utils.DateCalenderSetup;
 public class RequestFragment extends Fragment {
 
     private EditText firstnameEditText,phoneNumberEditText,lastnameEditText, emailEditText;
-    private TextView passengerCount, date1Textview;
     private Button sendButton;
     private DatePickerDialog.OnDateSetListener dateOfBirthListner;
+    private TextView passengerCount, date1Textview;
     private ImageView minusImageview, plusImageview;
     private RequstViewModel requstViewModel;
     private JSONArray jsonArray;

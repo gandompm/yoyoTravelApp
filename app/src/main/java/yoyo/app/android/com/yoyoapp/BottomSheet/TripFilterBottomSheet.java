@@ -58,7 +58,6 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
         rangebarPriceTextview = view.findViewById(R.id.tv_filtertrip_price_num);
         rangeBarPrice = view.findViewById(R.id.rangebar_filtertrip_price);
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
-        rangeBarDuration = view.findViewById(R.id.rangebar_filtertrip_duration);
         gradientButton = view.findViewById(R.id.button_filtertrip_apply);
         gradientButton.setVisibility(View.GONE);
         closeImageview = view.findViewById(R.id.iv_filter_trip_close);
@@ -76,9 +75,9 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
     public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
         switch (rangeBar.getId())
         {
-            case R.id.rangebar_filtertrip_duration:
-                rangebarDurationTextview.setText(String.valueOf(rightPinIndex +1) + " × Day");
-                break;
+//            case R.id.rangebar_filtertrip_duration:
+//                rangebarDurationTextview.setText(String.valueOf(rightPinIndex +1) + " × Day");
+//                break;
             case R.id.rangebar_filtertrip_price:
                 rangebarPriceTextview.setText(String.valueOf(leftPinValue) + " - " + String.valueOf(rightPinValue) + " $");
                 break;

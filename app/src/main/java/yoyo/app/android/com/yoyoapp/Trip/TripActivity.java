@@ -29,6 +29,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
     public BottomNavigationView bottomNavigation;
     public int fromPrice = 0, toPrice = 20000000;
     public long fromTime = 1158742400, toTime = 1959088000;
+    public int minDuration = 1;
     public ArrayList<String> categories;
     public String location = "";
     public int diffDays = 7;
@@ -40,6 +41,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
 
         init();
         setupBottomNavigation();
+
     }
 
     private void init() {
@@ -53,26 +55,23 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         sendingToSearchFragment();
         bottomNavigation.setSelectedItemId(R.id.bn_home);
 
-        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.bn_home:
-                        finish();
-                        overridePendingTransition(0,  0);
-                        return true;
-                    case R.id.bn_profile:
-                        addFragment(new ProfileFragment(),"profile");
-                        return true;
-                    case R.id.bn_orders:
-                        if (MainActivity.isSingnedIn)
-                            addFragment(new TicketFragment(),"ticket");
-                        else
-                            addFragment(new TicketNotSignedInFragment(), "ticket not signed in");
-                        return true;
-                    default:
-                        return false;
-                }
+        bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.bn_home:
+                    finish();
+                    overridePendingTransition(0,  0);
+                    return true;
+                case R.id.bn_profile:
+                    addFragment(new ProfileFragment(),"profile");
+                    return true;
+                case R.id.bn_orders:
+                    if (MainActivity.isSingnedIn)
+                        addFragment(new TicketFragment(),"ticket");
+                    else
+                        addFragment(new TicketNotSignedInFragment(), "ticket not signed in");
+                    return true;
+                default:
+                    return false;
             }
         });
 
@@ -120,6 +119,13 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         {
             finish();
             overridePendingTransition(0,  0);
+        }
+        else if (getSupportFragmentManager().getBackStackEntryCount() ==1)
+        {
+            // clear filter parameters
+            minDuration =1;
+            categories.clear();
+            super.onBackPressed();
         }
         else
             super.onBackPressed();

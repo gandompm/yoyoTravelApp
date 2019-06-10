@@ -17,6 +17,7 @@ import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+import yoyo.app.android.com.yoyoapp.Trip.booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Trip.schedule.ScheduleTripFragment;
 import yoyo.app.android.com.yoyoapp.Trip.schedule.request.RequestFragment;
 
@@ -75,22 +76,26 @@ public class MainPageFragment extends Fragment {
             public void onClick(View view) {
 
 //                sendingToSearchFragment("hotel");
-                Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
-                RequestFragment requestFragment = new RequestFragment();
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.container,requestFragment);
-                fragmentTransaction.addToBackStack("request");
-                fragmentTransaction.commit();
+
+//                Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
+//                RequestFragment requestFragment = new RequestFragment();
+//                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//                fragmentTransaction.add(R.id.container,requestFragment);
+//                fragmentTransaction.addToBackStack("request");
+//                fragmentTransaction.commit();
+
+                Intent intent = new Intent(getActivity(),BookingActivity.class);
+                intent.putExtra("travellerNum",1);
+                startActivity(intent);
+                getActivity().overridePendingTransition(0,  0);
             }
         });
 
         tripsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getContext(), TripActivity.class));
                 getActivity().overridePendingTransition(0,  0);
-
             }
         });
 

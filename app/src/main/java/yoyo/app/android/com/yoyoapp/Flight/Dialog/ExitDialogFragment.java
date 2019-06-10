@@ -37,6 +37,7 @@ public class ExitDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), MainFlightActivity.class));
                 ((BookingActivity)getContext()).finish();
+                getActivity().overridePendingTransition(0,  0);
             }
         });
 

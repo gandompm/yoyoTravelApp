@@ -47,7 +47,7 @@
             android:id="@+id/textView82"
             app:layout_constraintTop_toBottomOf="@+id/textView89" android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" tools:text="TourHighlights"/>
+            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="TourHighlights"/>
     <TextView
             android:text="Mesr Village, Mesr Desert"
             android:layout_width="0dp"
@@ -195,7 +195,7 @@
             android:text="None"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView97" android:layout_marginTop="4dp"
+            android:id="@+id/tv_tripdetails_rule" android:layout_marginTop="4dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_rules" app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_rules"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
