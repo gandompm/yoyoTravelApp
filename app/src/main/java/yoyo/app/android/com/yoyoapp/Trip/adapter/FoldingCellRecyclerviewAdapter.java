@@ -40,6 +40,11 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         notifyDataSetChanged();
     }
 
+    public void clearTrips() {
+        tripArrayList.clear();
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TripViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -78,6 +83,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putDouble("fromLong",trip.getLocations().get(0).getLon());
             bundle.putDouble("toLat",trip.getLocations().get(1).getLat());
             bundle.putDouble("toLong",trip.getLocations().get(1).getLon());
+            bundle.putString("summary",trip.getSummary());
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
@@ -142,10 +148,13 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         private TextView fromBig;
         private TextView toBig;
         private TextView typeBig;
+        private TextView titleBig;
         private TextView transport;
         private TextView tripGroup;
         private TextView tripTitle;
+        private TextView durationBig;
         private ImageView tripImg;
+        private TextView groupBig;
         private TextView priceBig;
         private TextView passengerCount;
 
@@ -164,14 +173,17 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             contentRequestBtn = itemView.findViewById(R.id.content_request_btn);
             capacity = itemView.findViewById(R.id.tv_trip_item_small_capacity);
             duraion = itemView.findViewById(R.id.tv_trip_item_small_duration);
+            durationBig = itemView.findViewById(R.id.tv_trip_item_big_duration);
             tripLeaderName = itemView.findViewById(R.id.tv_trip_item_big_trip_leader_name);
             tripLeaderImg = itemView.findViewById(R.id.iv_trip_item_big_trip_leader_img);
-            fromBig = itemView.findViewById(R.id.tv_trip_item_big_start_point_address);
-            toBig = itemView.findViewById(R.id.tv_trip_item_big_end_point_address);
+            fromBig = itemView.findViewById(R.id.tv_trip_item_big_start_point);
+            toBig = itemView.findViewById(R.id.tv_trip_item_big_end_point);
             typeBig = itemView.findViewById(R.id.tv_trip_item_big_type);
             transport = itemView.findViewById(R.id.tv_trip_item_big_transport);
             tripImg = itemView.findViewById(R.id.iv_trip_item_big_trip_img);
             priceBig = itemView.findViewById(R.id.tv_trip_item_big_price);
+            titleBig = itemView.findViewById(R.id.tv_trip_item_big_group_name);
+            groupBig = itemView.findViewById(R.id.button_trip_item_big_trip_name);
             passengerCount = itemView.findViewById(R.id.tv_trip_item_big_passenger_count);
         }
 
@@ -185,9 +197,9 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             to.setText(trip.getLocations().get(1).getTitle());
             language.setText(trip.getTripLeader().getLanguage());
             duraion.setText(String.valueOf(trip.getDayNum()));
+            durationBig.setText(trip.getDayNum() + "Day");
             tripLeaderName.setText(trip.getTripLeader().getName());
             Picasso.with(context).load(trip.getTripLeader().getPicture()).into(tripLeaderImg);
-            Log.d(TAG, "bindTrip: www "+ trip.getTripLeader().getPicture());
             type.setText(trip.getCategories().get(0));
             fromBig.setText(trip.getLocations().get(0).getTitle());
             toBig.setText(trip.getLocations().get(1).getTitle());
@@ -204,6 +216,8 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
                 types = type + " ";
             }
             typeBig.setText(types);
+            titleBig.setText(trip.getTitle());
+            groupBig.setText(trip.getTour().getName());
 
             priceBig.setText("20$");
             price.setText("20$");

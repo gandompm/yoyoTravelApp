@@ -11,6 +11,7 @@ import java.util.List;
 public class TripListViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Trip>> tripArraylist;
+    private MutableLiveData<Integer> tripCountMutableLiveData;
     private TripListRepository tripListRepository;
 
     public TripListViewModel(@NonNull Application application) {
@@ -21,6 +22,7 @@ public class TripListViewModel extends AndroidViewModel {
     public void initTripList(int page, TripQuery tripQuery)
     {
         tripArraylist = new MutableLiveData<>();
+        tripCountMutableLiveData = new MutableLiveData<>();
         tripArraylist = tripListRepository.getTripList(page, tripQuery);
     }
 

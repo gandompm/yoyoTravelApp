@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class TripQuery {
 
+    private String type;
     private Long fromTime;
     private Long toTime;
     private int fromPrice;
     private int toPrice;
+    private int minDuration;
     private String location;
     private ArrayList<String> categories;
 
@@ -61,5 +63,21 @@ public class TripQuery {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getMinDuration() {
+        return minDuration;
+    }
+
+    public void setMinDuration(int minDuration) {
+        this.minDuration = minDuration;
     }
 }

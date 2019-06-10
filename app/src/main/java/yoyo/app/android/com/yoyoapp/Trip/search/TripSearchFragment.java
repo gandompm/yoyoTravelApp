@@ -191,20 +191,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
                 bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
                 bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
-                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, ((TripActivity)getActivity()).fromPrice);
-                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((TripActivity)getActivity()).toPrice);
-                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE,((TripActivity)getActivity()).fromTime);
-                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE,((TripActivity)getActivity()).toTime);
-                bundle.putStringArrayList(Utils.KEY_BUNDLE_CATEGORIES_CODE,((TripActivity)getActivity()).categories);
-                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).location);
-
 
                 TripResultFragment tripListSearchResultFragment = new TripResultFragment();
                 tripListSearchResultFragment.setArguments(bundle);
                 fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
                 fragmentTransaction.addToBackStack("triplist");
                 fragmentTransaction.commit();
-
             }
         });
 

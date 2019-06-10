@@ -47,16 +47,17 @@ public class TripDetailsFragment extends Fragment {
     private LatLng fromLatlng,  toLatlng;
     private Button tripDetailsButton;
     private CircleImageView tourLeaderImageview;
+    private String tourImage, tripTitle;
     private TextView dayNightNumTextview, priceTextview,titleTextview,
             title2Textview, nameTourLeader, familyNameLeader ,locationFromTextview, locationToTextview,
             attractionsTextview, rulesTextview, transportTextview, tourLeaderLanguageTextview,
-            typeTextview, dayPlanTextview, mealsTextview, passengerCountTextview, itineraryTextview ;
+            typeTextview, dayPlanTextview, mealsTextview, passengerCountTextview, itineraryTextview,
+            descriptionTextview;
 
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trip_details, container, false);
-        setHasOptionsMenu(true);
 
         init();
         setupViews();
@@ -73,6 +74,8 @@ public class TripDetailsFragment extends Fragment {
         ScheduleTripFragment scheduleTripFragment = new ScheduleTripFragment();
         Bundle bundle = new Bundle();
         bundle.putString("tripId",tripId);
+        bundle.putString("tourImage",tourImage);
+        bundle.putString("title",tripTitle);
         scheduleTripFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.container, scheduleTripFragment);
         fragmentTransaction.addToBackStack("schedule");
@@ -87,13 +90,16 @@ public class TripDetailsFragment extends Fragment {
         familyNameLeader.setText(bundle.getString("leaderName"));
         titleTextview.setText(bundle.getString("tourName"));
         title2Textview.setText(bundle.getString("title"));
-        Picasso.with(getContext()).load(bundle.getString("leaderPicture"));
+        tripTitle = bundle.getString("title");
         tourLeaderLanguageTextview.setText(bundle.getString("language"));
         locationFromTextview.setText(bundle.getString("locationTitleFrom"));
         locationToTextview.setText(bundle.getString("locationTitleTo"));
         passengerCountTextview.setText(String.valueOf(bundle.getInt("passengersCount")));
         fromLatlng = new LatLng(bundle.getDouble("fromLat"), bundle.getDouble("fromLong"));
         toLatlng = new LatLng(bundle.getDouble("toLat"), bundle.getDouble("toLong"));
+        Picasso.with(getContext()).load(bundle.getString("leaderPicture")).into(tourLeaderImageview);
+        // summary
+        descriptionTextview.setText(bundle.getString("summary"));
         // transports
         String transports ="";
         for (String transport : bundle.getStringArrayList("transportation")) {
@@ -130,9 +136,11 @@ public class TripDetailsFragment extends Fragment {
         for (String image : bundle.getStringArrayList("gallery")) {
             images.add(image);
         }
+        tourImage =  bundle.getStringArrayList("gallery").get(0);
         initComponent(images);
         // day plan
         dayPlans = bundle.getStringArrayList("itinerary");
+        dayPlanTextview.setText(bundle.getStringArrayList("itinerary").get(0));
         setupDayRecyclerview();
     }
 
@@ -151,14 +159,14 @@ public class TripDetailsFragment extends Fragment {
         locationToTextview = view.findViewById(R.id.tv_tripdetails_location_to);
         attractionsTextview = view.findViewById(R.id.tv_tripdetails_attractions);
         transportTextview = view.findViewById(R.id.tv_tripdetails_transport);
-        rulesTextview = view.findViewById(R.id.tv_tripdetails_rules);
+        rulesTextview = view.findViewById(R.id.tv_tripdetails_rule);
         tourLeaderImageview = view.findViewById(R.id.iv_tripdetails_tourleader);
         tourLeaderLanguageTextview = view.findViewById(R.id.tv_tripdetails_tourleader_language);
         typeTextview = view.findViewById(R.id.tv_tripdetails_type);
         mealsTextview = view.findViewById(R.id.tv_tripdetails_meals);
         passengerCountTextview = view.findViewById(R.id.tv_tripdetails_people_num);
         itineraryTextview = view.findViewById(R.id.tv_tripdetails_itnarary);
-//      descriptionTextview = view.findViewById(R.id.tv_tripdetails_desc);
+        descriptionTextview = view.findViewById(R.id.tv_tripdetails_desc);
     }
 
     private void sendToGoogleMap() {
@@ -237,8 +245,8 @@ public class TripDetailsFragment extends Fragment {
 
 
     private void initComponent(ArrayList<String> images) {
-        layout_dots = (LinearLayout) view.findViewById(R.id.layout_dots);
-        viewPager = (ViewPager) view.findViewById(R.id.pager);
+        layout_dots = view.findViewById(R.id.layout_dots);
+        viewPager = view.findViewById(R.id.pager);
         adapterImageSlider = new AdapterImageSlider(getActivity(), images);
 
         List<String> items = new ArrayList<>();
@@ -253,7 +261,6 @@ public class TripDetailsFragment extends Fragment {
         viewPager.setCurrentItem(0);
         addBottomDots(layout_dots, adapterImageSlider.getCount(), 0);
 
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int pos, float positionOffset, int positionOffsetPixels) {
@@ -267,7 +274,6 @@ public class TripDetailsFragment extends Fragment {
             public void onPageScrollStateChanged(int state) {
             }
         });
-
     }
 
     private void addBottomDots(LinearLayout layout_dots, int size, int current) {

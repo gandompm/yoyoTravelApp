@@ -2,20 +2,26 @@ package yoyo.app.android.com.yoyoapp.Trip.schedule;
 
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.DataModels.ScheduleCalender;
+import yoyo.app.android.com.yoyoapp.HotelSearchFragment;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleCalenderRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleRecyclerviewAddapter;
+import yoyo.app.android.com.yoyoapp.Trip.schedule.request.RequestFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,25 +36,45 @@ public class ScheduleTripFragment extends Fragment {
     private ArrayList<Schedule> scheduleArrayList;
     private ScheduleViewModel scheduleViewModel;
     private ScheduleRecyclerviewAddapter addapter;
+    private ImageView tourImage;
     private int position = 0;
-    private String tripId;
+    private String tripId, tripTitle, tripImage;
+    private Button requestDateButton;
     private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_schedule_trip, container, false);
 
-        tripId = getArguments().getString("tripId");
-        scheduleArrayList = new ArrayList<>();
-        scheduleResultRecyclerview = view.findViewById(R.id.rv_schedule_result);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-        scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
-        scheduleArrayList = new ArrayList<>();
-
-//      getSchedules(startDate, endDate);
+        recieveBundle();
+        init();
+        Picasso.with(getContext()).load(tripImage).into(tourImage);
+        requestDateButton.setOnClickListener(v-> sendToRequestPage());
         setupCalenderRecyclerview();
 
         return view;
+    }
+
+    private void recieveBundle() {
+        tripId = getArguments().getString("tripId");
+        tripTitle = getArguments().getString("title");
+        tripImage = getArguments().getString("tourImage");
+    }
+
+    private void init() {
+        tourImage = view.findViewById(R.id.iv_schedule_trip_image);
+        requestDateButton = view.findViewById(R.id.button_schedule_request_date);
+        scheduleResultRecyclerview = view.findViewById(R.id.rv_schedule_result);
+        scheduleArrayList = new ArrayList<>();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
+    }
+
+    private void sendToRequestPage() {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        RequestFragment requestFragment = new RequestFragment();
+        fragmentTransaction.add(R.id.container, requestFragment).addToBackStack("request");
+        fragmentTransaction.commit();
     }
 
     private void getSchedules(String tripId, long startDate, long endDate) {
@@ -63,7 +89,7 @@ public class ScheduleTripFragment extends Fragment {
                     scheduleArrayList.addAll(schedules);
 
                     if (addapter == null) {
-                        addapter = new ScheduleRecyclerviewAddapter(scheduleArrayList, getContext(), new ScheduleRecyclerviewAddapter.OnItemSelected() {
+                        addapter = new ScheduleRecyclerviewAddapter(scheduleArrayList, tripTitle, getContext(), new ScheduleRecyclerviewAddapter.OnItemSelected() {
                             @Override
                             public void onSendResult(Schedule schedule) {
 
@@ -112,8 +138,6 @@ public class ScheduleTripFragment extends Fragment {
 //        today.set(Calendar.MINUTE, 0);
 //        today.set(Calendar.SECOND, 0);
 
-
-
         for (int i = 0; i <= 12; i++) {
             myCalenders.add(setupCalender(today));
             today.add(Calendar.MONTH, +1);
@@ -121,7 +145,6 @@ public class ScheduleTripFragment extends Fragment {
                 getSchedules(tripId,startDate,endDate);
             }
         }
-
 
         return myCalenders;
     }

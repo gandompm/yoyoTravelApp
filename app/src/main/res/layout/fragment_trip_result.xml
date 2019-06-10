@@ -39,13 +39,13 @@
                       android:layout_marginEnd="@dimen/small"/>
 
             <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
-                    android:id="@+id/toggleSwitch_traveller_details"
+                    android:id="@+id/toggleSwitch_trip_search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:textToggleLeft="Fixed"
                     app:textToggleRight="Flexible"
                     app:checkedBackgroundColor="@color/white"
-                    app:checkedTextColor="@color/black1"
+                    app:checkedTextColor="@color/result_trip_green"
                     app:uncheckedBackgroundColor="@android:color/transparent"
                     app:uncheckedTextColor="@color/white"
                     app:separatorColor="@color/white"

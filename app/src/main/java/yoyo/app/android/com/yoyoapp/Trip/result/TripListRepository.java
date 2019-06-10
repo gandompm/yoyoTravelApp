@@ -14,6 +14,7 @@ public class TripListRepository {
     private ApiService apiService;
     private static TripListRepository instance;
     private MutableLiveData<List<Trip>> tripListMutableLiveData;
+    private MutableLiveData<Integer> tripCountMutableLiveData;
 
     public TripListRepository(Context context) {
         this.context = context;
@@ -31,6 +32,7 @@ public class TripListRepository {
     public MutableLiveData<List<Trip>> getTripList(int page, TripQuery tripQuery)
     {
         tripListMutableLiveData = new MutableLiveData<>();
+        tripCountMutableLiveData = new MutableLiveData<>();
         setTripList(page ,tripQuery);
         return tripListMutableLiveData;
     }
