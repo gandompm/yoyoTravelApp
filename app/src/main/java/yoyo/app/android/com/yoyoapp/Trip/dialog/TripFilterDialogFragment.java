@@ -25,7 +25,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialogFragment{
+public class TripFilterDialogFragment extends BottomSheetDialogFragment{
 
     private static final String TAG = "TripFilterDialogFragmen";
     private RangeBar rangeBarPrice;
@@ -47,14 +47,13 @@ public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialog
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_sheet_filter_trip,container,false);
 
+
         init();
         setupNumberPicker();
         setupPriceRangeBar();
-        setupRecyclerview();
-        getCategories();
         gradientButton.getButton().setOnClickListener(v -> setupApplyButton());
         closeImageview.setOnClickListener(v -> dismiss());
-//      rangeBarPrice.setOnRangeBarChangeListener(this);
+//        rangeBarPrice.setOnRangeBarChangeListener(this);
 
         return view;
     }
@@ -93,8 +92,6 @@ public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialog
         if (hasDurationChanged) {
             ((TripActivity)getActivity()).minDuration = duration;
         }
-        // save selected airlines to main activity
-        ((TripActivity)getActivity()).categories = categoryNames;
         dismiss();
         getFragmentManager().popBackStack();
 
@@ -151,7 +148,7 @@ public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialog
 
 
     private void setupRecyclerview() {
-        recyclerView = view.findViewById(R.id.rv_filtertour_types);
+        recyclerView = view.findViewById(R.id.rv_category);
         recyclerView.setLayoutManager( new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
@@ -166,13 +163,7 @@ public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialog
                     categorieList.addAll(categories);
                     if (adapter == null)
                     {
-                        adapter = new CategoryRecyclerviewAddapter(categorieList, getContext(), category -> {
-                            if (categoryNames.contains(category)) {
-                                categoryNames.remove(category);
-                            } else {
-                                categoryNames.add(category);
-                            }
-                        });
+//                        adapter = new CategoryRecyclerviewAddapter(categorieList, getContext(), CategotyFilterBottomSheetDialogFragment.this);
                         recyclerView.setAdapter(adapter);
                     }
                     else
@@ -182,9 +173,9 @@ public class TripFilterDialogBottomSheetDialogFragment extends BottomSheetDialog
         });
     }
 
-    public static TripFilterDialogBottomSheetDialogFragment newInstance()
+    public static TripFilterDialogFragment newInstance()
     {
-        return new TripFilterDialogBottomSheetDialogFragment();
+        return new TripFilterDialogFragment();
     }
 
 }

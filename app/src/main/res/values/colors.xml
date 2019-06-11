@@ -29,6 +29,8 @@
     <color name="accent">#ff2d6f</color>
     <color name="black3_transparent">#b2666666</color>
     <color name="demo_dark_transparent">#24000000</color>
+    <color name="item_dark_transparent">#2D000000</color>
+
 
     //folding cell colors
     <color name="bgBackSideColor">#f4f0ff</color>

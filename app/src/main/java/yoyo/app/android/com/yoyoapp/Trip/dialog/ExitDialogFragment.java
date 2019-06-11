@@ -8,10 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import androidx.fragment.app.DialogFragment;
-import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
-import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Trip.booking.BookingActivity;
 
 
 public class ExitDialogFragment extends DialogFragment {
