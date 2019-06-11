@@ -20,8 +20,7 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IP = "http://192.168.1.61:8000/";
-    private String IMAGEIP = "http://192.168.1.54:8000";
+    private String IP = "http://192.168.1.67:9000/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -34,21 +33,19 @@ public class ApiService {
 
     public void getTripListRequest(int page, TripQuery tripQuery, Consumer<ArrayList<Trip>> tripArrayListConsumer)
     {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips" + "?price_min=" +
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/trips" + "?price_min="+
                 tripQuery.getFromPrice()+"&price_max="+tripQuery.getToPrice()+"&start_date="+tripQuery.getFromTime()+
                 "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&location=" + tripQuery.getLocation()+
-                "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&offset="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
+                "&duration_min=1&duration_max=999&offset="+ page +"&limit=10&reserve_type=FIXED",null,
                 response -> {
 
                     ArrayList<Trip> trips = new ArrayList<>();
                     try {
-                    JSONArray tripJsonArray = response.getJSONArray("trips");
-
-                        for (int i = 0; i < tripJsonArray.length(); i++) {
+                        for (int i = 0; i < response.length(); i++) {
 
                                 Trip trip = new Trip();
 
-                                JSONObject mainObject = tripJsonArray.getJSONObject(i);
+                                JSONObject mainObject = response.getJSONObject(i);
                                 trip.setTripId(mainObject.getString("trip_id"));
                                 trip.setTitle(mainObject.getString("title"));
                                 trip.setNightNum(mainObject.getInt("days"));
@@ -59,7 +56,7 @@ public class ApiService {
                                 JSONObject leaderObject = mainObject.getJSONObject("leader");
                                 tripLeader.setName(leaderObject.getString("name"));
                                 JSONObject pictureObject = leaderObject.getJSONObject("picture");
-                                tripLeader.setPicture(IMAGEIP + pictureObject.getString("original_url"));
+                                tripLeader.setPicture(IP + pictureObject.getString("original_url"));
                                 tripLeader.setLanguage(leaderObject.getString("language"));
                                 trip.setTripLeader(tripLeader);
 
@@ -127,7 +124,7 @@ public class ApiService {
                                 JSONArray galleryJsonArray = mainObject.getJSONArray("gallery");
                                 for (int j = 0; j < galleryJsonArray.length(); j++) {
                                     JSONObject galleryObject = galleryJsonArray.getJSONObject(j);
-                                    galleries.add(IMAGEIP + galleryObject.getString("original_url"));
+                                    galleries.add(IP + galleryObject.getString("original_url"));
                                 }
                                 trip.setGallery(galleries);
 
@@ -144,9 +141,6 @@ public class ApiService {
                                     locations.add(location);
                                 }
                                 trip.setLocations(locations);
-
-                                int tripCount = response.getInt("count");
-//                                tripCountConsumer.accept(tripCount);
 
 //                                // start and end time
 //                                Calendar cal = getDateAndTime(mainObject.getLong("start_time"));
@@ -193,8 +187,8 @@ public class ApiService {
             error.printStackTrace();
         });
 
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
     private Calendar getDateAndTime(Long date) {
@@ -672,6 +666,7 @@ public class ApiService {
                             Schedule schedule = new Schedule();
 
                             JSONObject jsonObject = response.getJSONObject(i);
+
                             schedule.setId(jsonObject.getString("schedule_id"));
                             schedule.setPrice(jsonObject.getInt("price"));
                             schedule.setMinCapacity(jsonObject.getInt("min_capacity"));
