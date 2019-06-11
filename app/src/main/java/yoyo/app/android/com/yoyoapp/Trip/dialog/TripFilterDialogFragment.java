@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private static final String TAG = "TripFilterDialogFragmen";
     private RangeBar rangeBarPrice;
     private TextView rangebarPriceTextview, rangebarDurationTextview;
-    private GradientButton gradientButton;
+    private Button gradientButton;
     private ImageView closeImageview;
     private ArrayList<Category> categorieList;
     private RecyclerView recyclerView;
@@ -51,7 +52,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         init();
         setupNumberPicker();
         setupPriceRangeBar();
-        gradientButton.getButton().setOnClickListener(v -> setupApplyButton());
+        gradientButton.setOnClickListener(v -> setupApplyButton());
         closeImageview.setOnClickListener(v -> dismiss());
 //        rangeBarPrice.setOnRangeBarChangeListener(this);
 
