@@ -25,7 +25,6 @@ import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFrag
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
-import yoyo.app.android.com.yoyoapp.Trip.result.TripListSearchResultFragment;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
 
 import java.util.ArrayList;
@@ -173,11 +172,11 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
 
                 if (incommingBundle.equals("trip"))
                 {
-                    TripListSearchResultFragment tripListSearchResultFragment = new TripListSearchResultFragment();
-                    tripListSearchResultFragment.setArguments(bundle);
-                    fragmentTransaction.replace(R.id.container, tripListSearchResultFragment);
-                    fragmentTransaction.addToBackStack("triplist");
-                    fragmentTransaction.commit();
+//                    TripListSearchResultFragment tripListSearchResultFragment = new TripListSearchResultFragment();
+//                    tripListSearchResultFragment.setArguments(bundle);
+//                    fragmentTransaction.replace(R.id.container, tripListSearchResultFragment);
+//                    fragmentTransaction.addToBackStack("triplist");
+//                    fragmentTransaction.commit();
                 }
                 else
                 {
