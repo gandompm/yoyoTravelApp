@@ -1,11 +1,13 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -32,13 +34,14 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private RangeBar rangeBarPrice;
     private TextView rangebarPriceTextview, rangebarDurationTextview;
     private Button gradientButton;
-    private ImageView closeImageview;
+//    private ImageView closeImageview;
     private ArrayList<Category> categorieList;
     private RecyclerView recyclerView;
     private CategoryRecyclerviewAddapter adapter;
     private ArrayList<String> categoryNames;
     private TripSearchViewModel tripSearchViewModel;
     private NumberPicker numberPicker;
+    private RelativeLayout relativeLayout;
     private String minimum, maximum;
     private String minPrice = "10", maxPrice = "5500";
     private boolean hasPriceChanged = false, hasDurationChanged = false;
@@ -53,8 +56,12 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         setupNumberPicker();
         setupPriceRangeBar();
         gradientButton.setOnClickListener(v -> setupApplyButton());
-        closeImageview.setOnClickListener(v -> dismiss());
+//        closeImageview.setOnClickListener(v -> dismiss());
 //        rangeBarPrice.setOnRangeBarChangeListener(this);
+//        setupRecyclerview();
+//        getCategories();
+
+
 
         return view;
     }
@@ -63,8 +70,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         // Using string values
         // IMPORTANT! setMinValue to 1 and call setDisplayedValues after setMinValue and setMaxValue
         numberPicker.setOrientation(NumberPicker.HORIZONTAL);
-        String[] data = {"1 Day", "2 Day", "3 Day", "4 Day", "5 Day", "6 Day", "7 Day",
-                "8 Day", "9 Day","10 Day","11 Day","12 Day","13 Day"};
+        String[] data = {"1 Days", "2 Days", "3 Days", "4 Days", "5 Days", "6 Days", "7 Days",
+                "8 Days", "9 Days","10 Days","11 Days","12 Days","13 Days"};
         numberPicker.setMinValue(1);
         numberPicker.setMaxValue(data.length);
         numberPicker.setDisplayedValues(data);
@@ -74,7 +81,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 hasDurationChanged = true;
-                rangebarDurationTextview.setText(newVal +" * Day");
+                rangebarDurationTextview.setText(newVal +" * Days");
                 duration = newVal;
                 if (gradientButton.getVisibility() == View.GONE)
                 {
@@ -132,7 +139,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
         gradientButton = view.findViewById(R.id.button_filtertrip_apply);
         gradientButton.setVisibility(View.GONE);
-        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
+//        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
         categorieList = new ArrayList<>();
         categoryNames = ((TripActivity)getActivity()).categories;
         numberPicker = view.findViewById(R.id.number_picker);

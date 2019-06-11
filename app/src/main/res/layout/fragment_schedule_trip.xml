@@ -16,12 +16,12 @@
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tb_schedule"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:background="@drawable/gradient_background"
                 app:layout_scrollFlags="scroll|enterAlways"
-                android:layoutDirection="ltr">
+                >
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
 
@@ -29,11 +29,12 @@
                 <ImageView
                         android:id="@+id/iv_schedule_trip_image"
                         android:layout_width="match_parent"
-                           android:layout_height="200dp"
-                            android:src="@color/blue2"/>
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        />
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView

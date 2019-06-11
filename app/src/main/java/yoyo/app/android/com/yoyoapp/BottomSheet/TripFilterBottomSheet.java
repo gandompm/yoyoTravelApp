@@ -60,7 +60,7 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
         gradientButton = view.findViewById(R.id.button_filtertrip_apply);
         gradientButton.setVisibility(View.GONE);
-        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
+//        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
     }
 
 
