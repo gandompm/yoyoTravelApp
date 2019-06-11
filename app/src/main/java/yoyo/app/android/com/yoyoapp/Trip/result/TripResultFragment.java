@@ -17,6 +17,7 @@ import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
+import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery;
 import yoyo.app.android.com.yoyoapp.R;
@@ -26,6 +27,7 @@ import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -146,10 +148,15 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         tripQuery.setFromTime(((TripActivity)getActivity()).fromTime);
         tripQuery.setToTime(((TripActivity)getActivity()).toTime);
         tripQuery.setLocation(((TripActivity)getActivity()).location);
-        tripQuery.setCategories(((TripActivity)getActivity()).categories);
         tripQuery.setMinDuration(((TripActivity)getActivity()).minDuration);
         tripQuery.setFromPrice(((TripActivity)getActivity()).fromPrice);
         tripQuery.setToPrice(((TripActivity)getActivity()).toPrice);
+        // category
+        ArrayList<String> categoryCodes = new ArrayList<>();
+        for (Category category : ((TripActivity)getActivity()).categories ) {
+            categoryCodes.add(category.getCode());
+        }
+        tripQuery.setCategories(categoryCodes);
     }
 
     private void init() {

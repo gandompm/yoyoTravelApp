@@ -9,7 +9,6 @@ import android.widget.*;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import ir.mirrajabi.searchdialog.core.Searchable;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
@@ -42,7 +41,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     private Button searchButton;
     private ImageView backButton , calendarLogo1, calendarLogo2 , searchCityLogo, filterLogo, searchCityLogo2;
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
-    private CategotyFilterBottomSheetDialogFragment categotyFilterBottomSheetDialogFragment;
     private FragmentManager fragmentManager;
     private TripSearchViewModel tripSearchViewModel;
     private ArrayList<SampleSearchModel> locationsList;
@@ -62,15 +60,33 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         setupSearchbutton();
         backButton.setOnClickListener(v -> getActivity().finish());
 
-        getLocations();
+        getOrigin();
+        getDestination();
         return view;
     }
 
-    private void getLocations() {
-        tripSearchViewModel.initLocationList();
-        tripSearchViewModel.getLocationList().observe(getActivity(), new Observer<List<Location>>() {
+    private void getDestination() {
+        tripSearchViewModel.initDestination();
+        tripSearchViewModel.getDestinations().observe(getActivity(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
+                locationsList.clear();
+                if (locations != null) {
+                    for (Location location:locations) {
+                        SampleSearchModel sampleSearchModel = new SampleSearchModel(location.getTitle());
+                        locationsList.add(sampleSearchModel);
+                    }
+                }
+            }
+        });
+    }
+
+    private void getOrigin() {
+        tripSearchViewModel.initOrigin();
+        tripSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
+            @Override
+            public void onChanged(List<Location> locations) {
+                locationsList.clear();
                 if (locations != null) {
                     for (Location location:locations) {
                         SampleSearchModel sampleSearchModel = new SampleSearchModel(location.getTitle());
@@ -124,11 +140,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
     }
 
-    private void setupFilterCategoryButtomsheet() {
 
-        categotyFilterBottomSheetDialogFragment = CategotyFilterBottomSheetDialogFragment.newInstance();
-        categotyFilterBottomSheetDialogFragment.show(getFragmentManager(), "add_category_filter_dialog_fragment");
-    }
 
     private void init() {
         locationsList = new ArrayList<>();

@@ -12,7 +12,8 @@ import java.util.List;
 
 public class TripSearchViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Location>> locationsMutableLiveData;
+    private MutableLiveData<List<Location>> originsMutableLiveData;
+    private MutableLiveData<List<Location>> destinationsMutableLiveData;
     private MutableLiveData<List<Category>> categoriesMutableLiveData;
     private TripSearchRepository tripSearchRepository;
 
@@ -21,13 +22,13 @@ public class TripSearchViewModel extends AndroidViewModel {
         tripSearchRepository = TripSearchRepository.getInstance(getApplication());
     }
 
-    public void initLocationList() {
-        locationsMutableLiveData = new MutableLiveData<>();
-        locationsMutableLiveData = tripSearchRepository.getLocations();
+    public void initOrigin() {
+        originsMutableLiveData = new MutableLiveData<>();
+        originsMutableLiveData = tripSearchRepository.getOrigins();
     }
 
-    public LiveData<List<Location>> getLocationList() {
-        return locationsMutableLiveData;
+    public LiveData<List<Location>> getOrigins() {
+        return originsMutableLiveData;
     }
 
     public void initCategoryList() {
@@ -37,5 +38,14 @@ public class TripSearchViewModel extends AndroidViewModel {
 
     public LiveData<List<Category>> getCategoryList() {
         return categoriesMutableLiveData;
+    }
+
+    public void initDestination() {
+        destinationsMutableLiveData = new MutableLiveData<>();
+        destinationsMutableLiveData = tripSearchRepository.getDestination();
+    }
+
+    public LiveData<List<Location>> getDestinations() {
+        return destinationsMutableLiveData;
     }
 }

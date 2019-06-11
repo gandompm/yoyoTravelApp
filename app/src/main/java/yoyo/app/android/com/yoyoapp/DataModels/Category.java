@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.DataModels;
 
 public class Category {
     private String name;
+    private String code;
     private boolean isSelected;
 
     public String getName() {
@@ -18,5 +19,13 @@ public class Category {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
