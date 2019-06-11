@@ -59,6 +59,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         setupToggleButton();
         setupOnclickListener();
 
+
         return view;
     }
 

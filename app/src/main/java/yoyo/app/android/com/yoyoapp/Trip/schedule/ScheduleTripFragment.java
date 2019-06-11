@@ -4,6 +4,7 @@ package yoyo.app.android.com.yoyoapp.Trip.schedule;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class ScheduleTripFragment extends Fragment {
     private String tripId, tripTitle, tripImage;
     private Button requestDateButton;
     private View view;
+    private Toolbar toolbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class ScheduleTripFragment extends Fragment {
         recieveBundle();
         init();
         Picasso.with(getContext()).load(tripImage).into(tourImage);
+        toolbar.setBackground(tourImage.getDrawable());
         requestDateButton.setOnClickListener(v-> sendToRequestPage());
         setupCalenderRecyclerview();
 
@@ -68,6 +71,7 @@ public class ScheduleTripFragment extends Fragment {
         scheduleArrayList = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
+        toolbar = view.findViewById(R.id.tb_schedule);
     }
 
     private void sendToRequestPage() {
