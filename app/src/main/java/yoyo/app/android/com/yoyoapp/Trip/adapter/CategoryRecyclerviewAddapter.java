@@ -40,7 +40,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
         holder.bindAirlineItem(category);
         holder.itemView.setOnClickListener(v -> {
             category.setSelected(!category.isSelected());
-            onItemCategorySelected.onSelectd(category.getName());
+            onItemCategorySelected.onSelectd(category);
             if (category.isSelected())
             {
                 holder.nameTextview.setTextColor(context.getResources().getColor(R.color.white));
@@ -90,7 +90,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
     // callback for when user click on one item of airline list
     public interface OnItemCategorySelected
     {
-        void onSelectd(String name);
+        void onSelectd(Category category);
     }
 
 

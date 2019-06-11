@@ -3,15 +3,13 @@ package yoyo.app.android.com.yoyoapp.Trip;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.CategotyFilterBottomSheetDialogFragment;
+import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
@@ -24,13 +22,13 @@ import yoyo.app.android.com.yoyoapp.Utils;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class TripActivity extends AppCompatActivity implements PriceFilterBottomSheetDialogFragment.BotomSheetListener, CategotyFilterBottomSheetDialogFragment.BotomSheetListener {
+public class TripActivity extends AppCompatActivity implements PriceFilterBottomSheetDialogFragment.BotomSheetListener {
 
     public BottomNavigationView bottomNavigation;
     public int fromPrice = 0, toPrice = 20000000;
     public long fromTime = 1158742400, toTime = 1959088000;
     public int minDuration = 1;
-    public ArrayList<String> categories;
+    public ArrayList<Category> categories;
     public String location = "";
     public int diffDays = 7;
 
@@ -131,18 +129,6 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
             super.onBackPressed();
     }
 
-    @Override
-    public void onApplyClicked(ArrayList<String> catNames) {
-        StringBuilder catString = new StringBuilder();
-        for (String catName: catNames) {
-            catString.append(catName + "• ");
-        }
-        TextView categoryTextview = findViewById(R.id.tv_search_type);
-        categoryTextview.setText(catString);
-        categories = catNames;
-        if (catNames.size()==0)
-            categoryTextview.setText(getResources().getString(R.string.choose_tour_type));
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

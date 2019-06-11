@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.appyvet.materialrangebar.RangeBar;
-import com.dagang.library.GradientButton;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.shawnlin.numberpicker.NumberPicker;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
@@ -36,7 +35,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private ArrayList<Category> categorieList;
     private RecyclerView recyclerView;
     private CategoryRecyclerviewAddapter adapter;
-    private ArrayList<String> categoryNames;
+    private ArrayList<Category> selectedCategories;
     private TripSearchViewModel tripSearchViewModel;
     private NumberPicker numberPicker;
     private String minimum, maximum;
@@ -48,13 +47,14 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_sheet_filter_trip,container,false);
 
-
         init();
         setupNumberPicker();
         setupPriceRangeBar();
+        setupRecyclerview();
+        getCategories();
         gradientButton.setOnClickListener(v -> setupApplyButton());
         closeImageview.setOnClickListener(v -> dismiss());
-//        rangeBarPrice.setOnRangeBarChangeListener(this);
+//      rangeBarPrice.setOnRangeBarChangeListener(this);
 
         return view;
     }
@@ -134,7 +134,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         gradientButton.setVisibility(View.GONE);
         closeImageview = view.findViewById(R.id.iv_filter_trip_close);
         categorieList = new ArrayList<>();
-        categoryNames = ((TripActivity)getActivity()).categories;
+        selectedCategories = ((TripActivity)getActivity()).categories;
         numberPicker = view.findViewById(R.id.number_picker);
         tripSearchViewModel = ViewModelProviders.of(getActivity()).get(TripSearchViewModel.class);
     }
@@ -149,7 +149,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
 
 
     private void setupRecyclerview() {
-        recyclerView = view.findViewById(R.id.rv_category);
+        recyclerView = view.findViewById(R.id.rv_filtertour_types);
         recyclerView.setLayoutManager( new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
     }
 
@@ -164,7 +164,13 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                     categorieList.addAll(categories);
                     if (adapter == null)
                     {
-//                        adapter = new CategoryRecyclerviewAddapter(categorieList, getContext(), CategotyFilterBottomSheetDialogFragment.this);
+                        adapter = new CategoryRecyclerviewAddapter(categorieList, getContext(), category -> {
+                            if (selectedCategories.contains(category)) {
+                                selectedCategories.remove(category);
+                            } else {
+                                selectedCategories.add(category);
+                            }
+                        });
                         recyclerView.setAdapter(adapter);
                     }
                     else
