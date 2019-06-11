@@ -116,7 +116,7 @@
                 android:layout_centerInParent="true"
                 app:np_width="100dp"
                 app:np_height="200dp"
-                app:np_dividerColor="@color/colorPrimary"
+                app:np_dividerColor="@android:color/transparent"
                 app:np_max="59"
                 android:elevation="5dp"
                 app:np_dividerDistance="60dp"
