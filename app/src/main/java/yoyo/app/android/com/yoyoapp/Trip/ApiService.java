@@ -20,7 +20,7 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IP = "http://192.168.1.61:8000/";
+    private String IP = "http://192.168.1.67:9000/";
     private String IMAGEIP = "http://192.168.1.54:8000";
     private String JWT;
     private UserSharedManager userSharedManager;
@@ -330,12 +330,12 @@ public class ApiService {
 
     public void getCategoryRequest(Consumer<ArrayList<Category>> categoriesConsumer)
     {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/category" ,null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/categories" ,null,
                 response -> {
 
                     ArrayList<Category> categories = new ArrayList<>();
                     try {
-                        JSONArray jsonArray = response.getJSONArray("result");
+                        JSONArray jsonArray = response.getJSONArray("categories");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 

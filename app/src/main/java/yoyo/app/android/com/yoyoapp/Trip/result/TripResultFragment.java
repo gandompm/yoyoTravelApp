@@ -19,12 +19,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery;
-import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.InfiniteScrollProvider;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogFragment;
+import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
 import java.util.List;
@@ -94,7 +93,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
                 if (trips != null) {
                     adapter.addTrips(trips);
                     setupSnackBar();
-
                     page++;
                 }
             });
@@ -179,8 +177,8 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    TripFilterDialogFragment tripFilterDialogFragment = TripFilterDialogFragment.newInstance();
-                    tripFilterDialogFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
+                    TripFilterDialogBottomSheetDialogFragment tripFilterDialogBottomSheetDialogFragment = TripFilterDialogBottomSheetDialogFragment.newInstance();
+                    tripFilterDialogBottomSheetDialogFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
             }
         });
     }

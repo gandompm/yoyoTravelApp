@@ -73,17 +73,18 @@
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
                 android:textSize="25sp" android:fontFamily="serif-monospace"
                 tools:fontFamily="@font/roboto_bolditalic" android:textColor="#3F51B5"/>
+
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_filtertour_types"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline11"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-        />
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
 
 
 
