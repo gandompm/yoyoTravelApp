@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/blue_light"
+                android:textColor="@color/white"
                 android:layout_alignParentTop="true"
                 android:textSize="12sp"
                 android:text="Euro"/>
@@ -32,15 +32,16 @@
                 android:layout_below="@+id/title_price"
                 android:layout_centerHorizontal="true"
                 android:textColor="@android:color/white"
+                android:fontFamily="@font/roboto_medium"
                 android:textSize="18sp"
-                tools:text="50$"/>
+                tools:text="50"/>
 
         <TextView
             android:id="@+id/tv_trip_item_small_operator_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/tv_trip_item_small_operator"
-            android:textColor="@color/blue_light"
+            android:textColor="@color/white"
             android:textSize="12sp"
             android:text="Operator"
             android:layout_centerHorizontal="true"/>
@@ -53,6 +54,7 @@
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textSize="10sp"
+            android:fontFamily="@font/roboto_bold"
             tools:text="Homaye Sa'adat"
             android:layout_centerHorizontal="true"/>
 
@@ -94,7 +96,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:text="Bus, vip , 35"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/black"
+                android:textColor="@color/mainTextColor"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/tv_trip_item_small_trip_title"
@@ -133,10 +135,10 @@
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
+                android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_alignStart="@+id/title_from_to_dots_divider"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 tools:text="Tehran"
                 android:layout_below="@+id/title_from_to_dots_divider"/>
 
@@ -148,10 +150,10 @@
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
+                android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_alignEnd="@+id/title_from_to_dots_divider"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 tools:text="Shiraz"
                 android:layout_below="@+id/title_from_to_dots_divider"/>
 
@@ -176,10 +178,10 @@
                 android:ellipsize="marquee"
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
-                android:textColor="@android:color/black"
+                android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_centerHorizontal="true"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 tools:text="8 Days"
                 android:layout_below="@+id/title_from_to_dots_divider"/>
 
@@ -193,8 +195,9 @@
                 android:textColor="@color/black1"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_centerHorizontal="true"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 tools:text="Duration"
+                android:visibility="invisible"
                 android:layout_below="@+id/tv_trip_item_small_duration" android:text="@string/duration"/>
 
 
@@ -217,7 +220,8 @@
                 android:layout_toStartOf="@id/tv_trip_item_small_language"
                 android:layout_marginEnd="8dp"
                 tools:text="Qazvin"
-                android:textColor="@color/black"
+                android:textColor="@color/mainTextColor"
+                android:textSize="12sp"
                 android:autoSizeTextType="uniform"
                 android:layout_alignBaseline="@+id/tv_trip_item_small_language"
                 android:lines="1"/>
@@ -229,6 +233,7 @@
                 android:autoSizeTextType="uniform"
                 android:textSize="12sp"
                 android:lines="1"
+
                 android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/tv_trip_item_small_language"
@@ -243,7 +248,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignStart="@+id/tv_trip_item_small_languages"
                 tools:text="FA"
-                android:textColor="@color/black"
+                android:textColor="@color/mainTextColor"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="16dp"/>
 

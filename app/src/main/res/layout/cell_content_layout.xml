@@ -18,14 +18,6 @@
         android:paddingRight="12dp"
         android:paddingTop="7dp">
 
-        <TextView
-            android:id="@+id/tv_trip_item_big_group_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            tools:text="Natioal park trip"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/standard" />
 
         <TextView
             android:id="@+id/tv_trip_item_big_price"
@@ -35,7 +27,7 @@
             android:layout_alignParentRight="true"
             android:text="@string/price_mock"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/standard"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
 
@@ -49,7 +41,7 @@
             android:layout_centerVertical="true"
             android:src="@drawable/menu_icon"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/standard"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
 
@@ -67,18 +59,35 @@
             android:scaleType="centerCrop"
             tools:src="@drawable/hotel" />
 
-
         <TextView
-                android:id="@+id/button_trip_item_big_trip_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-                android:textColor="@color/black3"
-                android:textSize="@dimen/standard"
-                android:elevation="4dp"
+                android:id="@+id/tv_trip_item_big_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:background="@drawable/cast_expanded_controller_bg_gradient_light"
+                android:autoSizeTextType="uniform"
+                tools:text="Natioal park trip"
+                android:textColor="@android:color/white"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                />
 
-            android:layout_marginStart="20dp"/>
+
+
+        <!--<TextView-->
+                <!--android:id="@+id/button_trip_item_big_trip_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+                <!--android:textColor="@color/black3"-->
+                <!--android:textSize="@dimen/standard"-->
+                <!--android:elevation="4dp"-->
+
+            <!--android:layout_marginStart="20dp"/>-->
 
         <!--<TextView-->
             <!--android:id="@+id/head_image_left_text"-->
@@ -197,15 +206,16 @@
 
             <TextView
                 android:id="@+id/tv_trip_item_big_trip_leader_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:autoSizeTextType="uniform"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@id/iv_trip_item_big_trip_leader_img_container"
+                android:layout_below="@+id/tv_trip_item_big_tripleade_txt"
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/iv_trip_item_big_trip_leader_img_container"
                 android:text="@string/client_name_mock"
                 android:textColor="@color/black"
-                android:textSize="@dimen/standard"
+                android:textSize="12sp"
                 android:fontFamily="@font/roboto_medium" />
 
             <TextView
@@ -213,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/tv_trip_item_big_trip_leader_name"
-                    android:layout_below="@id/tv_trip_item_big_trip_leader_name"
+                    android:layout_alignParentTop="true"
                     android:text="Tour Leader"
                     android:textSize="@dimen/small"/>
 
@@ -272,13 +282,15 @@
 
                 <TextView
                     android:id="@+id/tv_trip_item_big_start_point"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_from_badge"
                     android:layout_below="@id/content_from_badge"
                     android:text="Tehran"
                     android:textColor="@color/mainTextColor"
-                    android:textSize="@dimen/standard"
+                    android:textSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:paddingEnd="4dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -309,13 +321,15 @@
 
                 <TextView
                     android:id="@+id/tv_trip_item_big_end_point"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_to_badge"
                     android:layout_below="@id/content_to_badge"
                     android:text="Kashan"
                     android:textColor="@color/mainTextColor"
-                    android:textSize="@dimen/standard"
+                    android:textSize="12sp"
+                    android:autoSizeTextType="uniform"
+                    android:paddingEnd="4dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -371,25 +385,19 @@
                     android:textSize="@dimen/small"/>
 
                 <TextView
-                    android:id="@+id/tv_trip_item_big_type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/content_delivery_date_badge"
-                    android:layout_below="@id/content_delivery_date_badge"
-                    tools:text="Health, Nature"
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="@dimen/small"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_trip_item_big_start_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignStart="@id/tv_trip_item_big_type"
-                    android:layout_below="@id/tv_trip_item_big_type"
-                    tools:text="@string/delivery_date_mock"
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="@dimen/standard" />
+                        android:id="@+id/tv_trip_item_big_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/content_delivery_date_badge"
+                        android:layout_below="@id/content_delivery_date_badge"
+                        tools:text="Health, Nature"
+                        android:textColor="@color/mainTextColor"
+                        android:autoSizeTextType="uniform"
+                        android:paddingEnd="4dp"
+                        android:maxLines="3"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:layout_marginEnd="0dp"/>
 
             </RelativeLayout>
 
@@ -409,25 +417,17 @@
 
                 <TextView
                     android:id="@+id/tv_trip_item_big_transport"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/content_deadline_badge"
                     android:layout_below="@id/content_deadline_badge"
                     android:text="Bus and Car"
                     android:textColor="@color/mainTextColor"
+                    android:autoSizeTextType="uniform"
                     android:textSize="@dimen/small"
+                    android:maxLines="2"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_trip_item_big_end_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/tv_trip_item_big_transport"
-                    android:layout_alignStart="@id/tv_trip_item_big_transport"
-                    android:layout_below="@id/tv_trip_item_big_transport"
-                    tools:text="may 16,2016"
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="@dimen/standard" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -437,17 +437,19 @@
             android:id="@+id/content_request_btn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             app:button_start_color="@color/persiangard_green"
             app:button_end_color="@color/persiangard_green"
             app:button_text="@string/buton_trip_item_big_details"
-            app:button_text_color="@color/black"
+            app:button_text_color="@color/white"
             app:button_press_end_color="@color/blue_light"
             app:button_press_start_color="@color/blue_light"
             android:textAlignment="center"
             android:textSize="@dimen/standard"
             app:button_radius="4dp"
             app:button_is_shadowed="false"/>
+
+
 
         <TextView
             android:id="@+id/tv_trip_item_big_passenger_count"
