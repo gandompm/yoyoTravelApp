@@ -188,27 +188,24 @@
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.dagang.library.GradientButton
-        android:id="@+id/button_filtertrip_apply"
-        android:layout_width="160dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        app:button_end_color="@color/colorPrimary"
-        app:button_gradient_orientation="LEFT_RIGHT"
-        app:button_is_shadowed="true"
-        app:button_press_end_color="@color/colorPrimaryDark"
-        app:button_press_start_color="@color/colorPrimaryDark"
-        app:button_radius="30dp"
-        app:button_shadow_angle="90"
-        app:button_shadow_color="@color/colorPrimaryShadow"
-        app:button_shadow_distance="5dp"
-        app:button_shadow_radius="10dp"
-        app:button_size="8sp"
-        app:button_start_color="@color/colorPrimary"
-        app:button_text="@string/apply"
-        app:button_text_color="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/button_filtertrip_apply"-->
+        <!--android:layout_width="160dp"-->
+        <!--android:layout_height="75dp"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--/>-->
+    <Button
+            android:id="@+id/button_filtertrip_apply"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            android:background="@drawable/button_round_blue"/>
 </RelativeLayout>

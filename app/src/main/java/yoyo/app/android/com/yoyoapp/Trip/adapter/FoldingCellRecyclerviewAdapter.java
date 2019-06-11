@@ -183,7 +183,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             tripImg = itemView.findViewById(R.id.iv_trip_item_big_trip_img);
             priceBig = itemView.findViewById(R.id.tv_trip_item_big_price);
             titleBig = itemView.findViewById(R.id.tv_trip_item_big_group_name);
-            groupBig = itemView.findViewById(R.id.button_trip_item_big_trip_name);
+//            groupBig = itemView.findViewById(R.id.button_trip_item_big_trip_name);
             passengerCount = itemView.findViewById(R.id.tv_trip_item_big_passenger_count);
         }
 
@@ -196,8 +196,8 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             from.setText(trip.getLocations().get(0).getTitle());
             to.setText(trip.getLocations().get(1).getTitle());
             language.setText(trip.getTripLeader().getLanguage());
-            duraion.setText(String.valueOf(trip.getDayNum()));
-            durationBig.setText(trip.getDayNum() + "Day");
+            duraion.setText(String.valueOf(trip.getDayNum()) + " Days");
+            durationBig.setText(trip.getDayNum() + " Days");
             tripLeaderName.setText(trip.getTripLeader().getName());
             Picasso.with(context).load(trip.getTripLeader().getPicture()).into(tripLeaderImg);
             type.setText(trip.getCategories().get(0));
@@ -217,7 +217,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             }
             typeBig.setText(types);
             titleBig.setText(trip.getTitle());
-            groupBig.setText(trip.getTour().getName());
+//            groupBig.setText(trip.getTour().getName());
 
             priceBig.setText("20$");
             price.setText("20$");

@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.appyvet.materialrangebar.RangeBar;
-import com.dagang.library.GradientButton;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.shawnlin.numberpicker.NumberPicker;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
@@ -30,7 +30,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private static final String TAG = "TripFilterDialogFragmen";
     private RangeBar rangeBarPrice;
     private TextView rangebarPriceTextview, rangebarDurationTextview;
-    private GradientButton gradientButton;
+    private Button applyButton;
     private ImageView closeImageview;
     private ArrayList<Category> categorieList;
     private RecyclerView recyclerView;
@@ -51,7 +51,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         init();
         setupNumberPicker();
         setupPriceRangeBar();
-        gradientButton.getButton().setOnClickListener(v -> setupApplyButton());
+        applyButton.setOnClickListener(v -> setupApplyButton());
         closeImageview.setOnClickListener(v -> dismiss());
 //        rangeBarPrice.setOnRangeBarChangeListener(this);
 
@@ -75,7 +75,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                 hasDurationChanged = true;
                 rangebarDurationTextview.setText(newVal +" * Day");
                 duration = newVal;
-                if (gradientButton.getVisibility() == View.GONE)
+                if (applyButton.getVisibility() == View.GONE)
                 {
                     showApplyButton();
                 }
@@ -114,7 +114,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                 minimum = decimalFormat.format(Integer.valueOf(minPrice));
                 maximum = decimalFormat.format(Integer.valueOf(maxPrice));
 
-                if (gradientButton.getVisibility() == View.GONE)
+                if (applyButton.getVisibility() == View.GONE)
                 {
                     showApplyButton();
                 }
@@ -129,8 +129,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         rangebarPriceTextview = view.findViewById(R.id.tv_filtertrip_price_num);
         rangeBarPrice = view.findViewById(R.id.rangebar_filtertrip_price);
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
-        gradientButton = view.findViewById(R.id.button_filtertrip_apply);
-        gradientButton.setVisibility(View.GONE);
+        applyButton = view.findViewById(R.id.button_filtertrip_apply);
+        applyButton.setVisibility(View.GONE);
         closeImageview = view.findViewById(R.id.iv_filter_trip_close);
         categorieList = new ArrayList<>();
         categoryNames = ((TripActivity)getActivity()).categories;
@@ -140,9 +140,9 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
 
 
     private void showApplyButton() {
-        if (gradientButton.getVisibility() == View.GONE)
+        if (applyButton.getVisibility() == View.GONE)
         {
-            gradientButton.setVisibility(View.VISIBLE);
+            applyButton.setVisibility(View.VISIBLE);
         }
     }
 
