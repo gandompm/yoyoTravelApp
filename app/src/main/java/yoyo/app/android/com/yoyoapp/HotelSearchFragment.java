@@ -64,8 +64,8 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
     }
 
     private void getLocations() {
-        tripSearchViewModel.initLocationList();
-        tripSearchViewModel.getLocationList().observe(getActivity(), new Observer<List<Location>>() {
+        tripSearchViewModel.initOrigin();
+        tripSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
                 if (locations != null) {
@@ -167,7 +167,6 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((TripActivity)getActivity()).toPrice);
                 bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE,((TripActivity)getActivity()).fromTime);
                 bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE,((TripActivity)getActivity()).toTime);
-                bundle.putStringArrayList(Utils.KEY_BUNDLE_CATEGORIES_CODE,((TripActivity)getActivity()).categories);
                 bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).location);
 
                 if (incommingBundle.equals("trip"))

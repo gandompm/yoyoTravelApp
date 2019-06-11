@@ -289,28 +289,25 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void getLocationsRequest(Consumer<ArrayList<Location>> locationConsumer)
+    public void getOriginsRequest(Consumer<ArrayList<Location>> locationConsumer)
     {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/location" ,null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/origins" ,null,
                 response -> {
 
                     ArrayList<Location> locations = new ArrayList<>();
                     try {
-                        JSONArray jsonArray = response.getJSONArray("result");
+                        JSONArray jsonArray = response.getJSONArray("locations");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
 
-                                Location location = new Location();
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                location.setLocationId(jsonObject.getString("location_id"));
-                                location.setTitle(jsonObject.getString("title"));
-                                location.setCode(jsonObject.getString("code"));
-                                location.setLat(jsonObject.getDouble("latitude"));
-                                location.setLon(jsonObject.getDouble("longitude"));
+                            Location location = new Location();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            location.setCode(jsonObject.getString("code"));
+                            location.setTitle(jsonObject.getString("name"));
 
-                                locations.add(location);
+                            locations.add(location);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -330,18 +327,20 @@ public class ApiService {
 
     public void getCategoryRequest(Consumer<ArrayList<Category>> categoriesConsumer)
     {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/category" ,null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/categories" ,null,
                 response -> {
 
                     ArrayList<Category> categories = new ArrayList<>();
                     try {
-                        JSONArray jsonArray = response.getJSONArray("result");
+                        JSONArray jsonArray = response.getJSONArray("categories");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
                             Category category = new Category();
-                            category.setName(jsonArray.getString(i));
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                            category.setName(jsonObject.getString("name"));
+                            category.setCode(jsonObject.getString("code"));
                             categories.add(category);
                         }
                     } catch (JSONException e) {
@@ -724,13 +723,39 @@ public class ApiService {
     }
 
 
+    public void getDestinationsRequest(Consumer<ArrayList<Location>> locationConsumer)
+    {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/destinations" ,null,
+                response -> {
+
+                    ArrayList<Location> locations = new ArrayList<>();
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("locations");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
 
 
+                            Location location = new Location();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            location.setCode(jsonObject.getString("code"));
+                            location.setTitle(jsonObject.getString("name"));
 
+                            locations.add(location);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
+                    locationConsumer.accept(locations);
 
+                }, error -> {
+            locationConsumer.accept(null);
+            error.printStackTrace();
+        });
 
-
-
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
 }
 
