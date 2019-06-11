@@ -23,7 +23,7 @@ import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.InfiniteScrollProvider;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogBottomSheetDialogFragment;
+import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
 import java.util.List;
@@ -177,7 +177,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    TripFilterDialogBottomSheetDialogFragment tripFilterDialogBottomSheetDialogFragment = TripFilterDialogBottomSheetDialogFragment.newInstance();
+                    TripFilterDialogFragment tripFilterDialogBottomSheetDialogFragment = TripFilterDialogFragment.newInstance();
                     tripFilterDialogBottomSheetDialogFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
             }
         });
