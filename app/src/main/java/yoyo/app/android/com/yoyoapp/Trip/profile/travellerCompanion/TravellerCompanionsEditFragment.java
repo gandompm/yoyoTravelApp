@@ -79,6 +79,16 @@ public class TravellerCompanionsEditFragment extends Fragment {
         return view;
     }
 
+    private void checkEnglishChar() {
+        if (isStringOnlyAlphabet(String.valueOf(firstnameEditText.getText())) && isStringOnlyAlphabet(String.valueOf(lastnameEditText.getText()))) {
+
+            return;
+
+        }else {
+            Toast.makeText(getContext(), "Please use english character", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // setup date picker for user's birth date
     private void setupDatePickers() {
         new DateCalenderSetup(getContext(), dateOfBirthTextview,dateOfBirthListner);
@@ -127,6 +137,9 @@ public class TravellerCompanionsEditFragment extends Fragment {
     private void saveTravellerCompanion() {
         Traveller traveller = new Traveller();
         int error = 0;
+
+        checkEnglishChar();
+
 
         if (firstnameEditText.getText().toString().equals("")) {
             error = 1;
@@ -385,5 +398,13 @@ public class TravellerCompanionsEditFragment extends Fragment {
         ageClass = AgeClass.ADULT;
         gender = Gender.MALE;
         isIranian = true;
+    }
+
+
+    private boolean isStringOnlyAlphabet(String str)
+    {
+        return ((!str.equals(""))
+                && (str != null)
+                && (str.matches("^[a-zA-Z]*$")));
     }
 }
