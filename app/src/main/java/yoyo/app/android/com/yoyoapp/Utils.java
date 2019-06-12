@@ -12,5 +12,6 @@ public class Utils {
     public static final String KEY_BUNDLE_TO_TIME_CODE = "to_time";
     public static final String KEY_BUNDLE_CATEGORIES_CODE = "category";
     public static final String KEY_BUNDLE_LOCATION_CODE = "location";
+    public static final String KEY_BUNDLE_MAINACTIVITY = "sendToProfileFragment";
 
 }
