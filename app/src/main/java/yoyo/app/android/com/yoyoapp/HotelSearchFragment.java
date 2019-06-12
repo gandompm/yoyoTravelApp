@@ -88,7 +88,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                     public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
 
                         searchTextView.setText(item.getTitle());
-                        ((TripActivity)getActivity()).location = item.getTitle();
+//                        ((TripActivity)getActivity()).location = item.getTitle();
                         dialog.dismiss();
                     }
                 });
@@ -167,7 +167,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((TripActivity)getActivity()).toPrice);
                 bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE,((TripActivity)getActivity()).fromTime);
                 bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE,((TripActivity)getActivity()).toTime);
-                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).location);
+//                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).origin);
 
                 if (incommingBundle.equals("trip"))
                 {

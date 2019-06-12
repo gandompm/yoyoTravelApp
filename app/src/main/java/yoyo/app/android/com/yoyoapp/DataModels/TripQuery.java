@@ -12,7 +12,8 @@ public class TripQuery {
     private int fromPrice;
     private int toPrice;
     private int minDuration;
-    private String location;
+    private String origin;
+    private String destination;
     private ArrayList<String> categories;
 
 
@@ -57,12 +58,12 @@ public class TripQuery {
         this.toPrice = toPrice;
     }
 
-    public String getLocation() {
-        return location;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getType() {
@@ -79,5 +80,13 @@ public class TripQuery {
 
     public void setMinDuration(int minDuration) {
         this.minDuration = minDuration;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 }

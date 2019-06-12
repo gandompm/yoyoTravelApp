@@ -36,7 +36,7 @@ public class ApiService {
     {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips" + "?price_min=" +
                 tripQuery.getFromPrice()+"&price_max="+tripQuery.getToPrice()+"&start_date="+tripQuery.getFromTime()+
-                "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&location=" + tripQuery.getLocation()+
+                "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&location=" + tripQuery.getOrigin()+
                 "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&offset="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
                 response -> {
 
@@ -288,42 +288,6 @@ public class ApiService {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
-
-    public void getOriginsRequest(Consumer<ArrayList<Location>> locationConsumer)
-    {
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/origins" ,null,
-                response -> {
-
-                    ArrayList<Location> locations = new ArrayList<>();
-                    try {
-                        JSONArray jsonArray = response.getJSONArray("locations");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                            Location location = new Location();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            location.setCode(jsonObject.getString("code"));
-                            location.setTitle(jsonObject.getString("name"));
-
-                            locations.add(location);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    locationConsumer.accept(locations);
-
-                }, error -> {
-            locationConsumer.accept(null);
-            error.printStackTrace();
-        });
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
-    }
-
 
     public void getCategoryRequest(Consumer<ArrayList<Category>> categoriesConsumer)
     {
@@ -757,5 +721,41 @@ public class ApiService {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
+
+    public void getOriginsRequest(Consumer<ArrayList<Location>> locationConsumer)
+    {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/origins" ,null,
+                response -> {
+
+                    ArrayList<Location> locations = new ArrayList<>();
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("locations");
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            Location location = new Location();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            location.setCode(jsonObject.getString("code"));
+                            location.setTitle(jsonObject.getString("name"));
+
+                            locations.add(location);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    locationConsumer.accept(locations);
+
+                }, error -> {
+            locationConsumer.accept(null);
+            error.printStackTrace();
+        });
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
 }
 
