@@ -1,22 +1,42 @@
 package yoyo.app.android.com.yoyoapp.Trip.profile.editProfile;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.hbb20.CountryCodePicker;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class EditProfileFragment extends Fragment {
@@ -24,12 +44,13 @@ public class EditProfileFragment extends Fragment {
     private Button saveButton;
     private EditText firstnameEditText, phoneNumberEditText,lastnameEditText, usernameEditText;
     private TextView emailTextview;
-    private ImageView userImageview, backImageView;
+    private ImageView backImageView;
     private CountryCodePicker ccp;
-    private Uri imageUri = null;
+    private ImageView circleImageView;
     private UserSharedManager userSharedManager;
     private FragmentManager fragmentManager;
     private User user;
+    private String encodedProfileImage;
     private EditProfileViewModel editProfileViewModel;
     private View view;
 
@@ -43,9 +64,100 @@ public class EditProfileFragment extends Fragment {
         onClick();
         retrieveData();
         saveUserData();
+        circleImageView.setOnClickListener(v->openImageFromGallery());
 
 
         return view;
+    }
+
+    private void openImageFromGallery() {
+        Dexter.withActivity(getActivity()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            cropingFunc();
+                        } else {
+                            Toast.makeText(getContext(), "Permissions are not granted!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
+    }
+
+
+    private void cropingFunc() {
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(1, 1)
+                .setMinCropWindowSize(512, 512)
+                .start(getActivity());
+    }
+
+
+    private void saveImageProfile(Uri imageUri) {
+
+        circleImageView.setImageURI(imageUri);
+        final InputStream imageStream;
+        try {
+            imageStream = getContext().getContentResolver().openInputStream(imageUri);
+            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+            encodedProfileImage = encodeImage(selectedImage);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        saveImageRequest();
+    }
+
+    private String encodeImage(Bitmap bm)
+    {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG,50,baos);
+        byte[] b = baos.toByteArray();
+        return Base64.encodeToString(b, Base64.DEFAULT);
+    }
+
+
+    private void saveImageRequest() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("profile_picture", encodedProfileImage);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        editProfileViewModel.sendImageProfile(jsonObject);
+        editProfileViewModel.getProfilePicture().observe(getActivity(), profilePicture -> {
+            if (profilePicture != null) {
+                //  profileProgressbar.setVisibility(View.GONE);
+                userSharedManager.saveProfilePhoto(encodedProfileImage);
+            }
+            else
+            {
+//                profileProgressbar.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK) {
+                Uri imageUri = result.getUri();
+                saveImageProfile(imageUri);
+
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+
+                Exception error = result.getError();
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     // get user's data from shared preferences
@@ -57,6 +169,11 @@ public class EditProfileFragment extends Fragment {
             lastnameEditText.setText(user.getLastName());
             emailTextview.setText(user.getEmail());
             usernameEditText.setText(user.getUserName());
+            if( !user.getProfilePicture().equalsIgnoreCase("") ){
+                byte[] b = Base64.decode(user.getProfilePicture(), Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                circleImageView.setImageBitmap(bitmap);
+            }
         }
     }
 
@@ -84,12 +201,12 @@ public class EditProfileFragment extends Fragment {
         firstnameEditText = view.findViewById(R.id.et_edit_profile_firstname);
         lastnameEditText = view.findViewById(R.id.et_edit_profile_lastname);
         emailTextview = view.findViewById(R.id.tv_edit_profile_email);
-        userImageview = view.findViewById(R.id.iv_edit_profile_img);
         backImageView = view.findViewById(R.id.iv_editprofile_back);
         fragmentManager = getFragmentManager();
         saveButton = view.findViewById(R.id.button_edit_profile_save);
         usernameEditText = view.findViewById(R.id.et_edit_profile_username);
         phoneNumberEditText = view.findViewById(R.id.et_edit_profile_phone_number);
+        circleImageView = view.findViewById(R.id.iv_edit_profile_img);
         userSharedManager = new UserSharedManager(getContext());
     }
 

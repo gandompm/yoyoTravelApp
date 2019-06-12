@@ -54,6 +54,7 @@ public class TravellerCompanionFragment extends Fragment {
     private void setupEditTravellerPage() {
         TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
         FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container,detailsFragment).addToBackStack("traveller companion edit");
         fragmentTransaction.commit();
