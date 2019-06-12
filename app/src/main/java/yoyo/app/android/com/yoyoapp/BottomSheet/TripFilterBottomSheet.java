@@ -1,19 +1,13 @@
 package yoyo.app.android.com.yoyoapp.BottomSheet;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import yoyo.app.android.com.yoyoapp.R;
 import com.appyvet.materialrangebar.RangeBar;
 import com.dagang.library.GradientButton;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.nex3z.togglebuttongroup.MultiSelectToggleGroup;
-
-import androidx.cardview.widget.CardView;
 
 public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener {
 
@@ -58,7 +52,7 @@ public class TripFilterBottomSheet implements RangeBar.OnRangeBarChangeListener 
         rangebarPriceTextview = view.findViewById(R.id.tv_filtertrip_price_num);
         rangeBarPrice = view.findViewById(R.id.rangebar_filtertrip_price);
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
-        gradientButton = view.findViewById(R.id.button_filtertrip_apply);
+        gradientButton = view.findViewById(R.id.button_filtertrip_cancel);
         gradientButton.setVisibility(View.GONE);
 //        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
     }
