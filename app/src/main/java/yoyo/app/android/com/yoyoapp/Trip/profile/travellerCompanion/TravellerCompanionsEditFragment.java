@@ -28,9 +28,9 @@ import yoyo.app.android.com.yoyoapp.Flight.DataModel.Country;
 import yoyo.app.android.com.yoyoapp.Flight.Enum.AgeClass;
 import yoyo.app.android.com.yoyoapp.Flight.Enum.Gender;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.DateCalenderSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.NationalCodeUtil;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.DateCalenderSetup;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 
 import java.util.ArrayList;
@@ -55,6 +55,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
     private boolean isEditFragment , isIranian;
     private DatePickerDialog.OnDateSetListener dateOfBirthListner ,expiryPassportListner;
     private AgeClass ageClass;
+    private long dateOfBirthTimestamp;
     private TravellerViewModel travellerViewModel;
     private ArrayList<SampleSearchModel> countryList;
     private UserSharedManager userSharedManager;
@@ -91,7 +92,9 @@ public class TravellerCompanionsEditFragment extends Fragment {
 
     // setup date picker for user's birth date
     private void setupDatePickers() {
-        new DateCalenderSetup(getContext(), dateOfBirthTextview,dateOfBirthListner);
+        new DateCalenderSetup(getContext() , dateOfBirthTextview ,dateOfBirthListner, timestamp ->{
+            dateOfBirthTimestamp = timestamp;
+        });
     }
 
     // setup toggle button for gender and age
@@ -138,7 +141,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
         Traveller traveller = new Traveller();
         int error = 0;
 
-        checkEnglishChar();
+//        checkEnglishChar();
 
 
         if (firstnameEditText.getText().toString().equals("")) {
@@ -254,7 +257,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
             jsonObject.put("firstname",traveller.getFirstName());
             jsonObject.put("lastname",traveller.getLastName());
             jsonObject.put("gender",traveller.getGender());
-            jsonObject.put("dob",traveller.getDateOfBirth());
+            jsonObject.put("dob", dateOfBirthTimestamp);
             jsonObject.put("nationality",traveller.getNationality());
 
             if (traveller.isIranian())

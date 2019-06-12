@@ -8,6 +8,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,8 +21,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.55:8000";
-    private String IP = "http://192.168.1.57:9000/";
+    private String IMAGEIP = "http://192.168.1.54:8000";
+    private String IP = "http://192.168.1.67:9000/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -496,15 +497,13 @@ public class ApiService {
                             traveller.setFirstName(jsonObject.getString("firstname"));
                             traveller.setLastName(jsonObject.getString("lastname"));
                             traveller.setGender(jsonObject.getString("gender"));
+                            // TODO: 6/12/2019 long data of birth
                             traveller.setDateOfBirth(jsonObject.getString("dob"));
                             traveller.setPassportNumber(jsonObject.getString("passport_number"));
                             traveller.setIranianNationalCode(jsonObject.getString("national_code"));
-                            traveller.setNationality(jsonObject.getString("nationality"));
-                            if (jsonObject.getString("nationality").toUpperCase().contains("IRAN")||
-                                    jsonObject.getString("nationality").toUpperCase().contains("ایران"))
-                                traveller.setIranian(true);
-                            else
-                                traveller.setIranian(false);
+                            String countryName = CountryList.convertCodeToName(context, jsonObject.getString("nationality"));
+                            traveller.setNationality(countryName);
+                            traveller.setIranian(jsonObject.getBoolean("is_iranian"));
 
                             travellers.add(traveller);
                         }
@@ -537,7 +536,6 @@ public class ApiService {
                 }, e -> {
             isTravellerAdded.accept(false);
                     e.printStackTrace();
-            Log.d(TAG, "aaaaaaa " + e.toString());
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
