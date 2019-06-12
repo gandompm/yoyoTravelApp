@@ -1,6 +1,8 @@
 package yoyo.app.android.com.yoyoapp.DataModels;
 
-public class Location {
+import ir.mirrajabi.searchdialog.core.Searchable;
+
+public class Location implements Searchable {
     private String locationId;
     private String code;
     private String title;
