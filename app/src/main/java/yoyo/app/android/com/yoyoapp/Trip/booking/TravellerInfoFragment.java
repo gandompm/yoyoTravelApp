@@ -3,10 +3,7 @@ package yoyo.app.android.com.yoyoapp.Trip.booking;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -62,6 +59,27 @@ public class TravellerInfoFragment extends Fragment {
 
         return view;
     }
+
+
+    private boolean checkEnglishChar() {
+        if (isStringOnlyAlphabet(String.valueOf(firstnameEditText.getText())) && isStringOnlyAlphabet(String.valueOf(lastnameEditText.getText()))) {
+
+            return true;
+
+        }else {
+            Toast.makeText(getContext(), "Please use english character", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
+    private boolean isStringOnlyAlphabet(String str)
+    {
+        return ((!str.equals(""))
+                && (str != null)
+                && (str.matches("^[a-zA-Z]*$")));
+    }
+
 
     private void setupBackButton() {
         ((BookingActivity)getActivity()).continueButton.setVisibility(View.VISIBLE);
@@ -125,6 +143,12 @@ public class TravellerInfoFragment extends Fragment {
     private void saveTravellerInfo() {
 
             Boolean flag = true;
+
+
+
+        if (!checkEnglishChar()){
+            return;
+        }
 
             if (firstnameEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.first_name_cannot_be_empty)).show();

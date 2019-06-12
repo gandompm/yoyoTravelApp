@@ -80,13 +80,14 @@ public class TravellerCompanionsEditFragment extends Fragment {
         return view;
     }
 
-    private void checkEnglishChar() {
+    private boolean checkEnglishChar() {
         if (isStringOnlyAlphabet(String.valueOf(firstnameEditText.getText())) && isStringOnlyAlphabet(String.valueOf(lastnameEditText.getText()))) {
 
-            return;
+            return true;
 
         }else {
             Toast.makeText(getContext(), "Please use english character", Toast.LENGTH_SHORT).show();
+            return false;
         }
     }
 
@@ -141,7 +142,9 @@ public class TravellerCompanionsEditFragment extends Fragment {
         Traveller traveller = new Traveller();
         int error = 0;
 
-//        checkEnglishChar();
+        if (!checkEnglishChar()){
+            return;
+        }
 
 
         if (firstnameEditText.getText().toString().equals("")) {

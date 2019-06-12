@@ -81,7 +81,7 @@ public class TravellerCompanionFragment extends Fragment {
             @Override
             public void onChanged(List<Traveller> newTravellers) {
                 progressBar.setVisibility(View.GONE);
-                if (travellers!=null)
+                if (newTravellers != null)
                 {
                     travellers.clear();
                     travellers.addAll(newTravellers);
