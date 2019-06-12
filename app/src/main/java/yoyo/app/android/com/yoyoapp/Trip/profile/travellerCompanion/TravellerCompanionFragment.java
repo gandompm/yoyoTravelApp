@@ -54,6 +54,7 @@ public class TravellerCompanionFragment extends Fragment {
     private void setupEditTravellerPage() {
         TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
         FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStack();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container,detailsFragment).addToBackStack("traveller companion edit");
         fragmentTransaction.commit();
@@ -81,7 +82,7 @@ public class TravellerCompanionFragment extends Fragment {
             @Override
             public void onChanged(List<Traveller> newTravellers) {
                 progressBar.setVisibility(View.GONE);
-                if (travellers!=null)
+                if (newTravellers != null)
                 {
                     travellers.clear();
                     travellers.addAll(newTravellers);

@@ -1,5 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.authentication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import es.dmoral.toasty.Toasty;
 import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 
 public class SignUpFragment extends Fragment {
@@ -49,7 +52,11 @@ public class SignUpFragment extends Fragment {
                 {
                     Toasty.success(getContext(),getString(R.string.thanks_for_joining)).show();
                     userSharedManager.saveUser(user);
+                    Intent i = new Intent(getActivity(), MainActivity.class);
+                    i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
+                    startActivity(i);
                     getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
                 }
                 else
                 {

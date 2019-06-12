@@ -367,7 +367,7 @@ public class ApiService {
                 user.setUserName(response.getString("username"));
                 user.setEmail(response.getString("email"));
                 user.setPhoneNumber(response.getString("phone_number"));
-                user.setProfilePicture(response.getString("profile_picture"));
+                user.setProfilePicture(response.getString("profile_thumbnail_picture"));
                 user.setToken(response.getString("token"));
 
             } catch (JSONException e) {
@@ -596,7 +596,7 @@ public class ApiService {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/user/profile/picture", jsonObject ,
                 response -> {
                     try {
-                            stringConsumer.accept(IP + response.getString("profile_picture"));
+                            stringConsumer.accept(IP + response.getString("profile_thumbnail_picture"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
