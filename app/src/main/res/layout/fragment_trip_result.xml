@@ -102,6 +102,7 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/small_margin"
             android:backgroundTint="@color/blue2"
+            app:borderWidth="0dp"
             android:background="@drawable/curve_shape_fill_blue"
             android:src="@drawable/ic_filter_list_black_24dp"
             app:fabSize="normal" app:layout_constraintEnd_toEndOf="parent"
