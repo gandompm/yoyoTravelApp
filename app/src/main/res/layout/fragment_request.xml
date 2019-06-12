@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                                    xmlns:tools="http://schemas.android.com/tools"
+                                                   xmlns:ds="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    android:background="@color/background"
-                                                   xmlns:ds="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   tools:context=".Trip.schedule.request.RequestFragment">
+                                                   tools:context=".Trip.schedule.request.RequestFragment"
+>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/standard_margin"
             ds:cardCornerRadius="4dp"
-            android:layout_marginTop="8dp"
             ds:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" ds:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-            ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintTop_toTopOf="parent">
+            ds:layout_constraintEnd_toEndOf="parent"
+            ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp" android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:ds="http://schemas.android.com/apk/res-auto"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/large_margin"
@@ -32,15 +35,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.05"/>
+                    ds:layout_constraintGuide_percent="0.03"/>
 
             <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline_right_v"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.95"/>
+                    ds:layout_constraintGuide_percent="0.97"/>
 
+            <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right_v2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    ds:layout_constraintGuide_percent="0.5"/>
             <TextView
                     android:id="@+id/tv_request_fullname"
                     android:text="@string/full_name"
@@ -65,8 +74,8 @@
                     tools:ignore="HardcodedText" app:layout_constraintTop_toBottomOf="@+id/tv_request_fullname"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                     android:layout_marginTop="8dp" app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintEnd_toStartOf="@+id/et_edit_profile_lastname"
-                    app:layout_constraintHorizontal_chainStyle="packed" android:layout_marginEnd="16dp"/>
+                    app:layout_constraintHorizontal_chainStyle="packed" android:layout_marginEnd="4dp"
+                    ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v2"/>
 
             <EditText
                     android:id="@+id/et_request_lastname"
@@ -83,7 +92,10 @@
                     app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
                     android:inputType="text" app:layout_constraintStart_toEndOf="@+id/et_request_firstname"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintTop_toTopOf="@+id/et_request_firstname"/>
+                    app:layout_constraintTop_toTopOf="@+id/et_request_firstname"
+                    android:layout_marginStart="4dp"
+                    ds:layout_constraintStart_toStartOf="@+id/guideline_right_v2"
+                    ds:layout_constraintBaseline_toBaselineOf="@+id/et_request_firstname"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -145,12 +157,13 @@
                     android:text="Send Request"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/button_round_blue"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:textColor="@android:color/white" android:fontFamily="@font/roboto_medium"
                     android:id="@+id/button_request_send"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v" android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                     ds:layout_constraintTop_toBottomOf="@+id/tv_request_date1"/>
 
 
@@ -193,7 +206,6 @@
                     android:id="@+id/textView25" ds:layout_constraintTop_toBottomOf="@+id/iv_request_minus"
                     ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                     android:layout_marginTop="16dp"/>
-
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="50dp"
@@ -205,12 +217,9 @@
                     android:layout_marginTop="8dp"/>
 
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
