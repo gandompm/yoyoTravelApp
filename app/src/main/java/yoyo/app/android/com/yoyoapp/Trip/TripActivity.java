@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
+import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
@@ -29,7 +30,8 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
     public long fromTime = 1158742400, toTime = 1959088000;
     public int minDuration = 1;
     public ArrayList<Category> categories;
-    public String location = "";
+    public Location origin;
+    public Location destination;
     public int diffDays = 7;
 
     @Override
@@ -39,12 +41,13 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
 
         init();
         setupBottomNavigation();
-
     }
 
     private void init() {
         bottomNavigation = findViewById(R.id.bn_main);
         categories = new ArrayList<>();
+        origin = new Location();
+        destination = new Location();
     }
 
 

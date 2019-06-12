@@ -8,12 +8,10 @@ import android.widget.*;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
     private FragmentManager fragmentManager;
     private TripSearchViewModel tripSearchViewModel;
-    private ArrayList<SampleSearchModel> locationsList;
+    private ArrayList<Location> originssList;
+    private ArrayList<Location> destinationsList;
     private String diffDays ="7";
     private String startDateString= "From...";
     private String endDateString="To...";
@@ -70,12 +69,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         tripSearchViewModel.getDestinations().observe(getActivity(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
-                locationsList.clear();
+                destinationsList.clear();
                 if (locations != null) {
-                    for (Location location:locations) {
-                        SampleSearchModel sampleSearchModel = new SampleSearchModel(location.getTitle());
-                        locationsList.add(sampleSearchModel);
-                    }
+                    destinationsList.addAll(locations);
                 }
             }
         });
@@ -86,12 +82,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         tripSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
-                locationsList.clear();
+                originssList.clear();
                 if (locations != null) {
-                    for (Location location:locations) {
-                        SampleSearchModel sampleSearchModel = new SampleSearchModel(location.getTitle());
-                        locationsList.add(sampleSearchModel);
-                    }
+                    originssList.addAll(locations);
                 }
             }
         });
@@ -100,14 +93,14 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     // setup cities search dialog
     private void setupSearchDestination()
     {
-        SimpleSearchDialogCompat<Searchable> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
-                "Where do you like to go?", null, locationsList,
-                new SearchResultListener<SampleSearchModel>() {
+        SimpleSearchDialogCompat<Location> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
+                "Where do you like to go?", null, destinationsList,
+                new SearchResultListener<Location>() {
                     @Override
-                    public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
+                    public void onSelected(BaseSearchDialogCompat dialog, Location item, int position) {
 
                         searchDestinationTextView.setText(item.getTitle());
-                        ((TripActivity)getActivity()).location = item.getTitle();
+                        ((TripActivity)getActivity()).destination = item;
                         dialog.dismiss();
                     }
                 });
@@ -118,14 +111,14 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     // setup cities search dialog
     private void setupSearchOrigin()
     {
-        SimpleSearchDialogCompat<Searchable> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
-                "Where do you want to start?", null, locationsList,
-                new SearchResultListener<SampleSearchModel>() {
+        SimpleSearchDialogCompat<Location> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
+                "Where do you want to start?", null, originssList,
+                new SearchResultListener<Location>() {
                     @Override
-                    public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
+                    public void onSelected(BaseSearchDialogCompat dialog, Location item, int position) {
 
                         searchOriginTextView.setText(item.getTitle());
-                        ((TripActivity)getActivity()).location = item.getTitle();
+                        ((TripActivity)getActivity()).origin = item;
                         dialog.dismiss();
                     }
                 });
@@ -143,7 +136,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
 
     private void init() {
-        locationsList = new ArrayList<>();
+        originssList = new ArrayList<>();
+        destinationsList = new ArrayList<>();
         tripSearchViewModel = ViewModelProviders.of(getActivity()).get(TripSearchViewModel.class);
         checkInTextview = view.findViewById(R.id.tv_search_check_in);
         checkOutTextview = view.findViewById(R.id.tv_search_check_out);

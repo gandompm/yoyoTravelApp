@@ -147,13 +147,14 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         tripQuery.setType(reserveType);
         tripQuery.setFromTime(((TripActivity)getActivity()).fromTime);
         tripQuery.setToTime(((TripActivity)getActivity()).toTime);
-        tripQuery.setLocation(((TripActivity)getActivity()).location);
         tripQuery.setMinDuration(((TripActivity)getActivity()).minDuration);
         tripQuery.setFromPrice(((TripActivity)getActivity()).fromPrice);
         tripQuery.setToPrice(((TripActivity)getActivity()).toPrice);
+        tripQuery.setOrigin(((TripActivity)getActivity()).origin.getCode());
+        tripQuery.setDestination(((TripActivity)getActivity()).destination.getCode());
         // category
         ArrayList<String> categoryCodes = new ArrayList<>();
-        for (Category category : ((TripActivity)getActivity()).categories ) {
+        for (Category category : ((TripActivity)getActivity()).categories){
             categoryCodes.add(category.getCode());
         }
         tripQuery.setCategories(categoryCodes);
