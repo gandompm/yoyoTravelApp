@@ -14,6 +14,8 @@ public class EditProfileViewModel extends AndroidViewModel {
     private EditProfileRepository repository;
     private MutableLiveData<User> userMutableLiveData;
     private MutableLiveData<User> newUserMutableLiveData;
+    private MutableLiveData<String> profilePicture;
+
 
     public EditProfileViewModel(@NonNull Application application) {
         super(application);
@@ -38,5 +40,17 @@ public class EditProfileViewModel extends AndroidViewModel {
     public LiveData<User> getEditedProfile() {
         return newUserMutableLiveData;
     }
+
+
+    public void sendImageProfile(JSONObject jsonObject) {
+        profilePicture = new MutableLiveData<>();
+        profilePicture = repository.sendImageProfile(jsonObject);
+    }
+
+    public LiveData<String> getProfilePicture()
+    {
+        return profilePicture;
+    }
+
 
 }

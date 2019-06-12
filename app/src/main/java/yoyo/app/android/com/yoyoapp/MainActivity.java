@@ -30,12 +30,20 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getBundle();
         init();
         languageSetup.loadLanguageFromSharedPref();
         checkingSignIn();
         Versioning versioning = new Versioning();
         versioning.checkingUpdates(this);
         setupBottomNavigation();
+    }
+
+    private void getBundle() {
+//        if (getIntent().getBooleanExtra(Utils.KEY_BUNDLE_MAINACTIVITY,false))
+//        {
+//            addFragment(new ProfileFragment(),"profile");
+//        }
     }
 
 

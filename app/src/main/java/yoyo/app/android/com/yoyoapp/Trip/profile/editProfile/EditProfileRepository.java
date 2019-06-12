@@ -11,6 +11,7 @@ public class EditProfileRepository {
     private ApiService apiService;
     private MutableLiveData<User> userMutableLiveData;
     private MutableLiveData<User> newUserMutableLiveData;
+    private MutableLiveData<String> profilePicture;
     private Context context;
     private static EditProfileRepository instanse;
 
@@ -47,6 +48,20 @@ public class EditProfileRepository {
     private void setEditProfile(JSONObject jsonObject) {
         apiService.sendEditProfileRequest(jsonObject, user -> {
             newUserMutableLiveData.postValue(user);
+        });
+    }
+
+
+    public MutableLiveData<String> sendImageProfile(JSONObject jsonObject)
+    {
+        profilePicture = new MutableLiveData<>();
+        setImageProfile(jsonObject);
+        return profilePicture;
+    }
+
+    private void setImageProfile(JSONObject jsonObject) {
+        apiService.sendProfilePhotoRequest(jsonObject, url -> {
+            profilePicture.postValue(url);
         });
     }
 }

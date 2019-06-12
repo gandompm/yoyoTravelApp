@@ -19,6 +19,7 @@ import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 
 public class SignInFragment extends Fragment {
@@ -96,12 +97,11 @@ public class SignInFragment extends Fragment {
                 if (user != null) {
                     userSharedManager.saveUser(user);
                     Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
-                    Bundle bundle = new Bundle();
-                    bundle.putBoolean("sendToProfileFragment",true);
                     Intent i = new Intent(getActivity(), MainActivity.class);
+                    i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
                     startActivity(i);
-                    getActivity().overridePendingTransition(0, 0);
                     getActivity().finish();
+                    getActivity().overridePendingTransition(0, 0);
                 }
                 else
                 {

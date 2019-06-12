@@ -54,7 +54,6 @@ public class ProfileFragment extends Fragment {
     private UserSharedManager userSharedManager;
     private boolean isSignedIn = true;
     private ProfileViewModel profileViewModel;
-    private String encodedProfileImage;
     private ImageView  travellerCompanionImageview, rulesImageview, editProfileImageview ,signoutImageview, languageImageView, aboutImageview;
     private View view;
     @Override
@@ -65,102 +64,15 @@ public class ProfileFragment extends Fragment {
         checkingSignIn();
         retrieveProfileData();
 
-        travellerCompanionImageview.setOnClickListener(v -> {if(isSignedIn) setupTravellerCompanionPage();});
+        travellerCompanionImageview.setOnClickListener(v -> {if(isSignedIn) setupTravellerCompanionPage();else popUpSignInSignUpActivity();});
         rulesImageview.setOnClickListener(v -> setupRulesPage());
-        editProfileImageview.setOnClickListener(v -> {if(isSignedIn) setupEditProfilePage();});
-        signoutImageview.setOnClickListener(v -> { if (isSignedIn) setupSignOutPage(); });
+        editProfileImageview.setOnClickListener(v -> {if(isSignedIn) setupEditProfilePage(); else popUpSignInSignUpActivity();});
+        signoutImageview.setOnClickListener(v -> { if (isSignedIn) setupSignOutPage(); else popUpSignInSignUpActivity();});
         aboutImageview.setOnClickListener(v -> setupAboutPage());
         languageImageView.setOnClickListener(v -> setupLanguage());
-        circleImageView.setOnClickListener(v->openImageFromGallery());
+
 
         return view;
-    }
-
-    private void openImageFromGallery() {
-        Dexter.withActivity(getActivity()).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            cropingFunc();
-                        } else {
-                            Toast.makeText(getContext(), "Permissions are not granted!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).check();
-    }
-
-    private void cropingFunc() {
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAspectRatio(1, 1)
-                .setMinCropWindowSize(512, 512)
-                .start(getActivity());
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-
-            if (resultCode == RESULT_OK) {
-                Uri imageUri = result.getUri();
-                saveImageProfile(imageUri);
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-
-                Exception error = result.getError();
-                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    private void saveImageProfile(Uri imageUri) {
-
-        circleImageView.setImageURI(imageUri);
-        final InputStream imageStream;
-        try {
-            imageStream = getContext().getContentResolver().openInputStream(imageUri);
-            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-            encodedProfileImage = encodeImage(selectedImage);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        saveImageRequest();
-    }
-
-    private void saveImageRequest() {
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("profile_picture", encodedProfileImage);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        profileViewModel.sendImageProfile(jsonObject);
-        profileViewModel.getProfilePicture().observe(getActivity(), profilePicture -> {
-            if (profilePicture != null) {
-                //  profileProgressbar.setVisibility(View.GONE);
-                userSharedManager.saveProfilePhoto(encodedProfileImage);
-            }
-            else
-            {
-//                profileProgressbar.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-
-    private String encodeImage(Bitmap bm)
-    {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,50,baos);
-        byte[] b = baos.toByteArray();
-        return Base64.encodeToString(b, Base64.DEFAULT);
     }
 
 
@@ -231,12 +143,12 @@ public class ProfileFragment extends Fragment {
 
     private void setupViewsFromSharedPref() {
         nameTextview.setText(user.getFirstName()+" "+ user.getLastName());
-        isSignedIn = true;
         if( !user.getProfilePicture().equalsIgnoreCase("") ){
             byte[] b = Base64.decode(user.getProfilePicture(), Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
             circleImageView.setImageBitmap(bitmap);
         }
+        isSignedIn = true;
     }
 
     // setup signup activity

@@ -9,7 +9,6 @@ public class ProfileRepository {
 
     private ApiService apiService;
     private static ProfileRepository instance;
-    private MutableLiveData<String> profilePicture;
     private Context context;
 
     public static ProfileRepository getInstance(Context context)
@@ -24,21 +23,6 @@ public class ProfileRepository {
     {
         this.context = context;
         apiService = new ApiService(context);
-    }
-
-
-
-    public MutableLiveData<String> sendImageProfile(JSONObject jsonObject)
-    {
-        profilePicture = new MutableLiveData<>();
-        setImageProfile(jsonObject);
-        return profilePicture;
-    }
-
-    private void setImageProfile(JSONObject jsonObject) {
-        apiService.sendProfilePhotoRequest(jsonObject, url -> {
-                profilePicture.postValue(url);
-        });
     }
 
 }

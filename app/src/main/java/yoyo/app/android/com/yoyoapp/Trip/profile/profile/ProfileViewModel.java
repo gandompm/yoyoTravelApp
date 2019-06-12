@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 public class ProfileViewModel extends AndroidViewModel {
 
-    private MutableLiveData<String> profilePicture;
     private ProfileRepository profileRepository;
 
 
@@ -19,15 +18,5 @@ public class ProfileViewModel extends AndroidViewModel {
         profileRepository = ProfileRepository.getInstance(getApplication());
     }
 
-
-    public void sendImageProfile(JSONObject jsonObject) {
-        profilePicture = new MutableLiveData<>();
-        profilePicture = profileRepository.sendImageProfile(jsonObject);
-    }
-
-    public LiveData<String> getProfilePicture()
-    {
-        return profilePicture;
-    }
 
 }
