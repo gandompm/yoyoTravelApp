@@ -3,12 +3,12 @@ package yoyo.app.android.com.yoyoapp.Trip.dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -32,8 +32,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private static final String TAG = "TripFilterDialogFragmen";
     private RangeBar rangeBarPrice;
     private TextView rangebarPriceTextview, rangebarDurationTextview;
-    private Button gradientButton;
-//    private ImageView closeImageview;
+    private Button applyButton;
+    private Button cancelButton;
     private ArrayList<Category> categorieList;
     private RecyclerView recyclerView;
     private CategoryRecyclerviewAddapter adapter;
@@ -55,13 +55,18 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         setupPriceRangeBar();
         setupRecyclerview();
         getCategories();
-        gradientButton.setOnClickListener(v -> setupApplyButton());
-//        closeImageview.setOnClickListener(v -> dismiss());
-//        rangeBarPrice.setOnRangeBarChangeListener(this);
+        applyButton.setOnClickListener(v -> setupApplyButton());
+        cancelButton.setOnClickListener(v -> setupCancelButton());
 
 
 
         return view;
+    }
+
+    private void setupCancelButton() {
+
+        dismiss();
+
     }
 
     private void setupNumberPicker() {
@@ -79,12 +84,11 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 hasDurationChanged = true;
-                rangebarDurationTextview.setText(newVal +" * Days");
+                rangebarDurationTextview.setText(newVal +" Days");
                 duration = newVal;
-                if (gradientButton.getVisibility() == View.GONE)
-                {
+
                     showApplyButton();
-                }
+
             }
         });
     }
@@ -120,10 +124,9 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                 minimum = decimalFormat.format(Integer.valueOf(minPrice));
                 maximum = decimalFormat.format(Integer.valueOf(maxPrice));
 
-                if (gradientButton.getVisibility() == View.GONE)
-                {
+
                     showApplyButton();
-                }
+
 
                 rangebarPriceTextview.setText("From " + minimum + "$ to " + maximum + "$");
             }
@@ -135,9 +138,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         rangebarPriceTextview = view.findViewById(R.id.tv_filtertrip_price_num);
         rangeBarPrice = view.findViewById(R.id.rangebar_filtertrip_price);
         rangebarDurationTextview = view.findViewById(R.id.tv_filtertrip_duration_num);
-        gradientButton = view.findViewById(R.id.button_filtertrip_apply);
-        gradientButton.setVisibility(View.GONE);
-//        closeImageview = view.findViewById(R.id.iv_filter_trip_close);
+        applyButton = view.findViewById(R.id.button_filtertrip_apply);
+        cancelButton = view.findViewById(R.id.button_filtertrip_cancel);
         categorieList = new ArrayList<>();
         selectedCategories = ((TripActivity)getActivity()).categories;
         numberPicker = view.findViewById(R.id.number_picker);
@@ -146,10 +148,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
 
 
     private void showApplyButton() {
-        if (gradientButton.getVisibility() == View.GONE)
-        {
-            gradientButton.setVisibility(View.VISIBLE);
-        }
+       applyButton.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
     }
 
 
