@@ -29,7 +29,6 @@ public class BookingActivity extends AppCompatActivity {
     private TextView travellerInfoTextview ,paymentTextview, successTextview;
     public Button continueButton;
     public ArrayList<Traveller> travellers;
-    private String emailString, phoneNumberString;
     private ProgressBar progressBar;
     public Date serverDeadlineDate, nowDate;
     private int whichFragment = 0;
@@ -37,6 +36,7 @@ public class BookingActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     public ConstraintLayout constraintLayout;
     private BookingPresenter bookingPresenter;
+    public String mobileNumberString, emailString, countryCode, mobileNumberCode;
     public MutableLiveData<Integer> passerngerNumLiveData;
 
     @Override
@@ -109,15 +109,7 @@ public class BookingActivity extends AppCompatActivity {
         switch (whichFragment)
         {
             case 0:
-
-                firstFragment = (BookingFirstFragment) getSupportFragmentManager().findFragmentByTag("firstFragment");
-                if (firstFragment!= null)
-                {
-                    emailString = firstFragment.emailEditText.getText().toString();
-                    phoneNumberString = firstFragment.mobileNumber + firstFragment.mobilenumberEditText.getText().toString();
-                    Log.d(TAG, "onClick: asasasasasasasas  " + emailString + "  " + phoneNumberString);
-                }
-                boolean result = bookingPresenter.checkingEmptyItems(emailString,phoneNumberString);
+                boolean result = bookingPresenter.checkingEmptyItems(emailString,mobileNumberString);
                 if (result)
                 {
                     new CheckInternetConnection(BookingActivity.this, frameLayout, result1 -> {
@@ -167,7 +159,7 @@ public class BookingActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         // TODO: 6/8/2019  fix booking
-        bookingPresenter.bookFlight(emailString,phoneNumberString,travellers, message ->
+        bookingPresenter.bookFlight(emailString,mobileNumberString,travellers, message ->
         {
             if (message == null)
             {

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
+import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 
@@ -18,6 +19,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
 
     private static final String TAG = "AirlineRecyclerviewAdda";
     private ArrayList<Category> categories;
+    private ArrayList<String> selectedCategories;
     private Context context;
     private OnItemCategorySelected onItemCategorySelected;
 
@@ -25,6 +27,11 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
         this.categories = categories;
         this.context = context;
         this.onItemCategorySelected = onItemCategorySelected;
+        selectedCategories = new ArrayList<>();
+        for (Category category :
+                ((TripActivity)context).categories) {
+            selectedCategories.add(category.getName());
+        }
     }
 
     @NonNull
@@ -73,7 +80,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
         public void bindAirlineItem(Category category)
         {
             nameTextview.setText(category.getName());
-            if (((TripActivity)context).categories.contains(category.getName()))
+            if (selectedCategories.contains(category.getName()))
             {
                 category.setSelected(true);
                 nameTextview.setTextColor(context.getResources().getColor(R.color.white));

@@ -2,6 +2,8 @@ package yoyo.app.android.com.yoyoapp.Trip.booking;
 
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,8 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.hbb20.CountryCodePicker;
@@ -29,7 +29,6 @@ public class BookingFirstFragment extends Fragment {
     private TextView passengerCount;
     private ImageView minusImageview, plusImageview;
     private CountryCodePicker countryCodePicker;
-    public String mobileNumber;
     private int passengerNum = 1;
 
     private View view;
@@ -38,6 +37,7 @@ public class BookingFirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_booking_first2, container, false);
         init();
+        setupMobileAndEmailEditText();
         setupMobileNumber();
         setupRecyclerview();
         plusImageview.setOnClickListener(v -> addNumber());
@@ -45,6 +45,47 @@ public class BookingFirstFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void setupMobileAndEmailEditText() {
+        mobilenumberEditText.setText(((BookingActivity)getActivity()).mobileNumberString);
+        emailEditText.setText(((BookingActivity)getActivity()).emailString);
+        emailEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() != 0) {
+                    ((BookingActivity)getActivity()).emailString = s.toString();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mobilenumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() != 0) {
+                    ((BookingActivity)getActivity()).mobileNumberString = s.toString();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void reduceNumber() {
@@ -84,11 +125,14 @@ public class BookingFirstFragment extends Fragment {
 
     // get country code for mobile number
     private void setupMobileNumber() {
-        mobileNumber = countryCodePicker.getDefaultCountryCodeWithPlus();
+        if ( ((BookingActivity)getActivity()).countryCode != null)
+            countryCodePicker.setCountryForNameCode(((BookingActivity)getActivity()).countryCode);
+
         countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
-                mobileNumber = countryCodePicker.getSelectedCountryCodeWithPlus();
+                ((BookingActivity)getActivity()).countryCode = countryCodePicker.getSelectedCountryNameCode();
+                ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getSelectedCountryNameCode();
             }
         });
     }
