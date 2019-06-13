@@ -38,7 +38,7 @@ public class ApiService {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips" + "?price_min=" +
                 tripQuery.getFromPrice()+"&price_max="+tripQuery.getToPrice()+"&start_date="+tripQuery.getFromTime()+
                 "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&location=" + tripQuery.getOrigin()+
-                "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&offset="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
+                "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&page="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
                 response -> {
 
                     ArrayList<Trip> trips = new ArrayList<>();
@@ -147,7 +147,10 @@ public class ApiService {
                                 trip.setLocations(locations);
 
                                 int tripCount = response.getInt("count");
-//                                tripCountConsumer.accept(tripCount);
+                                if (trips.size()==0)
+                                {
+                                    trip.setResultsSize(tripCount);
+                                }
 
 //                                // start and end time
 //                                Calendar cal = getDateAndTime(mainObject.getLong("start_time"));

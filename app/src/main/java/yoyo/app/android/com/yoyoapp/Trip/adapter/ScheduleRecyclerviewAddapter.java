@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.Trip.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
+import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 import yoyo.app.android.com.yoyoapp.Trip.booking.BookingActivity;
 
 import java.text.SimpleDateFormat;
@@ -25,9 +29,11 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
     private Context context;
     private OnItemSelected onItemSelected;
     private String monthName;
+    private UserSharedManager userSharedManager;
     private int dayOfMonth;
 
     public ScheduleRecyclerviewAddapter(ArrayList<Schedule> schedules,String tripTitle, Context context, OnItemSelected onItemSelected) {
+        userSharedManager = new UserSharedManager(context);
         this.schedules = schedules;
         this.tripTitle = tripTitle;
         this.context = context;
@@ -53,10 +59,18 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
         holder.bookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, BookingActivity.class);
-                intent.putExtra("travellerNum",1);
-                context.startActivity(intent);
-                ((TripActivity)context).overridePendingTransition(0,  0);
+                if (userSharedManager.getToken().isEmpty())
+                {
+                    context.startActivity(new Intent(context, AuthenticationActivity.class));
+                    ((TripActivity)context).overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+                }
+                else
+                {
+                    Intent intent = new Intent(context, BookingActivity.class);
+                    intent.putExtra("travellerNum",1);
+                    context.startActivity(intent);
+                    ((TripActivity)context).overridePendingTransition(0,  0);
+                }
             }
         });
     }
