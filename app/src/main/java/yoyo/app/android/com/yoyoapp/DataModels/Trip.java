@@ -25,6 +25,7 @@ public class Trip {
     private String endPoint;
     private Tour tour;
     private String agency;
+    private int resultsSize;
     private TripLeader tripLeader;
     private ArrayList<String> itineraries;
     private ArrayList<String> transportations;
@@ -294,5 +295,13 @@ public class Trip {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public int getResultsSize() {
+        return resultsSize;
+    }
+
+    public void setResultsSize(int resultsSize) {
+        this.resultsSize = resultsSize;
     }
 }

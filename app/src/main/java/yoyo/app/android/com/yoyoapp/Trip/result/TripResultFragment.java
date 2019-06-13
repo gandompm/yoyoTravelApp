@@ -42,6 +42,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private TripQuery tripQuery;
     private int page = 1;
     private View view;
+    private boolean isMoreDataAvailable = true;
     private ToggleSwitch tripTypeToggleSwitch;
     private ImageView backImageView;
     private TextView backTextView;
@@ -68,7 +69,9 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             @Override
             public void onToggleSwitchChanged(int i) {
                 page = 1;
-                adapter.clearTrips();
+                isMoreDataAvailable = true;
+                adapter = new FoldingCellRecyclerviewAdapter(getContext());
+                recyclerView.setAdapter(adapter);
                 if(i==0)
                 {
                     setupQuery("FIXED");
@@ -90,15 +93,19 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         recyclerView.setAdapter(adapter);
         InfiniteScrollProvider infiniteScrollProvider = new InfiniteScrollProvider();
         infiniteScrollProvider.attach(recyclerView, () -> {
-            Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
-            tripListViewModel.initTripList(page, tripQuery);
-            tripListViewModel.getTripList().observe(getActivity(), trips -> {
-                if (trips != null) {
-                    adapter.addTrips(trips);
-                    setupSnackBar();
-                    page++;
-                }
-            });
+            if (isMoreDataAvailable)
+            {
+                tripListViewModel.initTripList(page, tripQuery);
+                tripListViewModel.getTripList().observe(getActivity(), trips -> {
+                    if (trips != null && trips.size()>0) {
+                        Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
+                        adapter.addTrips(trips);
+                        page++;
+                    }
+                    else
+                        isMoreDataAvailable = false;
+                });
+            }
         });
     }
 
@@ -112,19 +119,17 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             public void onChanged(List<Trip> trips) {
                 if (trips != null) {
                     shimmerRecycler.hideShimmerAdapter();
-
                     adapter.addTrips(trips);
-                    setupSnackBar();
-
+                    setupSnackBar(trips.get(0).getResultsSize());
                     page++;
                 }
             }
         });
     }
 
-    private void setupSnackBar() {
+    private void setupSnackBar(int resultsSize) {
         // TODO: 5/30/2019 fixing showing sum of results
-        Snackbar snackbar = Snackbar.make(view, 27 +" " + getString(R.string.results), Snackbar.LENGTH_LONG)
+        Snackbar snackbar = Snackbar.make(view, resultsSize +" " + getString(R.string.results), Snackbar.LENGTH_LONG)
                 .setAction("Action", null);
         View sbView = snackbar.getView();
 
