@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView82"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="TourHighlights"
+            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Attractions"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView78"/>
     <TextView
             android:text="Mesr Village, Mesr Desert"
@@ -64,10 +64,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView85"
-            app:layout_constraintStart_toStartOf="@+id/guideline14" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_type"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium"
-            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView79"/>
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_type"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14" android:layout_marginTop="8dp"
+            android:visibility="gone" tools:visibility="visible"/>
     <TextView
             android:text="camping at Desert, Desert Hike, Stargazing at Night"
             android:layout_width="0dp"
@@ -77,8 +79,9 @@
             android:id="@+id/tv_tripdetails_itnarary" app:layout_constraintStart_toStartOf="@+id/textView85"
             app:layout_constraintTop_toBottomOf="@+id/textView85" android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
-            android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
+            android:textColor="@color/black2"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            android:visibility="gone" tools:visibility="visible"/>
     <TextView
             android:text="Isfahan, Yazd"
             android:layout_width="0dp"
@@ -110,7 +113,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView76"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Meals"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_itnarary"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView79"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
 
     <TextView
@@ -120,21 +123,14 @@
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Transport"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_meals"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView80"
-            android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Excluded"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_transport"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_tripdetails_rules"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Rules"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView96"
-            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_transport" android:layout_marginTop="8dp"/>
 
     <TextView
             android:text="Breakfast 0, Launch 2, Dinner 3"
@@ -156,15 +152,6 @@
             android:maxLines="2"
             app:layout_constraintTop_toBottomOf="@+id/textView77" app:layout_constraintStart_toStartOf="@+id/textView77"
             android:layout_marginTop="4dp" android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
-            android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
-    <TextView
-            android:text="TextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView96" app:layout_constraintStart_toStartOf="@+id/textView80"
-            app:layout_constraintTop_toBottomOf="@+id/textView80" android:layout_marginTop="4dp"
-            android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"/>
     <TextView
@@ -195,14 +182,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView101"
             app:layout_constraintStart_toStartOf="@+id/textView101"/>
     <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView83" android:textColor="@color/green_teal"
-            android:fontFamily="@font/roboto_medium" android:text="Accomodation Group" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_type"
-            app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_type" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline14"/>
-    <TextView
             android:text="tehran-mashad-isfehan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -225,13 +204,5 @@
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"/>
-    <TextView
-            android:text="Local House"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView103" app:layout_constraintStart_toStartOf="@+id/textView83"
-            android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/textView83"
-            android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
-            android:textColor="@color/black2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
