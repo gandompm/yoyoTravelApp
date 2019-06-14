@@ -21,8 +21,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.54:8000";
-    private String IP = "http://192.168.1.50:5000/";
+    private String IMAGEIP = "http://192.168.1.55:8000";
+    private String IP = "http://192.168.1.55:8000/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -376,11 +376,15 @@ public class ApiService {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+
+                Log.d(TAG, "sendSignInRequest: login   " + e.toString());
             }
             userConsumer.accept(user);
 
         }, error -> {
             userConsumer.accept(null);
+
+            Log.d(TAG, "sendSignInRequest: login " + error.toString());
         }) {
             /**
              * Passing some request headers
@@ -460,6 +464,8 @@ public class ApiService {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+
+                            Log.d(TAG, "onResponse: edit profile " + e.toString());
                         }
 
                         userConsumer.accept(user);
@@ -470,6 +476,8 @@ public class ApiService {
             public void onErrorResponse(VolleyError e) {
                 userConsumer.accept(null);
                 e.printStackTrace();
+
+                Log.d(TAG, "onErrorResponse: edit profile " + e.toString());
             }
         }){
             @Override

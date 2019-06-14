@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.details;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -66,6 +67,8 @@ public class TripDetailsFragment extends Fragment {
         tripDetailsButton.setOnClickListener(v-> sendToSchedulePage());
 //      getTripDetails();
 
+
+
         return view;
     }
 
@@ -84,17 +87,23 @@ public class TripDetailsFragment extends Fragment {
 
     private void setupViews() {
         Bundle bundle = getArguments();
+
+        Log.d(TAG, "onCreateView: xxxxx" + bundle.getString("language"));
+        Log.d(TAG, "onCreateView: xxxxx" + bundle.getString("summary"));
+
+
+
         tripId = bundle.getString("tripId");
         dayNightNumTextview.setText(bundle.getInt("days")+ " Days "+ bundle.getInt("nights")+ " Nights");
         nameTourLeader.setText(bundle.getString("leaderName"));
-        familyNameLeader.setText(bundle.getString("leaderName"));
-        titleTextview.setText(bundle.getString("tourName"));
+        familyNameLeader.setText(" " + bundle.getString("leaderName"));
+        titleTextview.setText(bundle.getString("tourName") + " • ");
         title2Textview.setText(bundle.getString("title"));
         tripTitle = bundle.getString("title");
         tourLeaderLanguageTextview.setText(bundle.getString("language"));
         locationFromTextview.setText(bundle.getString("locationTitleFrom"));
         locationToTextview.setText(bundle.getString("locationTitleTo"));
-        passengerCountTextview.setText(String.valueOf(bundle.getInt("passengersCount")));
+        passengerCountTextview.setText(String.valueOf(bundle.getInt("passengersCount")) + " purchased");
         fromLatlng = new LatLng(bundle.getDouble("fromLat"), bundle.getDouble("fromLong"));
         toLatlng = new LatLng(bundle.getDouble("toLat"), bundle.getDouble("toLong"));
         Picasso.with(getContext()).load(bundle.getString("leaderPicture")).into(tourLeaderImageview);
