@@ -25,7 +25,7 @@ public class BookingFirstFragment extends Fragment {
     private static final String TAG = "BookingFirstFragment";
     private RecyclerView recyclerView;
     private TravellerRecyclerviewAddapter travellerRecyclerviewAddapter;
-    public EditText mobilenumberEditText, emailEditText;
+    public  EditText mobilenumberEditText, emailEditText ,fullNameEditText;
     private TextView passengerCount;
     private ImageView minusImageview, plusImageview;
     private CountryCodePicker countryCodePicker;
@@ -37,7 +37,7 @@ public class BookingFirstFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_booking_first2, container, false);
         init();
-        setupMobileAndEmailEditText();
+        setupContactViews();
         setupMobileNumber();
         setupRecyclerview();
         plusImageview.setOnClickListener(v -> addNumber());
@@ -47,9 +47,28 @@ public class BookingFirstFragment extends Fragment {
         return view;
     }
 
-    private void setupMobileAndEmailEditText() {
+    private void setupContactViews() {
         mobilenumberEditText.setText(((BookingActivity)getActivity()).mobileNumberString);
         emailEditText.setText(((BookingActivity)getActivity()).emailString);
+        fullNameEditText.setText(((BookingActivity)getActivity()).fullNameString);
+        fullNameEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() != 0) {
+                    ((BookingActivity)getActivity()).fullNameString = s.toString();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         emailEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -121,6 +140,7 @@ public class BookingFirstFragment extends Fragment {
         minusImageview = view.findViewById(R.id.iv_bookingfirst_minus);
         plusImageview = view.findViewById(R.id.iv_bookingfirst_plus);
         passengerCount = view.findViewById(R.id.tv_bookingfirst_num);
+        fullNameEditText = view.findViewById(R.id.et_booking_contact_name);
     }
 
     // get country code for mobile number

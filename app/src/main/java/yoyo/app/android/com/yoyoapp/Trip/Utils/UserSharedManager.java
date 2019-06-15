@@ -26,7 +26,9 @@ public class UserSharedManager {
         editor.putString("email", user.getEmail());
         editor.putString("username", user.getUserName());
         editor.putString("phonenumber", user.getPhoneNumber());
-        editor.putString("profile_picture",user.getProfilePicture());
+        if (user.getProfilePicture() != null) {
+            editor.putString("profile_picture",user.getProfilePicture());
+        }
         if (user.getToken() != null) {
             editor.putString("token", user.getToken());
         }

@@ -104,6 +104,15 @@
 
                     </com.github.florent37.shapeofview.shapes.RoundRectView>
 
+                    <ProgressBar
+                            android:id="@+id/progressbar_edit_profile_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:visibility="gone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+
                     <ImageView
                             android:id="@+id/iv_edit_profile_change_photo_icon"
                             android:layout_width="30dp"

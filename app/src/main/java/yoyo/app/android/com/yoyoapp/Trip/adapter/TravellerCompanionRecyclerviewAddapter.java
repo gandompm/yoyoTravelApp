@@ -53,15 +53,17 @@ public class TravellerCompanionRecyclerviewAddapter extends RecyclerView.Adapter
     public class TravellerViewholder extends RecyclerView.ViewHolder
     {
         private TextView nameTextview;
-
+        private TextView abbrevationTextview;
 
         public TravellerViewholder(@NonNull View itemView) {
             super(itemView);
             nameTextview = itemView.findViewById(R.id.tv_traverller_companion_name);
+            abbrevationTextview = itemView.findViewById(R.id.tv_traveller_companion_name_abbreviation);
         }
 
         public void bindTravellerCompanionItem(Traveller traveller) {
 
+            abbrevationTextview.setText(traveller.getFirstName().substring(0,1).toUpperCase() + traveller.getLastName().substring(0,1).toUpperCase());
             nameTextview.setText(traveller.getFirstName() + " " + traveller.getLastName());
         }
     }

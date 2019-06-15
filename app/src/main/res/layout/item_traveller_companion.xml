@@ -29,26 +29,19 @@
                 android:id="@+id/circleImageView"/>
 
         <TextView
-                android:id="@+id/tv_traverller_companion_email"
+                android:id="@+id/tv_traverller_companion_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="parham@gmail.com"
                 android:layout_alignParentStart="true"
-                android:textSize="@dimen/small" android:fontFamily="@font/roboto_medium"
-                app:layout_constraintStart_toStartOf="@+id/tv_traverller_companion_name"
+                android:textSize="@dimen/header_2" android:fontFamily="@font/roboto_medium"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"
                 android:textColor="@color/black3"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_traverller_companion_name"/>
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-                android:id="@+id/tv_traverller_companion_name"
-                android:text="Parham Gandomkar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp" android:textColor="@color/black1"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_1"/>
+
         <ImageView
                 android:id="@+id/button_traveller_item"
                 android:layout_width="40dp"
@@ -67,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" app:layout_constraintGuide_percent="0.18"/>
+
         <TextView
                 android:id="@+id/tv_traveller_companion_name_abbreviation"
                 android:text="PG"
