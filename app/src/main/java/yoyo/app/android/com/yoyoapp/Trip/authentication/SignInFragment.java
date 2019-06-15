@@ -91,22 +91,19 @@ public class SignInFragment extends Fragment {
     private void sendToSignInPage(JSONObject jsonObject) {
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
         authViewModel.initSignIn(jsonObject);
-        authViewModel.getSignInResult().observe(getActivity(), new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                if (user != null) {
-                    userSharedManager.saveUser(user);
-                    Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
-                    Intent i = new Intent(getActivity(), MainActivity.class);
-                    i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-                    startActivity(i);
-                    getActivity().finish();
-                    getActivity().overridePendingTransition(0, 0);
-                }
-                else
-                {
-                    Toasty.error(getContext(),getString(R.string.failed)).show();
-                }
+        authViewModel.getSignInResult().observe(getActivity(), user -> {
+            if (user != null) {
+                userSharedManager.saveUser(user);
+                Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
+                startActivity(i);
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, 0);
+            }
+            else
+            {
+                Toasty.error(getContext(),getString(R.string.failed)).show();
             }
         });
     }

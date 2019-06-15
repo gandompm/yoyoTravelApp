@@ -39,20 +39,16 @@ public class LanguageDialogFragment extends DialogFragment {
         englishTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 languageSetup.setLocale("en");
                 dismiss();
-
             }
         });
 
         arabicTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 languageSetup.setLocale("ar");
                 dismiss();
-
             }
         });
 

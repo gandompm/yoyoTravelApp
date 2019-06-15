@@ -27,7 +27,12 @@ public class BookingPresenter {
 
 
     // checking all fields for travellers in traveller list
-    public boolean checkingEmptyItems(String emailString, String phoneNumberString) {
+    public boolean checkingEmptyItems(String fullNameString, String emailString, String phoneNumberString) {
+        if (fullNameString == null || fullNameString.equals(""))
+        {
+            Toasty.error(context,"full name can not be empty").show();
+            return false;
+        }
         if (emailString == null || emailString.equals(""))
         {
             Toasty.error(context,context.getResources().getString(R.string.email_cannot_be_empty)).show();

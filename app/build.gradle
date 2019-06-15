@@ -99,12 +99,12 @@ dependencies {
     implementation 'com.akexorcist:googledirectionlibrary:1.1.1'
 
     // new yoyo app
-    implementation 'com.balysv:material-ripple:1.0.2'                  // ripple effect
-    implementation 'com.google.android.gms:play-services:11.6.0'  // google play service
+    implementation 'com.balysv:material-ripple:1.0.2'                        // ripple effect
+    implementation 'com.google.android.gms:play-services:11.6.0'             // google play service
     implementation 'com.airbnb.android:lottie:3.0.0'
-    implementation 'com.karumi:dexter:4.1.0'                           // dexter M permissions
+    implementation 'com.karumi:dexter:4.1.0'                                 // dexter M permissions
     implementation 'jp.gr.java_conf.androtaku.countrylist:countrylist:1.1.0' // country list
-    implementation 'com.shawnlin:number-picker:2.4.8'                   // number picker
+    implementation 'com.shawnlin:number-picker:2.4.8'                        // number picker
 
 
     def lifecycle_version = "2.0.0"

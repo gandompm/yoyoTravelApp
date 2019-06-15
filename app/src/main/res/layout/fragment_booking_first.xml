@@ -30,8 +30,7 @@
                 android:textColor="@color/black2"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="@dimen/standard"
-                android:layout_marginStart="@dimen/small_margin"
-        />
+                android:layout_marginStart="@dimen/small_margin"/>
 
         <TextView
                 android:layout_width="wrap_content"

@@ -31,12 +31,11 @@ public class BookingActivity extends AppCompatActivity {
     public ArrayList<Traveller> travellers;
     private ProgressBar progressBar;
     public Date serverDeadlineDate, nowDate;
-    private int whichFragment = 0;
-    private BookingFirstFragment firstFragment;
+    private int whichFragment = 0, previousArraySize = 0;
     private FrameLayout frameLayout;
     public ConstraintLayout constraintLayout;
     private BookingPresenter bookingPresenter;
-    public String mobileNumberString, emailString, countryCode, mobileNumberCode;
+    public String mobileNumberString, emailString, countryCode, mobileNumberCode,fullNameString;
     public MutableLiveData<Integer> passerngerNumLiveData;
 
     @Override
@@ -45,7 +44,8 @@ public class BookingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking2);
 
         init();
-        setupTravellersArray(1);
+        Traveller traveller = new Traveller();
+        travellers.add(traveller);
         setupFirstFragment();
         continueButton.setOnClickListener(v -> setupContinueButton());
         backImageview.setOnClickListener(v -> setupBackButton());
@@ -54,7 +54,20 @@ public class BookingActivity extends AppCompatActivity {
         passerngerNumLiveData.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer arraySize) {
-                setupTravellersArray(arraySize);
+                if (arraySize!=1)
+                {
+                    if (previousArraySize < arraySize)
+                    {
+                        Traveller traveller = new Traveller();
+                        travellers.add(traveller);
+                        Log.d(TAG, "onChangedtttttt:  addddd  " + travellers.size() +"          -----        " + arraySize);
+                    }
+                    else {
+                        travellers.remove(travellers.size()-1);
+                        Log.d(TAG, "onChangedtttttt:  reduce  " + travellers.size() +"          -----        " + arraySize);
+                    }
+                    previousArraySize = arraySize;
+                }
             }
         });
     }
@@ -80,15 +93,6 @@ public class BookingActivity extends AppCompatActivity {
     }
 
 
-    // get traveller number from previous fragment and
-    // initialize travellers array list
-    private void setupTravellersArray(int travellerNum) {
-        travellers.clear();
-        for (int i = 0; i < travellerNum; i++) {
-            Traveller traveller = new Traveller();
-            travellers.add(traveller);
-        }
-    }
 
     // setup first fragment and setup views for first fragment
     private void setupFirstFragment() {
@@ -109,7 +113,7 @@ public class BookingActivity extends AppCompatActivity {
         switch (whichFragment)
         {
             case 0:
-                boolean result = bookingPresenter.checkingEmptyItems(emailString,mobileNumberString);
+                boolean result = bookingPresenter.checkingEmptyItems(fullNameString,emailString,mobileNumberString);
                 if (result)
                 {
                     new CheckInternetConnection(BookingActivity.this, frameLayout, result1 -> {
