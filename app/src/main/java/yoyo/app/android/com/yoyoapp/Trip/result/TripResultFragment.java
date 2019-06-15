@@ -118,10 +118,15 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             @Override
             public void onChanged(List<Trip> trips) {
                 if (trips != null) {
+                    if (trips.size() == 0) {
+                        Toast.makeText(getContext(), "We couldn't find any Tour", Toast.LENGTH_SHORT).show();
+                    }else {
+
+                        adapter.addTrips(trips);
+                        setupSnackBar(trips.get(0).getResultsSize());
+                        page++;
+                    }
                     shimmerRecycler.hideShimmerAdapter();
-                    adapter.addTrips(trips);
-                    setupSnackBar(trips.get(0).getResultsSize());
-                    page++;
                 }
             }
         });

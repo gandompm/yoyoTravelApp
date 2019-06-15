@@ -22,7 +22,7 @@ public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
     private String IMAGEIP = "http://192.168.1.55:8000";
-    private String IP = "http://192.168.1.55:8000/";
+    private String IP = "http://192.168.1.60:9001/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
