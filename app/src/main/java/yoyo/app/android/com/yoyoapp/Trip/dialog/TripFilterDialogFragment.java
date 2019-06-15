@@ -40,7 +40,6 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private ArrayList<Category> selectedCategories;
     private TripSearchViewModel tripSearchViewModel;
     private NumberPicker numberPicker;
-    private RelativeLayout relativeLayout;
     private String minimum, maximum;
     private String minPrice = "10", maxPrice = "5500";
     private boolean hasPriceChanged = false, hasDurationChanged = false;
@@ -54,19 +53,19 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         setupNumberPicker();
         setupPriceRangeBar();
         setupRecyclerview();
+        initFilter();
         getCategories();
         applyButton.setOnClickListener(v -> setupApplyButton());
-        cancelButton.setOnClickListener(v -> setupCancelButton());
+        cancelButton.setOnClickListener(v -> dismiss());
 
 
 
         return view;
     }
 
-    private void setupCancelButton() {
-
-        dismiss();
-
+    private void initFilter() {
+        if (((TripActivity)getActivity()).minDuration != 1)
+        numberPicker.setValue(((TripActivity)getActivity()).minDuration);
     }
 
     private void setupNumberPicker() {
@@ -86,9 +85,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                 hasDurationChanged = true;
                 rangebarDurationTextview.setText(newVal +" Days");
                 duration = newVal;
-
-                    showApplyButton();
-
+                showApplyButton();
             }
         });
     }
@@ -124,9 +121,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                 minimum = decimalFormat.format(Integer.valueOf(minPrice));
                 maximum = decimalFormat.format(Integer.valueOf(maxPrice));
 
-
-                    showApplyButton();
-
+                showApplyButton();
 
                 rangebarPriceTextview.setText("From " + minimum + "$ to " + maximum + "$");
             }
@@ -169,6 +164,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
                     if (adapter == null)
                     {
                         adapter = new CategoryRecyclerviewAddapter(categorieList, getContext(), category -> {
+                            showApplyButton();
                             if (selectedCategories.contains(category)) {
                                 selectedCategories.remove(category);
                             } else {

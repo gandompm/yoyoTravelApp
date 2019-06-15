@@ -8,6 +8,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,8 +22,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.55:8000";
-    private String IP = "http://192.168.1.60:9001/";
+    private String IMAGEIP = "http://192.168.1.62:8008";
+    private String IP = "http://192.168.1.62:8008/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -37,7 +38,7 @@ public class ApiService {
     {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips" + "?price_min=" +
                 tripQuery.getFromPrice()+"&price_max="+tripQuery.getToPrice()+"&start_date="+tripQuery.getFromTime()+
-                "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&location=" + tripQuery.getOrigin()+
+                "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&origin=" + tripQuery.getOrigin()+ "&destination=" + tripQuery.getDestination() +
                 "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&page="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
                 response -> {
 
@@ -742,6 +743,7 @@ public class ApiService {
                     ArrayList<Location> locations = new ArrayList<>();
                     try {
                         JSONArray jsonArray = response.getJSONArray("locations");
+//                        Example root = new Gson().fromJson(String.valueOf(jsonArray), Example.class);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -767,6 +769,44 @@ public class ApiService {
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
+
+    public void sendBookingRequest(String scheduleId, Consumer<ArrayList<Location>> locationConsumer)
+    {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/schedules/" + scheduleId ,null,
+                response -> {
+
+                    ArrayList<Location> locations = new ArrayList<>();
+                    try {
+                        JSONArray jsonArray = response.getJSONArray("locations");
+//                        Example root = new Gson().fromJson(String.valueOf(jsonArray), Example.class);
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                            Location location = new Location();
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            location.setCode(jsonObject.getString("code"));
+                            location.setTitle(jsonObject.getString("name"));
+
+                            locations.add(location);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    locationConsumer.accept(locations);
+
+                }, error -> {
+            locationConsumer.accept(null);
+            error.printStackTrace();
+        });
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+
 
 }
 

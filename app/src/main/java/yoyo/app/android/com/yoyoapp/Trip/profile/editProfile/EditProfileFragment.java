@@ -45,10 +45,10 @@ public class EditProfileFragment extends Fragment {
     private EditText firstnameEditText, phoneNumberEditText,lastnameEditText, usernameEditText;
     private TextView emailTextview;
     private ImageView backImageView;
-    private CountryCodePicker ccp;
     private ImageView circleImageView;
     private UserSharedManager userSharedManager;
     private FragmentManager fragmentManager;
+    private ProgressBar profilePictureProgressbar;
     private User user;
     private String encodedProfileImage;
     private EditProfileViewModel editProfileViewModel;
@@ -98,7 +98,6 @@ public class EditProfileFragment extends Fragment {
                 .start(getActivity());
     }
 
-
     private void saveImageProfile(Uri imageUri) {
 
         circleImageView.setImageURI(imageUri);
@@ -132,13 +131,12 @@ public class EditProfileFragment extends Fragment {
         editProfileViewModel.sendImageProfile(jsonObject);
         editProfileViewModel.getProfilePicture().observe(getActivity(), profilePicture -> {
             if (profilePicture != null) {
-                //  profileProgressbar.setVisibility(View.GONE);
                 userSharedManager.saveProfilePhoto(encodedProfileImage);
             }
             else
             {
-//                profileProgressbar.setVisibility(View.VISIBLE);
             }
+            profilePictureProgressbar.setVisibility(View.GONE);
         });
     }
 
@@ -150,6 +148,7 @@ public class EditProfileFragment extends Fragment {
 
             if (resultCode == RESULT_OK) {
                 Uri imageUri = result.getUri();
+                profilePictureProgressbar.setVisibility(View.VISIBLE);
                 saveImageProfile(imageUri);
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -195,7 +194,6 @@ public class EditProfileFragment extends Fragment {
     }
 
 
-
     private void init() {
         editProfileViewModel = ViewModelProviders.of(getActivity()).get(EditProfileViewModel.class);
         firstnameEditText = view.findViewById(R.id.et_edit_profile_firstname);
@@ -207,6 +205,7 @@ public class EditProfileFragment extends Fragment {
         usernameEditText = view.findViewById(R.id.et_edit_profile_username);
         phoneNumberEditText = view.findViewById(R.id.et_edit_profile_phone_number);
         circleImageView = view.findViewById(R.id.iv_edit_profile_img);
+        profilePictureProgressbar = view.findViewById(R.id.progressbar_edit_profile_image);
         userSharedManager = new UserSharedManager(getContext());
     }
 

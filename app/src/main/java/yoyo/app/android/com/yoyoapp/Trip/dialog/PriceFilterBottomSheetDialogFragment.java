@@ -1,6 +1,5 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
-
 import android.content.Context;
 import android.os.Bundle;
 
@@ -31,7 +30,7 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
     private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.bottom_sheet_filter_price,container,false);
+        view = inflater.inflate(R.layout.bottom_sheet_filter_price, container,false);
 
         init();
         setupApplyButton();
@@ -53,7 +52,6 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
         });
     }
 
-
     private void setupCloseButton() {
         closeImageview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,8 +68,7 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
                                               int rightPinIndex, String leftPinValue, String rightPinValue) {
                 minPrice = leftPinValue;
                 maxPrice = rightPinValue;
-//                minPrice += "000";
-//                maxPrice += "000";
+
                 DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
                 minimum = decimalFormat.format(Integer.valueOf(minPrice));
                 maximum = decimalFormat.format(Integer.valueOf(maxPrice));
@@ -81,9 +78,7 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
                     showApplyButton();
                 }
 
-
                 rangebarTextview.setText("From " + minimum + "$ to " + maximum + "$");
-
             }
         });
     }

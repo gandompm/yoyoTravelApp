@@ -60,7 +60,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         setupToggleButton();
         setupOnclickListener();
 
-
         return view;
     }
 
@@ -97,7 +96,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             {
                 tripListViewModel.initTripList(page, tripQuery);
                 tripListViewModel.getTripList().observe(getActivity(), trips -> {
-                    if (trips != null && trips.size()>0) {
+                    if (trips != null && trips.size() > 0) {
                         Toast.makeText(getContext(), "load more", Toast.LENGTH_SHORT).show();
                         adapter.addTrips(trips);
                         page++;
@@ -118,12 +117,14 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             @Override
             public void onChanged(List<Trip> trips) {
                 if (trips != null) {
-                    if (trips.size() == 0) {
+                    if (trips.size()==0)
+                    {
                         Toast.makeText(getContext(), "We couldn't find any Tour", Toast.LENGTH_SHORT).show();
-                    }else {
-
-                        adapter.addTrips(trips);
+                    }
+                    else
+                    {
                         setupSnackBar(trips.get(0).getResultsSize());
+                        adapter.addTrips(trips);
                         page++;
                     }
                     shimmerRecycler.hideShimmerAdapter();
