@@ -1,5 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.result;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,7 +142,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
 
         sbView.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimary));
         TextView textView = sbView.findViewById(R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorAccent));
+        textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.white));
         snackbar.show();
     }
 

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
+import yoyo.app.android.com.yoyoapp.OrdersFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
 import yoyo.app.android.com.yoyoapp.Flight.FlightTicketNotSignedInFragment;
@@ -66,11 +67,14 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
                     addFragment(new ProfileFragment(),"profile");
                     return true;
                 case R.id.bn_orders:
-                    if (MainActivity.isSingnedIn)
-                        addFragment(new FlightTicketFragment(),"ticket");
-                    else
-                        addFragment(new FlightTicketNotSignedInFragment(), "ticket not signed in");
-                    return true;
+                    addFragment(new OrdersFragment(),"orders");
+
+
+//                        if (isSingnedIn)
+//                            addFragment(new FlightTicketFragment(),"ticket");
+//                        else
+//                            addFragment(new FlightTicketNotSignedInFragment(), "ticket");
+//                        return true;
                 default:
                     return false;
             }

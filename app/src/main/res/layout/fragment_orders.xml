@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:background="#f1f1f1">
+            android:layout_height="match_parent" android:background="@drawable/gray_pattern">
 
 
         <com.github.florent37.shapeofview.shapes.ArcView
@@ -28,6 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorPrimary">
+
 
 
                 <TextView
@@ -62,15 +63,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/tour_order"
+                        android:scaleType="centerCrop"
+                />
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:layout_centerVertical="false"
                         android:text="@string/tours"
                         android:fontFamily="@font/roboto_bold"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"/>
+                        android:textColor="@color/white"
+                        android:textAlignment="textStart" android:textSize="24sp"
+                        android:layout_alignParentTop="true" android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"/>
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
@@ -94,14 +102,24 @@
                     android:layout_height="match_parent">
 
 
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/flight_order"
+                        android:scaleType="centerCrop"
+                />
+
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:layout_centerVertical="false"
                         android:text="@string/flights"
                         android:fontFamily="@font/roboto_bold"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"/>
+                        android:textColor="@color/white"
+                        android:textAlignment="textStart" android:textSize="24sp"
+                        android:layout_alignParentTop="true" android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"/>
             </RelativeLayout>
 
 
@@ -126,14 +144,23 @@
                     android:layout_height="match_parent">
 
 
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/hotel_order"
+                        android:scaleType="centerCrop"
+                />
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
+                        android:layout_centerVertical="false"
                         android:text="@string/hotels"
                         android:fontFamily="@font/roboto_bold"
-                        android:textColor="@color/black"
-                        android:textAlignment="center"/>
+                        android:textColor="@color/white"
+                        android:textAlignment="textStart" android:textSize="24sp"
+                        android:layout_alignParentTop="true" android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"/>
             </RelativeLayout>
 
 

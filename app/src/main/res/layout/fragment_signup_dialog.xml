@@ -19,7 +19,7 @@
 
     <Button
             android:text="@string/sign_up"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@color/green"
             android:textColor="@color/white"
@@ -27,14 +27,16 @@
             android:id="@+id/button_dialog_yes" app:layout_constraintEnd_toStartOf="@+id/button_dialog_no"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="8dp" android:fontFamily="@font/roboto_bold" android:paddingEnd="4dp"
+            android:paddingStart="4dp"/>
     <Button
             android:text="@string/cancel_2"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/button_dialog_no"
             android:background="@drawable/border_gray"
             app:layout_constraintStart_toEndOf="@+id/button_dialog_yes" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_dialog_yes" app:layout_constraintBottom_toBottomOf="@+id/button_dialog_yes"/>
+            app:layout_constraintTop_toTopOf="@+id/button_dialog_yes"
+            app:layout_constraintBottom_toBottomOf="@+id/button_dialog_yes" android:textColor="#E91E63"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

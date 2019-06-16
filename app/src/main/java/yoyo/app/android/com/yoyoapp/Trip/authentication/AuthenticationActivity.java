@@ -69,12 +69,15 @@ public class AuthenticationActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         signupMessage1 = findViewById(R.id.signup_title_1);
         signupMessage2 = findViewById(R.id.signup_title_2);
+        signupMessage1.setTextColor(getResources().getColor(R.color.colorAccent));
+        signupMessage2.setTextColor(getResources().getColor(R.color.colorAccent));
     }
 
     // setup view pager
     private void setupSignInSignUpBottomSheet() {
         setupViewPager(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
+
     }
 
     // view pager for navigating between sign up and sign in fragment
