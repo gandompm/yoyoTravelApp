@@ -21,9 +21,10 @@ import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.MyTravellerDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Enum.Gender;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.DateCalenderSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.NationalCodeUtil;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.DateCalenderSetup;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class TravellerInfoFragment extends Fragment {
     private boolean isIranian;
     private int position;
     public View view;
+    private Long dateOfBirthTimestamp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -141,15 +143,11 @@ public class TravellerInfoFragment extends Fragment {
     // save traveller and when the fields are not empty
     // and are correct, add the traveller to travellers array
     private void saveTravellerInfo() {
-
-            Boolean flag = true;
-
-
+        Boolean flag = true;
 
         if (!checkEnglishChar()){
             return;
         }
-
             if (firstnameEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.first_name_cannot_be_empty)).show();
                 flag =false;
@@ -267,7 +265,9 @@ public class TravellerInfoFragment extends Fragment {
             iraninanCodeTextview.setVisibility(View.GONE);
             isIranian = false;
         }
-        new DateCalenderSetup(getContext(), dateOfBirthTextview,dateOfBirthListner);
+        new DateCalenderSetup(getContext() , dateOfBirthTextview ,dateOfBirthListner, timestamp ->{
+            dateOfBirthTimestamp = timestamp;
+        });
     }
 
     // get country list from server

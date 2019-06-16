@@ -145,14 +145,15 @@ public class BookingFirstFragment extends Fragment {
 
     // get country code for mobile number
     private void setupMobileNumber() {
-        if ( ((BookingActivity)getActivity()).countryCode != null)
+        ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getDefaultCountryCodeWithPlus();
+        if ( ((BookingActivity)getActivity()).countryCode != null) {
             countryCodePicker.setCountryForNameCode(((BookingActivity)getActivity()).countryCode);
-
+        }
         countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
-                ((BookingActivity)getActivity()).countryCode = countryCodePicker.getSelectedCountryNameCode();
-                ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getSelectedCountryNameCode();
+                String s = ((BookingActivity)getActivity()).countryCode = countryCodePicker.getSelectedCountryNameCode();
+                String s1= ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getSelectedCountryCodeWithPlus();
             }
         });
     }

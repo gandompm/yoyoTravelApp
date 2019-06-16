@@ -10,7 +10,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
 import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingSecondFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingThirdFragment;
@@ -33,6 +37,9 @@ public class BookingActivity extends AppCompatActivity {
     public Date serverDeadlineDate, nowDate;
     private int whichFragment = 0, previousArraySize = 0;
     private FrameLayout frameLayout;
+    private JSONObject jsonObject;
+    private String scheduleId, bookingId;
+    private BookingViewModel bookingViewModel;
     public ConstraintLayout constraintLayout;
     private BookingPresenter bookingPresenter;
     public String mobileNumberString, emailString, countryCode, mobileNumberCode,fullNameString;
@@ -44,6 +51,7 @@ public class BookingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_booking2);
 
         init();
+        getScheduleId();
         Traveller traveller = new Traveller();
         travellers.add(traveller);
         setupFirstFragment();
@@ -72,6 +80,12 @@ public class BookingActivity extends AppCompatActivity {
         });
     }
 
+    private void getScheduleId() {
+        Intent intent = getIntent();
+        scheduleId = intent.getStringExtra("scheduleId");
+        Log.d(TAG, "getScheduleId: " + scheduleId);
+    }
+
     private void init() {
         frameLayout = findViewById(R.id.fl_booking);
         traverllerInfoImageview = findViewById(R.id.iv_booking_traveller_info);
@@ -90,9 +104,8 @@ public class BookingActivity extends AppCompatActivity {
         backImageview = findViewById(R.id.iv_sign_out_back);
         passerngerNumLiveData = new MutableLiveData<>();
         passerngerNumLiveData.postValue(1);
+        bookingViewModel = ViewModelProviders.of(BookingActivity.this).get(BookingViewModel.class);
     }
-
-
 
     // setup first fragment and setup views for first fragment
     private void setupFirstFragment() {
@@ -161,20 +174,48 @@ public class BookingActivity extends AppCompatActivity {
     // book flight reuest for first fragment
     private void bookFlight() {
 
-        progressBar.setVisibility(View.VISIBLE);
-        // TODO: 6/8/2019  fix booking
-        bookingPresenter.bookFlight(emailString,mobileNumberString,travellers, message ->
-        {
-            if (message == null)
-            {
-                setupSecondFragment();
+        setupJson();
+        bookingViewModel.initBookingRequest(scheduleId, jsonObject);
+        bookingViewModel.getBookingId().observe(BookingActivity.this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s != null) {
+                    bookingId = s;
+                    Log.d(TAG, "onChanged: rtrtrt "+ bookingId);
+                }
             }
-            else
-            {
-                Toasty.error(BookingActivity.this,message).show();
-            }
-            progressBar.setVisibility(View.GONE);
         });
+    }
+
+    // book flight request and generate a json object
+    public void setupJson() {
+        jsonObject = new JSONObject();
+        try {
+            JSONObject leaderJsonObject = new JSONObject();
+            leaderJsonObject.put("leader_traveller", fullNameString);
+            leaderJsonObject.put("email",emailString);
+            leaderJsonObject.put("phone_number",mobileNumberCode + mobileNumberString);
+
+            jsonObject.put("leader_traveller",leaderJsonObject);
+            JSONArray jsonArray = new JSONArray();
+            for (Traveller item : travellers)
+            {
+                JSONObject js = new JSONObject();
+                js.put("firstname",item.getFirstName());
+                js.put("lastname",item.getLastName());
+                js.put("gender",item.getGender());
+                js.put("dob",item.getDateOfBirth());
+                js.put("nationality",item.getNationality());
+                js.put("national_code",item.getNationalityCode());
+                js.put("passport_number",item.getPassportNumber());
+
+                jsonArray.put(js);
+            }
+            jsonObject.put("companion_travellers",jsonArray);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     // setup second fragment and setup views for second fragment

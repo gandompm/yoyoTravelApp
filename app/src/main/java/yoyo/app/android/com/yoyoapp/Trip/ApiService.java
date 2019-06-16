@@ -8,7 +8,6 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -770,37 +769,30 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendBookingRequest(String scheduleId, Consumer<ArrayList<Location>> locationConsumer)
+    public void sendBookingRequest(String scheduleId, JSONObject jsonObject , Consumer<String> bookingIdConsumer)
     {
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/schedules/" + scheduleId ,null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP +"api/schedules/" + scheduleId ,jsonObject,
                 response -> {
-
-                    ArrayList<Location> locations = new ArrayList<>();
                     try {
-                        JSONArray jsonArray = response.getJSONArray("locations");
-//                        Example root = new Gson().fromJson(String.valueOf(jsonArray), Example.class);
+                      String bookingId = response.getString("booking_id");
+                      bookingIdConsumer.accept(bookingId);
 
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                            Location location = new Location();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            location.setCode(jsonObject.getString("code"));
-                            location.setTitle(jsonObject.getString("name"));
-
-                            locations.add(location);
-                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    locationConsumer.accept(locations);
 
                 }, error -> {
-            locationConsumer.accept(null);
+            bookingIdConsumer.accept(null);
             error.printStackTrace();
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT "+ JWT);
+                return params;
+            }
+        };
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
