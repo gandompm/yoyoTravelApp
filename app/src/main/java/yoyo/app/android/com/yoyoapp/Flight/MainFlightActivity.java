@@ -142,9 +142,9 @@ public class MainFlightActivity extends AppCompatActivity  implements TravellerB
 
             case FragNavController.TAB1:
                 if (MainActivity.isSingnedIn)
-                    return new TicketFragment();
+                    return new FlightTicketFragment();
                 else
-                    return new TicketNotSignedInFragment();
+                    return new FlightTicketNotSignedInFragment();
             case FragNavController.TAB2:
                 return new FlightSearchFragment();
             case FragNavController.TAB3:

@@ -68,7 +68,10 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putString("agencyName",trip.getAgency());
             bundle.putString("leaderName",trip.getTripLeader().getName());
             bundle.putString("leaderPicture",trip.getTripLeader().getPicture());
-            bundle.putString("language", trip.getLanguage());
+            bundle.putString("language", trip.getTripLeader().getLanguage().toUpperCase());
+
+            Log.d(TAG, "onBindViewHolder: xxxxx    " + trip.getLanguage());
+
             bundle.putString("title",trip.getTitle());
             bundle.putStringArrayList("itinerary",trip.getItineraries());
             bundle.putStringArrayList("attractions",trip.getAttractions());
@@ -86,6 +89,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putDouble("toLat",trip.getLocations().get(1).getLat());
             bundle.putDouble("toLong",trip.getLocations().get(1).getLon());
             bundle.putString("summary",trip.getSummary());
+
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
@@ -199,7 +203,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             Picasso.with(context).load(trip.getGallery().get(0)).into(tripImg);
             from.setText(trip.getLocations().get(0).getTitle());
             to.setText(trip.getLocations().get(1).getTitle());
-            language.setText(trip.getTripLeader().getLanguage());
+            language.setText(trip.getTripLeader().getLanguage().toUpperCase());
             duraion.setText(String.valueOf(trip.getDayNum()) + " Days");
             durationBig.setText(trip.getDayNum() + " Days");
             tripLeaderName.setText(trip.getTripLeader().getName());
@@ -223,8 +227,8 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             titleBig.setText(trip.getTitle());
 //            groupBig.setText(trip.getTour().getName());
 
-            priceBig.setText("20$");
-            price.setText("20$");
+            priceBig.setText("400€");
+            price.setText("400€");
             startDate.setText("");
             endDate.setText("");
 //            capacity.setText("");

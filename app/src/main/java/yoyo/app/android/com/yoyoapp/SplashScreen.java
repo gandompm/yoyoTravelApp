@@ -1,10 +1,10 @@
-package yoyo.app.android.com.yoyoapp.Flight;
+package yoyo.app.android.com.yoyoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
-import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, MainFlightActivity.class));
+                startActivity(new Intent(SplashScreen.this, MainActivity.class));
                 finish();
             }
         }, 1000);

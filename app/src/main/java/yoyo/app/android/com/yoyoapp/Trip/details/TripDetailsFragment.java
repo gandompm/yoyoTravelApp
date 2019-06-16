@@ -96,7 +96,7 @@ public class TripDetailsFragment extends Fragment {
         tripId = bundle.getString("tripId");
         dayNightNumTextview.setText(bundle.getInt("days")+ " Days "+ bundle.getInt("nights")+ " Nights");
         nameTourLeader.setText(bundle.getString("leaderName"));
-        familyNameLeader.setText(" " + bundle.getString("leaderName"));
+//        familyNameLeader.setText(" " + bundle.getString("leaderName"));
         titleTextview.setText(bundle.getString("tourName") + " • ");
         title2Textview.setText(bundle.getString("title"));
         tripTitle = bundle.getString("title");
