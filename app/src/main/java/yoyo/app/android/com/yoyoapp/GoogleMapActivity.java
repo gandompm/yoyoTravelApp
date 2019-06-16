@@ -70,6 +70,10 @@ public class GoogleMapActivity extends AppCompatActivity implements OnMapReadyCa
 
         moveCamera(googleMap, startLatLng);
 
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(startLatLng);
+        markerOptions.title("Start");
+
 
         Polyline polyline = googleMap.addPolyline(new PolylineOptions()
                 .clickable(true)
