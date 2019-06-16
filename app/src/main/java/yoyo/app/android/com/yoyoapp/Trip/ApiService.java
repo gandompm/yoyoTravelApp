@@ -8,6 +8,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -142,7 +143,12 @@ public class ApiService {
                                     location.setLon(locationObject.getDouble("longitude"));
                                     location.setLat(locationObject.getDouble("latitude"));
                                     location.setOrder(locationObject.getInt("order"));
-                                    locations.add(location);
+                                    if (locationObject.getInt("order")==0)
+                                        locations.add(0,location);
+                                    else if (locationObject.getInt("order") == -1)
+                                        locations.add(locationJsonArray.length()-1,location);
+                                    else
+                                        locations.add(location);
                                 }
                                 trip.setLocations(locations);
 
@@ -625,7 +631,6 @@ public class ApiService {
                     ArrayList<Location> locations = new ArrayList<>();
                     try {
                         JSONArray jsonArray = response.getJSONArray("locations");
-//                        Example root = new Gson().fromJson(String.valueOf(jsonArray), Example.class);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
@@ -676,6 +681,38 @@ public class ApiService {
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+    public void getOrderRequest(Consumer<ArrayList<Order>> orderConsumer)
+    {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/user/dashboard/orders" ,null,
+                response -> {
+
+                    ArrayList<Order> orders = new ArrayList<>();
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            Order order = new Gson().fromJson(String.valueOf(jsonObject), Order.class);
+                            orders.add(order);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    orderConsumer.accept(orders);
+                }, error -> {
+            orderConsumer.accept(null);
+            error.printStackTrace();
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT "+ JWT);
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
 
