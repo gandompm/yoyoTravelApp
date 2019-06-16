@@ -67,7 +67,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
                 else
                 {
                     Intent intent = new Intent(context, BookingActivity.class);
-                    intent.putExtra("travellerNum",1);
+                    intent.putExtra("scheduleId",schedules.get(position).getId());
                     context.startActivity(intent);
                     ((TripActivity)context).overridePendingTransition(0,  0);
                 }
@@ -90,7 +90,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
         private TextView endMonthTextview;
         private TextView priceTextview;
         private TextView remainingCapacityTextview;
-        private Button bookButton;
+        private Button   bookButton;
 
         public ScheduleViewholder(@NonNull View itemView) {
             super(itemView);
