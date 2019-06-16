@@ -31,19 +31,19 @@ public class BookingActivity extends AppCompatActivity {
     private static final String TAG = "BookingActivity";
     private ImageView backImageview ,traverllerInfoImageview ,paymentImageview, successImageview , greenCheckImageview1 ,greenCheckImageview2;
     private TextView travellerInfoTextview ,paymentTextview, successTextview;
-    public Button continueButton;
-    public ArrayList<Traveller> travellers;
+    public  Button continueButton;
+    public  ArrayList<Traveller> travellers;
     private ProgressBar progressBar;
-    public Date serverDeadlineDate, nowDate;
-    private int whichFragment = 0, previousArraySize = 0;
+    public  Date serverDeadlineDate, nowDate;
+    private int whichFragment = 0;
     private FrameLayout frameLayout;
     private JSONObject jsonObject;
     private String scheduleId, bookingId;
     private BookingViewModel bookingViewModel;
-    public ConstraintLayout constraintLayout;
+    public  ConstraintLayout constraintLayout;
     private BookingPresenter bookingPresenter;
-    public String mobileNumberString, emailString, countryCode, mobileNumberCode,fullNameString;
-    public MutableLiveData<Integer> passerngerNumLiveData;
+    public  String mobileNumberString, emailString, countryCode, mobileNumberCode,fullNameString;
+    public  MutableLiveData<Boolean> passerngerNumLiveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,23 +59,19 @@ public class BookingActivity extends AppCompatActivity {
         backImageview.setOnClickListener(v -> setupBackButton());
 
 
-        passerngerNumLiveData.observe(this, new Observer<Integer>() {
+        passerngerNumLiveData.observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(Integer arraySize) {
-                if (arraySize!=1)
-                {
-                    if (previousArraySize < arraySize)
+            public void onChanged(Boolean isNumberAdded) {
+                    if (isNumberAdded)
                     {
                         Traveller traveller = new Traveller();
                         travellers.add(traveller);
-                        Log.d(TAG, "onChangedtttttt:  addddd  " + travellers.size() +"          -----        " + arraySize);
+                        Log.d(TAG, "onChangedtttttt:  addddd  " + travellers.size() +"          -----        " + isNumberAdded);
                     }
                     else {
                         travellers.remove(travellers.size()-1);
-                        Log.d(TAG, "onChangedtttttt:  reduce  " + travellers.size() +"          -----        " + arraySize);
+                        Log.d(TAG, "onChangedtttttt:  reduce  " + (travellers.size()) +"          -----        " + isNumberAdded);
                     }
-                    previousArraySize = arraySize;
-                }
             }
         });
     }
@@ -103,7 +99,6 @@ public class BookingActivity extends AppCompatActivity {
         bookingPresenter = new BookingPresenter(BookingActivity.this);
         backImageview = findViewById(R.id.iv_sign_out_back);
         passerngerNumLiveData = new MutableLiveData<>();
-        passerngerNumLiveData.postValue(1);
         bookingViewModel = ViewModelProviders.of(BookingActivity.this).get(BookingViewModel.class);
     }
 
@@ -192,7 +187,7 @@ public class BookingActivity extends AppCompatActivity {
         jsonObject = new JSONObject();
         try {
             JSONObject leaderJsonObject = new JSONObject();
-            leaderJsonObject.put("leader_traveller", fullNameString);
+            leaderJsonObject.put("fullname", fullNameString);
             leaderJsonObject.put("email",emailString);
             leaderJsonObject.put("phone_number",mobileNumberCode + mobileNumberString);
 
@@ -204,7 +199,7 @@ public class BookingActivity extends AppCompatActivity {
                 js.put("firstname",item.getFirstName());
                 js.put("lastname",item.getLastName());
                 js.put("gender",item.getGender());
-                js.put("dob",item.getDateOfBirth());
+                js.put("dob",item.getDateOfBirthTimeStamp());
                 js.put("nationality",item.getNationality());
                 js.put("national_code",item.getNationalityCode());
                 js.put("passport_number",item.getPassportNumber());

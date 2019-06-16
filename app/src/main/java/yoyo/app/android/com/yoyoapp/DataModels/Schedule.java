@@ -8,6 +8,7 @@ public class Schedule {
     private int maxCapacity;
     private int remainingCapacity;
     private long startTimeStamp;
+    private long endTimeStamp;
 
     public String getId() {
         return id;
@@ -55,5 +56,13 @@ public class Schedule {
 
     public void setStartTimeStamp(long startTimeStamp) {
         this.startTimeStamp = startTimeStamp;
+    }
+
+    public long getEndTimeStamp() {
+        return endTimeStamp;
+    }
+
+    public void setEndTimeStamp(long endTimeStamp) {
+        this.endTimeStamp = endTimeStamp;
     }
 }

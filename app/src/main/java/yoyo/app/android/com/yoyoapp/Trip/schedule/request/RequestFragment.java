@@ -34,12 +34,12 @@ public class RequestFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_request, container, false);
 
         init();
-        String tripId ="ec744fa5-9467-4e87-a1a7-d69f656b706a";
+        Bundle bundle = getArguments();
+        String tripId =bundle.getString("tripId");
         sendButton.setOnClickListener(v-> sendRequest(getJson(), tripId));
         setupDatePickers();
         plusImageview.setOnClickListener(v -> addNumber());
         minusImageview.setOnClickListener(v -> reduceNumber());
-
         return view;
     }
 
@@ -69,7 +69,7 @@ public class RequestFragment extends Fragment {
         new DateCalenderSetup(getContext(),date1Textview,dateOfBirthListner,timeStamp ->{
             jsonArray = new JSONArray();
             try {
-                jsonArray.put(0,String.valueOf(timeStamp));
+                jsonArray.put(0,timeStamp);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -83,7 +83,7 @@ public class RequestFragment extends Fragment {
             jsonObject.put("full_name",firstnameEditText.getText().toString()+" " + lastnameEditText.getText().toString());
             jsonObject.put("email", emailEditText.getText().toString());
             jsonObject.put("phone_number",phoneNumberEditText.getText().toString());
-            jsonObject.put("passengers_count", passengerCount);
+            jsonObject.put("passengers_count", passengerNum);
             jsonObject.put("dates",jsonArray);
 
         } catch (JSONException e) {

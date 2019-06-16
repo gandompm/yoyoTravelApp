@@ -9,6 +9,7 @@ public class Traveller {
     private String phoneNumber;
     private String ageClass;
     private String dateOfBirth;
+    private long dateOfBirthTimeStamp;
     private String iranianNationalCode;
     private String passportNumber;
     private String gender;
@@ -118,5 +119,13 @@ public class Traveller {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public long getDateOfBirthTimeStamp() {
+        return dateOfBirthTimeStamp;
+    }
+
+    public void setDateOfBirthTimeStamp(long dateOfBirthTimeStamp) {
+        this.dateOfBirthTimeStamp = dateOfBirthTimeStamp;
     }
 }

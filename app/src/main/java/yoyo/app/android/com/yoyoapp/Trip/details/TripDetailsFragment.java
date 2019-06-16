@@ -42,7 +42,6 @@ public class TripDetailsFragment extends Fragment {
     private LinearLayout layout_dots;
     private String tripId;
     private AdapterImageSlider adapterImageSlider;
-    private TripDetailsViewModel tripDetailsViewModel;
     private FloatingActionButton floatingActionButton;
     private ArrayList<String> dayPlans;
     private LatLng fromLatlng,  toLatlng;
@@ -65,7 +64,6 @@ public class TripDetailsFragment extends Fragment {
         setupToolbar();
         floatingActionButton.setOnClickListener(v-> sendToGoogleMap());
         tripDetailsButton.setOnClickListener(v-> sendToSchedulePage());
-//      getTripDetails();
 
 
 
@@ -96,7 +94,6 @@ public class TripDetailsFragment extends Fragment {
         tripId = bundle.getString("tripId");
         dayNightNumTextview.setText(bundle.getInt("days")+ " Days "+ bundle.getInt("nights")+ " Nights");
         nameTourLeader.setText(bundle.getString("leaderName"));
-//        familyNameLeader.setText(" " + bundle.getString("leaderName"));
         titleTextview.setText(bundle.getString("tourName") + " • ");
         title2Textview.setText(bundle.getString("title"));
         tripTitle = bundle.getString("title");
@@ -203,6 +200,7 @@ public class TripDetailsFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(v -> getFragmentManager().popBackStack());
 
         CollapsingToolbarLayout collapsingToolbar = view.findViewById(R.id.collapsing_toolbar);
 
@@ -217,7 +215,7 @@ public class TripDetailsFragment extends Fragment {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle("Yazd Desert Tour");
+                    collapsingToolbar.setTitle(titleTextview.getText().toString());
                     isShow = true;
                 } else if(isShow) {
                     collapsingToolbar.setTitle(" ");//careful there should a space between double quote otherwise it wont work
@@ -226,32 +224,6 @@ public class TripDetailsFragment extends Fragment {
             }
         });
     }
-
-
-
-    private void getTripDetails() {
-        Bundle bundle = getArguments();
-        String tripId = bundle.getString("tripId");
-        tripDetailsViewModel = ViewModelProviders.of(getActivity()).get(TripDetailsViewModel.class);
-        tripDetailsViewModel.initDetails(tripId);
-        tripDetailsViewModel.getDetails().observe(getActivity(), new Observer<Trip>() {
-            @Override
-            public void onChanged(Trip trip) {
-                if (trip != null) {
-
-//                    ArrayList<String> images = new ArrayList<>();
-//                    images.add("https://www.igomorocco.com/wp-content/uploads/2019/01/desert-tour-from-marrakech-to-fes.jpg");
-//                    images.add(trip.getImage());
-//                    initComponent(images);
-
-//                    descriptionTextview.setText(tr);
-
-
-                }
-            }
-        });
-    }
-
 
     private void initComponent(ArrayList<String> images) {
         layout_dots = view.findViewById(R.id.layout_dots);
