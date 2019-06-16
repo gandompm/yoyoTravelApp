@@ -4,13 +4,10 @@
                                                      xmlns:app="http://schemas.android.com/apk/res-auto"
                                                      android:layout_width="match_parent"
                                                      android:layout_height="match_parent">
-
-
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/ab_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
 
         <androidx.appcompat.widget.Toolbar
@@ -40,8 +37,7 @@
                         android:id="@+id/iv_schedule_trip_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        />
+                        android:visibility="invisible"/>
 
 
             </LinearLayout>
@@ -68,16 +64,10 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@drawable/gradient_trip_result">
 
-
-
-
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
-
-
+                android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_schedule_result"
@@ -90,25 +80,16 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
-
-
             <Button
                     android:id="@+id/button_schedule_request_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Request your desire date"
                     android:background="@android:color/transparent"
-                    android:layout_gravity="center"
-            />
-
-
+                    android:layout_gravity="center"/>
 
 
         </LinearLayout>
-
-
-
-
 
     </androidx.core.widget.NestedScrollView>
 

@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.*;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -157,7 +156,6 @@ public class ApiService {
                             }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.d(TAG, "getTripListRequest: " + e.getMessage());
                     }
 
                     tripArrayListConsumer.accept(trips);
@@ -587,7 +585,6 @@ public class ApiService {
 
     public void getDestinationsRequest(Consumer<ArrayList<Location>> locationConsumer)
     {
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/destinations" ,null,
                 response -> {
 
@@ -622,7 +619,6 @@ public class ApiService {
 
     public void getOriginsRequest(Consumer<ArrayList<Location>> locationConsumer)
     {
-
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/origins" ,null,
                 response -> {
 
@@ -651,7 +647,6 @@ public class ApiService {
             locationConsumer.accept(null);
             error.printStackTrace();
         });
-
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
@@ -667,8 +662,6 @@ public class ApiService {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                 }, error -> {
             bookingIdConsumer.accept(null);
             error.printStackTrace();
