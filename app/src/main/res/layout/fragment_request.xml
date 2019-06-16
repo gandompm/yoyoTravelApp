@@ -206,11 +206,13 @@
                     android:id="@+id/textView25" ds:layout_constraintTop_toBottomOf="@+id/iv_request_minus"
                     ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                     android:layout_marginTop="16dp"/>
+
             <TextView
                     android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:inputType="phone"
                     android:ems="10"
+                    android:gravity="center"
                     android:background="@drawable/bg_light_editprofile_item"
                     android:id="@+id/tv_request_date1" ds:layout_constraintTop_toBottomOf="@+id/textView25"
                     ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
