@@ -1,29 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".Trip.ticket.TourTicketFragment">
 
-
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/ab_tour_ticket"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            >
-
-
-
-
+            android:layout_height="50dp">
         <LinearLayout
+                android:id="@+id/la_tour_ticket"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-        >
+                android:background="@drawable/gradient_trip_result"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
+                    android:id="@+id/iv_tour_ticket_back"
+                    android:paddingTop="@dimen/small"
+                    android:paddingBottom="@dimen/small"
+                    android:paddingStart="@dimen/small"
+                    android:layout_gravity="center_vertical"/>
+
+            <TextView
+                    android:id="@+id/tv_tour_ticket_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/small"/>
+
+            <com.llollox.androidtoggleswitch.widgets.ToggleSwitch
+                    android:id="@+id/toggleSwitch_trip_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:textToggleLeft="Tickets"
+                    app:textToggleRight="Requests"
+                    app:checkedBackgroundColor="@color/white"
+                    app:checkedTextColor="@color/result_trip_green"
+                    app:uncheckedBackgroundColor="@android:color/transparent"
+                    app:uncheckedTextColor="@color/white"
+                    app:separatorColor="@color/white"
+                    app:borderWidth="1dp"
+                    app:checkedBorderColor="@color/white"
+                    app:uncheckedBorderColor="@color/white"
+                    app:borderRadius="4dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView71"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
 
 
-            <androidx.recyclerview.widget.RecyclerView
+
+    <!--<com.cooltechworks.views.shimmer.ShimmerRecyclerView-->
+            <!--android:id="@+id/shimmer_recycler_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="@dimen/small_margin"-->
+            <!--android:clipToPadding="false"-->
+            <!--app:shimmer_demo_child_count="10"-->
+            <!--app:shimmer_demo_layout="@layout/shimmer_item_trip"-->
+            <!--app:shimmer_demo_layout_manager_type="linear_vertical"-->
+            <!--app:shimmer_demo_angle="20"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/iv_trip_search_back"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_tour_ticket_result"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,13 +95,8 @@
 
 
 
-        </LinearLayout>
 
 
 
 
-
-    </androidx.core.widget.NestedScrollView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
