@@ -169,6 +169,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
         }
         else {
             traveller.setDateOfBirth(dateOfBirthTextview.getText().toString());
+            traveller.setDateOfBirthTimeStamp(dateOfBirthTimestamp);
         }
 
         if (nationalityTextview.getText().toString().equals(""))
@@ -260,7 +261,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
             jsonObject.put("firstname",traveller.getFirstName());
             jsonObject.put("lastname",traveller.getLastName());
             jsonObject.put("gender",traveller.getGender());
-            jsonObject.put("dob", dateOfBirthTimestamp);
+            jsonObject.put("dob", traveller.getDateOfBirthTimeStamp());
             jsonObject.put("nationality",traveller.getNationality());
 
             if (traveller.isIranian())
@@ -289,6 +290,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
             firstnameEditText.setText(bundle.getString("firstName"));
             lastnameEditText.setText(bundle.getString("lastName"));
             dateOfBirthTextview.setText(bundle.getString("dateOfBirth"));
+            dateOfBirthTimestamp = bundle.getLong("dateOfBirthTimeStamp");
             nationalityTextview.setText(bundle.getString("nationality"));
             travllerId = bundle.getString("id");
             if (bundle.getString("gender")!= null)

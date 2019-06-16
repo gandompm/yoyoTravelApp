@@ -111,6 +111,7 @@ public class TravellerCompanionFragment extends Fragment {
                 bundle.putString("iranianCode",traveller.getIranianNationalCode());
                 bundle.putString("passport",traveller.getPassportNumber());
                 bundle.putString("dateOfBirth",traveller.getDateOfBirth());
+                bundle.putLong("dateOfBirthTimeStamp",traveller.getDateOfBirthTimeStamp());
 
                 TravellerCompanionsEditFragment travellerCompanionsEditFragment = new TravellerCompanionsEditFragment();
                 travellerCompanionsEditFragment.setArguments(bundle);

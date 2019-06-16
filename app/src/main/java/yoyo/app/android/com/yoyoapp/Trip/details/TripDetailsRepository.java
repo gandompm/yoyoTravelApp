@@ -34,8 +34,8 @@ public class TripDetailsRepository{
     }
 
     private void setTripDetails(String tripId) {
-        apiService.getTripDetailsRequest( tripId , trip -> {
-            tripMutableLiveData.postValue(trip);
-        });
+//        apiService.getTripDetailsRequest( tripId , trip -> {
+//            tripMutableLiveData.postValue(trip);
+//        });
     }
 }

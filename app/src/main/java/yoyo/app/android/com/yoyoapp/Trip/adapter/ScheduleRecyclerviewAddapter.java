@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleRecyclerviewAddapter.ScheduleViewholder> {
+    private static final String TAG = "ScheduleRecyclerviewAdd";
     private ArrayList<Schedule> schedules;
     private String tripTitle;
     private Context context;
@@ -113,6 +114,9 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
             setupMonthAndDay(schedule.getStartTimeStamp());
             startDayTextview.setText(String.valueOf(dayOfMonth));
             startMonthTextview.setText(String.valueOf(monthName));
+            setupMonthAndDay(schedule.getEndTimeStamp());
+            endDayTextview.setText(String.valueOf(dayOfMonth));
+            endMonthTextview.setText(String.valueOf(monthName));
         }
     }
 
@@ -136,9 +140,13 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
 
     private void setupMonthAndDay(long timeStamp) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(timeStamp);
+        calendar.setTimeInMillis(timeStamp* 1000);
+
+        Log.d(TAG, "setupMonthAndDay: "+ timeStamp);
 
         monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        Log.d(TAG, "setupMonthAndDay: aaaa " + monthName + "  " + dayOfMonth + "  " + calendar.getTimeInMillis()+ "    "+ calendar.getTime());
     }
 }

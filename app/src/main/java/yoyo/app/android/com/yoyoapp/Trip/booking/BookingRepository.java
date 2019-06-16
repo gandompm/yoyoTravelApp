@@ -3,11 +3,15 @@ package yoyo.app.android.com.yoyoapp.Trip.booking;
 import android.content.Context;
 import androidx.lifecycle.MutableLiveData;
 import org.json.JSONObject;
+import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
 import yoyo.app.android.com.yoyoapp.Trip.ApiService;
+
+import java.util.List;
 
 public class BookingRepository {
     private ApiService apiService;
     private static BookingRepository instance;
+    private MutableLiveData<List<Traveller>> travellerMutableLiveData;
     private MutableLiveData<String> bookingIdMutableLiveData;
     private Context context;
 
@@ -35,5 +39,16 @@ public class BookingRepository {
         apiService.sendBookingRequest(scheduleId,jsonObject,bookingId ->{
             bookingIdMutableLiveData.postValue(bookingId);
         });
+    }
+
+    public MutableLiveData<List<Traveller>> getTravellers() {
+        travellerMutableLiveData = new MutableLiveData<>();
+        setTravellers();
+        return travellerMutableLiveData;
+    }
+
+    private void setTravellers() {
+        apiService.getTravellersCompanionsRequest(travellers ->
+                travellerMutableLiveData.postValue(travellers));
     }
 }

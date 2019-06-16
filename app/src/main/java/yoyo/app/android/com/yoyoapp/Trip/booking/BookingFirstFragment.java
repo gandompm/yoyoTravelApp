@@ -110,7 +110,7 @@ public class BookingFirstFragment extends Fragment {
     private void reduceNumber() {
         if (passengerNum > 1) {
             passengerNum--;
-            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(passengerNum);
+            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(false);
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }
@@ -123,7 +123,7 @@ public class BookingFirstFragment extends Fragment {
     private void addNumber() {
         if (passengerNum < 9) {
             passengerNum++;
-            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(passengerNum);
+            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(true);
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }

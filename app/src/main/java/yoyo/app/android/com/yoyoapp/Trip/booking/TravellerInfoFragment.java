@@ -18,7 +18,6 @@ import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
-import yoyo.app.android.com.yoyoapp.Flight.Dialog.MyTravellerDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Enum.Gender;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.NationalCodeUtil;
@@ -62,18 +61,14 @@ public class TravellerInfoFragment extends Fragment {
         return view;
     }
 
-
     private boolean checkEnglishChar() {
         if (isStringOnlyAlphabet(String.valueOf(firstnameEditText.getText())) && isStringOnlyAlphabet(String.valueOf(lastnameEditText.getText()))) {
-
             return true;
-
         }else {
             Toast.makeText(getContext(), "Please use english character", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
-
 
     private boolean isStringOnlyAlphabet(String str)
     {
@@ -81,7 +76,6 @@ public class TravellerInfoFragment extends Fragment {
                 && (str != null)
                 && (str.matches("^[a-zA-Z]*$")));
     }
-
 
     private void setupBackButton() {
         ((BookingActivity)getActivity()).continueButton.setVisibility(View.VISIBLE);
@@ -160,7 +154,7 @@ public class TravellerInfoFragment extends Fragment {
             traveller.setLastName(lastnameEditText.getText().toString());
             traveller.setGender(gender.toString());
             traveller.setIranian(isIranian);
-            traveller.setNationality(nationalityTextview.getText().toString());
+
             if (traveller.isIranian())
             {
                 traveller.setIranianNationalCode(iranianCodeEditText.getText().toString());
@@ -188,13 +182,15 @@ public class TravellerInfoFragment extends Fragment {
                 flag =false;
             }
             traveller.setDateOfBirth(dateOfBirthTextview.getText().toString());
+            traveller.setDateOfBirthTimeStamp(dateOfBirthTimestamp);
 
             if (TextUtils.isEmpty(nationalityTextview.getText()))
             {
                 Toasty.error(getContext(),"Nationality Field is empty").show();
                 flag = false;
             }
-            traveller.setNationality(nationalityTextview.getText().toString());
+            String code = CountryList.convertNameToCode(getContext(), nationalityTextview.getText().toString());
+            traveller.setNationality(code);
 
             if (flag){
                 ((BookingActivity)getActivity()).travellers.set(position ,traveller);
@@ -216,8 +212,10 @@ public class TravellerInfoFragment extends Fragment {
         selectTravellersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyTravellerDialogFragment myTravellerDialogFragment = new MyTravellerDialogFragment();
-                myTravellerDialogFragment.show(getFragmentManager(), "some tag");
+                MyTravellerDialogFragment myTravellerDialogFragment = new MyTravellerDialogFragment(selectedTraveller ->{
+                    setupView(selectedTraveller,position);
+                });
+                myTravellerDialogFragment.show(getFragmentManager(), "select your traveller");
             }
         });
     }
@@ -232,6 +230,7 @@ public class TravellerInfoFragment extends Fragment {
         passpotNumberEditText.setText(traveller.getPassportNumber());
         nationalityTextview.setText(traveller.getNationality());
         dateOfBirthTextview.setText(traveller.getDateOfBirth());
+        dateOfBirthTimestamp = traveller.getDateOfBirthTimeStamp();
         if (traveller.getGender() != null)
         {
             switch (traveller.getGender())

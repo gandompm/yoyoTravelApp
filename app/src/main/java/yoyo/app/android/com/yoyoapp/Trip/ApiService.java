@@ -21,8 +21,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.62:8008";
-    private String IP = "http://192.168.1.62:8008/";
+    private String IMAGEIP = "http://192.168.1.62:80";
+    private String IP = "http://192.168.1.62:80/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -54,6 +54,7 @@ public class ApiService {
                                 trip.setTitle(mainObject.getString("title"));
                                 trip.setNightNum(mainObject.getInt("days"));
                                 trip.setDayNum(mainObject.getInt("nights"));
+                                trip.setSummary(mainObject.getString("summary"));
 
                                 // leader
                                 TripLeader tripLeader = new TripLeader();
@@ -152,37 +153,6 @@ public class ApiService {
                                     trip.setResultsSize(tripCount);
                                 }
 
-//                                // start and end time
-//                                Calendar cal = getDateAndTime(mainObject.getLong("start_time"));
-//                                String sDate = DateFormat.format("dd-MM-yyyy  hh:mm a", cal).toString();
-//                                trip.setStartTime(sDate);
-//                                Calendar cal2 = getDateAndTime(mainObject.getLong("end_time"));
-//                                String eDate = DateFormat.format("dd-MM-yyyy  hh:mm a", cal2).toString();
-//                                trip.setEndTime(eDate);
-//                                trip.setStartDate(getStandardDate(cal));
-//                                trip.setEndDate(getStandardDate(cal2));
-//
-//                                trip.setPrice(mainObject.getString("price"));
-//                                trip.setImage(IP + mainObject.getString("image_url"));
-//                                trip.setCategory(mainObject.getString("category"));
-//                                trip.setRemainingCapacity(mainObject.getInt("remaining_capacity"));
-//                                trip.setPreviousPrice("225");
-//                                trip.setLanguage("English");
-//                                trip.setDestination("Tehran");
-//
-//                                JSONArray jsonArray1 = mainObject.getJSONArray("trip_locations");
-//                                JSONObject jsonObject1 = jsonArray1.getJSONObject(0);
-//                                if (jsonObject1.getInt("order") == 0) {
-//                                    trip.setStartPoint(jsonObject1.getString("title"));
-//                                    // TODO: 5/15/2019 fix getting location
-////                                    trip.setEndPoint(jsonArray1.getJSONObject(1).getString("title"));
-//                                }
-//                                else
-//                                {
-////                                  trip.setStartPoint(jsonArray1.getJSONObject(1).getString("title"));
-//                                    trip.setEndPoint(jsonObject1.getString("title"));
-//                                }
-
                                 trips.add(trip);
                             }
                     } catch (JSONException e) {
@@ -205,92 +175,6 @@ public class ApiService {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(date * 1000);
         return cal;
-    }
-
-    private String getStandardDate(Calendar cal) {
-        SimpleDateFormat dayFormat = new SimpleDateFormat("E", Locale.getDefault());
-        String dayOfWeekNameFrom = dayFormat.format(cal.getTime());
-        String monthNameFrom = cal.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
-
-        return "" + dayOfWeekNameFrom + ", "
-                + cal.get(Calendar.DAY_OF_MONTH)
-                + " " + monthNameFrom;
-    }
-
-
-    public void getTripDetailsRequest(String tripId ,Consumer<Trip> tripConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trip/" + tripId,null,
-                response -> {
-                    Trip trip = new Trip();
-
-                    try {
-                        JSONObject jsonObject = response.getJSONObject("trip");
-
-                        trip.setTripId(jsonObject.getString("trip_id"));
-                        trip.setTitle(jsonObject.getString("title"));
-//                        trip.setTripLeaderName(jsonObject.getString("leader"));
-                        // start and end time
-                        Calendar cal = getDateAndTime(jsonObject.getLong("start_time"));
-                        String sDate = DateFormat.format("dd-MM-yyyy  hh:mm a", cal).toString();
-                        trip.setStartTime(sDate);
-                        Calendar cal2 = getDateAndTime(jsonObject.getLong("end_time"));
-                        String eDate = DateFormat.format("dd-MM-yyyy  hh:mm a", cal2).toString();
-                        trip.setEndTime(eDate);
-                        trip.setStartDate(getStandardDate(cal));
-                        trip.setEndDate(getStandardDate(cal2));
-
-                        trip.setPrice(jsonObject.getString("price"));
-                        trip.setImage(jsonObject.getString("image_url"));
-//                        trip.setCategory(jsonObject.getString("category"));
-                        trip.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
-                        trip.setPreviousPrice("225");
-                        trip.setNightNum(2);
-                        trip.setDayNum(3);
-                        trip.setLanguage("English");
-                        trip.setDestination("Tehran");
-
-                        // get tour from trip
-                        Tour tour = new Tour();
-                        JSONObject jsonObject2 = jsonObject.getJSONObject("tour");
-                        tour.setId(jsonObject2.getString("tour_id"));
-                        tour.setName(jsonObject2.getString("name"));
-                        tour.setCreatedAt(jsonObject2.getLong("created_at"));
-                        tour.setPassengerCount(jsonObject2.getInt("passengers_count"));
-
-                        trip.setTour(tour);
-
-                        // get attraction
-                        ArrayList<String> attractios = new ArrayList<>();
-                        JSONArray jsonArray = jsonObject.getJSONArray("attractions");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            attractios.add(jsonArray.getString(i));
-                        }
-                        trip.setAttractions(attractios);
-
-                        // get itinerary
-                        ArrayList<String> itineraries = new ArrayList<>();
-                        JSONArray jsonArray2 = jsonObject.getJSONArray("itinerary");
-                        for (int i = 0; i < jsonArray2.length(); i++) {
-                            itineraries.add(jsonArray2.getString(i));
-                        }
-                        trip.setItineraries(itineraries);
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    tripConsumer.accept(trip);
-
-                }, error -> {
-            tripConsumer.accept(null);
-            error.printStackTrace();
-        });
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
     public void getCategoryRequest(Consumer<ArrayList<Category>> categoriesConsumer)
@@ -509,8 +393,10 @@ public class ApiService {
                             traveller.setFirstName(jsonObject.getString("firstname"));
                             traveller.setLastName(jsonObject.getString("lastname"));
                             traveller.setGender(jsonObject.getString("gender"));
-                            // TODO: 6/12/2019 long data of birth
-                            traveller.setDateOfBirth(jsonObject.getString("dob"));
+                            traveller.setDateOfBirthTimeStamp(jsonObject.getLong("dob"));
+                            Calendar cal = getDateAndTime(jsonObject.getLong("dob"));
+                            String eDate = DateFormat.format("dd-MM-yyyy", cal).toString();
+                            traveller.setDateOfBirth(eDate);
                             traveller.setPassportNumber(jsonObject.getString("passport_number"));
                             traveller.setIranianNationalCode(jsonObject.getString("national_code"));
                             String countryName = CountryList.convertCodeToName(context, jsonObject.getString("nationality"));
@@ -652,6 +538,7 @@ public class ApiService {
                             schedule.setMaxCapacity(jsonObject.getInt("max_capacity"));
                             schedule.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
                             schedule.setStartTimeStamp(jsonObject.getLong("start_timestamp"));
+                            schedule.setEndTimeStamp(jsonObject.getLong("end_timestamp"));
 
                             scheduleArrayList.add(schedule);
                         }

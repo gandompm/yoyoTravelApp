@@ -73,8 +73,11 @@ public class ScheduleTripFragment extends Fragment {
     }
 
     private void sendToRequestPage() {
+        Bundle bundle = new Bundle();
+        bundle.putString("tripId",tripId);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         RequestFragment requestFragment = new RequestFragment();
+        requestFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.container, requestFragment).addToBackStack("request");
         fragmentTransaction.commit();
     }
