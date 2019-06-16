@@ -55,35 +55,39 @@ public class SignInFragment extends Fragment {
 
     // before signing in, check the probable errors
     private void setupSigninButton() {
-        signinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        signinButton.setOnClickListener(v -> {
 
-                Boolean flag = true;
-                if (userNameEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
-                    flag = false;
+            Boolean flag = true;
+            if (userNameEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
+                flag = false;
+            }
+            if (passwordEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
+                flag = false;
+            }
+            if (passwordEditText.getText().length() <= 7){
+                Toasty.error(getContext(),"Password can not be less than 8 characters").show();
+                flag =false;
+
+            }
+
+            if (flag){
+                progressBar.setVisibility(View.VISIBLE);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("username", userNameEditText.getText().toString());
+                    jsonObject.put("password", passwordEditText.getText().toString());
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    progressBar.setVisibility(View.GONE);
+
                 }
-                if (passwordEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
-                    flag = false;
-                }
 
-                if (flag){
-                    progressBar.setVisibility(View.VISIBLE);
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("username", userNameEditText.getText().toString());
-                        jsonObject.put("password", passwordEditText.getText().toString());
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    // todo sign in request
-                    sendToSignInPage(jsonObject);
-                }
+                // todo sign in request
+                sendToSignInPage(jsonObject);
             }
         });
     }

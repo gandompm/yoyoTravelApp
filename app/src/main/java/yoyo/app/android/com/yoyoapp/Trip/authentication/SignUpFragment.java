@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.Trip.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class SignUpFragment extends Fragment {
     private UserSharedManager userSharedManager;
     private View view;
     private FragmentManager fragmentManager;
+
+    private static final String TAG = "SignUpFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class SignUpFragment extends Fragment {
                 }
                 else
                 {
-                    Toasty.error(getContext(),getString(R.string.failed)).show();
+//                    Toasty.error(getContext(),getString(R.string.failed)).show();
                 }
             }
         });
@@ -69,56 +72,70 @@ public class SignUpFragment extends Fragment {
     // sign up, check errors , save data to shared pref
     private void setupSignup() {
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        signUpButton.setOnClickListener(v -> {
 
 
-                Boolean flag = true;
+            Boolean flag = true;
 
-                if (firstNameEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.first_name_not_empty)).show();
-                    flag =false;
-                }
-                if (lastNameEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.lastname_not_empty)).show();
-                    flag =false;
-                }
-                if (userNameEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
-                    flag =false;
-                }
-                if (passwordEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
-                    flag =false;
-                }
-                if (emailEditText.getText().toString().equals("")){
-                    Toasty.error(getContext(),getString(R.string.email_can_not_empty)).show();
-                    flag =false;
-                }
-
-
-
-                if (flag){
-
-                    progressBar.setVisibility(View.VISIBLE);
-                    JSONObject jsonObjectRequest = new JSONObject();
-                    try {
-                        jsonObjectRequest.put("firstname", firstNameEditText.getText().toString());
-                        jsonObjectRequest.put("lastname", lastNameEditText.getText().toString());
-                        jsonObjectRequest.put("username", userNameEditText.getText().toString());
-                        jsonObjectRequest.put("email", emailEditText.getText().toString());
-                        jsonObjectRequest.put("phone_number", phoneNumberEditText.getText().toString());
-                        jsonObjectRequest.put("password", passwordEditText.getText().toString());
-                        jsonObjectRequest.put("password", passwordEditText.getText().toString());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    signUpRequest(jsonObjectRequest);
-                }
+            if (firstNameEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.first_name_not_empty)).show();
+                flag =false;
+            }
+            if (lastNameEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.lastname_not_empty)).show();
+                flag =false;
 
             }
+            if (userNameEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
+                flag =false;
+
+            }
+            if (passwordEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
+                flag =false;
+
+            }
+            if (passwordEditText.getText().length() <= 7){
+                Toasty.error(getContext(),"Password can not be less than 8 characters").show();
+                flag =false;
+
+            }
+            if (emailEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),getString(R.string.email_can_not_empty)).show();
+                flag =false;
+
+            }
+            if (!emailEditText.getText().toString().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
+                Toasty.error(getContext(),"Your Email Address is incorrect").show();
+                flag =false;
+                Log.d(TAG, "onClick: aaaaa7");
+
+
+            }
+
+
+
+            if (flag){
+
+                progressBar.setVisibility(View.VISIBLE);
+                JSONObject jsonObjectRequest = new JSONObject();
+                try {
+                    jsonObjectRequest.put("firstname", firstNameEditText.getText().toString());
+                    jsonObjectRequest.put("lastname", lastNameEditText.getText().toString());
+                    jsonObjectRequest.put("username", userNameEditText.getText().toString());
+                    jsonObjectRequest.put("email", emailEditText.getText().toString());
+                    jsonObjectRequest.put("phone_number", phoneNumberEditText.getText().toString());
+                    jsonObjectRequest.put("password", passwordEditText.getText().toString());
+                    jsonObjectRequest.put("password", passwordEditText.getText().toString());
+
+                } catch (JSONException e) {
+                    progressBar.setVisibility(View.GONE);
+                    e.printStackTrace();
+                }
+                signUpRequest(jsonObjectRequest);
+            }
+
         });
     }
 

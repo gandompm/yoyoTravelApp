@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import yoyo.app.android.com.yoyoapp.Flight.TicketFragment;
-import yoyo.app.android.com.yoyoapp.Flight.TicketNotSignedInFragment;
+import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
+import yoyo.app.android.com.yoyoapp.Flight.FlightTicketNotSignedInFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.Versioning;
@@ -69,11 +69,14 @@ public class MainActivity extends AppCompatActivity{
                         addFragment(new ProfileFragment(),"profile");
                         return true;
                     case R.id.bn_orders:
-                        if (isSingnedIn)
-                            addFragment(new TicketFragment(),"ticket");
-                        else
-                            addFragment(new TicketNotSignedInFragment(), "ticket");
-                        return true;
+                        addFragment(new OrdersFragment(),"orders");
+
+
+//                        if (isSingnedIn)
+//                            addFragment(new FlightTicketFragment(),"ticket");
+//                        else
+//                            addFragment(new FlightTicketNotSignedInFragment(), "ticket");
+//                        return true;
                     default:
                         return false;
                 }

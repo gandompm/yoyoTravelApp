@@ -29,8 +29,8 @@ public class LanguageDialogFragment extends DialogFragment {
 
     private void init() {
         englishTextView = view.findViewById(R.id.tv_language_english);
-        arabicTextView = view.findViewById(R.id.tv_language_arabic);
-        farsiTextView = view.findViewById(R.id.tv_language_farsi);
+//        arabicTextView = view.findViewById(R.id.tv_language_arabic);
+//        farsiTextView = view.findViewById(R.id.tv_language_farsi);
         languageSetup = new LanguageSetup(getContext());
     }
 
@@ -44,21 +44,21 @@ public class LanguageDialogFragment extends DialogFragment {
             }
         });
 
-        arabicTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                languageSetup.setLocale("ar");
-                dismiss();
-            }
-        });
-
-        farsiTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                languageSetup.setLocale("fa");
-                dismiss();
-            }
-        });
+//        arabicTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                languageSetup.setLocale("ar");
+//                dismiss();
+//            }
+//        });
+//
+//        farsiTextView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                languageSetup.setLocale("fa");
+//                dismiss();
+//            }
+//        });
     }
 }

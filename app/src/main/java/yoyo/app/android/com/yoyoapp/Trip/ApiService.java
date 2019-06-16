@@ -648,7 +648,6 @@ public class ApiService {
 
                             JSONObject jsonObject = response.getJSONObject(i);
                             schedule.setId(jsonObject.getString("schedule_id"));
-                            Log.d(TAG, "getScheduleRequest yyyyyy:  "+ jsonObject.getString("schedule_id")) ;
                             schedule.setPrice(jsonObject.getInt("price"));
                             schedule.setMinCapacity(jsonObject.getInt("min_capacity"));
                             schedule.setMaxCapacity(jsonObject.getInt("max_capacity"));

@@ -23,7 +23,7 @@
                 android:textColor="@color/white"
                 android:layout_alignParentTop="true"
                 android:textSize="12sp"
-                android:text="Euro"/>
+                android:text="@string/from_capital"/>
 
         <TextView
                 android:id="@+id/tv_trip_item_small_price"
@@ -34,7 +34,7 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="18sp"
-                tools:text="50"/>
+                android:text="400"/>
 
         <TextView
             android:id="@+id/tv_trip_item_small_operator_title"

@@ -23,7 +23,7 @@ import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
-public class TicketNotSignedInFragment extends BaseFragment {
+public class FlightTicketNotSignedInFragment extends BaseFragment {
 
     private ApiServiceFlight apiServiceFlight;
     private UserSharedManagerFlight userSharedManager;

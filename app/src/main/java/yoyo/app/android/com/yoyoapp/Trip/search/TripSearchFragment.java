@@ -1,6 +1,8 @@
 package yoyo.app.android.com.yoyoapp.Trip.search;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -190,19 +192,27 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Bundle bundle = new Bundle();
+                if( searchOriginTextView.getText().equals("Origin") || searchDestinationTextView.getText().equals("Destination")){
 
-                bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
-                bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
-                bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
-                bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
+                    Log.d(TAG, "onClick: qqqqqqqqq2 "  +  searchOriginTextView.getText() + "   " + searchDestinationTextView.getText() + ".");
+                    Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
 
-                TripResultFragment tripListSearchResultFragment = new TripResultFragment();
-                tripListSearchResultFragment.setArguments(bundle);
-                fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
-                fragmentTransaction.addToBackStack("triplist");
-                fragmentTransaction.commit();
+                }else {
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
+                    bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
+                    bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
+                    bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
+
+                    TripResultFragment tripListSearchResultFragment = new TripResultFragment();
+                    tripListSearchResultFragment.setArguments(bundle);
+                    fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
+                    fragmentTransaction.addToBackStack("triplist");
+                    fragmentTransaction.commit();
+                }
             }
         });
 

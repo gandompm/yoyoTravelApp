@@ -17,7 +17,7 @@ import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
-public class TicketFragment extends BaseFragment {
+public class FlightTicketFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private TicketRecyclerviewAddapter addapter;
