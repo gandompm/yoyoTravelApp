@@ -116,11 +116,11 @@ public class DatePickerFragment extends Fragment {
     }
 
     private void checkDuration() {
-        if (diffDays > 10 || diffDays == 0)
+        if (diffDays > 45 || diffDays == 0)
         {
             resetCalendar();
-            if (diffDays >10)
-                showDurationErrorSnackBar("Duration must be less than 10 nights");
+            if (diffDays >45)
+                showDurationErrorSnackBar("Duration must be less than 45 nights");
             else
                 showDurationErrorSnackBar("Minimum Duration is 1 night");
         }
@@ -182,7 +182,7 @@ public class DatePickerFragment extends Fragment {
         toDateTextView.setText("Select Date");
         toDateButton.setButtonStartColor(Color.parseColor("#fede02"));
         toDateButton.setButtonEndColor(Color.parseColor("#fede02"));
-        toDateTextView.setTextColor(Color.parseColor("#0265d3"));
+        toDateTextView.setTextColor(Color.parseColor("#FFFFFFFF"));
     }
 
     private void calculateEndDate() {

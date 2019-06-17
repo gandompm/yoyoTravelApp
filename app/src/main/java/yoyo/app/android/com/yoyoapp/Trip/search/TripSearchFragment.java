@@ -10,6 +10,7 @@ import android.widget.*;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
@@ -194,8 +195,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
             public void onClick(View view) {
                 if( searchOriginTextView.getText().equals("Origin") || searchDestinationTextView.getText().equals("Destination")){
 
-                    Log.d(TAG, "onClick: qqqqqqqqq2 "  +  searchOriginTextView.getText() + "   " + searchDestinationTextView.getText() + ".");
-                    Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
+//                    Log.d(TAG, "onClick: qqqqqqqqq2 "  +  searchOriginTextView.getText() + "   " + searchDestinationTextView.getText() + ".");
+                    Toasty.error(getContext(),"Origin & Destination can not be empty.").show();
+
 
                 }else {
 

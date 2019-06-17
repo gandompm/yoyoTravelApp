@@ -21,8 +21,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.62:80";
-    private String IP = "http://192.168.1.62:80/";
+    private String IMAGEIP = "http://192.168.1.53:9002";
+    private String IP = "http://192.168.1.53:9002/";
     private String JWT;
     private UserSharedManager userSharedManager;
 

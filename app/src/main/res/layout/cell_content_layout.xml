@@ -74,6 +74,7 @@
                 android:layout_alignParentBottom="true"
                 android:paddingStart="4dp"
                 android:paddingEnd="4dp"
+                android:paddingBottom="4dp"
                 />
 
 
@@ -439,8 +440,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="24dp"
-            app:button_start_color="@color/persiangard_green"
-            app:button_end_color="@color/persiangard_green"
+            app:button_start_color="@color/colorPrimary"
+            app:button_end_color="@color/colorPrimary"
             app:button_text="@string/buton_trip_item_big_details"
             app:button_text_color="@color/white"
             app:button_press_end_color="@color/blue_light"

@@ -51,6 +51,7 @@ public class DatePickerBottomSheet {
         this.context = context;
         this.view = view;
         init();
+        Log.d(TAG, "DatePickerBottomSheet: qqqqqqqqqqqqqq");
         setupDefaultDateValue();
         setupCalendar();
         setupCloseButton();
@@ -113,11 +114,11 @@ public class DatePickerBottomSheet {
     }
 
     private void checkDuration() {
-        if (diffDays > 10 || diffDays == 0)
+        if (diffDays > 45 || diffDays == 0)
         {
             resetCalendar();
-            if (diffDays >10)
-            showDurationErrorSnackBar("Duration must be less than 10 nights");
+            if (diffDays >45)
+            showDurationErrorSnackBar("Duration must be less than 45 nights");
             else
                 showDurationErrorSnackBar("Minimum Duration is 1 night");
         }

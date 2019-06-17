@@ -132,7 +132,7 @@
                 android:background="@drawable/curve_shape_fill_yellow"
                 android:text="@string/button_filterhotel"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/white"
                 android:layout_margin="@dimen/small_margin"
                 android:fontFamily="@font/roboto_medium"
                 />
