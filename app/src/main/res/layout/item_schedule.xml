@@ -29,7 +29,7 @@
                 android:fontFamily="@font/roboto_bold" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3" android:layout_marginStart="4dp"
                 android:textColor="#000000" android:textAlignment="center"/>
         <TextView
                 android:id="@+id/tv_scheduleItem_startDate2"
@@ -43,7 +43,8 @@
                 android:textColor="#000000" app:layout_constraintVertical_bias="0.387"
                 app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider"
                 android:layout_marginEnd="4dp" app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"
-                app:autoSizeTextType="uniform" tools:maxLines="1" android:textAlignment="center"/>
+                app:autoSizeTextType="uniform" tools:maxLines="1" android:textAlignment="center"
+                android:layout_marginStart="4dp"/>
         <TextView
                 android:id="@+id/tv_schedule_price1"
                 tools:text="30$"
@@ -138,8 +139,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_scheduleItem_startDate2"
                 app:layout_constraintEnd_toEndOf="@+id/tv_scheduleItem_startDate2"
                 android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider" android:textSize="14sp"
-                android:textAlignment="center" android:lines="1"/>
+                app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider" android:textSize="12sp"
+                android:textAlignment="center" android:lines="1" android:layout_marginStart="8dp"/>
         <TextView
                 android:text="__"
                 android:autoSizeTextType="uniform"

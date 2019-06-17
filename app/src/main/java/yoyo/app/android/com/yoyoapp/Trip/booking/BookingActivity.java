@@ -125,19 +125,17 @@ public class BookingActivity extends AppCompatActivity {
 
 
 
-                boolean correctEmail;
-
-                if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
-                    Toasty.error(this,"Your Email Address is incorrect").show();
-                    correctEmail = false;
-                }else {
-                    correctEmail = true;
-                }
 
 
 
-                if (result && correctEmail)
+                if (result)
                 {
+                    if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
+                        Toasty.error(this,"Your Email Address is incorrect").show();
+                        progressBar.setVisibility(View.GONE);
+                        return;
+                    }
+
                     new CheckInternetConnection(BookingActivity.this, frameLayout, result1 -> {
                         if (result1)
                         {

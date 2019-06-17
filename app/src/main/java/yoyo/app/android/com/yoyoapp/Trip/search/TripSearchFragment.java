@@ -196,7 +196,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 if( searchOriginTextView.getText().equals("Origin") || searchDestinationTextView.getText().equals("Destination")){
 
 //                    Log.d(TAG, "onClick: qqqqqqqqq2 "  +  searchOriginTextView.getText() + "   " + searchDestinationTextView.getText() + ".");
-                    Toasty.error(getContext(),"Origin & Destination can not be empty.").show();
+//                    Toasty.error(getContext(),"Origin & Destination can not be empty.").show();
+                    Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
 
 
                 }else {
