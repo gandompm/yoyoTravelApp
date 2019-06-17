@@ -23,8 +23,8 @@ public class CityFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_city, container, false);
 
         Bundle bundle = getArguments();
-        String cityName = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_NAME);
-        String cityImage = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_IMAGE);
+        String cityName = bundle.getString(Utils.KEY_BUNDLE_CITY_NAME);
+        String cityImage = bundle.getString(Utils.KEY_BUNDLE_CITY_IMAGE);
 
         nestedScrollView = view.findViewById(R.id.scrollView);
         MaterialViewPagerHelper.registerScrollView(getActivity(), nestedScrollView);

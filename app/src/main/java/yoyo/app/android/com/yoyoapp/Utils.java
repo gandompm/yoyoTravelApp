@@ -13,5 +13,14 @@ public class Utils {
     public static final String KEY_BUNDLE_CATEGORIES_CODE = "category";
     public static final String KEY_BUNDLE_LOCATION_CODE = "location";
     public static final String KEY_BUNDLE_MAINACTIVITY = "sendToProfileFragment";
+    public static final String KEY_BUNDLE_CITY_IMAGE = "city_image";
+    public static final String KEY_BUNDLE_CITY_NAME = "city_name";
+    public static final String KEY_BUNDLE_CITY_ABOUT = "city_about";
+    public static final String KEY_BUNDLE_CITY_NATURAL_ATT = "city_natural_att";
+    public static final String KEY_BUNDLE_CITY_HISTORICAL_ATT = "city_historical_att";
+    public static final String KEY_BUNDLE_CITY_MAN_MADE_ATT = "city_mad_made_att";
+    public static final String KEY_BUNDLE_CITY_FOOD_SOUVENIR = "city_food_souvenir";
+    public static final String KEY_BUNDLE_CITY_CLIMATE = "city_climate_att";
+    public static final String KEY_BUNDLE_CITY_FOOD_TOPEXPERIENCE = "city_top_experience_att";
 
 }

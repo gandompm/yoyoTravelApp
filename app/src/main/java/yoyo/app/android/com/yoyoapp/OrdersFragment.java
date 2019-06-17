@@ -41,18 +41,30 @@ public class OrdersFragment extends BaseFragment {
     private void onClick() {
 
         tourCardview.setOnClickListener(v -> {
-
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,new TourTicketFragment()).addToBackStack("tour_ticket");
-            fragmentTransaction.commit();
+            if (userSharedManager.getToken().isEmpty())
+            {
+                startActivity(new Intent(getContext(), AuthenticationActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+            }
+            else {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container,new TourTicketFragment()).addToBackStack("tour_ticket");
+                fragmentTransaction.commit();
+            }
 
         });
 
         flightCardview.setOnClickListener(v -> {
-
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,new FlightTicketFragment()).addToBackStack("flight_ticket");
-            fragmentTransaction.commit();
+            if (userSharedManager.getToken().isEmpty())
+            {
+                startActivity(new Intent(getContext(), AuthenticationActivity.class));
+                getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+            }
+            else {
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container,new FlightTicketFragment()).addToBackStack("flight_ticket");
+                fragmentTransaction.commit();
+            }
         });
     }
 

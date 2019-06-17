@@ -141,25 +141,18 @@ public class City {
                 case 2:
                     city.setName("Neyshabour");
                     city.setImage("https://www.eghamat24.com/blog/wp-content/uploads/2017/04/khayyam-Nishapur.jpg");
-                    city.setAbout("The city of Kashan is the cradle of civilization and culture of Iran, which is 7000 years old. It has a 3-hour distance from Tehran, and according to many tourists, one of the most beautiful cities in Iran.\n" +
-                            "In this city one of the most famous Iranian ceremonies called Golabgiri (that Extract oil from Damask rose) performed at this ceremony in accordance with the special rules .\n" +
-                            "This city is one of the most popular tourist destinations in Iran over the past decades.\n");
-                    city.setNaturalAttraction("Abouzeidabad desert\n" +
-                            "Maranjab desert\n");
-                    city.setHistoricalAttraction("Abyaneh village\n" +
-                            "Noushabad Underground City\n" +
-                            "Borujerdi House\n" +
-                            "Sialk Hills\n" +
-                            "Agha Bozorg Mosque\n");
+                    city.setAbout("About Neyshabur city | Neyshabur is one of beautiful and attractive cities of Khorasan. Also, Neyshabur is a place where Kamal-Ol-Molk (one of the greatest Iranian painter), Khayyam-e Neyshaburi (a great Persian poet and mystic) and Attar-e Neyshaburi (a great Persian mathematician, astronomer, and poet) are buried. In following sections, we will familiarize you with this city briefly.");
+                    city.setNaturalAttraction("Neyshabur Turquoise\n");
+                    city.setHistoricalAttraction("Omar Khayyam Mausoleum\n" +
+                            "Khayam Planetarium\n" +
+                            "Mausoleum of Attar Neyshaburi\n" +
+                            "Tomb of Kamal-ol-Molk\n" +
+                            "Wooden Mosque of Neyshabur\n");
                     city.setManMadeAttraction("");
-                    city.setFoodAndSouvenir("Kashan handicrafts are very rich and diverse, including them Traditional Iranian painting and Ghalamzani of this city\n" +
-                            "(Insertion on metal bodies of copper, rice, gold, and silver is called the so-called ghalamzani)\n" +
-                            " Kashan weaving carpet is so interesting that its name has been placed among the intangible heritage of UNESCO.\n");
-                    city.setClimate("Spring: Many tourists visit Kashan this season due to the beginning of the Golab giry ceremony and the appropriate weather.\n" +
-                            "Summer: Throughout the summer the weather is warm and dry\n" +
-                            "Autumn: In this season, the weather is very good during the day and very cold at night.\n" +
-                            "Winter: The weather is cold.\n");
-                    city.setTopExperince("he desert and the sunrise and sunset view in the desert of Kashan is unique. Also, the experience of motorcycling and safari in the desert of Kashan is very enjoyable.");
+                    city.setFoodAndSouvenir("Neyshabur has diverse and delicious local foods which are cooked in special way. Some of these foods are: Qurut/ Qurutu, Halim, Ash-e Balqur, Ash-e Zireh, Eshkeneh with tomato, Yatimcheh, rhubarb stew, Ash-e Bi Bi Seshanbeh, , Adas Banjo, Eshkeneh Kashk, Ash-e Amaj, Komay, Bilmaq, Abgusht, Zirak Jush, Kaleh Jush, Kuku with edible mushroom, Hoobleh Berenj, Siki Yarma, Dolma.\n"+
+                           "\n Neyshabur has many handicrafts which are made in urban, rural and nomadic areas. Theses handicrafts have long history, dating back to many years ago. They include glaze, pottery, cutting and grinding turquoise, Palas weaving ( Palas is a type of cotton and woolen ground cloth) with various patterns, metalworking, copperworking dying, felted products, Forat weaving (Forat is a type of traditional fabric made of cotton or wool), different types of colorful carpets made of wool or silk, miniature, toreutics, mosaics, wood carving, Giveh sewing ( Giveh is a type of traditional Iranian footwear), mat weaving, rug weaving, woodturning, silver making, musical instruments, Khorjin (It is a type of traditional bag which is put on pack animals in order to carry loads), Sermeh embroidery and fabric weaving.");
+                    city.setClimate("Neyshabur has different climate in different regions. Due to presence of mountain in north part of this city, it has a cold climate. It has a temperate climate in central part.");
+                    city.setTopExperince("Neyshabur Turquoise is the finest in the world.  For at least 2,000 years, Iran and Neyshabur has remained an important source of turquoise which was named by Iranians initially “pirouzeh” (Arabic Firouzeh) meaning “victory”. This deposit, which is blue naturally, and turns green when heated due to dehydration, is restricted to a mine-riddled region in Neyshabur, the 2,012-metre (6,601 ft) mountain peak of Ali-mersai, which is tens of kilometers from Mashhad, the capital of Khorasan province.");
                     break;
                 case 3:
                     city.setName("Isfahan");

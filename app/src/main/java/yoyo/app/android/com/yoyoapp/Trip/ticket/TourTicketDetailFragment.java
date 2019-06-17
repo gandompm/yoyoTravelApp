@@ -3,6 +3,7 @@ package yoyo.app.android.com.yoyoapp.Trip.ticket;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import yoyo.app.android.com.yoyoapp.R;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class TourTicketDetailFragment extends Fragment {
 
@@ -36,8 +40,8 @@ public class TourTicketDetailFragment extends Fragment {
         orderDateTextView.setText(bundle.getString("date"));
         customerNameTextView.setText(bundle.getString("name"));
         paymentStatusTextView.setText(bundle.getString("payment_status"));
-        endDateTextView.setText(bundle.getString("end_datetime"));
-        startDateTextView.setText(bundle.getString("start_datetime"));
+        endDateTextView.setText(getStandardDate(bundle.getLong("end_datetime")));
+        startDateTextView.setText(getStandardDate(bundle.getLong("start_datetime")));
         quantityTextView.setText(String.valueOf(bundle.getInt("qty")));
         totalPriceTextView.setText(String.valueOf(bundle.getInt("price")));
         if (bundle.getBoolean("order_status")){
@@ -63,4 +67,9 @@ public class TourTicketDetailFragment extends Fragment {
         downloadTicketTextView = view.findViewById(R.id.tv_tour_ticket_detail_download_ticket);
     }
 
+    private String getStandardDate(long timestamp) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(timestamp * 1000);
+        return DateFormat.format("dd-MM-yyyy", cal).toString();
+    }
 }
