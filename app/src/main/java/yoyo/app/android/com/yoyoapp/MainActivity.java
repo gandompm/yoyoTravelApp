@@ -70,13 +70,13 @@ public class MainActivity extends AppCompatActivity{
                         return true;
                     case R.id.bn_orders:
                         addFragment(new OrdersFragment(),"orders");
+                        return true;
 
 
 //                        if (isSingnedIn)
 //                            addFragment(new FlightTicketFragment(),"ticket");
 //                        else
 //                            addFragment(new FlightTicketNotSignedInFragment(), "ticket");
-//                        return true;
                     default:
                         return false;
                 }

@@ -35,7 +35,6 @@ public class ExitDialogFragment extends DialogFragment {
         positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), MainActivity.class));
                 ((BookingActivity)getContext()).finish();
                 getActivity().overridePendingTransition(0,  0);
             }

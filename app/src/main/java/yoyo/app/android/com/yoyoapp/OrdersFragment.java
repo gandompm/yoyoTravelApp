@@ -1,5 +1,6 @@
 package yoyo.app.android.com.yoyoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import android.view.LayoutInflater;
@@ -9,6 +10,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
+import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 import yoyo.app.android.com.yoyoapp.Trip.ticket.order.TourTicketFragment;
 
 
@@ -17,17 +21,20 @@ public class OrdersFragment extends BaseFragment {
 
     private CardView tourCardview, hotelCardview, flightCardview;
     private FragmentManager fragmentManager;
-
+    private UserSharedManager userSharedManager;
     private View view;
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_orders,container,false);
         init();
         onClick();
-
+        if (userSharedManager.getToken().isEmpty())
+        {
+            startActivity(new Intent(getContext(), AuthenticationActivity.class));
+            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+        }
         return view;
     }
 
@@ -54,7 +61,7 @@ public class OrdersFragment extends BaseFragment {
         flightCardview = view.findViewById(R.id.cv_orders_flight);
         hotelCardview = view.findViewById(R.id.cv_orders_hotel);
         fragmentManager = getFragmentManager();
-
+        userSharedManager = new UserSharedManager(getContext());
     }
 
 
