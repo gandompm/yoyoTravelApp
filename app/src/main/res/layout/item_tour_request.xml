@@ -61,7 +61,7 @@
                 android:id="@+id/guideline_vertical_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" app:layout_constraintGuide_percent=".8"/>
+                android:orientation="vertical" app:layout_constraintGuide_percent=".78"/>
         <Button
                 android:text="Complete Info"
                 android:layout_width="0dp"
@@ -75,12 +75,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_triprequest_name"
-                android:text="Amin Salehi Far" android:textSize="12sp"
+                android:text="Amin Salehi Far"
                 app:layout_constraintStart_toEndOf="@+id/imageView37"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView37"
                 app:layout_constraintTop_toTopOf="@+id/imageView37" android:textColor="@color/black1"
-                android:fontFamily="serif"/>
+                android:fontFamily="@font/roboto_regular" app:layout_constraintEnd_toStartOf="@+id/textView87"
+                android:layout_marginEnd="4dp"
+                android:textSize="12sp"
+                android:maxLines="1"/>
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,7 +103,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp" app:srcCompat="@drawable/profile_blue"
                 android:id="@+id/imageView37"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_3" android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/tv_triprequest_title"/>
         <ImageView
                 android:layout_width="25dp"
@@ -131,8 +134,10 @@
                 android:id="@+id/tv_triprequest_status"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView87"
                 app:layout_constraintStart_toEndOf="@+id/textView87"
-                android:textColor="@color/black1" android:fontFamily="serif" android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/button_triprequest_complete_info" app:autoSizeTextType="uniform"
+                android:textColor="@color/black1" android:fontFamily="@font/roboto_regular"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/button_triprequest_complete_info"
+                android:textSize="12sp"
                 android:maxLines="1"/>
 
 
