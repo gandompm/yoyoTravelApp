@@ -3,6 +3,8 @@ package yoyo.app.android.com.yoyoapp.Trip.ticket;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.util.Log;
 import androidx.cardview.widget.CardView;
 import androidx.core.util.Consumer;
@@ -20,11 +22,10 @@ import yoyo.app.android.com.yoyoapp.Trip.ApiService;
 import java.util.ArrayList;
 
 
-public class TourTicketFragment extends BaseFragment {
+public class TourTicketFragment extends BaseFragment implements View.OnClickListener {
 
-    private static final String TAG = "TourTicketFragment";
-    private CardView tourCardview, hotelCardview, flightCardview;
-    private FragmentManager fragmentManager;
+    private TextView backTextview;
+    private ImageView backImageview;
 
     private View view;
     @Override
@@ -32,23 +33,29 @@ public class TourTicketFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tour_ticket,container,false);
         init();
-        onClick();
+
+        backTextview.setOnClickListener(this);
+        backImageview.setOnClickListener(this);
+
         return view;
     }
 
     private void init() {
-//        ApiService apiService = new ApiService(getContext());
-//        apiService.getOrderRequest(new Consumer<ArrayList<Order>>() {
-//            @Override
-//            public void accept(ArrayList<Order> orders) {
-//                Log.d(TAG, "accept: "+ orders);
-//            }
-//        });
-    }
-
-    private void onClick() {
+        backTextview = view.findViewById(R.id.tv_tour_ticket_back);
+        backImageview = view.findViewById(R.id.iv_tour_ticket_back);
 
     }
 
 
+
+    @Override
+    public void onClick(View v) {
+
+        if (v.getId() == backImageview.getId() || v.getId() == backTextview.getId()){
+
+            getFragmentManager().popBackStack();
+
+
+        }
+    }
 }

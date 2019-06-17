@@ -5,7 +5,7 @@
                 android:id="@+id/rl_search_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background">
+                android:background="@drawable/gray_pattern">
 
     <com.github.florent37.shapeofview.shapes.ArcView
             android:layout_width="match_parent"
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="@dimen/standard"
-                android:background="@color/colorPrimary">
+                android:background="#00a2ff">
 
             <TextView
                     android:id="@+id/tv_search_page_title"
@@ -31,7 +31,7 @@
                     android:text="@string/tour"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/header_2" />
+                    android:textSize="@dimen/header_2"/>
 
             <ImageView
                     android:id="@+id/iv_search_back"
@@ -41,7 +41,7 @@
                     android:layout_marginStart="@dimen/standard_margin"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="8dp"
-                    android:src="@drawable/ic_arrow_back_black_24dp" />
+                    android:src="@drawable/ic_arrow_back_black_24dp"/>
 
 
         </RelativeLayout>
@@ -49,13 +49,14 @@
 
 
     <androidx.cardview.widget.CardView
+            android:id="@+id/cv_tour_serach"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginStart="@dimen/standard_margin"
-            android:layout_marginTop="@dimen/xx_large_margin"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/standard_margin"
-            android:layout_marginBottom="@dimen/xx_large_margin"
+            android:layout_marginBottom="4dp"
             android:background="@color/white"
             android:elevation="8dp"
             android:visibility="visible"
@@ -275,7 +276,7 @@
                     android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_search_check_out"/>
 
 
-                       <ImageView
+            <ImageView
                     android:id="@+id/line_search_filter"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -336,7 +337,7 @@
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:text="@string/search"
                     android:textAllCaps="false"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/button_standard_font"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -363,11 +364,12 @@
     </androidx.cardview.widget.CardView>
 
 
-
-
-    <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:src=""/>-->
+    <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/search_bottom_pic"
+    android:layout_alignParentBottom="true"
+    android:scaleType="centerCrop"
+    android:layout_below="@+id/cv_tour_serach"/>
 
 </RelativeLayout>

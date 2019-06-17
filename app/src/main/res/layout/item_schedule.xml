@@ -37,13 +37,13 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 tools:text="17"
-                android:textSize="18sp"
                 android:fontFamily="@font/roboto_bold"
                 app:layout_constraintTop_toTopOf="@+id/tv_schedule_divider" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_schedule_divider"
                 android:textColor="#000000" app:layout_constraintVertical_bias="0.387"
                 app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider"
-                android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"/>
+                android:layout_marginEnd="4dp" app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_1"
+                app:autoSizeTextType="uniform" tools:maxLines="1"/>
         <TextView
                 android:id="@+id/tv_schedule_price1"
                 tools:text="30$"
@@ -128,7 +128,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_scheduleItem_startDate1"
                 app:layout_constraintEnd_toEndOf="@+id/tv_scheduleItem_startDate1"
                 app:layout_constraintStart_toStartOf="@+id/tv_scheduleItem_startDate1" android:textColor="#000000"
-                android:textAlignment="center" android:textSize="14sp" android:lines="1"/>
+                android:textAlignment="center" android:textSize="16sp" android:lines="1"/>
         <TextView
                 android:id="@+id/tv_schedule_end_month"
                 android:text="Mar"
@@ -138,7 +138,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_scheduleItem_startDate2"
                 app:layout_constraintEnd_toEndOf="@+id/tv_scheduleItem_startDate2"
                 android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider" android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_schedule_divider" android:textSize="14sp"
                 android:textAlignment="center" android:lines="1"/>
         <TextView
                 android:text="__"

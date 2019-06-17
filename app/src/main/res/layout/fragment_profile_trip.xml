@@ -3,7 +3,7 @@
                                                      xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
                                                      android:layout_width="match_parent"
                                                      android:layout_height="match_parent"
-                                                     android:background="@color/background"
+                                                     android:background="@drawable/gray_pattern"
                                                      android:layoutDirection="ltr">
 
 
@@ -191,10 +191,10 @@
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="@+id/shape_profile_card" android:layout_marginStart="8dp"
                 android:gravity="center_horizontal"
-                android:text="Edward Norton" android:textColor="@color/black1"
+                android:text="YoYo " android:textColor="@color/black1"
                 android:textSize="@dimen/header_1"
                 app:layout_constraintTop_toBottomOf="@+id/shape_profile_picture"
-                android:layout_marginTop="8dp" android:elevation="2dp"/>
+                android:layout_marginTop="8dp" android:elevation="2dp" android:fontFamily="@font/roboto_medium"/>
 
         <TextView
                 android:text="@string/edit_profile"
