@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp;
 
 import android.content.Intent;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.fragment.app.FragmentManager;
@@ -10,15 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
-import yoyo.app.android.com.yoyoapp.Flight.FlightTicketNotSignedInFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.Versioning;
 import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment;
+import yoyo.app.android.com.yoyoapp.Trip.ticket.order.TourTicketFragment;
 
 public class MainActivity extends AppCompatActivity{
 
+    private static final String TAG = "MainActivity";
     public BottomNavigationView bottomNavigation;
     private LanguageSetup languageSetup;
     public static boolean isSingnedIn = false;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        checkingIfItIsFromPayment();
         getBundle();
         init();
         languageSetup.loadLanguageFromSharedPref();
@@ -37,6 +39,23 @@ public class MainActivity extends AppCompatActivity{
         Versioning versioning = new Versioning();
         versioning.checkingUpdates(this);
         setupBottomNavigation();
+    }
+
+    private void checkingIfItIsFromPayment() {
+        Uri data = this.getIntent().getData();
+        if (data!=null)
+        {
+            if (data.getScheme().contains("orders/ticket"))
+            {
+                TourTicketFragment tourTicketFragment = new TourTicketFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("showTicket",true);
+                tourTicketFragment.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container,tourTicketFragment).addToBackStack("ticket");
+                fragmentTransaction.commit();
+            }
+        }
     }
 
     private void getBundle() {

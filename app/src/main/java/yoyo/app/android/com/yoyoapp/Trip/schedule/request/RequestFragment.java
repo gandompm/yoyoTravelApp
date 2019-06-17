@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import es.dmoral.toasty.Toasty;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,8 +111,14 @@ public class RequestFragment extends Fragment {
         requstViewModel.getResult().observe(getActivity(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean result) {
-                if (result)
-                Toast.makeText(getContext(), "success", Toast.LENGTH_SHORT).show();
+                if (result){
+                    Toasty.normal(getContext(),"your Request has sent successfully").show();
+                    getFragmentManager().popBackStack();
+                }
+                else
+                {
+                    Toasty.normal(getContext(),"failed to send Request").show();
+                }
             }
         });
     }

@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.booking;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
@@ -16,12 +17,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
-import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingSecondFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingThirdFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.CheckInternetConnection;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.ExitDialogFragment;
+import yoyo.app.android.com.yoyoapp.Trip.result.TripResultFragment;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,10 +37,10 @@ public class BookingActivity extends AppCompatActivity {
     public  ArrayList<Traveller> travellers;
     private ProgressBar progressBar;
     public  Date serverDeadlineDate, nowDate;
-    private int whichFragment = 0;
+    private int whichFragment = 0, price;
     private FrameLayout frameLayout;
     private JSONObject jsonObject;
-    private String scheduleId, bookingId;
+    private String scheduleId, url;
     private BookingViewModel bookingViewModel;
     public  ConstraintLayout constraintLayout;
     private BookingPresenter bookingPresenter;
@@ -79,6 +81,7 @@ public class BookingActivity extends AppCompatActivity {
     private void getScheduleId() {
         Intent intent = getIntent();
         scheduleId = intent.getStringExtra("scheduleId");
+        price = intent.getIntExtra("price",0);
         Log.d(TAG, "getScheduleId: " + scheduleId);
     }
 
@@ -123,11 +126,6 @@ public class BookingActivity extends AppCompatActivity {
             case 0:
                 boolean result = bookingPresenter.checkingEmptyItems(fullNameString,emailString,mobileNumberString);
 
-
-
-
-
-
                 if (result)
                 {
                     if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
@@ -135,7 +133,6 @@ public class BookingActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         return;
                     }
-
                     new CheckInternetConnection(BookingActivity.this, frameLayout, result1 -> {
                         if (result1)
                         {
@@ -152,23 +149,9 @@ public class BookingActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 break;
             case 1:
-
-                //TODO: FAST FIX SOLUTION
-                if ((serverDeadlineDate.getTime()+12600000 - nowDate.getTime()) > 0) {
-                    new CheckInternetConnection(BookingActivity.this, frameLayout, new CheckInternetConnection.OnInternetConnected() {
-                        @Override
-                        public void onConnected(boolean result) {
-                            if (result)
-                            {
-                                // payment request
-                            }
-                        }
-                    });
-                }
-                else
-                {
-                    startActivity(new Intent(BookingActivity.this, MainActivity.class));
-                }
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
                 progressBar.setVisibility(View.GONE);
                 break;
             case 2:
@@ -182,15 +165,25 @@ public class BookingActivity extends AppCompatActivity {
 
     // book flight reuest for first fragment
     private void bookFlight() {
-
         setupJson();
         bookingViewModel.initBookingRequest(scheduleId, jsonObject);
         bookingViewModel.getBookingId().observe(BookingActivity.this, new Observer<String>() {
             @Override
-            public void onChanged(String s) {
-                if (s != null) {
-                    bookingId = s;
-                    Log.d(TAG, "onChanged: rtrtrt "+ bookingId);
+            public void onChanged(String newurl) {
+                if (newurl != null) {
+                    Bundle bundle = new Bundle();
+                    url = newurl;
+                    bundle.putString("name",fullNameString);
+                    bundle.putInt("travellerNumber", travellers.size());
+                    bundle.putInt("price",price);
+
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    BookingSecondFragment bookingSecondFragment = new BookingSecondFragment();
+                    bookingSecondFragment.setArguments(bundle);
+                    fragmentTransaction.add(R.id.fl_booking, bookingSecondFragment);
+                    fragmentTransaction.addToBackStack("bookingsecond");
+                    fragmentTransaction.commit();
+                    setupSecondFragment();
                 }
             }
         });
@@ -229,11 +222,6 @@ public class BookingActivity extends AppCompatActivity {
 
     // setup second fragment and setup views for second fragment
     private void setupSecondFragment() {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fl_booking,new BookingSecondFragment(),"paymentFragment");
-        transaction.addToBackStack("second booking fragment");
-        transaction.commit();
-
         travellerInfoTextview.setTextColor(getResources().getColor(R.color.green));
         traverllerInfoImageview.setImageDrawable(getResources().getDrawable(R.drawable.ic_traveller_info_green_24dp));
         greenCheckImageview1.setVisibility(View.VISIBLE);
