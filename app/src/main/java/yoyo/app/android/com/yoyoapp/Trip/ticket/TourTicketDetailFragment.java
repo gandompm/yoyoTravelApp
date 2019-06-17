@@ -16,6 +16,7 @@ public class TourTicketDetailFragment extends Fragment {
 
     private TextView orderDateTextView, customerNameTextView, orderStatusTextView, paymentStatusTextView,
                      startDateTextView, endDateTextView, totalPriceTextView, quantityTextView, downloadTicketTextView;
+    private String orderId;
     private View view;
 
     @Override
@@ -23,8 +24,27 @@ public class TourTicketDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_tour_ticket_detail, container, false);
         init();
+        getBundle();
         onClick();
         return view;
+    }
+
+    private void getBundle() {
+
+        Bundle bundle = getArguments();
+        orderId = bundle.getString("order_id");
+        orderDateTextView.setText(bundle.getString("date"));
+        customerNameTextView.setText(bundle.getString("name"));
+        paymentStatusTextView.setText(bundle.getString("payment_status"));
+        endDateTextView.setText(bundle.getString("end_datetime"));
+        startDateTextView.setText(bundle.getString("start_datetime"));
+        quantityTextView.setText(String.valueOf(bundle.getInt("qty")));
+        totalPriceTextView.setText(String.valueOf(bundle.getInt("price")));
+        if (bundle.getBoolean("order_status")){
+            orderStatusTextView.setText("Paid");
+        }
+        else
+            orderStatusTextView.setText("not Paid");
     }
 
     private void onClick() {
@@ -36,11 +56,11 @@ public class TourTicketDetailFragment extends Fragment {
         customerNameTextView = view.findViewById(R.id.tv_tour_ticket_detail_customer_name);
         orderStatusTextView = view.findViewById(R.id.tv_tour_ticket_detail_order_status);
         paymentStatusTextView = view.findViewById(R.id.tv_tour_ticket_detail_payment_status);
+        startDateTextView = view.findViewById(R.id.tv_tour_ticket_detail_start_date);
         endDateTextView = view.findViewById(R.id.tv_tour_ticket_detail_end_date);
         totalPriceTextView = view.findViewById(R.id.tv_tour_ticket_detail_total_price);
         quantityTextView = view.findViewById(R.id.tv_tour_ticket_detail_quantity);
         downloadTicketTextView = view.findViewById(R.id.tv_tour_ticket_detail_download_ticket);
-
     }
 
 }

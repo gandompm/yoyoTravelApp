@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Order {
+public class TourTicket {
 
     @SerializedName("order_id")
     @Expose
@@ -23,7 +23,7 @@ public class Order {
     private String orderDatetime;
     @SerializedName("is_paid")
     @Expose
-    private String isPaid;
+    private boolean isPaid;
     @SerializedName("reservatore_name")
     @Expose
     private String reservatoreName;
@@ -80,11 +80,11 @@ public class Order {
         this.orderDatetime = orderDatetime;
     }
 
-    public String getIsPaid() {
+    public boolean getIsPaid() {
         return isPaid;
     }
 
-    public void setIsPaid(String isPaid) {
+    public void setIsPaid(boolean isPaid) {
         this.isPaid = isPaid;
     }
 
