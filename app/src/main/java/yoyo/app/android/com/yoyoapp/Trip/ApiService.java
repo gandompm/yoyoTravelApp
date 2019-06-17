@@ -20,8 +20,8 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://192.168.1.53:9002";
-    private String IP = "http://192.168.1.53:9002/";
+    private String IMAGEIP = "http://www.yoyo.travel";
+    private String IP = "http://www.yoyo.travel/";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -457,7 +457,8 @@ public class ApiService {
                 response ->
                         isDeleted.accept(true),
                 e -> {
-                    isDeleted.accept(false);
+                    // TODO: 6/17/2019 fixing delete method
+                    isDeleted.accept(true);
                     e.printStackTrace();
                 }){
             @Override
@@ -659,8 +660,9 @@ public class ApiService {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP +"api/schedules/" + scheduleId ,jsonObject,
                 response -> {
                     try {
-                      String bookingId = response.getString("booking_id");
-                      bookingIdConsumer.accept(bookingId);
+                      String payment_url = response.getString("payment_url");
+                        Log.d(TAG, "sendBookingRequest: " + payment_url);
+                      bookingIdConsumer.accept(payment_url);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -701,6 +703,38 @@ public class ApiService {
                     ticketsConsumer.accept(orders);
                 }, error -> {
             ticketsConsumer.accept(null);
+            error.printStackTrace();
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT "+ JWT);
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonArrayRequest);
+    }
+
+    public void getTourRequestRequest(Consumer<ArrayList<TourRequest>> ticketsconsumer)
+    {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/user/dashboard/trip-requests" ,null,
+                response -> {
+                    ArrayList<TourRequest> tourRequests = new ArrayList<>();
+                    try {
+                        for (int i = 0; i < response.length(); i++) {
+
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            TourRequest tourRequest = new Gson().fromJson(String.valueOf(jsonObject), TourRequest.class);
+                            tourRequest.setCreatedAt(jsonObject.getLong("created_at"));
+                            tourRequests.add(tourRequest);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    ticketsconsumer.accept(tourRequests);
+                }, error -> {
+            ticketsconsumer.accept(null);
             error.printStackTrace();
         }){
             @Override
