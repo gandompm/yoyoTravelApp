@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.booking;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
@@ -123,11 +124,6 @@ public class BookingActivity extends AppCompatActivity {
             case 0:
                 boolean result = bookingPresenter.checkingEmptyItems(fullNameString,emailString,mobileNumberString);
 
-
-
-
-
-
                 if (result)
                 {
                     if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
@@ -182,15 +178,18 @@ public class BookingActivity extends AppCompatActivity {
 
     // book flight reuest for first fragment
     private void bookFlight() {
-
         setupJson();
         bookingViewModel.initBookingRequest(scheduleId, jsonObject);
         bookingViewModel.getBookingId().observe(BookingActivity.this, new Observer<String>() {
             @Override
-            public void onChanged(String s) {
-                if (s != null) {
-                    bookingId = s;
+            public void onChanged(String url) {
+                if (url != null) {
+                    bookingId = url;
                     Log.d(TAG, "onChanged: rtrtrt "+ bookingId);
+
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
                 }
             }
         });
