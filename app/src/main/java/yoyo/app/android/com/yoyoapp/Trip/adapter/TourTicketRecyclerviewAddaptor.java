@@ -104,8 +104,11 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
             priceTextview.setText(String.valueOf(tourTicket.getProducts().get(0).getPrice()));
             statusTextview.setText(tourTicket.getStatus());
             dateTextview.setText(tourTicket.getOrderDatetime());
+
+            Log.d(TAG, "bindItem: aaaaa" + tourTicket.getIsPaid());
             if (tourTicket.getIsPaid())
             {
+                isPaidTextview.setTextColor(context.getResources().getColor(R.color.colorAccent));
                 isPaidTextview.setText("Paid");
             }
             else
