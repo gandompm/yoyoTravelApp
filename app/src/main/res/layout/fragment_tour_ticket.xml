@@ -9,7 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/ab_tour_ticket"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+    android:layout_marginBottom="50dp">
         <LinearLayout
                 android:id="@+id/la_tour_ticket"
                 android:layout_width="match_parent"
@@ -63,6 +64,17 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:id="@+id/rv_tour_ticket_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:layout_constraintTop_toBottomOf="@+id/ab_tour_ticket"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    />
 
 
     <com.cooltechworks.views.shimmer.ShimmerRecyclerView
@@ -81,16 +93,6 @@
 
 
 
-    <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_tour_ticket_result"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="@dimen/small_margin"
-                    android:paddingBottom="@dimen/large_margin"
-                    android:clipToPadding="false"
-                    app:layout_constraintTop_toBottomOf="@+id/ab_tour_ticket"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
