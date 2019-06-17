@@ -49,7 +49,6 @@ public class ApiService {
                         for (int i = 0; i < tripJsonArray.length(); i++) {
 
 
-                            for (int k =0 ; k<3 ; k++) {
                                 Trip trip = new Trip();
 
 
@@ -162,7 +161,7 @@ public class ApiService {
                                 }
 
                                 trips.add(trip);
-                            }
+
                             }
                     } catch (JSONException e) {
                         e.printStackTrace();
