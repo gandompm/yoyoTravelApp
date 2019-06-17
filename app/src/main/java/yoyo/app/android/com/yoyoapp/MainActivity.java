@@ -24,15 +24,12 @@ public class MainActivity extends AppCompatActivity{
     private LanguageSetup languageSetup;
     public static boolean isSingnedIn = false;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         checkingIfItIsFromPayment();
-        getBundle();
         init();
         languageSetup.loadLanguageFromSharedPref();
         checkingSignIn();
@@ -58,12 +55,6 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    private void getBundle() {
-//        if (getIntent().getBooleanExtra(Utils.KEY_BUNDLE_MAINACTIVITY,false))
-//        {
-//            addFragment(new ProfileFragment(),"profile");
-//        }
-    }
 
 
     private void init() {

@@ -20,7 +20,7 @@ public class TourTicket {
     private String status;
     @SerializedName("total_amount")
     @Expose
-    private Integer totalAmount;
+    private Float totalAmount;
     @SerializedName("order_timestamp")
     @Expose
     private String orderDatetime;
@@ -39,9 +39,7 @@ public class TourTicket {
     @SerializedName("products")
     @Expose
     private List<Product> products = null;
-    @SerializedName("payments")
-    @Expose
-    private List<Object> payments = null;
+
 
     public String getOrderId() {
         return orderId;
@@ -67,11 +65,11 @@ public class TourTicket {
         this.status = status;
     }
 
-    public Integer getTotalAmount() {
+    public Float getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Integer totalAmount) {
+    public void setTotalAmount(Float totalAmount) {
         this.totalAmount = totalAmount;
     }
 
@@ -126,12 +124,5 @@ public class TourTicket {
         this.products = products;
     }
 
-    public List<Object> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(List<Object> payments) {
-        this.payments = payments;
-    }
 
 }

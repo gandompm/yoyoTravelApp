@@ -43,7 +43,7 @@ public class TourTicketDetailFragment extends Fragment {
         endDateTextView.setText(getStandardDate(bundle.getLong("end_datetime")));
         startDateTextView.setText(getStandardDate(bundle.getLong("start_datetime")));
         quantityTextView.setText(String.valueOf(bundle.getInt("qty")));
-        totalPriceTextView.setText(String.valueOf(bundle.getInt("price")));
+        totalPriceTextView.setText(String.valueOf(bundle.getFloat("price")));
         if (bundle.getBoolean("order_status")){
             orderStatusTextView.setText("Paid");
         }

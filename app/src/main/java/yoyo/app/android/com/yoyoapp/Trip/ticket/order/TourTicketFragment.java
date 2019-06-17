@@ -62,11 +62,13 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
             public void onToggleSwitchChanged(int i) {
                 if(i==0)
                 {
-                    addaptor = null;
+                    requestAddapter = new TourRequestsRecyclerviewAddaptor(getContext(),tourRequestArrayList);
+                    recyclerView.setAdapter(requestAddapter);
                     getTourTickets();
                 }
                 else {
-                    requestAddapter = null;
+                    addaptor = new TourTicketRecyclerviewAddaptor(getContext(),tourTicketsList);
+                    recyclerView.setAdapter(addaptor);
                     getTourRequests();
                 }
             }
@@ -83,7 +85,7 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
                     tourRequestArrayList.clear();
                     tourRequestArrayList.addAll(tourRequests);
                     if (requestAddapter == null) {
-                        requestAddapter = new TourRequestsRecyclerviewAddaptor(getContext(),tourRequests);
+                        requestAddapter = new TourRequestsRecyclerviewAddaptor(getContext(),tourRequestArrayList);
                         recyclerView.setAdapter(requestAddapter);
                     }
                     else
