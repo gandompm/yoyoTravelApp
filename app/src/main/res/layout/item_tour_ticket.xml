@@ -52,11 +52,12 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_"
                 android:textSize="14sp"
-                android:text=" 200 euro" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/tv_tourticket_title" android:layout_marginBottom="8dp"
+                android:text=" 200 euro"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_tourticket_status" android:textColor="#4CAF50"
                 android:fontFamily="@font/roboto_regular" android:textAlignment="center"
-                app:layout_constraintStart_toEndOf="@+id/tv_touritem_date" android:layout_marginStart="8dp"/>
+                app:layout_constraintStart_toEndOf="@+id/tv_touritem_date" android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/tv_touritem_date"/>
 
 
         <ImageView
