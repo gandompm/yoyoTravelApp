@@ -201,8 +201,16 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             tripTitle.setText(trip.getTitle());
             tripGroup.setText(trip.getTour().getName());
             Picasso.with(context).load(trip.getGallery().get(0)).into(tripImg);
-            from.setText(trip.getLocations().get(0).getTitle());
-            to.setText(trip.getLocations().get(1).getTitle());
+            //TODO: fix this shit
+            String str = trip.getLocations().get(0).getTitle();
+            String[] splited = str.split("\\s+");
+            from.setText(splited[0]);
+
+            String str1 = trip.getLocations().get(0).getTitle();
+            String[] splited1 = str1.split("\\s+");
+            to.setText(splited1[0]);
+
+
             language.setText(trip.getTripLeader().getLanguage().toUpperCase());
             duraion.setText(String.valueOf(trip.getDayNum()) + " Days");
             durationBig.setText(trip.getDayNum() + " Days");
