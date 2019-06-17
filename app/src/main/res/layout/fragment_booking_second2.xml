@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".Trip.booking.BookingSecondFragment">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:layout_margin="16dp" android:elevation="3dp" tools:layout_editor_absoluteY="16dp"
+            tools:layout_editor_absoluteX="16dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="match_parent">
+
+
+            <TextView
+                    android:text="Payment Summery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView111" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent" android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black" android:textSize="18sp"/>
+            <TextView
+                    android:text="Order date: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView115" android:layout_marginTop="32dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView111"
+                    app:layout_constraintStart_toStartOf="@+id/guideline21" android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black1" android:textSize="14sp" android:layout_marginStart="16dp"/>
+            <TextView
+                    android:text="2019/05/25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_booking_second_order_date"
+                    app:layout_constraintStart_toEndOf="@+id/textView115"
+                    android:layout_marginStart="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/textView115"
+                    android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                    android:textSize="14sp"/>
+            <TextView
+                    android:text="Customer name: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView117" app:layout_constraintStart_toStartOf="@+id/guideline21"
+                    app:layout_constraintTop_toBottomOf="@+id/textView115" android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                    android:textSize="14sp" android:layout_marginStart="16dp"/>
+            <TextView
+                    android:text="parham gandom kar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_booking_second_customer_name"
+                    app:layout_constraintStart_toEndOf="@+id/textView117"
+                    android:layout_marginStart="8dp" app:layout_constraintBaseline_toBaselineOf="@+id/textView117"
+                    android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                    android:textSize="14sp"/>
+            <TextView
+                    android:text="Quantity: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView119"
+                    app:layout_constraintTop_toBottomOf="@+id/textView117"
+                    app:layout_constraintStart_toStartOf="@+id/guideline21"
+                    android:layout_marginTop="8dp" android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black1" android:textSize="14sp" android:layout_marginStart="16dp"/>
+            <TextView
+                    android:text="5 person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_booking_second_quantity"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView119"
+                    app:layout_constraintStart_toEndOf="@+id/textView119" android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                    android:textSize="14sp"/>
+            <TextView
+                    android:text="Total Price: "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView121"
+                    app:layout_constraintStart_toStartOf="@+id/guideline21"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/colorAccent" android:textSize="24sp" android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/textView119" android:layout_marginTop="48dp"
+            />
+            <TextView
+                    android:text="1200€"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_booking_second_total_price"
+                    android:fontFamily="@font/roboto_regular" android:textColor="@color/colorAccent"
+                    android:textSize="24sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView121"
+                    app:layout_constraintStart_toEndOf="@+id/textView121" android:layout_marginStart="8dp"
+            />
+            <TextView
+                    android:text="We Accept :"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView122" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" app:layout_constraintBottom_toTopOf="@+id/imageView49"/>
+            <ImageView
+                    android:src="@drawable/visa_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView49" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
