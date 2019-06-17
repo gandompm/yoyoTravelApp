@@ -86,11 +86,6 @@ public class TripDetailsFragment extends Fragment {
     private void setupViews() {
         Bundle bundle = getArguments();
 
-        Log.d(TAG, "onCreateView: xxxxx" + bundle.getString("language"));
-        Log.d(TAG, "onCreateView: xxxxx" + bundle.getString("summary"));
-
-
-
         tripId = bundle.getString("tripId");
         dayNightNumTextview.setText(bundle.getInt("days")+ " Days "+ bundle.getInt("nights")+ " Nights");
         nameTourLeader.setText(bundle.getString("leaderName"));
@@ -138,7 +133,6 @@ public class TripDetailsFragment extends Fragment {
         mealsTextview.setText(meals);
         // images
         ArrayList<String> images = new ArrayList<>();
-        images.add("https://images.unsplash.com/photo-1530311583484-ea8bf4c407fb?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5471ccdab61f9634e1d9dba21bb50a34&auto=format&fit=crop&w=750&q=80");
         for (String image : bundle.getStringArrayList("gallery")) {
             images.add(image);
         }
