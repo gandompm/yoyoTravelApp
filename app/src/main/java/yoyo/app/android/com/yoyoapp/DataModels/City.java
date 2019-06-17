@@ -6,6 +6,8 @@ public class City {
 
     private String name;
     private String image;
+    private String naturalAttraction;
+    private String about;
 
     public String getName() {
         return name;
@@ -40,16 +42,14 @@ public class City {
                     city.setImage("http://img6.irna.ir/1396/13960901/82739650/n82739650-72008394.jpg");
                     break;
                 case 4:
-                    city.setName("Masal");
-                    city.setImage("https://images.unsplash.com/photo-1531692333527-0df5b708e9cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=774&q=80");
+                    city.setName("Kerman");
+                    city.setImage("https://theiranproject.com/wp-content/uploads/2014/03/kerman-3.jpg");
                     break;
                 case 5:
                     city.setName("Shiraz");
                     city.setImage("https://images.unsplash.com/photo-1527126887308-6cdf83c7d844?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
                     break;
-
             }
-
             cities.add(city);
         }
         return cities;

@@ -1,8 +1,11 @@
 package yoyo.app.android.com.yoyoapp.DataModels;
+import android.text.format.DateFormat;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class TourTicket {
 
@@ -18,7 +21,7 @@ public class TourTicket {
     @SerializedName("total_amount")
     @Expose
     private Integer totalAmount;
-    @SerializedName("order_datetime")
+    @SerializedName("order_timestamp")
     @Expose
     private String orderDatetime;
     @SerializedName("is_paid")
@@ -76,8 +79,11 @@ public class TourTicket {
         return orderDatetime;
     }
 
-    public void setOrderDatetime(String orderDatetime) {
-        this.orderDatetime = orderDatetime;
+    public void setOrderDatetime(long orderDatetime) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(orderDatetime * 1000);
+        String eDate = DateFormat.format("dd-MM-yyyy", cal).toString();
+        this.orderDatetime = eDate;
     }
 
     public boolean getIsPaid() {
