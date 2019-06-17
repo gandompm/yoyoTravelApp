@@ -21,18 +21,28 @@ public class AuthenticationActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private TextView signupMessage1;
     private TextView signupMessage2;
+    public boolean isFromSchedule = false;
     private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-        init();
 
+        getBundle();
+        init();
         setupSignInSignUpBottomSheet();
         setupCloseImageview();
         adapter.notifyDataSetChanged();
         changeTheTitle();
+    }
+
+    private void getBundle() {
+        Bundle extras = getIntent().getExtras();
+        if (extras.getBoolean("fromSchedule"))
+        {
+            isFromSchedule = true;
+        }
     }
 
     private void changeTheTitle() {

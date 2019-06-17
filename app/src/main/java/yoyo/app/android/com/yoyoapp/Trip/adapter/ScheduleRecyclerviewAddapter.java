@@ -62,7 +62,9 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
             public void onClick(View v) {
                 if (userSharedManager.getToken().isEmpty())
                 {
-                    context.startActivity(new Intent(context, AuthenticationActivity.class));
+                    Intent i = new Intent(context, AuthenticationActivity.class);
+                    i.putExtra("fromSchedule", true);
+                    context.startActivity(i);
                     ((TripActivity)context).overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
                 }
                 else
