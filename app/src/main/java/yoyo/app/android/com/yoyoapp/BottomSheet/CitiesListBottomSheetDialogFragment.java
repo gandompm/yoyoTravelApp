@@ -28,11 +28,9 @@ public class CitiesListBottomSheetDialogFragment extends BottomSheetDialogFragme
                 dismiss();
             }
         });
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(citiesRecyclerviewAddaptor);
-
 
         return view;
     }

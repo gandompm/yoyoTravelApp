@@ -70,7 +70,7 @@ public class DayPlanRecyclerviewAddaptor extends RecyclerView.Adapter<DayPlanRec
 
         public void bindItem(int position)
         {
-            dayPlanButton.setText("Day "+ position);
+            dayPlanButton.setText("Day "+ ++position);
         }
     }
 }
