@@ -33,7 +33,7 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:textColor="@color/white"
-            android:background="@drawable/gradient_rectangle"
+            android:background="@drawable/rectangle_round_colorprimary"
             android:text="@android:string/ok"
     />
 </LinearLayout>

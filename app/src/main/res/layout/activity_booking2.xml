@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:background="@drawable/gradient_rectangle"
+                android:background="@drawable/rectangle_round_colorprimary"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"/>

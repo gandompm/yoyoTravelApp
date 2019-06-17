@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.DataModels.ScheduleCalender;
@@ -41,6 +42,7 @@ public class ScheduleTripFragment extends Fragment {
     private Button requestDateButton;
     private View view;
     private Toolbar toolbar;
+    private ShimmerRecyclerView shimmerRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class ScheduleTripFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
         toolbar = view.findViewById(R.id.tb_schedule);
+        shimmerRecyclerView = view.findViewById(R.id.shimmer_recycler_view);
     }
 
     private void sendToRequestPage() {
@@ -104,6 +107,8 @@ public class ScheduleTripFragment extends Fragment {
                     }
                     else
                         addapter.notifyDataSetChanged();
+                        shimmerRecyclerView.hideShimmerAdapter();
+
                 }
             }
         });

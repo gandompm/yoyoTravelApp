@@ -190,7 +190,7 @@
                     android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
                     android:textSize="14sp"/>
             <TextView
-                    android:text="Prereserved"
+                    android:text="Paid"
                     android:id="@+id/tv_tour_ticket_detail_payment_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
                     android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
                     android:textSize="14sp"/>
             <TextView
-                    android:text="Paid"
+                    android:text="Prereserved"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_tour_ticket_detail_order_status"

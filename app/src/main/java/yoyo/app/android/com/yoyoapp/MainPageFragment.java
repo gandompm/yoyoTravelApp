@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragment;
 import com.cpacm.library.SimpleViewPager;
 import com.cpacm.library.transformers.CyclePageTransformer;
@@ -77,17 +78,18 @@ public class MainPageFragment extends Fragment {
 
 //                sendingToSearchFragment("hotel");
 
+                Toasty.info(getContext(),"Coming soon...").show();
 //                Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
 //                RequestFragment requestFragment = new RequestFragment();
 //                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 //                fragmentTransaction.add(R.id.container,requestFragment);
 //                fragmentTransaction.addToBackStack("request");
 //                fragmentTransaction.commit();
-
-                Intent intent = new Intent(getActivity(),BookingActivity.class);
-                intent.putExtra("travellerNum",1);
-                startActivity(intent);
-                getActivity().overridePendingTransition(0,  0);
+//
+//                Intent intent = new Intent(getActivity(),BookingActivity.class);
+//                intent.putExtra("travellerNum",1);
+//                startActivity(intent);
+//                getActivity().overridePendingTransition(0,  0);
             }
         });
 

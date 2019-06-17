@@ -234,7 +234,7 @@
                         android:layout_width="150dp"
                         android:layout_height="50dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:background="@drawable/gradient_rectangle"
+                        android:background="@drawable/rectangle_round_colorprimary"
                         app:layout_constraintEnd_toStartOf="@+id/button_travellercompanions_edit_delete"
                         app:layout_constraintTop_toBottomOf="@+id/et_travellercompanion_edit_passport_number"
                         android:layout_marginEnd="8dp"

@@ -351,7 +351,7 @@
                         android:text="@string/save"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/gradient_rectangle"
+                        android:background="@drawable/rectangle_round_colorprimary"
                         android:foreground="?attr/selectableItemBackgroundBorderless"
                         android:textColor="@android:color/white" android:fontFamily="@font/roboto_medium"
                         android:id="@+id/button_edit_profile_save" android:layout_marginTop="24dp"
