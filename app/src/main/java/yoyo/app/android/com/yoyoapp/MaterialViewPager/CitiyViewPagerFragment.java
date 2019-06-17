@@ -41,15 +41,15 @@ public class CitiyViewPagerFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_city_view_pager,container,false);
 
         mViewPager = view.findViewById(R.id.materialViewPager);
-
-
         Bundle bundle = getArguments();
         cityName = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_NAME);
         cityImage = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_IMAGE);
 
-        final CityFragment cityFragment = new CityFragment();
-        cityFragment.setArguments(bundle);
+//        CityFragment cityFragment = new CityFragment();
+//        cityFragment.setArguments(bundle);
 
+        AboutCityFragment aboutCityFragment = new AboutCityFragment();
+        aboutCityFragment.setArguments(bundle);
 
         final Toolbar toolbar = mViewPager.getToolbar();
         if (toolbar != null) {
@@ -62,8 +62,6 @@ public class CitiyViewPagerFragment extends Fragment {
             public Fragment getItem(int position) {
                 switch (position % 2) {
                     case 0:
-                        return cityFragment;
-                    case 1:
                         return new AboutCityFragment();
 
 
@@ -74,7 +72,7 @@ public class CitiyViewPagerFragment extends Fragment {
 
             @Override
             public int getCount() {
-                return 2;
+                return 1;
             }
 
             @Override

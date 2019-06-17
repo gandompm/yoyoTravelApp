@@ -21,9 +21,6 @@ public class AboutCityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_about_city, container, false);
 
-
-
-
         nestedScrollView = view.findViewById(R.id.scrollView);
         MaterialViewPagerHelper.registerScrollView(getActivity(), nestedScrollView);
 
