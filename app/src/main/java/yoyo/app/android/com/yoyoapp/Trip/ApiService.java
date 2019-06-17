@@ -24,6 +24,7 @@ public class ApiService {
     private Context context;
     private String IMAGEIP = "http://www.yoyo.travel";
     private String IP = "http://www.yoyo.travel/";
+    private String apiKey = "ChapterLittleIngeniousFerrariMagic";
     private String JWT;
     private UserSharedManager userSharedManager;
 
@@ -169,7 +170,14 @@ public class ApiService {
                 }, error -> {
             tripArrayListConsumer.accept(null);
             error.printStackTrace();
-        });
+    }){
+        @Override
+        public Map<String, String> getHeaders() throws AuthFailureError {
+            Map<String, String> params = new HashMap<>();
+            params.put("api-key", apiKey);
+            return params;
+        }
+    };
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
@@ -208,7 +216,14 @@ public class ApiService {
                 }, error -> {
             categoriesConsumer.accept(null);
             error.printStackTrace();
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("api-key", apiKey);
+                return params;
+            }
+        };
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
@@ -242,6 +257,7 @@ public class ApiService {
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
+                headers.put("api-key", apiKey);
                 return headers;
             }
         };
@@ -273,15 +289,12 @@ public class ApiService {
             userConsumer.accept(null);
 
             Log.d(TAG, "sendSignInRequest: login " + error.toString());
-        }) {
-            /**
-             * Passing some request headers
-             */
+        }){
             @Override
-            public Map<String, String> getHeaders() {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                return headers;
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("api-key", apiKey);
+                return params;
             }
         };
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -326,6 +339,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -372,6 +386,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -421,6 +436,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -443,6 +459,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
 
@@ -467,6 +484,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -487,6 +505,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -516,6 +535,7 @@ public class ApiService {
                 HashMap<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer "+ JWT);
                 headers.put("Content-Type", "application/json");
+                headers.put("api-key", apiKey);
                 return headers;
             }
         };
@@ -558,7 +578,7 @@ public class ApiService {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -580,7 +600,7 @@ public class ApiService {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -618,7 +638,14 @@ public class ApiService {
                 }, error -> {
             locationConsumer.accept(null);
             error.printStackTrace();
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("api-key", apiKey);
+                return params;
+            }
+        };
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
@@ -652,7 +679,14 @@ public class ApiService {
                 }, error -> {
             locationConsumer.accept(null);
             error.printStackTrace();
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("api-key", apiKey);
+                return params;
+            }
+        };
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
@@ -677,6 +711,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -711,6 +746,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };
@@ -743,6 +779,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
                 return params;
             }
         };

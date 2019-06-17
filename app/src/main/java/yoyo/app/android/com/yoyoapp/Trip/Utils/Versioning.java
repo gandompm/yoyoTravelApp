@@ -19,7 +19,7 @@ public class Versioning {
     {
 
         PrinceOfVersions updater = new PrinceOfVersions(context);
-        Loader loader = new NetworkLoader("http://yoyoapp.ir/media/app/version.json");
+        Loader loader = new NetworkLoader("http://yoyoapp.ir/media/app/version2.json");
 
 
         UpdaterCallback callback = new UpdaterCallback() {
