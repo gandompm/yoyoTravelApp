@@ -12,143 +12,20 @@
         android:orientation="vertical">
 
         <include layout="@layout/material_view_pager_placeholder" />
+        <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_height="wrap_content">
+
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+            android:text="dfdfdfsfdfd"/>
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="1900dp"
-            android:layout_marginEnd="@dimen/standard_margin"
-            android:layout_marginStart="@dimen/standard_margin"
-            app:cardCornerRadius="8dp"
-            android:layout_marginTop="2dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/standard_margin"
-                    android:paddingTop="@dimen/standard_margin"
-                    android:paddingEnd="@dimen/standard_margin">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mainpage_hotels"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/cardview_mainpage_service"
-                        android:layout_weight="1"
-                        android:elevation="4dp"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        app:cardCornerRadius="4dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tv_iran_cardview_hotel_mainpage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="16dp"
-                                android:fontFamily="@font/roboto_thin"
-                                android:text="Iran"
-                                android:textSize="@dimen/header_1"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:ignore="MissingConstraints" />
-
-                            <TextView
-                                android:id="@+id/tv_hotel_cardview_hotel_mainpage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="@string/hotels"
-                                android:textColor="@color/black1"
-                                android:textSize="@dimen/header_1"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_iran_cardview_hotel_mainpage" />
-
-                            <ImageView
-                                android:id="@+id/iv_cardview_hotel_mainpage"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:src="@drawable/desk_bell"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_mainpage_trips"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/cardview_mainpage_service"
-                        android:layout_marginStart="@dimen/standard_margin"
-                        android:layout_marginBottom="@dimen/small_margin"
-                        android:layout_weight="1"
-                        android:elevation="4dp"
-                        android:foreground="?attr/selectableItemBackgroundBorderless"
-                        app:cardCornerRadius="4dp">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tv_iran_cardview_trip_mainpage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginTop="16dp"
-                                android:fontFamily="@font/roboto_thin"
-                                android:text="Iran"
-                                android:textSize="@dimen/header_1"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/tv_trip_cardview_offer_mainpage"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:fontFamily="@font/roboto_medium"
-                                android:text="@string/trips"
-                                android:textColor="@color/black1"
-                                android:textSize="@dimen/header_1"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tv_iran_cardview_trip_mainpage" />
-
-                            <ImageView
-                                android:id="@+id/iv_cardview_service_mainpage"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:src="@drawable/baggage"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
 
 
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
 
     </LinearLayout>
