@@ -151,7 +151,7 @@
                 <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView121" app:layout_constraintStart_toStartOf="@+id/textView120"
+                        android:id="@+id/tv_city_top_experience" app:layout_constraintStart_toStartOf="@+id/textView120"
                         android:layout_marginStart="8dp" android:layout_marginTop="8dp"
                         app:layout_constraintTop_toBottomOf="@+id/textView120"
                         app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
