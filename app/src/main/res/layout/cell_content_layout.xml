@@ -274,13 +274,13 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/content_from_badge"
-                    style="@style/ContentMainBadgeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/from_badge"
-                    android:textSize="@dimen/small"/>
+                        android:id="@+id/content_from_badge"
+                        style="@style/ContentMainBadgeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="Pick Up"
+                        android:textSize="@dimen/small"/>
 
                 <TextView
                     android:id="@+id/tv_trip_item_big_start_point"
@@ -292,6 +292,7 @@
                     android:textColor="@color/mainTextColor"
                     android:textSize="12sp"
                     android:autoSizeTextType="uniform"
+                    android:maxLines="2"
                     android:paddingEnd="4dp"
                     android:textStyle="bold" />
 
@@ -313,13 +314,13 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/content_to_badge"
-                    style="@style/ContentMainBadgeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/to_badge"
-                    android:textSize="@dimen/small"/>
+                        android:id="@+id/content_to_badge"
+                        style="@style/ContentMainBadgeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:text="Dropped Off"
+                        android:textSize="@dimen/small"/>
 
                 <TextView
                     android:id="@+id/tv_trip_item_big_end_point"
@@ -330,6 +331,7 @@
                     android:text="Kashan"
                     android:textColor="@color/mainTextColor"
                     android:textSize="12sp"
+                    android:maxLines="2"
                     android:autoSizeTextType="uniform"
                     android:paddingEnd="4dp"
                     android:textStyle="bold" />
