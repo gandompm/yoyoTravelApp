@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTicketRecyclerviewAddaptor.TourTicketViewHolder> {
 
+    private static final String TAG = "TourTicketRecyclerviewA";
     private Context context;
     private ArrayList<TourTicket> tourTickets;
 
@@ -60,6 +61,7 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
                 bundle.putBoolean("order_status", tourTicket.getIsPaid());
                 bundle.putString("name", tourTicket.getReservatoreName());
                 bundle.putString("date", tourTicket.getOrderDatetime());
+                Log.d(TAG, "onClick: "+ tourTicket.getOrderDatetime());
 
                 TourTicketDetailFragment tourTicketDetailFragment = new TourTicketDetailFragment();
                 tourTicketDetailFragment.setArguments(bundle);
@@ -101,6 +103,7 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
             titleTextview.setText(tourTicket.getProducts().get(0).getName());
             priceTextview.setText(String.valueOf(tourTicket.getProducts().get(0).getPrice()));
             statusTextview.setText(tourTicket.getStatus());
+            dateTextview.setText("k" + tourTicket.getOrderDatetime());
             if (tourTicket.getIsPaid())
             {
                 isPaidTextview.setText("Paid");

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.TourTicket;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
@@ -26,6 +27,7 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
 
     private static final String TAG = "TourTicketFragment";
     private TextView backTextview;
+    private ShimmerRecyclerView shimmerRecycler;
     private ImageView backImageview;
     private TourTicketViewModel tourTicketViewModel;
     private TourTicketRecyclerviewAddaptor addaptor;
@@ -59,12 +61,14 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
                     }
                     else
                         addaptor.notifyDataSetChanged();
+                    shimmerRecycler.hideShimmerAdapter();
                 }
             }
         });
     }
 
     private void init() {
+        shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
         backTextview = view.findViewById(R.id.tv_tour_ticket_back);
         backImageview = view.findViewById(R.id.iv_tour_ticket_back);
         tourTicketsList = new ArrayList<>();

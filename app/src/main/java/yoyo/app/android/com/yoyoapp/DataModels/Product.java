@@ -1,7 +1,11 @@
 package yoyo.app.android.com.yoyoapp.DataModels;
 
+import android.text.format.DateFormat;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Product {
 
@@ -50,16 +54,24 @@ public class Product {
         return startDatetime;
     }
 
-    public void setStartDatetime(String startDatetime) {
-        this.startDatetime = startDatetime;
+    public void setStartDatetime(long startDatetime) {
+        String eDate = getStandardDate(startDatetime);
+        this.startDatetime = eDate;
+    }
+
+    private String getStandardDate(long timestamp) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(timestamp * 1000);
+        return DateFormat.format("dd-MM-yyyy", cal).toString();
     }
 
     public String getEndDatetime() {
         return endDatetime;
     }
 
-    public void setEndDatetime(String endDatetime) {
-        this.endDatetime = endDatetime;
+    public void setEndDatetime(long endDatetime) {
+        String eDate = getStandardDate(endDatetime);
+        this.endDatetime = eDate;
     }
 
     public String getType() {
