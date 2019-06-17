@@ -20,11 +20,10 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 public class CitiesRecyclerviewAddaptor extends RecyclerView.Adapter<CitiesRecyclerviewAddaptor.CityViewholder> {
 
-    public static final String KEY_BUNDLE_CITY_IMAGE = "the image of city";
-    public static final String KEY_BUNDLE_CITY_NAME = "the name of city";
     private ArrayList<City> cities;
     private RecyclerViewClickListener itemListener;
     private Context context;
@@ -51,8 +50,15 @@ public class CitiesRecyclerviewAddaptor extends RecyclerView.Adapter<CitiesRecyc
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString(KEY_BUNDLE_CITY_NAME,cities.get(position).getName());
-                bundle.putString(KEY_BUNDLE_CITY_IMAGE,cities.get(position).getImage());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_NAME,cities.get(position).getName());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_IMAGE,cities.get(position).getImage());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_ABOUT,cities.get(position).getAbout());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_NATURAL_ATT,cities.get(position).getNaturalAttraction());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_HISTORICAL_ATT,cities.get(position).getHistoricalAttraction());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_MAN_MADE_ATT,cities.get(position).getManMadeAttraction());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_FOOD_SOUVENIR,cities.get(position).getFoodAndSouvenir());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_CLIMATE,cities.get(position).getClimate());
+                bundle.putString(Utils.KEY_BUNDLE_CITY_FOOD_TOPEXPERIENCE,cities.get(position).getTopExperince());
 
                 FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

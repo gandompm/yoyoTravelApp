@@ -25,6 +25,7 @@ import yoyo.app.android.com.yoyoapp.AboutCityFragment;
 import yoyo.app.android.com.yoyoapp.Addapters.CitiesRecyclerviewAddaptor;
 import yoyo.app.android.com.yoyoapp.CityFragment;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 public class CitiyViewPagerFragment extends Fragment {
 
@@ -42,8 +43,8 @@ public class CitiyViewPagerFragment extends Fragment {
 
         mViewPager = view.findViewById(R.id.materialViewPager);
         Bundle bundle = getArguments();
-        cityName = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_NAME);
-        cityImage = bundle.getString(CitiesRecyclerviewAddaptor.KEY_BUNDLE_CITY_IMAGE);
+        cityName = bundle.getString(Utils.KEY_BUNDLE_CITY_NAME);
+        cityImage = bundle.getString(Utils.KEY_BUNDLE_CITY_IMAGE);
 
 //        CityFragment cityFragment = new CityFragment();
 //        cityFragment.setArguments(bundle);
@@ -62,7 +63,7 @@ public class CitiyViewPagerFragment extends Fragment {
             public Fragment getItem(int position) {
                 switch (position % 2) {
                     case 0:
-                        return new AboutCityFragment();
+                        return aboutCityFragment;
 
 
                     default:
@@ -79,9 +80,9 @@ public class CitiyViewPagerFragment extends Fragment {
             public CharSequence getPageTitle(int position) {
                 switch (position % 2) {
                     case 0:
-                        return "Services";
+                        return "About City";
                     case 1:
-                        return "About";
+                        return "Services";
 //                    case 2:
 //                        return "Professionnel";
 //                    case 3:
