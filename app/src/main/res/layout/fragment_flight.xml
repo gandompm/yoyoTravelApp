@@ -99,7 +99,7 @@ android:layoutDirection="ltr">
             <com.jackandphantom.customtogglebutton.CustomToggle
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    app:ctg_addLeftIcon="@drawable/ic_close_white_24dp"
+                    app:ctg_addLeftIcon="@drawable/ic_close_accent_24dp"
                     app:ctg_addRightIcon="@drawable/ic_arrow_white_24dp"
                     app:ctg_addSlideColor="#ff67"
                     app:ctg_addSlideBackgroundColor="#6c817a"

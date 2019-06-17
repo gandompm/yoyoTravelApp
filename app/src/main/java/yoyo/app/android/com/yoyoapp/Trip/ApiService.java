@@ -48,7 +48,9 @@ public class ApiService {
 
                         for (int i = 0; i < tripJsonArray.length(); i++) {
 
+
                                 Trip trip = new Trip();
+
 
                                 JSONObject mainObject = tripJsonArray.getJSONObject(i);
                                 trip.setTripId(mainObject.getString("trip_id"));
@@ -144,22 +146,22 @@ public class ApiService {
                                     location.setLon(locationObject.getDouble("longitude"));
                                     location.setLat(locationObject.getDouble("latitude"));
                                     location.setOrder(locationObject.getInt("order"));
-                                    if (locationObject.getInt("order")==0)
-                                        locations.add(0,location);
+                                    if (locationObject.getInt("order") == 0)
+                                        locations.add(0, location);
                                     else if (locationObject.getInt("order") == -1)
-                                        locations.add(locationJsonArray.length()-1,location);
+                                        locations.add(locationJsonArray.length() - 1, location);
                                     else
                                         locations.add(location);
                                 }
                                 trip.setLocations(locations);
 
                                 int tripCount = response.getInt("count");
-                                if (trips.size()==0)
-                                {
+                                if (trips.size() == 0) {
                                     trip.setResultsSize(tripCount);
                                 }
 
                                 trips.add(trip);
+
                             }
                     } catch (JSONException e) {
                         e.printStackTrace();

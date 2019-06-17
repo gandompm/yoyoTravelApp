@@ -39,7 +39,7 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private void getBundle() {
         Bundle extras = getIntent().getExtras();
-        if (extras.getBoolean("fromSchedule"))
+        if (extras != null && extras.getBoolean("fromSchedule"))
         {
             isFromSchedule = true;
         }

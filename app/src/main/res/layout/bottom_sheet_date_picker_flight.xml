@@ -25,7 +25,7 @@
             android:layout_marginTop="@dimen/small_margin"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_close_black_24dp" />
+            android:src="@drawable/ic_close_white_24dp" />
 
         <TextView
             android:id="@+id/tv_datepicker_checkin_title"

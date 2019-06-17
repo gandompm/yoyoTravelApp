@@ -105,7 +105,7 @@
                 android:layout_below="@+id/tv_trip_item_small_trip_title"
                 android:layout_marginBottom="4dp"
                 android:autoSizeTextType="uniform"
-                android:maxLines="2"
+                android:maxLines="1"
                 android:ellipsize="end"/>
 
 

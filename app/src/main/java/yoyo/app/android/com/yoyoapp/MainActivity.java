@@ -4,6 +4,8 @@ import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,26 +26,32 @@ public class MainActivity extends AppCompatActivity{
     private LanguageSetup languageSetup;
     public static boolean isSingnedIn = false;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        checkingIfItIsFromPayment();
-        init();
-        languageSetup.loadLanguageFromSharedPref();
-        checkingSignIn();
-        Versioning versioning = new Versioning();
-        versioning.checkingUpdates(this);
-        setupBottomNavigation();
+        Uri data = this.getIntent().getData();
+        if (data!=null) {
+            checkingIfItIsFromPayment();
+        }else {
+            init();
+            languageSetup.loadLanguageFromSharedPref();
+            checkingSignIn();
+            Versioning versioning = new Versioning();
+            versioning.checkingUpdates(this);
+            setupBottomNavigation();
+        }
     }
 
     private void checkingIfItIsFromPayment() {
         Uri data = this.getIntent().getData();
-        if (data!=null)
-        {
-            if (data.getScheme().contains("orders/ticket"))
+
+            if (data.getPath().contains("orders"))
             {
+                Log.d(TAG, "checkingIfItIsFromPayment: llllllll2");
                 TourTicketFragment tourTicketFragment = new TourTicketFragment();
                 Bundle bundle = new Bundle();
                 bundle.putBoolean("showTicket",true);
@@ -51,8 +59,15 @@ public class MainActivity extends AppCompatActivity{
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container,tourTicketFragment).addToBackStack("ticket");
                 fragmentTransaction.commit();
+            }else {
+                init();
+                languageSetup.loadLanguageFromSharedPref();
+                checkingSignIn();
+                Versioning versioning = new Versioning();
+                versioning.checkingUpdates(this);
+                setupBottomNavigation();
             }
-        }
+
     }
 
 
