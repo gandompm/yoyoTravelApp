@@ -106,7 +106,7 @@
                     android:textColor="@color/black2"
                     tools:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/tv_tripdetails_title"
-                    android:layout_marginTop="20dp" app:layout_constraintTop_toTopOf="parent"/>
+                    android:layout_marginTop="24dp" app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                     android:text="2 Days 3 Nights"

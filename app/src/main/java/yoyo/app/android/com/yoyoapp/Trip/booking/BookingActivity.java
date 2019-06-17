@@ -122,7 +122,21 @@ public class BookingActivity extends AppCompatActivity {
         {
             case 0:
                 boolean result = bookingPresenter.checkingEmptyItems(fullNameString,emailString,mobileNumberString);
-                if (result)
+
+
+
+                boolean correctEmail;
+
+                if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
+                    Toasty.error(this,"Your Email Address is incorrect").show();
+                    correctEmail = false;
+                }else {
+                    correctEmail = true;
+                }
+
+
+
+                if (result && correctEmail)
                 {
                     new CheckInternetConnection(BookingActivity.this, frameLayout, result1 -> {
                         if (result1)
@@ -131,10 +145,12 @@ public class BookingActivity extends AppCompatActivity {
                         }
                     });
                 }
-                else
+                else if(!result)
                 {
                     Toasty.error(BookingActivity.this, getString(R.string.please_complete_all_fields)).show();
-                }
+                }else {
+                Toasty.error(this,"Your Email Address is incorrect").show();
+            }
                 progressBar.setVisibility(View.GONE);
                 break;
             case 1:

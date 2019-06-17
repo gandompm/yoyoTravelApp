@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:background="@color/green"
             android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/textView39"
             android:id="@+id/button_exitdialog_yes" app:layout_constraintEnd_toStartOf="@+id/button_exitdialog_no"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.5"
@@ -38,7 +39,9 @@
     />
     <Button
             android:text="@string/no"
+            android:textColor="@color/black1"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:id="@+id/button_exitdialog_no"
             android:background="@drawable/border_gray"

@@ -3,6 +3,7 @@ package yoyo.app.android.com.yoyoapp.Trip.booking;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.*;
 import androidx.constraintlayout.widget.Group;
 import androidx.fragment.app.Fragment;
@@ -155,7 +156,12 @@ public class TravellerInfoFragment extends Fragment {
             traveller.setGender(gender.toString());
             traveller.setIranian(isIranian);
 
-            if (traveller.isIranian())
+
+
+
+
+
+        if (traveller.isIranian())
             {
                 traveller.setIranianNationalCode(iranianCodeEditText.getText().toString());
                 if ((iranianCodeEditText.getText().toString().equals(""))){
