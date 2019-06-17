@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"
-                    android:textSize="@dimen/standard"
+                    android:autoSizeTextType="uniform"
                     android:text="@string/the_tripism_industry"
                     android:textColor="@color/black" android:textAlignment="textStart" android:elegantTextHeight="false"
                     android:lineSpacingExtra="4sp"

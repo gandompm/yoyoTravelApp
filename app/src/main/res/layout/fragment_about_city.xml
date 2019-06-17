@@ -35,20 +35,128 @@
                           android:gravity="center"
                           android:text="About" app:layout_constraintTop_toTopOf="parent"
                           app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                          android:id="@+id/textView108"/>
+                          android:id="@+id/textView108" android:textColor="@color/colorPrimary"
+                          android:layout_marginTop="8dp"/>
 
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:textSize="@dimen/standard"
-                        android:text="@string/the_tripism_industry"
-                        android:textColor="@color/black" android:textAlignment="textStart"
+                        android:textSize="12sp"
+                        android:text=""
+                        android:textColor="@color/black1" android:textAlignment="textStart"
                         android:elegantTextHeight="false"
-                        android:lineSpacingExtra="4sp" app:layout_constraintTop_toBottomOf="@+id/textView108"
-                        tools:layout_editor_absoluteX="16dp"/>
-
-
+                        android:lineSpacingExtra="4sp"
+                        app:layout_constraintStart_toStartOf="@+id/textView108"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108"
+                        app:layout_constraintTop_toBottomOf="@+id/textView108" android:layout_margin="8dp"
+                        android:id="@+id/tv_city_about" android:fontFamily="@font/roboto_regular"/>
+                <TextView
+                        android:text="Natural Attractions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView110" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_about"
+                        android:textColor="@color/colorAccent" android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_city_natural_attractions"
+                        app:layout_constraintStart_toStartOf="@+id/textView110"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView110"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
+                <TextView
+                        android:text="Historical &amp; Cultural Attractions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView112" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_natural_attractions"
+                        android:textColor="@color/colorAccent" android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_city_historical_attractions"
+                        app:layout_constraintStart_toStartOf="@+id/textView112"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView112"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
+                <TextView
+                        android:text="Man Made Attractions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView114" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_historical_attractions"
+                        android:textColor="@color/colorAccent" android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_city_man_made_attractions"
+                        app:layout_constraintStart_toStartOf="@+id/textView114"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView114"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
+                <TextView
+                        android:text="Food &amp; Souvenir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView116" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_man_made_attractions"
+                        android:textColor="@color/colorAccent" android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_city_food_attractions"
+                        app:layout_constraintStart_toStartOf="@+id/textView116"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView116"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
+                <TextView
+                        android:text="Climate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView118" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_food_attractions"
+                        android:layout_marginStart="8dp" android:textColor="@color/colorAccent"
+                        android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_city_climate" app:layout_constraintStart_toStartOf="@+id/textView118"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView118"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
+                <TextView
+                        android:text="Top Experience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView120" app:layout_constraintStart_toStartOf="@+id/textView108"
+                        android:layout_marginStart="8dp" android:layout_marginTop="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_city_climate"
+                        android:textColor="@color/colorAccent" android:fontFamily="@font/roboto_medium"/>
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView121" app:layout_constraintStart_toStartOf="@+id/textView120"
+                        android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView120"
+                        app:layout_constraintEnd_toEndOf="@+id/textView108" android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/roboto_regular" android:textColor="@color/black1"
+                        android:textSize="12sp"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
