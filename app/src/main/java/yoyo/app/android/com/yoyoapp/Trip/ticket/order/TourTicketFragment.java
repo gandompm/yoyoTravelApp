@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
+import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.DataModels.TourRequest;
 import yoyo.app.android.com.yoyoapp.DataModels.TourTicket;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
@@ -87,8 +88,12 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
                     }
                     else
                         requestAddapter.notifyDataSetChanged();
-                    shimmerRecycler.hideShimmerAdapter();
                 }
+                else
+                {
+                    Toasty.normal(getContext(),"you have not any Tour Request ").show();
+                }
+                shimmerRecycler.hideShimmerAdapter();
             }
         });
     }
@@ -108,8 +113,12 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
                     }
                     else
                         addaptor.notifyDataSetChanged();
-                    shimmerRecycler.hideShimmerAdapter();
                 }
+                else
+                {
+                    Toasty.normal(getContext(),"you have not any Tour Ticket").show();
+                }
+                shimmerRecycler.hideShimmerAdapter();
             }
         });
     }
