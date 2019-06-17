@@ -17,7 +17,6 @@ import yoyo.app.android.com.yoyoapp.DataModels.*;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import java.util.*;
 
-
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
@@ -25,7 +24,6 @@ public class ApiService {
     private String IP = "http://192.168.1.53:9002/";
     private String JWT;
     private UserSharedManager userSharedManager;
-
 
     public ApiService(Context context) {
         this.context = context;
@@ -683,25 +681,25 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void getOrderRequest(Consumer<ArrayList<Order>> orderConsumer)
+    public void getTourTicketRequest(Consumer<ArrayList<TourTicket>> ticketsConsumer)
     {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/user/dashboard/orders" ,null,
                 response -> {
 
-                    ArrayList<Order> orders = new ArrayList<>();
+                    ArrayList<TourTicket> orders = new ArrayList<>();
                     try {
                         for (int i = 0; i < response.length(); i++) {
 
                             JSONObject jsonObject = response.getJSONObject(i);
-                            Order order = new Gson().fromJson(String.valueOf(jsonObject), Order.class);
-                            orders.add(order);
+                            TourTicket tourTicket = new Gson().fromJson(String.valueOf(jsonObject), TourTicket.class);
+                            orders.add(tourTicket);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    orderConsumer.accept(orders);
+                    ticketsConsumer.accept(orders);
                 }, error -> {
-            orderConsumer.accept(null);
+            ticketsConsumer.accept(null);
             error.printStackTrace();
         }){
             @Override
@@ -714,8 +712,4 @@ public class ApiService {
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
-
-
-
 }
-
