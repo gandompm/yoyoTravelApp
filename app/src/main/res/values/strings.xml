@@ -258,7 +258,11 @@
     <string name="order_by">Order By :</string>
     <string name="price_2">Price :</string>
     <string name="please_complete_all_fields">please complete all Fields</string>
-    <string name="the_tripism_industry">Considering the important role of incoming tourists in developing the economy and earning foreign exchange and acquainting with the high culture and civilization of our country to all people around the world, our aims  is to introduce Iran as a rich country in having natural and cultural attractions to all the people around the world. Providing with a wide range of tourism services to those who are looking forward to traveling to Iran with every Need level.
+    <string name="the_tripism_industry">Considering the important role of incoming tourists in developing the economy
+        and earning foreign exchange and acquainting with the high culture and civilization of our country to all people
+        around the world, our aims is to introduce Iran as a rich country in having natural and cultural attractions to
+        all the people around the world. Providing with a wide range of tourism services to those who are looking
+        forward to traveling to Iran with every Need level.
     </string>
     <string name="please_enter_lastname">Please enter your lastname</string>
     <string name="please_enter_firstname">Please enter your firstname</string>
