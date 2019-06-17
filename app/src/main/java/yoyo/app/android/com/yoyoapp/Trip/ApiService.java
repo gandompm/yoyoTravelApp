@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import io.michaelrocks.paranoid.Obfuscate;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +18,7 @@ import yoyo.app.android.com.yoyoapp.DataModels.*;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import java.util.*;
 
+@Obfuscate
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;

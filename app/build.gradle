@@ -114,3 +114,4 @@ dependencies {
 
 
 }
+apply plugin: 'io.michaelrocks.paranoid'
