@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity{
         if (data!=null) {
             checkingIfItIsFromPayment();
         }else {
-            getBundle();
             init();
             languageSetup.loadLanguageFromSharedPref();
             checkingSignIn();
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity{
                 fragmentTransaction.replace(R.id.container,tourTicketFragment).addToBackStack("ticket");
                 fragmentTransaction.commit();
             }else {
-                getBundle();
                 init();
                 languageSetup.loadLanguageFromSharedPref();
                 checkingSignIn();
@@ -71,12 +70,6 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    private void getBundle() {
-//        if (getIntent().getBooleanExtra(Utils.KEY_BUNDLE_MAINACTIVITY,false))
-//        {
-//            addFragment(new ProfileFragment(),"profile");
-//        }
-    }
 
 
     private void init() {

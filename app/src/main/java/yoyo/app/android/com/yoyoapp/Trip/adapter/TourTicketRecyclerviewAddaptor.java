@@ -55,8 +55,8 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
                 bundle.putString("order_id", tourTicket.getOrderId());
                 bundle.putLong("start_datetime", tourTicket.getProducts().get(0).getStartDatetime());
                 bundle.putLong("end_datetime", tourTicket.getProducts().get(0).getEndDatetime());
-                bundle.putString("qty", tourTicket.getProducts().get(0).getQty());
-                bundle.putInt("price", tourTicket.getProducts().get(0).getPrice());
+                bundle.putInt("qty", tourTicket.getProducts().get(0).getQty());
+                bundle.putFloat("price", tourTicket.getProducts().get(0).getPrice());
                 bundle.putString("payment_status", tourTicket.getStatus());
                 bundle.putBoolean("order_status", tourTicket.getIsPaid());
                 bundle.putString("name", tourTicket.getReservatoreName());

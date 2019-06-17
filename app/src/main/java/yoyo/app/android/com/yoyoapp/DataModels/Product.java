@@ -26,13 +26,13 @@ public class Product {
     private String type;
     @SerializedName("price")
     @Expose
-    private Integer price;
+    private float price;
     @SerializedName("description")
     @Expose
     private String description;
     @SerializedName("qty")
     @Expose
-    private String qty;
+    private int qty;
 
     public String getName() {
         return name;
@@ -74,11 +74,11 @@ public class Product {
         this.type = type;
     }
 
-    public Integer getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -90,11 +90,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getQty() {
+    public int getQty() {
         return qty;
     }
 
-    public void setQty(String qty) {
+    public void setQty(int qty) {
         this.qty = qty;
     }
 
