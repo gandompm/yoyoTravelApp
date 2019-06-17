@@ -17,10 +17,10 @@ public class Product {
     private String location;
     @SerializedName("start_datetime")
     @Expose
-    private String startDatetime;
+    private long startDatetime;
     @SerializedName("end_datetime")
     @Expose
-    private String endDatetime;
+    private long endDatetime;
     @SerializedName("type")
     @Expose
     private String type;
@@ -50,28 +50,20 @@ public class Product {
         this.location = location;
     }
 
-    public String getStartDatetime() {
+    public long getStartDatetime() {
         return startDatetime;
     }
 
     public void setStartDatetime(long startDatetime) {
-        String eDate = getStandardDate(startDatetime);
-        this.startDatetime = eDate;
+        this.startDatetime = startDatetime;
     }
 
-    private String getStandardDate(long timestamp) {
-        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-        cal.setTimeInMillis(timestamp * 1000);
-        return DateFormat.format("dd-MM-yyyy", cal).toString();
-    }
-
-    public String getEndDatetime() {
+    public long getEndDatetime() {
         return endDatetime;
     }
 
     public void setEndDatetime(long endDatetime) {
-        String eDate = getStandardDate(endDatetime);
-        this.endDatetime = eDate;
+        this.endDatetime = endDatetime;
     }
 
     public String getType() {

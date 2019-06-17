@@ -692,6 +692,7 @@ public class ApiService {
 
                             JSONObject jsonObject = response.getJSONObject(i);
                             TourTicket tourTicket = new Gson().fromJson(String.valueOf(jsonObject), TourTicket.class);
+                            tourTicket.setOrderDatetime(jsonObject.getLong("order_timestamp"));
                             orders.add(tourTicket);
                         }
                     } catch (JSONException e) {

@@ -53,8 +53,8 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
                 Bundle bundle = new Bundle();
                 TourTicket tourTicket = tourTickets.get(position);
                 bundle.putString("order_id", tourTicket.getOrderId());
-                bundle.putString("start_datetime", tourTicket.getProducts().get(0).getStartDatetime());
-                bundle.putString("end_datetime", tourTicket.getProducts().get(0).getEndDatetime());
+                bundle.putLong("start_datetime", tourTicket.getProducts().get(0).getStartDatetime());
+                bundle.putLong("end_datetime", tourTicket.getProducts().get(0).getEndDatetime());
                 bundle.putString("qty", tourTicket.getProducts().get(0).getQty());
                 bundle.putInt("price", tourTicket.getProducts().get(0).getPrice());
                 bundle.putString("payment_status", tourTicket.getStatus());
@@ -103,7 +103,7 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
             titleTextview.setText(tourTicket.getProducts().get(0).getName());
             priceTextview.setText(String.valueOf(tourTicket.getProducts().get(0).getPrice()));
             statusTextview.setText(tourTicket.getStatus());
-            dateTextview.setText("k" + tourTicket.getOrderDatetime());
+            dateTextview.setText(tourTicket.getOrderDatetime());
             if (tourTicket.getIsPaid())
             {
                 isPaidTextview.setText("Paid");
