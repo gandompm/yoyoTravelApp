@@ -7,6 +7,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import es.dmoral.toasty.Toasty;
+import io.michaelrocks.paranoid.Obfuscate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Obfuscate
 public class ApiServiceFlight {
     private static final String TAG = "ApiServiceFlight";
     public static String IP = "yoyoapp.ir";
