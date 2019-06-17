@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
-import yoyo.app.android.com.yoyoapp.Trip.ticket.TourTicketFragment;
+import yoyo.app.android.com.yoyoapp.Trip.ticket.order.TourTicketFragment;
 
 
 public class OrdersFragment extends BaseFragment {
