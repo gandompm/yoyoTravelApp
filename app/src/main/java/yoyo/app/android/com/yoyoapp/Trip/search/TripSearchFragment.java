@@ -202,19 +202,31 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
                 }else {
 
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Bundle bundle = new Bundle();
 
-                    bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
-                    bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
-                    bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
-                    bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
+                    if (checkInTextview.getText().equals("Select Date") || checkOutTextview.getText().equals("Select Date")){
 
-                    TripResultFragment tripListSearchResultFragment = new TripResultFragment();
-                    tripListSearchResultFragment.setArguments(bundle);
-                    fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
-                    fragmentTransaction.addToBackStack("triplist");
-                    fragmentTransaction.commit();
+                        Toast.makeText(getContext(), "Check-In & Check-Out can not be empty.", Toast.LENGTH_SHORT).show();
+
+
+
+                    }else {
+
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        Bundle bundle = new Bundle();
+
+                        bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
+                        bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
+                        bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
+                        bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
+
+                        TripResultFragment tripListSearchResultFragment = new TripResultFragment();
+                        tripListSearchResultFragment.setArguments(bundle);
+                        fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
+                        fragmentTransaction.addToBackStack("triplist");
+                        fragmentTransaction.commit();
+
+                    }
+
                 }
             }
         });

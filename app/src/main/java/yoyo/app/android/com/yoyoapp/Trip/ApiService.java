@@ -138,23 +138,44 @@ public class ApiService {
                                 trip.setGallery(galleries);
 
                                 // location
-                                ArrayList<Location> locations = new ArrayList<>();
+
+                                HashMap<Integer, Location> locations = new HashMap<>();
+//                                ArrayList<Location> locations = new ArrayList<>();
                                 JSONArray locationJsonArray = mainObject.getJSONArray("locations");
-                                for (int j = 0; j < locationJsonArray.length(); j++) {
+
+
+                            Log.d(TAG, "getTripListRequest: aaaaaaaaaa" + locationJsonArray.toString());
+                            Log.d(TAG, "getTripListRequest: aaaaaaaaaa length: " + locationJsonArray.length());
+
+                            for (int j = 0; j < locationJsonArray.length() ; j++) {
                                     JSONObject locationObject = locationJsonArray.getJSONObject(j);
                                     Location location = new Location();
                                     location.setTitle(locationObject.getString("title"));
                                     location.setLon(locationObject.getDouble("longitude"));
                                     location.setLat(locationObject.getDouble("latitude"));
                                     location.setOrder(locationObject.getInt("order"));
-                                    if (locationObject.getInt("order") == 0)
-                                        locations.add(0, location);
-                                    else if (locationObject.getInt("order") == -1)
-                                        locations.add(locationJsonArray.length() - 1, location);
-                                    else
-                                        locations.add(location);
+
+                                Log.d(TAG, "getTripListRequest: aaaaaaaz" + location.getOrder());
+
+
+                                locations.put(location.getOrder(), location);
+
+
                                 }
-                                trip.setLocations(locations);
+
+                            ArrayList<Location> locationsArraylist = new ArrayList<>(locations.size());
+
+                            for(int index=0; index<locations.size()-1; index++)
+                            {
+                                locationsArraylist.add(index, locations.get(index));
+                            }
+                            locationsArraylist.add(locations.get(-1));
+
+                            for (int q=0 ; q<locationsArraylist.size(); q++){
+
+                                Log.d(TAG, "getTripListRequest: aaaaaabb   : " + locationsArraylist.get(q).getOrder());
+                            }
+                                trip.setLocations(locationsArraylist);
 
                                 int tripCount = response.getInt("count");
                                 if (trips.size() == 0) {

@@ -104,8 +104,10 @@ public class MainPageFragment extends Fragment {
         flightCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), MainFlightActivity.class));
-                getActivity().overridePendingTransition(0,  0);
+//                startActivity(new Intent(getContext(), MainFlightActivity.class));
+//                getActivity().overridePendingTransition(0,  0);
+                Toasty.info(getContext(),"Coming soon...").show();
+
             }
         });
     }
