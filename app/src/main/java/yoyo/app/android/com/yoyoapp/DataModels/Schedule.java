@@ -3,7 +3,7 @@ package yoyo.app.android.com.yoyoapp.DataModels;
 public class Schedule {
 
     private String id;
-    private int price;
+    private double price;
     private int minCapacity;
     private int maxCapacity;
     private int remainingCapacity;
@@ -18,11 +18,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

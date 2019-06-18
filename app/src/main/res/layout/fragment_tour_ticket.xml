@@ -67,6 +67,7 @@
             android:id="@+id/rv_tour_ticket_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/standard_margin"
             android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@+id/ab_tour_ticket"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
