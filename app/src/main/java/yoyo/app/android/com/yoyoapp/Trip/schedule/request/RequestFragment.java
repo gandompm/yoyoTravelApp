@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.Trip.schedule.request;
 
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DateCalenderSetup;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 
 
 public class RequestFragment extends Fragment {
@@ -28,6 +31,7 @@ public class RequestFragment extends Fragment {
     private ImageView minusImageview, plusImageview;
     private RequstViewModel requstViewModel;
     private JSONArray jsonArray;
+    private UserSharedManager userSharedManager;
     private int passengerNum = 1;
     private View view;
     @Override
@@ -35,6 +39,11 @@ public class RequestFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_request, container, false);
 
         init();
+        if (userSharedManager.getToken().isEmpty())
+        {
+            startActivity(new Intent(getContext(), AuthenticationActivity.class));
+            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+        }
         Bundle bundle = getArguments();
         String tripId =bundle.getString("tripId");
         sendButton.setOnClickListener(v-> sendRequest(getJson(), tripId));
@@ -103,6 +112,7 @@ public class RequestFragment extends Fragment {
         sendButton = view.findViewById(R.id.button_request_send);
         minusImageview = view.findViewById(R.id.iv_request_minus);
         plusImageview = view.findViewById(R.id.iv_request_plus);
+        userSharedManager = new UserSharedManager(getContext());
     }
 
     private void sendRequest(JSONObject jsonObject, String tripId) {
