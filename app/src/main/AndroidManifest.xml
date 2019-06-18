@@ -41,7 +41,9 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:host="www.yoyo.travel" android:scheme="http"/>
+                <data android:host="www.yoyo.travel"
+                      android:scheme="http"
+                      android:pathPattern="/orders/ticket/.*"/>
 
             </intent-filter>
         </activity>
