@@ -10,7 +10,7 @@
     <string name="et_complete_info_personal_introducer_code">Introducer\'\s Code(optional)</string>
     <string name="button_complete_info_personal_submit">Submit</string>
     <string name="tv_mainpage_services">Booking Services •</string>
-    <string name="tv_mainpage_available_services">2 services for now</string>
+    <string name="tv_mainpage_available_services">1 service for now</string>
     <string name="tv_mainpage_more_services">more services is coming soon</string>
     <string name="hotels">Hotels</string>
     <string name="trips">Trips</string>

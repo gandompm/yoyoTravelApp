@@ -81,14 +81,18 @@ public class SignInFragment extends Fragment {
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
                     progressBar.setVisibility(View.GONE);
+                    e.printStackTrace();
 
                 }
 
                 // todo sign in request
                 sendToSignInPage(jsonObject);
+            }else {
+                progressBar.setVisibility(View.GONE);
+
             }
+
         });
     }
 
@@ -114,6 +118,7 @@ public class SignInFragment extends Fragment {
             }
             else
             {
+                progressBar.setVisibility(View.GONE);
                 Toasty.error(getContext(),getString(R.string.failed)).show();
             }
         });

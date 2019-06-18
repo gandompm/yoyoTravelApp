@@ -86,7 +86,7 @@
             android:fontFamily="@font/roboto_thin"
             android:text="@string/tv_mainpage_available_services"
             android:textAllCaps="false"
-            android:textColor="@color/black3"
+            android:textColor="@color/black2"
             android:textSize="@dimen/small"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_mainpage_services"
             app:layout_constraintStart_toEndOf="@+id/tv_mainpage_services" />
