@@ -108,13 +108,13 @@ public class BookingFirstFragment extends Fragment {
     }
 
     private void reduceNumber() {
-        if (passengerNum > 1) {
+        if (passengerNum > ((BookingActivity)getActivity()).minCapacity) {
             passengerNum--;
             ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(false);
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }
-        if (passengerNum == 1)
+        if (passengerNum == ((BookingActivity)getActivity()).minCapacity)
         {
             minusImageview.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_light_24dp));
         }
@@ -127,7 +127,7 @@ public class BookingFirstFragment extends Fragment {
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }
-        if (passengerNum ==2)
+        if (passengerNum >= (((BookingActivity)getActivity()).minCapacity + 1))
         {
             appearView(minusImageview, passengerCount);
         }
@@ -141,6 +141,8 @@ public class BookingFirstFragment extends Fragment {
         plusImageview = view.findViewById(R.id.iv_bookingfirst_plus);
         passengerCount = view.findViewById(R.id.tv_bookingfirst_num);
         fullNameEditText = view.findViewById(R.id.et_booking_contact_name);
+        passengerNum = ((BookingActivity)getActivity()).travellers.size();
+        passengerCount.setText(String.valueOf(passengerNum));
     }
 
     // get country code for mobile number

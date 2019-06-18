@@ -21,7 +21,8 @@ public class BookingSecondFragment extends BaseFragment {
 
     private View view;
     private TextView orderDateTextView, customerNameTextView, quantityTextView, totalPriceTextview;
-    private int travellerNum, price;
+    private int travellerNum;
+    private double price;
     private String url,name,date;
 
 
@@ -52,7 +53,7 @@ public class BookingSecondFragment extends BaseFragment {
     private void getBundle() {
         Bundle bundle = getArguments();
         travellerNum = bundle.getInt("travellerNumber");
-        price = bundle.getInt("price");
+        price = bundle.getDouble("price");
         url = bundle.getString("url");
         name = bundle.getString("name");
     }

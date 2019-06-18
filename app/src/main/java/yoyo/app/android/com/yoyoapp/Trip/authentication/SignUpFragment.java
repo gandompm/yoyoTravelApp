@@ -68,10 +68,6 @@ public class SignUpFragment extends Fragment {
                         getActivity().overridePendingTransition(0, 0);
                     }
                 }
-                else
-                {
-//                    Toasty.error(getContext(),getString(R.string.failed)).show();
-                }
             }
         });
     }

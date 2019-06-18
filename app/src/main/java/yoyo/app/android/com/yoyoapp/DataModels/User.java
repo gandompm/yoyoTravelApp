@@ -12,6 +12,7 @@ public class User {
     private String phoneNumber;
     private String language;
     private String profilePicture;
+    private String error;
 
 
 
@@ -95,5 +96,13 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

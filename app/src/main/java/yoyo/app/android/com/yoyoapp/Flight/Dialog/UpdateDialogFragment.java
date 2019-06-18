@@ -41,7 +41,7 @@ public class UpdateDialogFragment extends DialogFragment {
             public void onClick(View v) {
 
                 downloadManager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-                Uri uri = Uri.parse("http://yoyoapp.ir/fa/download/android");
+                Uri uri = Uri.parse("http://www.yoyo.travel/media/app/yoyo_android_app.apk");
                 DownloadManager.Request request = new DownloadManager.Request(uri);
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                 long refrences = downloadManager.enqueue(request);

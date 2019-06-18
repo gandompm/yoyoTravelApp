@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import es.dmoral.toasty.Toasty;
 import io.michaelrocks.paranoid.Obfuscate;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
 import org.json.JSONArray;
@@ -244,13 +245,21 @@ public class ApiService {
                 user.setToken(response.getString("token"));
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+
+                e.printStackTrace();
                 }
                 userConsumer.accept(user);
 
         }, error -> {
+                // TODO: 6/18/2019 fixing error presentation
             userConsumer.accept(null);
-            Log.d(TAG, "sendSignUpRequest: aaaaaa" + error.toString());
+            NetworkResponse networkResponse = error.networkResponse;
+
+            if (networkResponse != null && networkResponse.data != null) {
+                String jsonError = new String(networkResponse.data);
+                Toasty.error(context, jsonError).show();
+                error.printStackTrace();
+            }
         }) {
             /**
              * Passing some request headers
@@ -560,7 +569,7 @@ public class ApiService {
 
                             JSONObject jsonObject = response.getJSONObject(i);
                             schedule.setId(jsonObject.getString("schedule_id"));
-                            schedule.setPrice(jsonObject.getInt("price"));
+                            schedule.setPrice(jsonObject.getDouble("price"));
                             schedule.setMinCapacity(jsonObject.getInt("min_capacity"));
                             schedule.setMaxCapacity(jsonObject.getInt("max_capacity"));
                             schedule.setRemainingCapacity(jsonObject.getInt("remaining_capacity"));
@@ -603,6 +612,7 @@ public class ApiService {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("api-key", apiKey);
+                params.put("Authorization", "JWT "+ JWT);
                 return params;
             }
         };

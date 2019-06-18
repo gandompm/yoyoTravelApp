@@ -72,6 +72,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
                     Intent intent = new Intent(context, BookingActivity.class);
                     intent.putExtra("scheduleId",schedules.get(position).getId());
                     intent.putExtra("price",schedules.get(position).getPrice());
+                    intent.putExtra("minCapacity",schedules.get(position).getMinCapacity());
                     context.startActivity(intent);
                     ((TripActivity)context).overridePendingTransition(0,  0);
                 }
