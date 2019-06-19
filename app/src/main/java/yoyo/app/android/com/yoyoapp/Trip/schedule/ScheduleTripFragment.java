@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip.schedule;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,8 +20,10 @@ import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.DataModels.ScheduleCalender;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleCalenderRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleRecyclerviewAddapter;
+import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 import yoyo.app.android.com.yoyoapp.Trip.schedule.request.RequestFragment;
 
 import java.util.ArrayList;
@@ -40,9 +43,10 @@ public class ScheduleTripFragment extends Fragment {
     private int position = 0;
     private String tripId, tripTitle, tripImage;
     private Button requestDateButton;
-    private View view;
+    private UserSharedManager userSharedManager;
     private Toolbar toolbar;
     private ShimmerRecyclerView shimmerRecyclerView;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,16 +77,24 @@ public class ScheduleTripFragment extends Fragment {
         scheduleResultRecyclerview.setLayoutManager(linearLayoutManager);
         toolbar = view.findViewById(R.id.tb_schedule);
         shimmerRecyclerView = view.findViewById(R.id.shimmer_recycler_view);
+        userSharedManager = new UserSharedManager(getContext());
     }
 
     private void sendToRequestPage() {
-        Bundle bundle = new Bundle();
-        bundle.putString("tripId",tripId);
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        RequestFragment requestFragment = new RequestFragment();
-        requestFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.container, requestFragment).addToBackStack("request");
-        fragmentTransaction.commit();
+        if (userSharedManager.getToken().isEmpty())
+        {
+            startActivity(new Intent(getContext(), AuthenticationActivity.class));
+            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+        }
+        else {
+            Bundle bundle = new Bundle();
+            bundle.putString("tripId",tripId);
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            RequestFragment requestFragment = new RequestFragment();
+            requestFragment.setArguments(bundle);
+            fragmentTransaction.add(R.id.container, requestFragment).addToBackStack("request");
+            fragmentTransaction.commit();
+        }
     }
 
     private void getSchedules(String tripId, long startDate, long endDate) {

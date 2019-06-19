@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
@@ -25,8 +27,7 @@ public class MainActivity extends AppCompatActivity{
     public BottomNavigationView bottomNavigation;
     private LanguageSetup languageSetup;
     public static boolean isSingnedIn = false;
-
-
+    public FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity{
     private void init() {
         languageSetup = new LanguageSetup(this);
         bottomNavigation = findViewById(R.id.bn_main);
+        frameLayout = findViewById(R.id.container);
     }
 
 
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity{
 
     // setup fragment
     public void addFragment(Fragment fragment, String tag) {
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        getSupportFragmentManager().popBackStack();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.container, fragment, tag);
         ft.commit();
@@ -137,5 +139,17 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() ==1)
+        {
+            float scale = getResources().getDisplayMetrics().density;
+            int dpAsPixels = (int) (50 * scale + 0.5f);
+            bottomNavigation.setVisibility(View.VISIBLE);
+            frameLayout.setPadding(0, 0, 0, dpAsPixels);
+            bottomNavigation.setVisibility(View.VISIBLE);
+        }
+        super.onBackPressed();
+    }
 }
 

@@ -31,7 +31,6 @@ public class RequestFragment extends Fragment {
     private ImageView minusImageview, plusImageview;
     private RequstViewModel requstViewModel;
     private JSONArray jsonArray;
-    private UserSharedManager userSharedManager;
     private int passengerNum = 1;
     private View view;
     @Override
@@ -39,11 +38,6 @@ public class RequestFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_request, container, false);
 
         init();
-        if (userSharedManager.getToken().isEmpty())
-        {
-            startActivity(new Intent(getContext(), AuthenticationActivity.class));
-            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
-        }
         Bundle bundle = getArguments();
         String tripId =bundle.getString("tripId");
         sendButton.setOnClickListener(v-> sendRequest(getJson(), tripId));
@@ -112,7 +106,6 @@ public class RequestFragment extends Fragment {
         sendButton = view.findViewById(R.id.button_request_send);
         minusImageview = view.findViewById(R.id.iv_request_minus);
         plusImageview = view.findViewById(R.id.iv_request_plus);
-        userSharedManager = new UserSharedManager(getContext());
     }
 
     private void sendRequest(JSONObject jsonObject, String tripId) {

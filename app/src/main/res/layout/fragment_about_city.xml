@@ -25,6 +25,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/standard_margin"
                     android:background="@color/background">
 
 
@@ -32,8 +33,7 @@
                           android:layout_height="wrap_content"
                           android:textSize="18sp"
                           android:fontFamily="@font/roboto_medium"
-                          android:gravity="center"
-                          android:text="About" app:layout_constraintTop_toTopOf="parent"
+                          android:text="Description" app:layout_constraintTop_toTopOf="parent"
                           app:layout_constraintStart_toStartOf="parent"
                           android:id="@+id/textView108" android:textColor="@color/colorAccent"
                           android:layout_marginTop="8dp" android:paddingStart="8dp"/>
