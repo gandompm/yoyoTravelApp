@@ -8,12 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import androidx.appcompat.widget.Toolbar;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -22,8 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import yoyo.app.android.com.yoyoapp.AboutCityFragment;
-import yoyo.app.android.com.yoyoapp.Addapters.CitiesRecyclerviewAddaptor;
-import yoyo.app.android.com.yoyoapp.CityFragment;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Utils;
 
@@ -40,6 +36,9 @@ public class CitiyViewPagerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_city_view_pager,container,false);
+
+        ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.GONE);
+        ((MainActivity) getContext()).frameLayout.setPadding(0, 0, 0, 0);
 
         mViewPager = view.findViewById(R.id.materialViewPager);
         Bundle bundle = getArguments();
@@ -67,7 +66,7 @@ public class CitiyViewPagerFragment extends Fragment {
 
 
                     default:
-                        return new HotelListFragment();
+                        return aboutCityFragment;
                 }
             }
 
@@ -81,8 +80,8 @@ public class CitiyViewPagerFragment extends Fragment {
                 switch (position % 2) {
                     case 0:
                         return "About City";
-                    case 1:
-                        return "Services";
+//                    case 1:
+//                        return "Services";
 //                    case 2:
 //                        return "Professionnel";
 //                    case 3:
@@ -102,10 +101,10 @@ public class CitiyViewPagerFragment extends Fragment {
                         return HeaderDesign.fromColorResAndUrl(
                                 R.color.colorPrimary,
                                 cityImage);
-                    case 1:
-                        return HeaderDesign.fromColorResAndUrl(
-                                R.color.colorPrimary,
-                                "https://image.freepik.com/free-photo/a-wide-shot-from-milad-tower-in-tehran_16422-6.jpg");
+//                    case 1:
+//                        return HeaderDesign.fromColorResAndUrl(
+//                                R.color.colorPrimary,
+//                                "https://image.freepik.com/free-photo/a-wide-shot-from-milad-tower-in-tehran_16422-6.jpg");
 //                    case 2:
 //                        return HeaderDesign.fromColorResAndUrl(
 //                            R.color.cyan,
@@ -146,8 +145,12 @@ public class CitiyViewPagerFragment extends Fragment {
         mViewPager.getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.popBackStack();
+                float scale = getResources().getDisplayMetrics().density;
+                int dpAsPixels = (int) (50 * scale + 0.5f);
+                ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                ((MainActivity)getActivity()).frameLayout.setPadding(0, 0, 0, dpAsPixels);
+                ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                getFragmentManager().popBackStack();
             }
         });
 

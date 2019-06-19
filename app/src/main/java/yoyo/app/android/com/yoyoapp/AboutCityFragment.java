@@ -14,8 +14,8 @@ public class AboutCityFragment extends Fragment {
 
     private NestedScrollView nestedScrollView;
     private View view;
-    private TextView aboutTextView, naturalTextView, historicalTextView, manMadeTextView, foodTextView,
-                        climateTextView, topExperienceTextView;
+    private TextView aboutTextView, naturalTextView, historicalTextView, manMadeTextView,
+            foodTextView, climateTextView, topExperienceTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

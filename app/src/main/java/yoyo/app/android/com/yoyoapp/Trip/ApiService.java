@@ -1,8 +1,11 @@
 package yoyo.app.android.com.yoyoapp.Trip;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.Toast;
 import androidx.core.util.Consumer;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -12,11 +15,17 @@ import com.google.gson.Gson;
 import es.dmoral.toasty.Toasty;
 import io.michaelrocks.paranoid.Obfuscate;
 import jp.gr.java_conf.androtaku.countrylist.CountryList;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParserException;
 import yoyo.app.android.com.yoyoapp.DataModels.*;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
+
+import java.net.ConnectException;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.*;
 
 @Obfuscate
@@ -193,6 +202,7 @@ public class ApiService {
 
                 }, error -> {
             tripArrayListConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
     }){
         @Override
@@ -205,6 +215,40 @@ public class ApiService {
 
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+    private void errorHandling(VolleyError error) {
+        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+            ConnectivityManager cm = (ConnectivityManager)context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = null;
+            if (cm != null) {
+                activeNetwork = cm.getActiveNetworkInfo();
+            }
+            if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()){
+                Toasty.warning(context,"Server is not connected to internet.").show();
+            } else {
+                Toasty.warning(context,"Your device is not connected to internet.").show();
+            }
+        } else if (error instanceof AuthFailureError) {
+            Toasty.error(context,"server couldn't find the authenticated request.").show();
+        } else if (error instanceof ServerError) {
+            Toasty.error(context,"Server is not responding.").show();
+        }  else if (error instanceof NetworkError || error.getCause() instanceof ConnectException
+                || (error.getCause().getMessage() != null
+                && error.getCause().getMessage().contains("connection"))){
+            Toasty.warning(context,"Your device is not connected to internet.").show();
+        }  else if (error instanceof ParseError || error.getCause() instanceof IllegalStateException
+                || error.getCause() instanceof JSONException
+                || error.getCause() instanceof XmlPullParserException){
+            Toasty.error(context,"Parse Error (because of invalid json or xml).").show();
+        }else if (error instanceof TimeoutError || error.getCause() instanceof SocketTimeoutException
+                || error.getCause() instanceof ConnectTimeoutException
+                || error.getCause() instanceof SocketException
+                || (error.getCause().getMessage() != null
+                && error.getCause().getMessage().contains("Connection timed out"))) {
+            Toasty.error(context,"Connection timeout error").show();
+        }
     }
 
     private Calendar getDateAndTime(Long date) {
@@ -239,6 +283,7 @@ public class ApiService {
 
                 }, error -> {
             categoriesConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
@@ -272,10 +317,9 @@ public class ApiService {
                 userConsumer.accept(user);
 
         }, error -> {
-                // TODO: 6/18/2019 fixing error presentation
+            // TODO: 6/18/2019 fixing error presentation
             userConsumer.accept(null);
             NetworkResponse networkResponse = error.networkResponse;
-
             if (networkResponse != null && networkResponse.data != null) {
                 String jsonError = new String(networkResponse.data);
                 Toasty.error(context, jsonError).show();
@@ -319,6 +363,7 @@ public class ApiService {
 
         }, error -> {
             userConsumer.accept(null);
+            errorHandling(error);
 
             Log.d(TAG, "sendSignInRequest: login " + error.toString());
         }){
@@ -364,6 +409,7 @@ public class ApiService {
             public void onErrorResponse(VolleyError e) {
                 Log.d(TAG, "onErrorResponse: " + e.toString());
                 userConsumer.accept(null);
+                errorHandling(e);
                 e.printStackTrace();
             }
         }){
@@ -409,6 +455,7 @@ public class ApiService {
             @Override
             public void onErrorResponse(VolleyError e) {
                 userConsumer.accept(null);
+                errorHandling(e);
                 e.printStackTrace();
 
                 Log.d(TAG, "onErrorResponse: edit profile " + e.toString());
@@ -462,6 +509,7 @@ public class ApiService {
                     travellersConsumer.accept(travellers);
                 }, e -> {
                     travellersConsumer.accept(null);
+                    errorHandling(e);
                     e.printStackTrace();
                 }){
             @Override
@@ -486,6 +534,7 @@ public class ApiService {
                 }, e -> {
             isTravellerAdded.accept(false);
                     e.printStackTrace();
+                    errorHandling(e);
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -510,6 +559,7 @@ public class ApiService {
                 e -> {
                     // TODO: 6/17/2019 fixing delete method
                     isDeleted.accept(true);
+                    errorHandling(e);
                     e.printStackTrace();
                 }){
             @Override
@@ -532,6 +582,7 @@ public class ApiService {
                 e -> {
                     isEditedConsumer.accept(false);
                     e.printStackTrace();
+                    errorHandling(e);
                 }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -557,6 +608,7 @@ public class ApiService {
                 },
                 error -> {
                     stringConsumer.accept(null);
+                    errorHandling(error);
                 })
         {
             /**
@@ -605,6 +657,7 @@ public class ApiService {
                     scheduleConsumer.accept(scheduleArrayList);
                 }, e -> {
             scheduleConsumer.accept(null);
+            errorHandling(e);
             e.printStackTrace();
         }){
             @Override
@@ -627,6 +680,7 @@ public class ApiService {
                     isRequestSuccessfull.accept(true);
                 }, e -> {
             isRequestSuccessfull.accept(false);
+            errorHandling(e);
             e.printStackTrace();
         }){
             @Override
@@ -670,6 +724,7 @@ public class ApiService {
 
                 }, error -> {
             locationConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
@@ -711,6 +766,7 @@ public class ApiService {
 
                 }, error -> {
             locationConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
@@ -738,6 +794,7 @@ public class ApiService {
                     }
                 }, error -> {
             bookingIdConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
@@ -773,6 +830,7 @@ public class ApiService {
                     ticketsConsumer.accept(orders);
                 }, error -> {
             ticketsConsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
@@ -806,6 +864,7 @@ public class ApiService {
                     ticketsconsumer.accept(tourRequests);
                 }, error -> {
             ticketsconsumer.accept(null);
+            errorHandling(error);
             error.printStackTrace();
         }){
             @Override
