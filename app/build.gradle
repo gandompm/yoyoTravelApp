@@ -13,8 +13,8 @@ android {
         applicationId "yoyo.app.android.com.yoyoapp"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.0.0"
+        versionCode 5
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -89,13 +89,13 @@ public class TripDetailsFragment extends Fragment {
         tripId = bundle.getString("tripId");
         dayNightNumTextview.setText(bundle.getInt("days")+ " Days "+ bundle.getInt("nights")+ " Nights");
         nameTourLeader.setText(bundle.getString("leaderName"));
-        titleTextview.setText(bundle.getString("tourName") + " • ");
+        titleTextview.setText(bundle.getString("tourName") + " • " + bundle.getInt("passengersCount") + " purchased");
         title2Textview.setText(bundle.getString("title"));
         tripTitle = bundle.getString("title");
         tourLeaderLanguageTextview.setText(bundle.getString("language"));
         locationFromTextview.setText(bundle.getString("locationTitleFrom"));
         locationToTextview.setText(bundle.getString("locationTitleTo"));
-        passengerCountTextview.setText(String.valueOf(bundle.getInt("passengersCount")) + " purchased");
+//        passengerCountTextview.setText(bundle.getInt("passengersCount") + " purchased");
         fromLatlng = new LatLng(bundle.getDouble("fromLat"), bundle.getDouble("fromLong"));
         toLatlng = new LatLng(bundle.getDouble("toLat"), bundle.getDouble("toLong"));
         Picasso.with(getContext()).load(bundle.getString("leaderPicture")).into(tourLeaderImageview);
@@ -164,7 +164,7 @@ public class TripDetailsFragment extends Fragment {
         tourLeaderLanguageTextview = view.findViewById(R.id.tv_tripdetails_tourleader_language);
         typeTextview = view.findViewById(R.id.tv_tripdetails_type);
         mealsTextview = view.findViewById(R.id.tv_tripdetails_meals);
-        passengerCountTextview = view.findViewById(R.id.tv_tripdetails_people_num);
+//        passengerCountTextview = view.findViewById(R.id.tv_tripdetails_people_num);
         itineraryTextview = view.findViewById(R.id.tv_tripdetails_itnarary);
         descriptionTextview = view.findViewById(R.id.tv_tripdetails_desc);
     }
