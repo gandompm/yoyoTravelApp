@@ -99,9 +99,14 @@
                     android:id="@+id/button_schedule_request_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Request your desire date"
-                    android:background="@android:color/transparent"
-                    android:layout_gravity="center"/>
+                    android:text="Request for your desired date"
+                    android:background="@drawable/white_round_border"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:shadowRadius="10"
+                    android:shadowColor="@color/black4"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"/>
 
 
         </LinearLayout>
