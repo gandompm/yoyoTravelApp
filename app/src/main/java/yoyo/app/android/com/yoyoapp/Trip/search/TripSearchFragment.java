@@ -35,12 +35,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
     private static final String TAG = "SearchActivity";
     private TextView checkInTextview, checkOutTextview, checkInTitle, checkOutTitle, nightNumTextview;
-    private TextView searchOriginTextView,searchDestinationTextView;
+    private TextView searchDestinationTextView;
     private TextView smallTitleTextview ,titleTextview;
     private TextView filterPriceTextview;
     private String incommingBundle;
     private Button searchButton;
-    private ImageView backButton , calendarLogo1, calendarLogo2 , searchCityLogo, filterLogo, searchCityLogo2;
+    private ImageView backButton , calendarLogo1, calendarLogo2 , filterLogo, searchCityLogo2;
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
     private FragmentManager fragmentManager;
     private TripSearchViewModel tripSearchViewModel;
@@ -61,8 +61,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         setupOnclickListner();
         setupSearchbutton();
         backButton.setOnClickListener(v -> getActivity().finish());
-
-        getOrigin();
         getDestination();
         return view;
     }
@@ -80,18 +78,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         });
     }
 
-    private void getOrigin() {
-        tripSearchViewModel.initOrigin();
-        tripSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
-            @Override
-            public void onChanged(List<Location> locations) {
-                originssList.clear();
-                if (locations != null) {
-                    originssList.addAll(locations);
-                }
-            }
-        });
-    }
 
     // setup cities search dialog
     private void setupSearchDestination()
@@ -111,32 +97,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         simpleSearchDialogCompat.show();
     }
 
-    // setup cities search dialog
-    private void setupSearchOrigin()
-    {
-        SimpleSearchDialogCompat<Location> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
-                "Where do you want to start?", null, originssList,
-                new SearchResultListener<Location>() {
-                    @Override
-                    public void onSelected(BaseSearchDialogCompat dialog, Location item, int position) {
-
-                        searchOriginTextView.setText(item.getTitle());
-                        ((TripActivity)getActivity()).origin = item;
-                        dialog.dismiss();
-                    }
-                });
-
-        simpleSearchDialogCompat.show();
-    }
-
 
     private void setupFilterPriceButtomsheet() {
 
         priceFilterBottomSheetFragment = PriceFilterBottomSheetDialogFragment.newInstance();
         priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
     }
-
-
 
     private void init() {
         originssList = new ArrayList<>();
@@ -148,7 +114,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         smallTitleTextview = view.findViewById(R.id.tv_search_title);
         searchButton = view.findViewById(R.id.button_search_search);
         backButton = view.findViewById(R.id.iv_search_back);
-        searchOriginTextView = view.findViewById(R.id.et_search_bar_origin);
         searchDestinationTextView = view.findViewById(R.id.et_search_bar_destination);
         filterPriceTextview = view.findViewById(R.id.tv_search_price_filter);
         fragmentManager = getFragmentManager();
@@ -156,7 +121,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         checkOutTitle = view.findViewById(R.id.tv_search_check_out_txt);
         calendarLogo2 = view.findViewById(R.id.iv_search_calender_logo2);
         calendarLogo1 = view.findViewById(R.id.iv_search_calender_logo1);
-        searchCityLogo = view.findViewById(R.id.iv_search_search_city);
         searchCityLogo2 = view.findViewById(R.id.iv_search_search_city3);
         filterLogo = view.findViewById(R.id.iv_search_filter);
         nightNumTextview = view.findViewById(R.id.tv_search_night_num);
@@ -170,7 +134,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         {
             titleTextview.setText(getString(R.string.tours));
             smallTitleTextview.setText(getString(R.string.going_anywhere));
-            searchOriginTextView.setText("Origin");
         }
     }
 
@@ -181,8 +144,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         checkOutTitle.setOnClickListener(this);
         calendarLogo1.setOnClickListener(this);
         calendarLogo2.setOnClickListener(this);
-        searchOriginTextView.setOnClickListener(this);
-        searchCityLogo.setOnClickListener(this);
         filterLogo.setOnClickListener(this);
         filterPriceTextview.setOnClickListener(this);
         searchDestinationTextView.setOnClickListener(this);
@@ -193,12 +154,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( searchOriginTextView.getText().equals("Origin") || searchDestinationTextView.getText().equals("Destination")){
+                if(searchDestinationTextView.getText().equals("Destination")){
 
-//                    Log.d(TAG, "onClick: qqqqqqqqq2 "  +  searchOriginTextView.getText() + "   " + searchDestinationTextView.getText() + ".");
-//                    Toasty.error(getContext(),"Origin & Destination can not be empty.").show();
                     Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
-
 
                 }else {
 
@@ -207,14 +165,11 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
                         Toast.makeText(getContext(), "Check-In & Check-Out can not be empty.", Toast.LENGTH_SHORT).show();
 
-
-
                     }else {
 
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         Bundle bundle = new Bundle();
 
-                        bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchOriginTextView.getText().toString());
                         bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
                         bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
                         bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
@@ -259,12 +214,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
             fragmentTransaction.commit();
         }
 
-        if (v.getId() == R.id.iv_search_search_city
-                || v.getId() == R.id.et_search_bar_origin)
-        {
-            setupSearchOrigin();
-        }
-
         if (v.getId() == R.id.iv_search_search_city3
                 || v.getId() == R.id.et_search_bar_destination)
         {
@@ -276,7 +225,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         {
             setupFilterPriceButtomsheet();
         }
-
 
     }
 
