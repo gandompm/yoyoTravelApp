@@ -55,7 +55,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
 
         init();
         setupRecyclerview();
-        setupQuery("FIXED");
+        setupQuery("FLEXIBLE");
         setupFloatingActionButton();
         getTrips();
         setupToggleButton();
@@ -178,7 +178,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         backImageView = view.findViewById(R.id.iv_trip_search_back);
         backTextView = view.findViewById(R.id.tv_trip_search_back);
         tripTypeToggleSwitch = view.findViewById(R.id.toggleSwitch_trip_search);
-        tripTypeToggleSwitch.setCheckedPosition(0);
+        tripTypeToggleSwitch.setCheckedPosition(1);
     }
 
     private void setupFloatingActionButton() {
