@@ -156,14 +156,23 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
             public void onClick(View view) {
                 if(searchDestinationTextView.getText().equals("Destination")){
 
-                    Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
+                    try {
+                        Toasty.normal(getContext(), "Destination can not be empty.").show();
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
+                    }
 
                 }else {
-
-
                     if (checkInTextview.getText().equals("Select Date") || checkOutTextview.getText().equals("Select Date")){
-
-                        Toast.makeText(getContext(), "Check-In & Check-Out can not be empty.", Toast.LENGTH_SHORT).show();
+                        try {
+                            Toasty.normal(getContext(), "Check-In & Check-Out can not be empty.").show();
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(getContext(), "Check-In & Check-Out can not be empty.", Toast.LENGTH_SHORT).show();
+                        }
 
                     }else {
 

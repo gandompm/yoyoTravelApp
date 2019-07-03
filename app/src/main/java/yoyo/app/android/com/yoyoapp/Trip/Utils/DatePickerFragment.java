@@ -64,6 +64,11 @@ public class DatePickerFragment extends Fragment {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (okSnackbar!= null)
+                {
+                    okSnackbar.dismiss();
+                    ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                }
                 getFragmentManager().popBackStack();
             }
         });
@@ -158,6 +163,7 @@ public class DatePickerFragment extends Fragment {
             public void onClick(View v) {
                 setupOkButton();
                 okSnackbar.dismiss();
+                ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
             }
         });
         sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.green));
@@ -168,6 +174,7 @@ public class DatePickerFragment extends Fragment {
             tv.setGravity(Gravity.CENTER_HORIZONTAL);
         }
         okSnackbar.show();
+        ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.GONE);
     }
 
     private void checkInFunc() {
