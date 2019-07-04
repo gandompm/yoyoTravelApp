@@ -31,6 +31,8 @@ import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.result.TripResultFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
 
+import static com.google.android.gms.internal.zzagr.runOnUiThread;
+
 public class TripSearchFragment extends Fragment implements View.OnClickListener  {
 
     private static final String TAG = "SearchActivity";
@@ -147,7 +149,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         filterLogo.setOnClickListener(this);
         filterPriceTextview.setOnClickListener(this);
         searchDestinationTextView.setOnClickListener(this);
-
     }
 
     private void setupSearchbutton() {
@@ -155,27 +156,12 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 if(searchDestinationTextView.getText().equals("Destination")){
-
-                    try {
-                        Toasty.normal(getContext(), "Destination can not be empty.").show();
-                    }
-                    catch (Exception e)
-                    {
-                        Toast.makeText(getContext(), "Origin & Destination can not be empty.", Toast.LENGTH_SHORT).show();
-                    }
-
+                    Toasty.normal(getContext(), "Destination can not be empty.").show();
                 }else {
                     if (checkInTextview.getText().equals("Select Date") || checkOutTextview.getText().equals("Select Date")){
-                        try {
-                            Toasty.normal(getContext(), "Check-In & Check-Out can not be empty.").show();
-                        }
-                        catch (Exception e)
-                        {
-                            Toast.makeText(getContext(), "Check-In & Check-Out can not be empty.", Toast.LENGTH_SHORT).show();
-                        }
+                        Toasty.normal(getContext(), "Check-In & Check-Out can not be empty.").show();
 
                     }else {
-
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         Bundle bundle = new Bundle();
 
@@ -188,7 +174,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                         fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
                         fragmentTransaction.addToBackStack("triplist");
                         fragmentTransaction.commit();
-
                     }
 
                 }

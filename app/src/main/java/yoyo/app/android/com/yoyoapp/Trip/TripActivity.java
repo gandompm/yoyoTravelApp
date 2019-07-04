@@ -3,6 +3,7 @@ package yoyo.app.android.com.yoyoapp.Trip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -41,7 +42,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         setContentView(R.layout.activity_trip);
 
         init();
-        setupBottomNavigation();
+        setupBottomNavigation(savedInstanceState);
     }
 
     private void init() {
@@ -52,7 +53,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
     }
 
 
-    private void setupBottomNavigation() {
+    private void setupBottomNavigation(Bundle savedInstanceState) {
 
         sendingToSearchFragment();
         bottomNavigation.setSelectedItemId(R.id.bn_home);
@@ -64,16 +65,12 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
                     overridePendingTransition(0,  0);
                     return true;
                 case R.id.bn_profile:
-                    addFragment(new ProfileFragment(),"profile");
+                    addFragment(new ProfileFragment(), "profile");
                     return true;
                 case R.id.bn_orders:
                     addFragment(new OrdersFragment(),"orders");
                     return true;
 
-//                        if (isSingnedIn)
-//                            addFragment(new FlightTicketFragment(),"ticket");
-//                        else
-//                            addFragment(new FlightTicketNotSignedInFragment(), "ticket");
                 default:
                     return false;
             }

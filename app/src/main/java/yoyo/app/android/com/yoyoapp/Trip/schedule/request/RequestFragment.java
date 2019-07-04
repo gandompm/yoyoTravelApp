@@ -28,7 +28,7 @@ public class RequestFragment extends Fragment {
     private Button sendButton;
     private DatePickerDialog.OnDateSetListener dateOfBirthListner;
     private TextView passengerCount, date1Textview;
-    private ImageView minusImageview, plusImageview;
+    private ImageView minusImageview, plusImageview,backButton;
     private RequstViewModel requstViewModel;
     private JSONArray jsonArray;
     private int passengerNum = 1;
@@ -44,6 +44,7 @@ public class RequestFragment extends Fragment {
         setupDatePickers();
         plusImageview.setOnClickListener(v -> addNumber());
         minusImageview.setOnClickListener(v -> reduceNumber());
+        backButton.setOnClickListener(v-> getFragmentManager().popBackStack());
         return view;
     }
 
@@ -106,6 +107,7 @@ public class RequestFragment extends Fragment {
         sendButton = view.findViewById(R.id.button_request_send);
         minusImageview = view.findViewById(R.id.iv_request_minus);
         plusImageview = view.findViewById(R.id.iv_request_plus);
+        backButton = view.findViewById(R.id.iv_request_back);
     }
 
     private void sendRequest(JSONObject jsonObject, String tripId) {
