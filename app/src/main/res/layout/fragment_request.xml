@@ -8,26 +8,59 @@
                                                    android:background="@color/background"
                                                    tools:context=".Trip.schedule.request.RequestFragment"
 >
+    <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_request"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/white"
+            android:layoutDirection="ltr">
 
-    <androidx.cardview.widget.CardView
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tv_request_title"
+                    android:text="Request your desire date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/colorPrimaryDark" android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/header_2"/>
+
+            <ImageView
+                    android:id="@+id/iv_request_back"
+                    android:src="@drawable/ic_arrow_back_colorprimary_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" android:layout_alignParentBottom="true"
+            />
+        </RelativeLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            ds:cardCornerRadius="4dp"
             ds:layout_constraintStart_toStartOf="parent"
             ds:layout_constraintEnd_toEndOf="parent"
-            ds:layout_constraintBottom_toBottomOf="parent" ds:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="40dp" android:layout_marginStart="16dp" android:layout_marginBottom="16dp"
+            ds:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white"
+            android:layout_below="@+id/appbar_request"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:ds="http://schemas.android.com/apk/res-auto"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/large_margin"
-                android:clipToPadding="false"
-                tools:context="yoyo.app.android.com.yoyoapp.EditProfileFragment">
+                android:clipToPadding="false">
 
 
             <androidx.constraintlayout.widget.Guideline
@@ -221,7 +254,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </RelativeLayout>

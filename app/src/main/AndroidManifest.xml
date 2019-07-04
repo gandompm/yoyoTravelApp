@@ -96,7 +96,8 @@
         <activity android:name=".CheeseDetailActivity">
         </activity>
         <activity android:name=".Trip.TripActivity"/>
-        <activity android:name=".Trip.authentication.AuthenticationActivity"/>
+        <activity android:name=".Trip.authentication.AuthenticationActivity"
+                  android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
     </application>
 
 </manifest>

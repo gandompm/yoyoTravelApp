@@ -122,7 +122,7 @@
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="@+id/imageView22"
                     android:layout_marginEnd="20dp"
-                    app:layout_constraintTop_toTopOf="@id/tv_tripdetails_tourleader_familyname"/>
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/linearLayout"/>
 
             <!--<TextView-->
                     <!--android:text="400€"-->
