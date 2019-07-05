@@ -6,8 +6,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    android:background="@color/background"
-                                                   tools:context=".Trip.schedule.request.RequestFragment"
->
+                                                   tools:context=".Trip.schedule.request.RequestFragment">
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_request"
             android:layout_width="match_parent"
@@ -50,11 +49,7 @@
             ds:layout_constraintEnd_toEndOf="parent"
             ds:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/white"
-            android:layout_below="@+id/appbar_request"
-            android:layout_marginTop="@dimen/standard_margin"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp">
+            android:layout_below="@+id/appbar_request">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -90,7 +85,8 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/et_edit_profile_username"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-                    ds:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+                    ds:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"
+                    android:textColor="@color/black1"/>
 
             <EditText
                     android:id="@+id/et_request_firstname"
@@ -134,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/email"
-                    android:textColor="@color/black2"
+                    android:textColor="@color/black1"
                     android:textSize="13.3sp"
                     android:id="@+id/textView23"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v" android:layout_marginTop="8dp"
@@ -164,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView20"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-                    ds:layout_constraintTop_toBottomOf="@+id/et_request_email" android:layout_marginTop="8dp"/>
+                    ds:layout_constraintTop_toBottomOf="@+id/et_request_email" android:layout_marginTop="8dp"
+                    android:textColor="@color/black1"/>
 
             <EditText
                     android:layout_width="0dp"
@@ -184,6 +181,92 @@
                     android:id="@+id/textView21"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
                     ds:layout_constraintTop_toBottomOf="@+id/et_request_phone_number"
+                    android:layout_marginTop="16dp" android:textColor="@color/black1"/>
+
+
+            <ImageView
+                    android:id="@+id/iv_request_plus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_circle_outline_blue_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintStart_toEndOf="@+id/tv_request_num" android:layout_marginStart="8dp"
+                    ds:layout_constraintTop_toTopOf="@+id/iv_request_minus"
+                    ds:layout_constraintBottom_toBottomOf="@+id/iv_request_minus"/>
+
+            <TextView
+                    android:id="@+id/tv_request_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_horizontal" android:textSize="@dimen/header_1"
+                    android:layout_marginEnd="8dp" ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    android:layout_marginStart="8dp" ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintTop_toTopOf="@+id/iv_request_plus"
+                    ds:layout_constraintBottom_toBottomOf="@+id/iv_request_plus"/>
+
+            <ImageView
+                    android:id="@+id/iv_request_minus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_remove_circle_outline_light_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintBottom_toBottomOf="@+id/textView21"
+                    ds:layout_constraintTop_toTopOf="@+id/textView21"
+                    ds:layout_constraintEnd_toStartOf="@+id/tv_request_num" android:layout_marginEnd="8dp"
+            />
+
+
+            <TextView
+                    android:text="Your desire dates:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView25" ds:layout_constraintTop_toBottomOf="@+id/textView21"
+                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    android:layout_marginTop="20dp" android:textColor="@color/black1"/>
+
+            <ImageView
+                    android:id="@+id/iv_request_calender_plus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_add_circle_outline_blue_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintStart_toEndOf="@+id/tv_request_num" android:layout_marginStart="8dp"
+                    ds:layout_constraintTop_toTopOf="@+id/iv_request_calender_minus"
+                    ds:layout_constraintBottom_toBottomOf="@+id/iv_request_calender_minus"
+            />
+
+            <TextView
+                    android:id="@+id/tv_request_calender_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center_horizontal" android:textSize="@dimen/header_1"
+                    android:layout_marginEnd="8dp" ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    android:layout_marginStart="8dp" ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintTop_toTopOf="@+id/iv_request_calender_minus"
+                    ds:layout_constraintBottom_toBottomOf="@+id/iv_request_calender_minus"/>
+
+            <ImageView
+                    android:id="@+id/iv_request_calender_minus"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_remove_circle_outline_light_24dp"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    ds:layout_constraintBottom_toBottomOf="@+id/textView25"
+                    ds:layout_constraintTop_toTopOf="@+id/textView25"
+                    ds:layout_constraintEnd_toStartOf="@+id/tv_request_num" android:layout_marginEnd="8dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_request_date_calender"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    ds:layout_constraintTop_toBottomOf="@+id/textView25"
+                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
+                    ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
+                    android:layout_marginBottom="@dimen/small_margin"
                     android:layout_marginTop="8dp"/>
 
             <Button
@@ -193,64 +276,12 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/button_round_blue"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
-                    android:textColor="@android:color/white" android:fontFamily="@font/roboto_medium"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/roboto_medium"
                     android:id="@+id/button_request_send"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-                    ds:layout_constraintTop_toBottomOf="@+id/tv_request_date1"/>
-
-
-            <ImageView
-                    android:id="@+id/iv_request_plus"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_add_circle_outline_blue_24dp"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    ds:layout_constraintStart_toEndOf="@+id/tv_request_num" android:layout_marginStart="8dp"
-                    ds:layout_constraintTop_toTopOf="@+id/tv_request_num"
-                    ds:layout_constraintBottom_toBottomOf="@+id/tv_request_num"/>
-
-            <TextView
-                    android:id="@+id/tv_request_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"
-                    android:textColor="@color/black1"
-                    android:gravity="center_horizontal" android:textSize="@dimen/header_1"
-                    android:layout_marginTop="16dp" ds:layout_constraintTop_toBottomOf="@+id/textView21"
-                    android:layout_marginEnd="8dp" ds:layout_constraintEnd_toStartOf="@+id/guideline_right_v"
-                    android:layout_marginStart="8dp" ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"/>
-
-            <ImageView
-                    android:id="@+id/iv_request_minus"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_remove_circle_outline_light_24dp"
-                    android:foreground="?attr/selectableItemBackgroundBorderless"
-                    ds:layout_constraintBottom_toBottomOf="@+id/tv_request_num"
-                    ds:layout_constraintTop_toTopOf="@+id/tv_request_num"
-                    ds:layout_constraintEnd_toStartOf="@+id/tv_request_num" android:layout_marginEnd="8dp"/>
-
-
-            <TextView
-                    android:text="Your first desire date:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView25" ds:layout_constraintTop_toBottomOf="@+id/iv_request_minus"
-                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-                    android:layout_marginTop="16dp"/>
-
-            <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:inputType="phone"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:background="@drawable/bg_light_editprofile_item"
-                    android:id="@+id/tv_request_date1" ds:layout_constraintTop_toBottomOf="@+id/textView25"
-                    ds:layout_constraintStart_toStartOf="@+id/guideline_left_v"
-                    android:layout_marginTop="8dp"/>
-
+                    ds:layout_constraintTop_toBottomOf="@+id/rv_request_date_calender"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

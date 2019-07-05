@@ -69,10 +69,8 @@ public class BookingActivity extends AppCompatActivity {
                 if (isNumberAdded) {
                     Traveller traveller = new Traveller();
                     travellers.add(traveller);
-                    Log.d(TAG, "onChangedtttttt:  addddd  " + travellers.size() + "          -----        " + isNumberAdded);
                 } else {
                     travellers.remove(travellers.size() - 1);
-                    Log.d(TAG, "onChangedtttttt:  reduce  " + (travellers.size()) + "          -----        " + isNumberAdded);
                 }
             }
         });

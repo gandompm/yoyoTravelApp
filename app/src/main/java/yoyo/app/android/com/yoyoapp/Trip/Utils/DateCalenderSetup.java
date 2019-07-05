@@ -17,24 +17,16 @@ import java.util.Date;
 public class DateCalenderSetup {
 
     private Context context;
-    private TextView textView;
     private DatePickerDialog.OnDateSetListener dateListner;
 
-    public DateCalenderSetup(Context context, TextView textView, DatePickerDialog.OnDateSetListener dateListner,Consumer<Long> timeStampConsumer) {
+    public DateCalenderSetup(Context context,DatePickerDialog.OnDateSetListener dateListner,Function<Long, String> timeStampConsumer) {
         this.context = context;
-        this.textView = textView;
         this.dateListner = dateListner;
         setupDatePickers(timeStampConsumer);
     }
 
     // date of birth date picker
-    private void setupDatePickers(Consumer<Long> timeStampConsumer) {
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setupCalenderDialog(dateListner); }
-            });
-
+    private void setupDatePickers(Function<Long, String> timeStampConsumer) {
         dateListner = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -47,13 +39,13 @@ public class DateCalenderSetup {
                     e.printStackTrace();
                 }
                 long time = date.getTime()/1000;
-                timeStampConsumer.accept(time);
                 // setup textview
                 month = month + 1;
                 String dateString2 = year + "-" + month + "-" + day;
-                textView.setText(dateString2);
+                timeStampConsumer.apply(time, dateString2);
             }
         };
+        setupCalenderDialog(dateListner);
     }
 
     // setup calender dialog
@@ -70,6 +62,11 @@ public class DateCalenderSetup {
                 year,month,day);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+    }
+
+    @FunctionalInterface
+    public interface Function<One, Two> {
+        public void apply(One one, Two two);
     }
 
 }

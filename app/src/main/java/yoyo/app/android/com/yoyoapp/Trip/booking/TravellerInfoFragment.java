@@ -58,9 +58,19 @@ public class TravellerInfoFragment extends Fragment {
         getCountryList();
         nationalityTextview.setOnClickListener(v -> setupCountryList());
         closeBottomSheetImageview.setOnClickListener(v-> setupBackButton());
+        dateOfBirthTextview.setOnClickListener(v -> setupCalender());
 
         return view;
     }
+
+    private void setupCalender() {
+        new DateCalenderSetup(getContext() ,dateOfBirthListner, (timestamp, standardDate) ->
+        {
+            dateOfBirthTimestamp = timestamp;
+            dateOfBirthTextview.setText(standardDate);
+        });
+    }
+
 
     private boolean checkEnglishChar() {
         if (isStringOnlyAlphabet(String.valueOf(firstnameEditText.getText())) && isStringOnlyAlphabet(String.valueOf(lastnameEditText.getText()))) {
@@ -270,9 +280,6 @@ public class TravellerInfoFragment extends Fragment {
             iraninanCodeTextview.setVisibility(View.GONE);
             isIranian = false;
         }
-        new DateCalenderSetup(getContext() , dateOfBirthTextview ,dateOfBirthListner, timestamp ->{
-            dateOfBirthTimestamp = timestamp;
-        });
     }
 
     // get country list from server

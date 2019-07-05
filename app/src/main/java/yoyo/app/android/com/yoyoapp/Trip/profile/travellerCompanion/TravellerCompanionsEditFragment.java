@@ -72,9 +72,8 @@ public class TravellerCompanionsEditFragment extends Fragment {
         deleteButton.setOnClickListener(v -> deleteTravllerComapnion());
         backImageview.setOnClickListener(v -> fragmentManager.popBackStack());
         nationalityTextview.setOnClickListener(v -> setupCountryList());
-
+        dateOfBirthTextview.setOnClickListener(v -> setupDatePickers());
         getCountryList();
-        setupDatePickers();
         setupToggleButton();
 
         return view;
@@ -93,8 +92,10 @@ public class TravellerCompanionsEditFragment extends Fragment {
 
     // setup date picker for user's birth date
     private void setupDatePickers() {
-        new DateCalenderSetup(getContext() , dateOfBirthTextview ,dateOfBirthListner, timestamp ->{
+        new DateCalenderSetup(getContext() ,dateOfBirthListner, (timestamp, standardDate) ->
+        {
             dateOfBirthTimestamp = timestamp;
+            dateOfBirthTextview.setText(standardDate);
         });
     }
 
