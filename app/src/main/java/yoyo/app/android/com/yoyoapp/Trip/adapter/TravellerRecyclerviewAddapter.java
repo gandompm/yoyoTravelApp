@@ -44,7 +44,6 @@ public class TravellerRecyclerviewAddapter extends RecyclerView.Adapter<Travelle
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 onItemSelected.onSendResult(travellers.get(position) , position);
             }
         });

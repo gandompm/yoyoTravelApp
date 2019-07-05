@@ -166,7 +166,6 @@ public class BookingFirstFragment extends Fragment {
             @Override
             public void onSendResult(Traveller traveller, int position) {
                 // when the user on one traveller item clicked, call expandbottomsheet method in booking activity
-                Log.d(TAG, "onSendResult: " + traveller.getFirstName());
                 sendToTravellerInfoPage(position);
             }
         });
