@@ -19,6 +19,7 @@ import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.DataModels.ScheduleCalender;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.ScheduleCalenderRecyclerviewAddapter;
@@ -92,7 +93,8 @@ public class ScheduleTripFragment extends Fragment {
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             RequestFragment requestFragment = new RequestFragment();
             requestFragment.setArguments(bundle);
-            fragmentTransaction.add(R.id.container, requestFragment).addToBackStack("request");
+            fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(), requestFragment)
+                    .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
             fragmentTransaction.commit();
         }
     }

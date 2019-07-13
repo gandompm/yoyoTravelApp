@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp;
+package yoyo.app.android.com.yoyoapp.Hotel;
 
 
 import android.os.Build;
@@ -21,6 +21,7 @@ import android.widget.TextView;
 import yoyo.app.android.com.yoyoapp.BottomSheet.RoomBottomSheetDialogFragment;
 import com.dagang.library.GradientButton;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
+import yoyo.app.android.com.yoyoapp.R;
 
 
 public class HotelDetailsFragment extends Fragment {
@@ -59,7 +60,7 @@ public class HotelDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction =  getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.container,new MoreFeatureFragment()).addToBackStack("more feature");
+                fragmentTransaction.replace(R.id.main_container,new MoreFeatureFragment()).addToBackStack("more feature");
                 fragmentTransaction.commit();
             }
         });

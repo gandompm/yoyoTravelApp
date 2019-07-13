@@ -3,7 +3,6 @@ package yoyo.app.android.com.yoyoapp.DataModels;
 public class User {
 
     private String id;
-    private String userName;
     private String firstName;
     private String lastName;
     private String email;
@@ -15,15 +14,6 @@ public class User {
     private String error;
 
 
-
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getFirstName() {
         return firstName;

@@ -43,7 +43,6 @@ public class BookingActivity extends AppCompatActivity {
     private String scheduleId, url;
     private BookingViewModel bookingViewModel;
     public ConstraintLayout constraintLayout;
-    private BookingPresenter bookingPresenter;
     public String mobileNumberString, emailString, countryCode, mobileNumberCode, fullNameString;
     public MutableLiveData<Boolean> passerngerNumLiveData;
 
@@ -98,7 +97,6 @@ public class BookingActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar_booking_book);
         constraintLayout = findViewById(R.id.cl_booking);
         travellers = new ArrayList<>();
-        bookingPresenter = new BookingPresenter(BookingActivity.this);
         backImageview = findViewById(R.id.iv_sign_out_back);
         passerngerNumLiveData = new MutableLiveData<>();
         bookingViewModel = ViewModelProviders.of(BookingActivity.this).get(BookingViewModel.class);
@@ -122,7 +120,7 @@ public class BookingActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         switch (whichFragment) {
             case 0:
-                boolean result = bookingPresenter.checkingEmptyItems(fullNameString, emailString, mobileNumberString,travellers);
+                boolean result = checkingEmptyItems(fullNameString, emailString, mobileNumberString,travellers);
                 if (result) {
                     if (!emailString.matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")) {
                         Toasty.error(this, "Your Email Address is incorrect").show();
@@ -153,6 +151,31 @@ public class BookingActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 break;
         }
+    }
+
+    public boolean checkingEmptyItems(String fullNameString, String emailString, String phoneNumberString, ArrayList<Traveller> travellers) {
+        if (fullNameString == null || fullNameString.equals(""))
+        {
+            Toasty.error(this,"full name can not be empty").show();
+            return false;
+        }
+        if (emailString == null || emailString.equals(""))
+        {
+            Toasty.error(this,getResources().getString(R.string.email_cannot_be_empty)).show();
+            return false;
+        }
+        if (phoneNumberString == null || phoneNumberString.equals(""))
+        {
+            Toasty.error(this,getResources().getString(R.string.phone_number_cannot_be_empty)).show();
+            return false;
+        }
+        for (int i = 0; i < travellers.size(); i++) {
+            if (travellers.get(i).getFirstName() == null) {
+                Toasty.error(this,"Please complete all traveller's data").show();
+                return false;
+            }
+        }
+        return true;
     }
 
 

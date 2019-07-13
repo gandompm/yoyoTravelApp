@@ -1,9 +1,7 @@
 package yoyo.app.android.com.yoyoapp.Trip;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,11 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
-import yoyo.app.android.com.yoyoapp.OrdersFragment;
+import yoyo.app.android.com.yoyoapp.Trip.ticket.OrdersFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
-import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
-import yoyo.app.android.com.yoyoapp.Flight.FlightTicketNotSignedInFragment;
-import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
@@ -27,9 +22,11 @@ import java.util.ArrayList;
 
 public class TripActivity extends AppCompatActivity implements PriceFilterBottomSheetDialogFragment.BotomSheetListener {
 
+    private static final String TAG = "TripActivity";
     public BottomNavigationView bottomNavigation;
     public int fromPrice = 0, toPrice = 20000000;
-    public long fromTime = 1158742400, toTime = 1959088000;
+    public long fromTime , toTime;
+    public String fromTimeString , toTimeString;
     public int minDuration = 1;
     public ArrayList<Category> categories;
     public Location origin;
@@ -41,16 +38,10 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-        init();
         setupBottomNavigation(savedInstanceState);
     }
 
-    private void init() {
-        bottomNavigation = findViewById(R.id.bn_main);
-        categories = new ArrayList<>();
-        origin = new Location();
-        destination = new Location();
-    }
+
 
 
     private void setupBottomNavigation(Bundle savedInstanceState) {
@@ -82,8 +73,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
     public void addFragment(Fragment fragment, String tag) {
         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container, fragment, tag);
-        ft.commit();
+        ft.replace(R.id.container, fragment, tag).commit();
     }
 
 
@@ -140,5 +130,7 @@ public class TripActivity extends AppCompatActivity implements PriceFilterBottom
             fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+
 }
 

@@ -42,7 +42,7 @@ import static android.app.Activity.RESULT_OK;
 public class EditProfileFragment extends Fragment {
 
     private Button saveButton;
-    private EditText firstnameEditText, phoneNumberEditText,lastnameEditText, usernameEditText;
+    private EditText firstnameEditText, phoneNumberEditText,lastnameEditText;
     private TextView emailTextview;
     private ImageView backImageView;
     private ImageView circleImageView;
@@ -167,7 +167,6 @@ public class EditProfileFragment extends Fragment {
             firstnameEditText.setText(user.getFirstName());
             lastnameEditText.setText(user.getLastName());
             emailTextview.setText(user.getEmail());
-            usernameEditText.setText(user.getUserName());
             if( !user.getProfilePicture().equalsIgnoreCase("") ){
                 byte[] b = Base64.decode(user.getProfilePicture(), Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -185,7 +184,6 @@ public class EditProfileFragment extends Fragment {
                 if (user != null) {
                     firstnameEditText.setText(user.getFirstName());
                     lastnameEditText.setText(user.getLastName());
-                    usernameEditText.setText(user.getUserName());
                     emailTextview.setText(user.getEmail());
                     phoneNumberEditText.setText(user.getPhoneNumber());
                 }
@@ -202,7 +200,6 @@ public class EditProfileFragment extends Fragment {
         backImageView = view.findViewById(R.id.iv_editprofile_back);
         fragmentManager = getFragmentManager();
         saveButton = view.findViewById(R.id.button_edit_profile_save);
-        usernameEditText = view.findViewById(R.id.et_edit_profile_username);
         phoneNumberEditText = view.findViewById(R.id.et_edit_profile_phone_number);
         circleImageView = view.findViewById(R.id.iv_edit_profile_img);
         profilePictureProgressbar = view.findViewById(R.id.progressbar_edit_profile_image);
@@ -239,17 +236,12 @@ public class EditProfileFragment extends Fragment {
                 {
                     
                 }
-                else if (usernameEditText.getText().toString().trim().isEmpty())
-                {
-                    usernameEditText.setError(getString(R.string.email_cannot_be_empty));
-                    Toast.makeText(getContext(), getString(R.string.please_complete_username), Toast.LENGTH_SHORT).show();
-                }
+
                 else {
                     JSONObject jsonObject = new JSONObject();
                     try {
                         // todo fix user id
                         jsonObject.put("user_id",userSharedManager.getUser().getId());
-                        jsonObject.put("username", usernameEditText.getText().toString());
                         jsonObject.put("firstname", firstnameEditText.getText().toString());
                         jsonObject.put("lastname", lastnameEditText.getText().toString());
                         jsonObject.put("email", emailTextview.getText().toString());

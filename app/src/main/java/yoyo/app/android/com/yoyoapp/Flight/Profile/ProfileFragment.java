@@ -48,7 +48,7 @@ public class ProfileFragment extends BaseFragment {
                 else if (isSignedIn)
                 {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container,new TravellerCompanionFragment()).addToBackStack("traveller companion");
+                    fragmentTransaction.replace(R.id.main_container,new TravellerCompanionFragment()).addToBackStack("traveller companion");
                     fragmentTransaction.commit();
                 }
             }
@@ -62,7 +62,7 @@ public class ProfileFragment extends BaseFragment {
                 }
                 else {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container,new RuleFragment()).addToBackStack("rules");
+                    fragmentTransaction.replace(R.id.main_container,new RuleFragment()).addToBackStack("rules");
                     fragmentTransaction.commit();
                 }
             }
@@ -77,7 +77,7 @@ public class ProfileFragment extends BaseFragment {
                 }
                 else if (isSignedIn){
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container,new EditProfileFragment()).addToBackStack("edit profile");
+                    fragmentTransaction.replace(R.id.main_container,new EditProfileFragment()).addToBackStack("edit profile");
                     fragmentTransaction.commit();
                 }
             }
@@ -92,7 +92,7 @@ public class ProfileFragment extends BaseFragment {
                 }
                 else if (isSignedIn){
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.container,new SignOutFragment()).addToBackStack("signout");
+                        fragmentTransaction.replace(R.id.main_container,new SignOutFragment()).addToBackStack("signout");
                         fragmentTransaction.commit();
                 }
             }
@@ -115,7 +115,7 @@ public class ProfileFragment extends BaseFragment {
                 }
                 else {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container,new AboutFragment()).addToBackStack("about");
+                    fragmentTransaction.replace(R.id.main_container,new AboutFragment()).addToBackStack("about");
                     fragmentTransaction.commit();
                 }
             }

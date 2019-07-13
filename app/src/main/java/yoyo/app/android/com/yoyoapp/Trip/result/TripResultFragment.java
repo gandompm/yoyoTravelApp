@@ -21,6 +21,7 @@ import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.InfiniteScrollProvider;
@@ -157,16 +158,16 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             String duration = bundle.getString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE);
         }
         tripQuery.setType(reserveType);
-        tripQuery.setFromTime(((TripActivity)getActivity()).fromTime);
-        tripQuery.setToTime(((TripActivity)getActivity()).toTime);
-        tripQuery.setMinDuration(((TripActivity)getActivity()).minDuration);
-        tripQuery.setFromPrice(((TripActivity)getActivity()).fromPrice);
-        tripQuery.setToPrice(((TripActivity)getActivity()).toPrice);
-        tripQuery.setOrigin(((TripActivity)getActivity()).origin.getCode());
-        tripQuery.setDestination(((TripActivity)getActivity()).destination.getCode());
+        tripQuery.setFromTime(((MainActivity) getActivity()).getFromTime());
+        tripQuery.setToTime(((MainActivity) getActivity()).getToTime());
+        tripQuery.setMinDuration(((MainActivity) getActivity()).getMinDuration());
+        tripQuery.setFromPrice(((MainActivity) getActivity()).getFromPrice());
+        tripQuery.setToPrice(((MainActivity) getActivity()).getToPrice());
+        tripQuery.setOrigin(((MainActivity) getActivity()).getOrigin().getCode());
+        tripQuery.setDestination(((MainActivity) getActivity()).getDestination().getCode());
         // category
         ArrayList<String> categoryCodes = new ArrayList<>();
-        for (Category category : ((TripActivity)getActivity()).categories){
+        for (Category category : ((MainActivity) getActivity()).getCategories()){
             categoryCodes.add(category.getCode());
         }
         tripQuery.setCategories(categoryCodes);
@@ -224,8 +225,8 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
     private void setupBackButton() {
-        ((TripActivity)getActivity()).minDuration =1;
-        ((TripActivity)getActivity()).categories.clear();
+        ((MainActivity) getActivity()).setMinDuration(1);
+        ((MainActivity) getActivity()).getCategories().clear();
         getFragmentManager().popBackStack();
     }
 

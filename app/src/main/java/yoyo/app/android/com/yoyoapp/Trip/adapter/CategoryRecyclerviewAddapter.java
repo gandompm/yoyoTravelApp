@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 
@@ -29,7 +30,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
         this.onItemCategorySelected = onItemCategorySelected;
         selectedCategories = new ArrayList<>();
         for (Category category :
-                ((TripActivity)context).categories) {
+                ((MainActivity) context).getCategories()) {
             selectedCategories.add(category.getName());
         }
     }

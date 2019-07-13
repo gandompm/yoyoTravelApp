@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dagang.library.GradientButton;
 import com.ramotion.foldingcell.FoldingCell;
 import com.squareup.picasso.Picasso;
+import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.details.TripDetailsFragment;
 import java.util.ArrayList;
@@ -89,12 +91,17 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putDouble("toLat",trip.getLocations().get(1).getLat());
             bundle.putDouble("toLong",trip.getLocations().get(1).getLon());
             bundle.putString("summary",trip.getSummary());
+            StringBuilder route = new StringBuilder();
+            for (Location location : trip.getLocations()) {
+                route.append(location.getTitle()).append("• ");
+            }
+            bundle.putString("route", String.valueOf(route));
 
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
             FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.container, tripDetailsFragment,"tripdetails");
-            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.add(((MainActivity)context).getCurrentContainer(), tripDetailsFragment,"tripdetails");
+            fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)context).getCurrentContainer()));
             fragmentTransaction.commit();
         });
 

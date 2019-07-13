@@ -3,19 +3,16 @@ package yoyo.app.android.com.yoyoapp.Trip.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
 import org.json.JSONException;
 import org.json.JSONObject;
-import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
@@ -26,8 +23,7 @@ public class SignInFragment extends Fragment {
 
     private static final String TAG = "SignInFragment";
     private Button signinButton;
-    private EditText userNameEditText ,passwordEditText;
-    private TextView userNameTextView ,passwordTextView;
+    private EditText emailPhoneNumberEditText,passwordEditText;
     private FragmentManager fragmentManager;
     private ProgressBar progressBar;
     private UserSharedManager userSharedManager;
@@ -44,10 +40,8 @@ public class SignInFragment extends Fragment {
 
     private void init() {
         signinButton = view.findViewById(R.id.Button_signin_signin);
-        userNameEditText = view.findViewById(R.id.et_signin_email_username);
+        emailPhoneNumberEditText = view.findViewById(R.id.et_signin_email_phone_number);
         passwordEditText = view.findViewById(R.id.et_signin_password);
-        userNameTextView = view.findViewById(R.id.tv_signin_email_username);
-        passwordTextView = view.findViewById(R.id.tv_signin_password);
         fragmentManager = getFragmentManager();
         userSharedManager = new UserSharedManager(getContext());
         progressBar = view.findViewById(R.id.progressbar);
@@ -58,8 +52,8 @@ public class SignInFragment extends Fragment {
         signinButton.setOnClickListener(v -> {
 
             Boolean flag = true;
-            if (userNameEditText.getText().toString().equals("")){
-                Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
+            if (emailPhoneNumberEditText.getText().toString().equals("")){
+                Toasty.error(getContext(),"Email Or Phone Number can not be empty!").show();
                 flag = false;
             }
             if (passwordEditText.getText().toString().equals("")){
@@ -76,7 +70,7 @@ public class SignInFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("username", userNameEditText.getText().toString());
+                    jsonObject.put("email_or_phone_number", emailPhoneNumberEditText.getText().toString());
                     jsonObject.put("password", passwordEditText.getText().toString());
 
 

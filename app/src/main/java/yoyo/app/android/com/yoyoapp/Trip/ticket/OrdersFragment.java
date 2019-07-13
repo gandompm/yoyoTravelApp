@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp;
+package yoyo.app.android.com.yoyoapp.Trip.ticket;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
+import yoyo.app.android.com.yoyoapp.MainActivity;
+import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
@@ -48,7 +50,8 @@ public class OrdersFragment extends BaseFragment {
             }
             else {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container,new TourTicketFragment()).addToBackStack("tour_ticket");
+                fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TourTicketFragment())
+                        .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
                 fragmentTransaction.commit();
             }
 

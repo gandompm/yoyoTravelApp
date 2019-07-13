@@ -9,7 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import yoyo.app.android.com.yoyoapp.DataModels.Hotel;
-import yoyo.app.android.com.yoyoapp.HotelDetailsFragment;
+import yoyo.app.android.com.yoyoapp.Hotel.HotelDetailsFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class HotelsRecyclerviewAddaptor extends RecyclerView.Adapter<HotelsRecyc
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 HotelDetailsFragment hotelDetailsFragment = new HotelDetailsFragment();
 //                citiyViewPagerFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.container, hotelDetailsFragment).addToBackStack("hoteldetails");
+                fragmentTransaction.replace(R.id.main_container, hotelDetailsFragment).addToBackStack("hoteldetails");
                 fragmentTransaction.commit();
             }
         });

@@ -1,8 +1,6 @@
 package yoyo.app.android.com.yoyoapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,11 +14,7 @@ import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragm
 import com.cpacm.library.SimpleViewPager;
 import com.cpacm.library.transformers.CyclePageTransformer;
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter;
-import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
-import yoyo.app.android.com.yoyoapp.Trip.booking.BookingActivity;
-import yoyo.app.android.com.yoyoapp.Trip.schedule.ScheduleTripFragment;
-import yoyo.app.android.com.yoyoapp.Trip.schedule.request.RequestFragment;
+import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
 
 
 public class MainPageFragment extends Fragment {
@@ -76,13 +70,11 @@ public class MainPageFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-//                sendingToSearchFragment("hotel");
-
                 Toasty.info(getContext(),"Coming soon...").show();
 //                Toast.makeText(getContext(), "Coming soon...", Toast.LENGTH_SHORT).show();
 //                RequestFragment requestFragment = new RequestFragment();
 //                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//                fragmentTransaction.add(R.id.container,requestFragment);
+//                fragmentTransaction.add(R.id.main_container,requestFragment);
 //                fragmentTransaction.addToBackStack("request");
 //                fragmentTransaction.commit();
 //
@@ -96,8 +88,7 @@ public class MainPageFragment extends Fragment {
         tripsCardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), TripActivity.class));
-                getActivity().overridePendingTransition(0,  0);
+                sendingToTripSearchFragment();
             }
         });
 
@@ -112,14 +103,14 @@ public class MainPageFragment extends Fragment {
         });
     }
 
-    private void sendingToSearchFragment(String destination) {
+    private void sendingToTripSearchFragment() {
         Bundle bundle = new Bundle();
-        bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,destination);
+        bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,"trip");
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        HotelSearchFragment hotelSearchFragment = new HotelSearchFragment();
-        hotelSearchFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.container, hotelSearchFragment).addToBackStack(destination + "search");
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        TripSearchFragment tripSearchFragment = new TripSearchFragment();
+        tripSearchFragment.setArguments(bundle);
+        fragmentTransaction.add(R.id.main_container, tripSearchFragment,"TripSearchFragment").addToBackStack(null);
         fragmentTransaction.commit();
     }
 

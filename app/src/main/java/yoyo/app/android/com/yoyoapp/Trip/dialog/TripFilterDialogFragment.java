@@ -18,6 +18,7 @@ import com.appyvet.materialrangebar.RangeBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.shawnlin.numberpicker.NumberPicker;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.CategoryRecyclerviewAddapter;
@@ -64,8 +65,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     }
 
     private void initFilter() {
-        if (((TripActivity)getActivity()).minDuration != 1)
-        numberPicker.setValue(((TripActivity)getActivity()).minDuration);
+        if (((MainActivity) getActivity()).getMinDuration() != 1)
+        numberPicker.setValue(((MainActivity) getActivity()).getMinDuration());
     }
 
     private void setupNumberPicker() {
@@ -93,18 +94,18 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
     private void setupApplyButton() {
         if (hasPriceChanged)
         {
-            ((TripActivity)getActivity()).fromPrice  = Integer.parseInt(minPrice);
-            ((TripActivity)getActivity()).toPrice = Integer.parseInt(maxPrice);
+            ((MainActivity) getActivity()).setFromPrice(Integer.parseInt(minPrice));
+            ((MainActivity) getActivity()).setToPrice(Integer.parseInt(maxPrice));
         }
         if (hasDurationChanged) {
-            ((TripActivity)getActivity()).minDuration = duration;
+            ((MainActivity) getActivity()).setMinDuration(duration);
         }
         dismiss();
         getFragmentManager().popBackStack();
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.container,new TripResultFragment());
-        fragmentTransaction.addToBackStack("triplist");
+        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TripResultFragment());
+        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
@@ -136,7 +137,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
         applyButton = view.findViewById(R.id.button_filtertrip_apply);
         cancelButton = view.findViewById(R.id.button_filtertrip_cancel);
         categorieList = new ArrayList<>();
-        selectedCategories = ((TripActivity)getActivity()).categories;
+        selectedCategories = ((MainActivity) getActivity()).getCategories();
         numberPicker = view.findViewById(R.id.number_picker);
         tripSearchViewModel = ViewModelProviders.of(getActivity()).get(TripSearchViewModel.class);
     }

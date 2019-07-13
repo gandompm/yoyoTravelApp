@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp;
+package yoyo.app.android.com.yoyoapp.Hotel;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,12 +20,14 @@ import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.BottomSheet.DatePickerBottomSheet;
+import yoyo.app.android.com.yoyoapp.MainActivity;
+import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,11 +165,11 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, DatePickerBottomSheet.startDateString);
                 bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, DatePickerBottomSheet.endDateString);
                 bundle.putLong(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, DatePickerBottomSheet.diffDays);
-                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, ((TripActivity)getActivity()).fromPrice);
-                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((TripActivity)getActivity()).toPrice);
-                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE,((TripActivity)getActivity()).fromTime);
-                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE,((TripActivity)getActivity()).toTime);
-//                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((TripActivity)getActivity()).origin);
+                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, ((MainActivity) getActivity()).getFromPrice());
+                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((MainActivity) getActivity()).getToPrice());
+                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE, ((MainActivity) getActivity()).getFromTime());
+                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE, ((MainActivity) getActivity()).getToTime());
+//                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((MainActivity)getActivity()).origin);
 
                 if (incommingBundle.equals("trip"))
                 {

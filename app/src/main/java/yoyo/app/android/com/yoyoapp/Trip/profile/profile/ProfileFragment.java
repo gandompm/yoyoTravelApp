@@ -32,6 +32,7 @@ import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Profile.*;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
@@ -78,7 +79,7 @@ public class ProfileFragment extends Fragment {
 
     private void setupAboutPage() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container,new AboutFragment()).addToBackStack("about");
+        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new AboutFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
@@ -90,25 +91,25 @@ public class ProfileFragment extends Fragment {
 
     private void setupSignOutPage() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container,new SignOutFragment()).addToBackStack("signout");
+        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new SignOutFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
     private void setupEditProfilePage() {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,new EditProfileFragment()).addToBackStack("edit profile");
+            fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new EditProfileFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
             fragmentTransaction.commit();
     }
 
     private void setupRulesPage() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container,new RuleFragment()).addToBackStack("rules");
+        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new RuleFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
     private void setupTravellerCompanionPage() {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container,new TravellerCompanionFragment()).addToBackStack("traveller companion");
+            fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TravellerCompanionFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
             fragmentTransaction.commit();
     }
 

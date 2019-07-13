@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yoyo.app.android.com.yoyoapp.HotelDetailsFragment">
+    tools:context="yoyo.app.android.com.yoyoapp.Hotel.HotelDetailsFragment">
 
     <ScrollView
         android:id="@+id/sv_hoteldetails"

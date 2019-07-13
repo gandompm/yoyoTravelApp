@@ -1,4 +1,4 @@
-package yoyo.app.android.com.yoyoapp;
+package yoyo.app.android.com.yoyoapp.Hotel;
 
 
 import android.graphics.Typeface;
@@ -32,6 +32,8 @@ import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.Utils;
 
 
 public class HotelListSearchResultFragment extends Fragment implements View.OnClickListener {

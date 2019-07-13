@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.dagang.library.GradientButton;
 import com.google.android.material.snackbar.Snackbar;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import java.text.SimpleDateFormat;
@@ -67,7 +68,7 @@ public class DatePickerFragment extends Fragment {
                 if (okSnackbar!= null)
                 {
                     okSnackbar.dismiss();
-                    ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                    ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
                 }
                 getFragmentManager().popBackStack();
             }
@@ -163,7 +164,7 @@ public class DatePickerFragment extends Fragment {
             public void onClick(View v) {
                 setupOkButton();
                 okSnackbar.dismiss();
-                ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
             }
         });
         sbView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.green));
@@ -174,7 +175,7 @@ public class DatePickerFragment extends Fragment {
             tv.setGravity(Gravity.CENTER_HORIZONTAL);
         }
         okSnackbar.show();
-        ((TripActivity)getActivity()).bottomNavigation.setVisibility(View.GONE);
+        ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.GONE);
     }
 
     private void checkInFunc() {
@@ -195,15 +196,15 @@ public class DatePickerFragment extends Fragment {
     private void calculateEndDate() {
         endDateString = getDayFormat(end);
         startDateString = getDayFormat(start);
-        ((TripActivity)getContext()).fromTime = start.getTimeInMillis() / 1000;
-        ((TripActivity)getActivity()).toTime = end.getTimeInMillis() / 1000;
+        ((MainActivity) getContext()).setFromTime(start.getTimeInMillis() / 1000);
+        ((MainActivity) getActivity()).setToTime(end.getTimeInMillis() / 1000);
         Log.d(TAG, "calculateEndDate: "+ start.getTimeInMillis());
         Log.d(TAG, "calculateStartDate2: "+ end.getTimeInMillis());
     }
 
     private void calculateStartDate() {
         startDateString = getDayFormat(start);
-        ((TripActivity)getContext()).fromTime = start.getTimeInMillis() / 1000;
+        ((MainActivity) getContext()).setFromTime(start.getTimeInMillis() / 1000);
         Log.d(TAG, "calculateStartDate: "+ start.getTimeInMillis());
     }
 
@@ -228,7 +229,7 @@ public class DatePickerFragment extends Fragment {
         arrayList.add(startDateString);
         arrayList.add(endDateString);
         consumer.accept(arrayList);
-        ((TripActivity)getActivity()).diffDays = (int) diffDays;
+        ((MainActivity) getActivity()).setDiffDays((int) diffDays);
         calendar.setEditable(true);
         getFragmentManager().popBackStack();
     }
