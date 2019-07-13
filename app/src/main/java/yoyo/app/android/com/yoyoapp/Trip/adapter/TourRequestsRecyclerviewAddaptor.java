@@ -42,6 +42,7 @@ public class TourRequestsRecyclerviewAddaptor extends RecyclerView.Adapter<TourR
         holder.completeInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 

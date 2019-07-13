@@ -64,7 +64,7 @@ public class CitiesRecyclerviewAddaptor extends RecyclerView.Adapter<CitiesRecyc
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 CitiyViewPagerFragment citiyViewPagerFragment = new CitiyViewPagerFragment();
                 citiyViewPagerFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.container, citiyViewPagerFragment).addToBackStack("cities");
+                fragmentTransaction.replace(R.id.main_container, citiyViewPagerFragment).addToBackStack("cities");
                 fragmentTransaction.commit();
 
                 itemListener.recyclerViewListClicked();

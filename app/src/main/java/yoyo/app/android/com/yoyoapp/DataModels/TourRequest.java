@@ -28,6 +28,9 @@ public class TourRequest {
     @SerializedName("status")
     @Expose
     private String status;
+    @SerializedName("schedule")
+    @Expose
+    private Schedule schedule;
 
     public String getBuyer() {
         return buyer;
@@ -78,5 +81,13 @@ public class TourRequest {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }

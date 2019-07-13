@@ -26,6 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import yoyo.app.android.com.yoyoapp.Addapters.AdapterImageSlider;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.GoogleMapActivity;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.DayPlanRecyclerviewAddaptor;
 import yoyo.app.android.com.yoyoapp.Trip.schedule.ScheduleTripFragment;
@@ -52,7 +53,7 @@ public class TripDetailsFragment extends Fragment {
             title2Textview, nameTourLeader, familyNameLeader ,locationFromTextview, locationToTextview,
             attractionsTextview, rulesTextview, transportTextview, tourLeaderLanguageTextview,
             typeTextview, dayPlanTextview, mealsTextview, passengerCountTextview, itineraryTextview,
-            descriptionTextview;
+            descriptionTextview, routeTextview;
 
     private View view;
     @Override
@@ -78,8 +79,8 @@ public class TripDetailsFragment extends Fragment {
         bundle.putString("tourImage",tourImage);
         bundle.putString("title",tripTitle);
         scheduleTripFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.container, scheduleTripFragment);
-        fragmentTransaction.addToBackStack("schedule");
+        fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(), scheduleTripFragment);
+        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
@@ -102,35 +103,35 @@ public class TripDetailsFragment extends Fragment {
         // summary
         descriptionTextview.setText(bundle.getString("summary"));
         // transports
-        String transports ="";
+        StringBuilder transports = new StringBuilder();
         for (String transport : bundle.getStringArrayList("transportation")) {
-            transports = transport + " ";
+            transports.append(transport).append(" ");
         }
-        transportTextview.setText(transports);
+        transportTextview.setText(transports.toString());
         // type
-        String types ="";
+        StringBuilder types = new StringBuilder();
         for (String type : bundle.getStringArrayList("categories")) {
-            types = type + "\n";
+            types.append(type).append("\n");
         }
-        typeTextview.setText(types);
+        typeTextview.setText(types.toString());
         // attractions
-        String attractions ="";
+        StringBuilder attractions = new StringBuilder();
         for (String attraction : bundle.getStringArrayList("attractions")) {
-            attractions = attraction + "\n";
+            attractions.append(attraction).append("\n");
         }
-        attractionsTextview.setText(attractions);
+        attractionsTextview.setText(attractions.toString());
         // rules
-        String rules ="";
+        StringBuilder rules = new StringBuilder();
         for (String rule : bundle.getStringArrayList("rules")) {
-            rules = rule + "\n";
+            rules.append(rule).append("\n");
         }
-        rulesTextview.setText(rules);
+        rulesTextview.setText(rules.toString());
         // meals
-        String meals ="";
+        StringBuilder meals = new StringBuilder();
         for (String meal : bundle.getStringArrayList("meals")) {
-            meals = meal + "\n";
+            meals.append(meal).append("\n");
         }
-        mealsTextview.setText(meals);
+        mealsTextview.setText(meals.toString());
         // images
         ArrayList<String> images = new ArrayList<>();
         for (String image : bundle.getStringArrayList("gallery")) {
@@ -141,6 +142,8 @@ public class TripDetailsFragment extends Fragment {
         // day plan
         dayPlans = bundle.getStringArrayList("itinerary");
         dayPlanTextview.setText(bundle.getStringArrayList("itinerary").get(0));
+        // route
+        routeTextview.setText(bundle.getString("route"));
         setupDayRecyclerview();
     }
 
@@ -157,6 +160,7 @@ public class TripDetailsFragment extends Fragment {
         familyNameLeader = view.findViewById(R.id.tv_tripdetails_tourleader_familyname);
         locationFromTextview = view.findViewById(R.id.tv_tripdetails_location_from);
         locationToTextview = view.findViewById(R.id.tv_tripdetails_location_to);
+        routeTextview = view.findViewById(R.id.tv_tripdetails_route);
         attractionsTextview = view.findViewById(R.id.tv_tripdetails_attractions);
         transportTextview = view.findViewById(R.id.tv_tripdetails_transport);
         rulesTextview = view.findViewById(R.id.tv_tripdetails_rule);

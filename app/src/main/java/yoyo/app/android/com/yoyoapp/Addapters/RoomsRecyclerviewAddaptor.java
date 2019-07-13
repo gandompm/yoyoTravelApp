@@ -1,26 +1,18 @@
 package yoyo.app.android.com.yoyoapp.Addapters;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
-import android.widget.Toast;
-import yoyo.app.android.com.yoyoapp.DataModels.Hotel;
 import yoyo.app.android.com.yoyoapp.DataModels.Room;
-import yoyo.app.android.com.yoyoapp.HotelDetailsFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 

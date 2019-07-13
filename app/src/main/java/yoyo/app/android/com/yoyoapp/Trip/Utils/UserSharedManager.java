@@ -24,7 +24,6 @@ public class UserSharedManager {
         editor.putString("firstName",user.getFirstName());
         editor.putString("lastName",user.getLastName());
         editor.putString("email", user.getEmail());
-        editor.putString("username", user.getUserName());
         editor.putString("phonenumber", user.getPhoneNumber());
         if (user.getProfilePicture() != null) {
             editor.putString("profile_picture",user.getProfilePicture());
@@ -42,7 +41,6 @@ public class UserSharedManager {
         user.setFirstName(sharedPreference.getString("firstName",""));
         user.setLastName(sharedPreference.getString("lastName",""));
         user.setEmail(sharedPreference.getString("email",""));
-        user.setUserName(sharedPreference.getString("username",""));
         user.setLanguage(sharedPreference.getString("language","en"));
         user.setLanguage(sharedPreference.getString("phonenumber",""));
         user.setProfilePicture(sharedPreference.getString("profile_picture",""));

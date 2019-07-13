@@ -37,16 +37,14 @@ public class CitiyViewPagerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_city_view_pager,container,false);
 
-        ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.GONE);
-        ((MainActivity) getContext()).frameLayout.setPadding(0, 0, 0, 0);
+        ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.GONE);
+        ((MainActivity) getContext()).getMainFrameLayout().setPadding(0, 0, 0, 0);
 
         mViewPager = view.findViewById(R.id.materialViewPager);
         Bundle bundle = getArguments();
         cityName = bundle.getString(Utils.KEY_BUNDLE_CITY_NAME);
         cityImage = bundle.getString(Utils.KEY_BUNDLE_CITY_IMAGE);
 
-//        CityFragment cityFragment = new CityFragment();
-//        cityFragment.setArguments(bundle);
 
         AboutCityFragment aboutCityFragment = new AboutCityFragment();
         aboutCityFragment.setArguments(bundle);
@@ -147,9 +145,9 @@ public class CitiyViewPagerFragment extends Fragment {
             public void onClick(View v) {
                 float scale = getResources().getDisplayMetrics().density;
                 int dpAsPixels = (int) (50 * scale + 0.5f);
-                ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
-                ((MainActivity)getActivity()).frameLayout.setPadding(0, 0, 0, dpAsPixels);
-                ((MainActivity)getActivity()).bottomNavigation.setVisibility(View.VISIBLE);
+                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
+                ((MainActivity) getActivity()).getMainFrameLayout().setPadding(0, 0, 0, dpAsPixels);
+                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
                 getFragmentManager().popBackStack();
             }
         });

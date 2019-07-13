@@ -47,9 +47,9 @@
             android:id="@+id/textView82"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Attractions"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView78"/>
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_location_from"/>
     <TextView
-            android:text="Mesr Village, Mesr Desert"
+            tools:text="Mesr Village, Mesr Desert"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
@@ -71,7 +71,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline14" android:layout_marginTop="8dp"
             android:visibility="gone" tools:visibility="visible"/>
     <TextView
-            android:text="camping at Desert, Desert Hike, Stargazing at Night"
+            tools:text="camping at Desert, Desert Hike, Stargazing at Night"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
@@ -83,37 +83,36 @@
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/guideline14"
             android:visibility="gone" tools:visibility="visible"/>
     <TextView
-            android:text="Isfahan, Yazd"
+            tools:text="Isfahan, Yazd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv_tripdetails_location_from" app:layout_constraintStart_toEndOf="@+id/textView78"
             android:layout_marginStart="8dp"
             android:autoSizeTextType="uniform"
-            android:maxLines="1"
-            app:layout_constraintTop_toTopOf="@+id/textView78"
-            app:layout_constraintBottom_toBottomOf="@+id/textView78" android:fontFamily="@font/roboto_regular"
+            android:maxLines="2"
+            android:fontFamily="@font/roboto_regular"
             android:textSize="@dimen/small" android:textColor="@color/black2" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline14"/>
+            app:layout_constraintEnd_toStartOf="@+id/guideline14" android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView69"/>
     <TextView
-            android:text="Isfahan"
+            tools:text="Isfahan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
-            android:maxLines="1"
+            android:maxLines="2"
             android:id="@+id/tv_tripdetails_location_to"
-            app:layout_constraintTop_toTopOf="@+id/textView79"
-            app:layout_constraintBottom_toBottomOf="@+id/textView79"
             app:layout_constraintStart_toEndOf="@+id/textView79" android:layout_marginStart="8dp"
             android:fontFamily="@font/roboto_regular" android:textSize="@dimen/small"
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp" android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView74"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView76"
             android:textColor="@color/green_teal" android:fontFamily="@font/roboto_medium" android:text="Meals"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView79"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_location_to"
             android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="@+id/guideline14"/>
 
     <TextView
@@ -133,7 +132,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_transport" android:layout_marginTop="8dp"/>
 
     <TextView
-            android:text="Breakfast 0, Launch 2, Dinner 3"
+            tools:text="Breakfast 0, Launch 2, Dinner 3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"
@@ -144,7 +143,7 @@
             android:textColor="@color/black2" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp"/>
     <TextView
-            android:text="Bus and Car"
+            tools:text="Bus and Car"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/tv_tripdetails_transport"
@@ -179,13 +178,13 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView86" android:textColor="@color/green_teal"
             android:fontFamily="@font/roboto_medium" android:text="Type" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView101"
-            app:layout_constraintStart_toStartOf="@+id/textView101"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_tripdetails_route"
+            app:layout_constraintStart_toStartOf="@+id/tv_tripdetails_route"/>
     <TextView
-            android:text="tehran-mashad-isfehan"
+            tools:text="tehran-mashad-isfehan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/textView101"
+            android:id="@+id/tv_tripdetails_route"
             android:autoSizeTextType="uniform"
             android:maxLines="2"
             app:layout_constraintStart_toStartOf="@+id/textView99"
@@ -194,7 +193,7 @@
             android:textColor="@color/black2" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline14"/>
     <TextView
-            android:text="Transport by bus from yazd to Khur and vice verca to Mesr and by car"
+            tools:text="Transport by bus from yazd to Khur and vice verca to Mesr and by car"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:autoSizeTextType="uniform"

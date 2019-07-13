@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.TravellerCompanionRecyclerviewAddapter;
@@ -56,7 +57,8 @@ public class TravellerCompanionFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStack();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.container,detailsFragment).addToBackStack("traveller companion edit");
+        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),detailsFragment)
+                .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
         fragmentTransaction.commit();
     }
 
@@ -116,8 +118,8 @@ public class TravellerCompanionFragment extends Fragment {
                 TravellerCompanionsEditFragment travellerCompanionsEditFragment = new TravellerCompanionsEditFragment();
                 travellerCompanionsEditFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.container,travellerCompanionsEditFragment);
-                fragmentTransaction.addToBackStack("edit traveller companion");
+                fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(),travellerCompanionsEditFragment);
+                fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
                 fragmentTransaction.commit();
             }
         });

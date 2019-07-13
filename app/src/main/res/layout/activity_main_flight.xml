@@ -7,7 +7,7 @@
                 android:layoutDirection="ltr">
 
     <FrameLayout
-            android:id="@+id/container"
+            android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="50dp"/>
@@ -18,7 +18,7 @@
             style="@style/BottomTabLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignBottom="@+id/container"
+            android:layout_alignBottom="@+id/main_container"
             android:background="@color/white" />
 
 

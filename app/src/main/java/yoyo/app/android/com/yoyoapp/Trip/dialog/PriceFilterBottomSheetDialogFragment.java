@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import com.appyvet.materialrangebar.RangeBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -45,8 +46,8 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
         resetTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((TripActivity)getActivity()).fromPrice = 0;
-                ((TripActivity)getActivity()).toPrice = 20000000;
+                ((MainActivity) getActivity()).setFromPrice(0);
+                ((MainActivity) getActivity()).setToPrice(20000000);
                 rangeBar.setRangePinsByValue(10,5500);
             }
         });

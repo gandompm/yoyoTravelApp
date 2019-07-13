@@ -72,7 +72,7 @@ public class TravellerCompanionRecyclerviewAddapter extends RecyclerView.Adapter
                     detailsFragment.setArguments(bundle);
                     FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.container,detailsFragment).addToBackStack("traveller companion edit");
+                    fragmentTransaction.replace(R.id.main_container,detailsFragment).addToBackStack("traveller companion edit");
                     fragmentTransaction.commit();
                 }
                 else

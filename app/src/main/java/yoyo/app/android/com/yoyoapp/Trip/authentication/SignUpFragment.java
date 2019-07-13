@@ -25,7 +25,7 @@ import yoyo.app.android.com.yoyoapp.Utils;
 
 public class SignUpFragment extends Fragment {
 
-    private EditText firstNameEditText, lastNameEditText , userNameEditText , passwordEditText, emailEditText, phoneNumberEditText;
+    private EditText firstNameEditText, lastNameEditText , passwordEditText, emailEditText, phoneNumberEditText;
     private Button signUpButton;
     private ProgressBar progressBar;
     private UserSharedManager userSharedManager;
@@ -89,11 +89,6 @@ public class SignUpFragment extends Fragment {
                 flag =false;
 
             }
-            if (userNameEditText.getText().toString().equals("")){
-                Toasty.error(getContext(),getString(R.string.youserUsername_can_not_be_emp_y)).show();
-                flag =false;
-
-            }
             if (passwordEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
                 flag =false;
@@ -126,7 +121,6 @@ public class SignUpFragment extends Fragment {
                 try {
                     jsonObjectRequest.put("firstname", firstNameEditText.getText().toString());
                     jsonObjectRequest.put("lastname", lastNameEditText.getText().toString());
-                    jsonObjectRequest.put("username", userNameEditText.getText().toString());
                     jsonObjectRequest.put("email", emailEditText.getText().toString());
                     jsonObjectRequest.put("phone_number", phoneNumberEditText.getText().toString());
                     jsonObjectRequest.put("password", passwordEditText.getText().toString());
@@ -147,7 +141,6 @@ public class SignUpFragment extends Fragment {
     private void init() {
         firstNameEditText = view.findViewById(R.id.et_signup_firstname);
         lastNameEditText = view.findViewById(R.id.et_signup_lastname);
-        userNameEditText = view.findViewById(R.id.et_signup_username);
         passwordEditText = view.findViewById(R.id.et_signup_password);
         phoneNumberEditText = view.findViewById(R.id.et_signup_phone_number);
         emailEditText = view.findViewById(R.id.et_signup_email);

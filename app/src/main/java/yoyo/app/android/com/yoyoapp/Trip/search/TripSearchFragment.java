@@ -11,6 +11,7 @@ import android.widget.*;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
@@ -62,7 +63,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         setupBundle();
         setupOnclickListner();
         setupSearchbutton();
-        backButton.setOnClickListener(v -> getActivity().finish());
+        backButton.setOnClickListener(v ->{
+            fragmentManager.popBackStack(((MainActivity)getActivity()).getCurrentContainer(),0);
+        } );
         getDestination();
         return view;
     }
@@ -91,7 +94,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                     public void onSelected(BaseSearchDialogCompat dialog, Location item, int position) {
 
                         searchDestinationTextView.setText(item.getTitle());
-                        ((TripActivity)getActivity()).destination = item;
+                        ((MainActivity) getActivity()).setDestination(item);
                         dialog.dismiss();
                     }
                 });
@@ -126,6 +129,8 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         searchCityLogo2 = view.findViewById(R.id.iv_search_search_city3);
         filterLogo = view.findViewById(R.id.iv_search_filter);
         nightNumTextview = view.findViewById(R.id.tv_search_night_num);
+        checkInTextview.setText(((MainActivity) getActivity()).getFromTimeString());
+        checkOutTextview.setText(((MainActivity) getActivity()).getToTimeString());
     }
 
     private void setupBundle() {
@@ -158,10 +163,6 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 if(searchDestinationTextView.getText().equals("Destination")){
                     Toasty.normal(getContext(), "Destination can not be empty.").show();
                 }else {
-                    if (checkInTextview.getText().equals("Select Date") || checkOutTextview.getText().equals("Select Date")){
-                        Toasty.normal(getContext(), "Check-In & Check-Out can not be empty.").show();
-
-                    }else {
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         Bundle bundle = new Bundle();
 
@@ -171,12 +172,10 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
                         TripResultFragment tripListSearchResultFragment = new TripResultFragment();
                         tripListSearchResultFragment.setArguments(bundle);
-                        fragmentTransaction.add(R.id.container, tripListSearchResultFragment);
-                        fragmentTransaction.addToBackStack("triplist");
+                        fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer() ,tripListSearchResultFragment);
+                        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
                         fragmentTransaction.commit();
                     }
-
-                }
             }
         });
 
@@ -195,7 +194,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.slide_in_up,R.anim.no_animation);
-            fragmentTransaction.add(R.id.container,new DatePickerFragment(arrayList -> {
+            fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(),new DatePickerFragment(arrayList -> {
                  checkInTextview.setText(arrayList.get(0));
                  checkOutTextview.setText(arrayList.get(1));
                  nightNumTextview.setText(arrayList.get(2));
@@ -204,7 +203,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 endDateString = arrayList.get(4);
 
             }));
-            fragmentTransaction.addToBackStack("date_picker");
+            fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
             fragmentTransaction.commit();
         }
 

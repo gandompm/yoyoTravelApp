@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.TourTicket;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.details.TripDetailsFragment;
 import yoyo.app.android.com.yoyoapp.Trip.ticket.TourTicketDetailFragment;
@@ -66,8 +67,8 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
                 TourTicketDetailFragment tourTicketDetailFragment = new TourTicketDetailFragment();
                 tourTicketDetailFragment.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(R.id.container, tourTicketDetailFragment,"tourTicketDetail");
-                fragmentTransaction.addToBackStack("tourTicketDetail");
+                fragmentTransaction.add(((MainActivity)context).getCurrentContainer() , tourTicketDetailFragment);
+                fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)context).getCurrentContainer()));
                 fragmentTransaction.commit();
             }
         });

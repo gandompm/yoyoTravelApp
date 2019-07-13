@@ -1,7 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.ticket.order;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
@@ -17,11 +16,8 @@ import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
 import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.DataModels.TourRequest;
 import yoyo.app.android.com.yoyoapp.DataModels.TourTicket;
-import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
-import yoyo.app.android.com.yoyoapp.OrdersFragment;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.TourRequestsRecyclerviewAddaptor;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.TourTicketRecyclerviewAddaptor;
 
@@ -60,7 +56,7 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
         ticketTypeToggleSwitch.setOnChangeListener(new ToggleSwitch.OnChangeListener() {
             @Override
             public void onToggleSwitchChanged(int i) {
-                if(i==0)
+                if(i == 0)
                 {
                     addaptor = new TourTicketRecyclerviewAddaptor(getContext(),tourTicketsList);
                     recyclerView.setAdapter(addaptor);
@@ -138,7 +134,6 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
         ticketTypeToggleSwitch = view.findViewById(R.id.toggleSwitch_trip_search);
         ticketTypeToggleSwitch.setCheckedPosition(0);
     }
-
 
     @Override
     public void onClick(View v) {

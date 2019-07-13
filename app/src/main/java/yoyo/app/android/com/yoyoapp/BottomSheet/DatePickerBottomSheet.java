@@ -186,15 +186,15 @@ public class DatePickerBottomSheet {
     private void calculateEndDate() {
         endDateString = getDayFormat(end);
         startDateString = getDayFormat(start);
-        ((TripActivity)context).fromTime = start.getTimeInMillis();
-        ((TripActivity)context).toTime = end.getTimeInMillis();
+        ((MainActivity) context).setFromTime(start.getTimeInMillis());
+        ((MainActivity) context).setToTime(end.getTimeInMillis());
         Log.d(TAG, "calculateEndDate: "+ start.getTimeInMillis());
         Log.d(TAG, "calculateStartDate2: "+ end.getTimeInMillis());
     }
 
     private void calculateStartDate() {
         startDateString = getDayFormat(start);
-        ((TripActivity)context).fromTime = start.getTimeInMillis();
+        ((MainActivity) context).setFromTime(start.getTimeInMillis());
         Log.d(TAG, "calculateStartDate: "+ start.getTimeInMillis());
     }
 

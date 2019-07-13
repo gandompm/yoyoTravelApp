@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.Toast;
 import androidx.core.util.Consumer;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -57,10 +56,7 @@ public class ApiService {
                     JSONArray tripJsonArray = response.getJSONArray("trips");
 
                         for (int i = 0; i < tripJsonArray.length(); i++) {
-
-
                                 Trip trip = new Trip();
-
 
                                 JSONObject mainObject = tripJsonArray.getJSONObject(i);
                                 trip.setTripId(mainObject.getString("trip_id"));
@@ -152,10 +148,6 @@ public class ApiService {
 //                                ArrayList<Location> locations = new ArrayList<>();
                                 JSONArray locationJsonArray = mainObject.getJSONArray("locations");
 
-
-                            Log.d(TAG, "getTripListRequest: aaaaaaaaaa" + locationJsonArray.toString());
-                            Log.d(TAG, "getTripListRequest: aaaaaaaaaa length: " + locationJsonArray.length());
-
                             for (int j = 0; j < locationJsonArray.length() ; j++) {
                                     JSONObject locationObject = locationJsonArray.getJSONObject(j);
                                     Location location = new Location();
@@ -168,8 +160,6 @@ public class ApiService {
 
 
                                 locations.put(location.getOrder(), location);
-
-
                                 }
 
                             ArrayList<Location> locationsArraylist = new ArrayList<>(locations.size());
@@ -305,7 +295,6 @@ public class ApiService {
             try {
                 user.setFirstName(response.getString("firstname"));
                 user.setLastName(response.getString("lastname"));
-                user.setUserName(response.getString("username"));
                 user.setEmail(response.getString("email"));
                 user.setPhoneNumber(response.getString("phone_number"));
                 user.setToken(response.getString("token"));
@@ -348,7 +337,6 @@ public class ApiService {
             try {
                 user.setFirstName(response.getString("firstname"));
                 user.setLastName(response.getString("lastname"));
-                user.setUserName(response.getString("username"));
                 user.setEmail(response.getString("email"));
                 user.setPhoneNumber(response.getString("phone_number"));
                 user.setProfilePicture(response.getString("profile_thumbnail_picture"));
@@ -392,7 +380,6 @@ public class ApiService {
                         try {
                             user.setFirstName(response.getString("firstname"));
                             user.setLastName(response.getString("lastname"));
-                            user.setUserName(response.getString("username"));
                             user.setEmail(response.getString("email"));
                             user.setPhoneNumber(response.getString("phone_number"));
                             user.setProfilePicture(response.getString("profile_picture"));
@@ -437,7 +424,6 @@ public class ApiService {
                         try {
                             user.setFirstName(response.getString("firstname"));
                             user.setLastName(response.getString("lastname"));
-                            user.setUserName(response.getString("username"));
                             user.setEmail(response.getString("email"));
                             user.setProfilePicture(response.getString("profile_picture"));
                             user.setPhoneNumber(response.getString("phone_number"));
@@ -878,4 +864,5 @@ public class ApiService {
         jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
+
 }

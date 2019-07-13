@@ -1,9 +1,16 @@
 package yoyo.app.android.com.yoyoapp.DataModels;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Schedule {
 
     private String id;
+    @SerializedName("price")
+    @Expose
     private double price;
+    @SerializedName("min_capacity")
+    @Expose
     private int minCapacity;
     private int maxCapacity;
     private int remainingCapacity;

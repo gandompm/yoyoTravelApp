@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
@@ -65,7 +66,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
                     Intent i = new Intent(context, AuthenticationActivity.class);
                     i.putExtra("fromSchedule", true);
                     context.startActivity(i);
-                    ((TripActivity)context).overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+                    ((MainActivity)context).overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
                 }
                 else
                 {
@@ -74,7 +75,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
                     intent.putExtra("price",schedules.get(position).getPrice());
                     intent.putExtra("minCapacity",schedules.get(position).getMinCapacity());
                     context.startActivity(intent);
-                    ((TripActivity)context).overridePendingTransition(0,  0);
+                    ((MainActivity)context).overridePendingTransition(0,  0);
                 }
             }
         });
