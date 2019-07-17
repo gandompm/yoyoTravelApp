@@ -47,19 +47,15 @@ public class TravellerCompanionFragment extends Fragment {
 
         // add button for adding traveller companion
         floatingActionButton.setOnClickListener(v -> setupEditTravellerPage());
-        backImageview.setOnClickListener(v -> getFragmentManager().popBackStack());
+        backImageview.setOnClickListener(v -> getActivity().onBackPressed());
 
         return view;
     }
 
     private void setupEditTravellerPage() {
         TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStack();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),detailsFragment)
-                .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        getActivity().onBackPressed();
+        ((MainActivity)getActivity()).showFragment(this,detailsFragment,false);
     }
 
     private void init() {
@@ -117,10 +113,7 @@ public class TravellerCompanionFragment extends Fragment {
 
                 TravellerCompanionsEditFragment travellerCompanionsEditFragment = new TravellerCompanionsEditFragment();
                 travellerCompanionsEditFragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(),travellerCompanionsEditFragment);
-                fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-                fragmentTransaction.commit();
+                ((MainActivity)getActivity()).showFragment(TravellerCompanionFragment.this,travellerCompanionsEditFragment,true);
             }
         });
         recyclerView.setAdapter(travellerRecyclerviewaddapter);

@@ -70,7 +70,7 @@ public class TravellerCompanionsEditFragment extends Fragment {
 
         saveButton.setOnClickListener(v -> saveTravellerCompanion());
         deleteButton.setOnClickListener(v -> deleteTravllerComapnion());
-        backImageview.setOnClickListener(v -> fragmentManager.popBackStack());
+        backImageview.setOnClickListener(v -> getActivity().onBackPressed());
         nationalityTextview.setOnClickListener(v -> setupCountryList());
         dateOfBirthTextview.setOnClickListener(v -> setupDatePickers());
         getCountryList();

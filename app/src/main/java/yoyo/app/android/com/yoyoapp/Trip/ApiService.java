@@ -865,4 +865,33 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
+    public void sendCancelTripRequest(String bookingId , Consumer<String> bookingIdConsumer)
+    {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP +"api/trip/cancel/" + bookingId ,null,
+                response -> {
+                    try {
+                        String payment_url = response.getString("payment_url");
+                        bookingIdConsumer.accept(payment_url);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }, error -> {
+            bookingIdConsumer.accept(null);
+            errorHandling(error);
+            error.printStackTrace();
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "JWT "+ JWT);
+                params.put("api-key", apiKey);
+                return params;
+            }
+        };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
 }

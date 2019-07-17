@@ -83,7 +83,7 @@
             android:paddingTop="@dimen/small_margin"
             android:clipToPadding="false"
             app:shimmer_demo_child_count="10"
-            app:shimmer_demo_layout="@layout/shimmer_item_trip"
+            app:shimmer_demo_layout="@layout/shimmer_item_order_trip"
             app:shimmer_demo_layout_manager_type="linear_vertical"
             app:shimmer_demo_angle="20"
             app:layout_constraintTop_toBottomOf="@+id/iv_trip_search_back"

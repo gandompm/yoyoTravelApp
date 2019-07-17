@@ -90,7 +90,6 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                     public void onSelected(BaseSearchDialogCompat dialog, SampleSearchModel item, int position) {
 
                         searchTextView.setText(item.getTitle());
-//                        ((TripActivity)getActivity()).location = item.getTitle();
                         dialog.dismiss();
                     }
                 });
@@ -101,8 +100,6 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
 
     private void setupFilterPriceButtonsheet() {
 
-        priceFilterBottomSheetFragment = PriceFilterBottomSheetDialogFragment.newInstance();
-        priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
     }
 
     private void init() {

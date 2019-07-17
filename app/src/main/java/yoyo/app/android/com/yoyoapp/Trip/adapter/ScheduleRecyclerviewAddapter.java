@@ -11,10 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
-import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 import yoyo.app.android.com.yoyoapp.Trip.booking.BookingActivity;
@@ -63,10 +61,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
             public void onClick(View v) {
                 if (userSharedManager.getToken().isEmpty())
                 {
-                    Intent i = new Intent(context, AuthenticationActivity.class);
-                    i.putExtra("fromSchedule", true);
-                    context.startActivity(i);
-                    ((MainActivity)context).overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+                    ((MainActivity)context).popUpSignInSignUpActivity();
                 }
                 else
                 {

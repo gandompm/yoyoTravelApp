@@ -42,7 +42,7 @@ public class UserSharedManager {
         user.setLastName(sharedPreference.getString("lastName",""));
         user.setEmail(sharedPreference.getString("email",""));
         user.setLanguage(sharedPreference.getString("language","en"));
-        user.setLanguage(sharedPreference.getString("phonenumber",""));
+        user.setPhoneNumber(sharedPreference.getString("phonenumber",""));
         user.setProfilePicture(sharedPreference.getString("profile_picture",""));
 
         return user;

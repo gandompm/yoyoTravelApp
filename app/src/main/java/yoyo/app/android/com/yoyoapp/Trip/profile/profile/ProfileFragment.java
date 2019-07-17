@@ -36,6 +36,7 @@ import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
+import yoyo.app.android.com.yoyoapp.Trip.authentication.SignUpFragment;
 import yoyo.app.android.com.yoyoapp.Trip.profile.SignOutFragment;
 import yoyo.app.android.com.yoyoapp.Trip.profile.editProfile.EditProfileFragment;
 import yoyo.app.android.com.yoyoapp.Trip.profile.travellerCompanion.TravellerCompanionFragment;
@@ -72,15 +73,12 @@ public class ProfileFragment extends Fragment {
         aboutImageview.setOnClickListener(v -> setupAboutPage());
         languageImageView.setOnClickListener(v -> setupLanguage());
 
-
         return view;
     }
 
 
     private void setupAboutPage() {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new AboutFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),false);
     }
 
     // show user the language dialog fragment
@@ -90,27 +88,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupSignOutPage() {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new SignOutFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),false);
     }
 
     private void setupEditProfilePage() {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new EditProfileFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-            fragmentTransaction.commit();
+        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),false);
     }
 
     private void setupRulesPage() {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new RuleFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),false);
     }
 
     private void setupTravellerCompanionPage() {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TravellerCompanionFragment()).addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-            fragmentTransaction.commit();
+        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),false);
     }
 
     private void retrieveProfileData() {
@@ -133,7 +123,6 @@ public class ProfileFragment extends Fragment {
         user = userSharedManager.getUser();
         if (userSharedManager.getToken().equals(""))
         {
-            popUpSignInSignUpActivity();
             isSignedIn = false;
         }
         else
@@ -154,8 +143,7 @@ public class ProfileFragment extends Fragment {
 
     // setup signup activity
     private void popUpSignInSignUpActivity() {
-        startActivity(new Intent(getActivity(), AuthenticationActivity.class));
-        getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+        ((MainActivity)getActivity()).popUpSignInSignUpActivity();
     }
 
 

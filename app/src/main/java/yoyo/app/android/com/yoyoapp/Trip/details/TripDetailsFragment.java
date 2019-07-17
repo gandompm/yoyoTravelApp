@@ -72,16 +72,13 @@ public class TripDetailsFragment extends Fragment {
     }
 
     private void sendToSchedulePage() {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         ScheduleTripFragment scheduleTripFragment = new ScheduleTripFragment();
         Bundle bundle = new Bundle();
         bundle.putString("tripId",tripId);
         bundle.putString("tourImage",tourImage);
         bundle.putString("title",tripTitle);
         scheduleTripFragment.setArguments(bundle);
-        fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(), scheduleTripFragment);
-        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        ((MainActivity)getActivity()).showFragment(this,scheduleTripFragment,false);
     }
 
     private void setupViews() {
@@ -96,10 +93,9 @@ public class TripDetailsFragment extends Fragment {
         tourLeaderLanguageTextview.setText(bundle.getString("language"));
         locationFromTextview.setText(bundle.getString("locationTitleFrom"));
         locationToTextview.setText(bundle.getString("locationTitleTo"));
-//        passengerCountTextview.setText(bundle.getInt("passengersCount") + " purchased");
         fromLatlng = new LatLng(bundle.getDouble("fromLat"), bundle.getDouble("fromLong"));
         toLatlng = new LatLng(bundle.getDouble("toLat"), bundle.getDouble("toLong"));
-        Picasso.with(getContext()).load(bundle.getString("leaderPicture")).into(tourLeaderImageview);
+        Picasso.with(getContext()).load(bundle.getString("leaderPicture")).placeholder(getContext().getDrawable(R.drawable.avatar)).into(tourLeaderImageview);
         // summary
         descriptionTextview.setText(bundle.getString("summary"));
         // transports
@@ -198,7 +194,7 @@ public class TripDetailsFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(v -> getFragmentManager().popBackStack());
+        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
 
         CollapsingToolbarLayout collapsingToolbar = view.findViewById(R.id.collapsing_toolbar);
 
@@ -279,7 +275,7 @@ public class TripDetailsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
-           getFragmentManager().popBackStack();
+            getActivity().onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);

@@ -45,8 +45,7 @@ public class SignOutFragment extends Fragment {
 
         backImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                fragmentManager.popBackStack();
+            public void onClick(View v){getActivity().onBackPressed();
             }
         });
 

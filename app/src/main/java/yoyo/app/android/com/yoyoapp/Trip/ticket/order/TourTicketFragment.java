@@ -58,11 +58,13 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
             public void onToggleSwitchChanged(int i) {
                 if(i == 0)
                 {
-                    addaptor = new TourTicketRecyclerviewAddaptor(getContext(),tourTicketsList);
+                    tourTicketsList.clear();
+                    addaptor = new TourTicketRecyclerviewAddaptor(getContext(),TourTicketFragment.this,tourTicketsList);
                     recyclerView.setAdapter(addaptor);
                     getTourTickets();
                 }
                 else {
+                    tourRequestArrayList.clear();
                     requestAddapter = new TourRequestsRecyclerviewAddaptor(getContext(),tourRequestArrayList);
                     recyclerView.setAdapter(requestAddapter);
                     getTourRequests();
@@ -106,7 +108,7 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
                     tourTicketsList.clear();
                     tourTicketsList.addAll(tourTickets);
                     if (addaptor == null) {
-                        addaptor = new TourTicketRecyclerviewAddaptor(getContext(),tourTicketsList);
+                        addaptor = new TourTicketRecyclerviewAddaptor(getContext(),TourTicketFragment.this,tourTicketsList);
                         recyclerView.setAdapter(addaptor);
                     }
                     else
@@ -138,7 +140,7 @@ public class TourTicketFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v.getId() == backImageview.getId() || v.getId() == backTextview.getId()){
-            getFragmentManager().popBackStack();
+            getActivity().onBackPressed();
         }
     }
 }

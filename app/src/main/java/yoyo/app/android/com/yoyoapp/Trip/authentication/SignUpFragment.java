@@ -45,6 +45,7 @@ public class SignUpFragment extends Fragment {
     }
 
     private void signUpRequest(JSONObject jsonObjectRequest) {
+        signUpButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
         authViewModel.initSignUp(jsonObjectRequest);
         authViewModel.getSignUpResult().observe(getActivity(), new Observer<User>() {
@@ -61,13 +62,13 @@ public class SignUpFragment extends Fragment {
                         getActivity().overridePendingTransition(0, 0);
                     }
                     else {
-                        Intent i = new Intent(getActivity(), MainActivity.class);
+                        Intent i = new Intent();
                         i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-                        startActivity(i);
+                        getActivity().setResult(getActivity().RESULT_OK,i);
                         getActivity().finish();
-                        getActivity().overridePendingTransition(0, 0);
                     }
                 }
+                signUpButton.setClickable(true);
             }
         });
     }
@@ -77,45 +78,35 @@ public class SignUpFragment extends Fragment {
 
         signUpButton.setOnClickListener(v -> {
 
-
             Boolean flag = true;
 
             if (firstNameEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.first_name_not_empty)).show();
-                flag =false;
+                flag = false;
             }
-            if (lastNameEditText.getText().toString().equals("")){
+            else if (lastNameEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.lastname_not_empty)).show();
-                flag =false;
-
+                flag = false;
             }
-            if (passwordEditText.getText().toString().equals("")){
+            else if (passwordEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
-                flag =false;
-
+                flag = false;
             }
-            if (passwordEditText.getText().length() <= 7){
+            else if (passwordEditText.getText().length() <= 7){
                 Toasty.error(getContext(),"Password can not be less than 8 characters").show();
-                flag =false;
+                flag = false;
 
             }
-            if (emailEditText.getText().toString().equals("")){
+            else if (emailEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.email_can_not_empty)).show();
-                flag =false;
-
+                flag = false;
             }
-            if (!emailEditText.getText().toString().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
+            else if (!emailEditText.getText().toString().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
                 Toasty.error(getContext(),"Your Email Address is incorrect").show();
-                flag =false;
-                Log.d(TAG, "onClick: aaaaa7");
-
-
+                flag = false;
             }
-
-
 
             if (flag){
-
                 progressBar.setVisibility(View.VISIBLE);
                 JSONObject jsonObjectRequest = new JSONObject();
                 try {
