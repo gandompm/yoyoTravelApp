@@ -40,7 +40,7 @@ public class ScheduleTripFragment extends Fragment {
     private ArrayList<Schedule> scheduleArrayList;
     private ScheduleViewModel scheduleViewModel;
     private ScheduleRecyclerviewAddapter addapter;
-    private ImageView tourImage;
+    private ImageView tourImage, backImageView;
     private int position = 0;
     private String tripId, tripTitle, tripImage;
     private Button requestDateButton;
@@ -58,6 +58,7 @@ public class ScheduleTripFragment extends Fragment {
         Picasso.with(getContext()).load(tripImage).into(tourImage);
         toolbar.setBackground(tourImage.getDrawable());
         requestDateButton.setOnClickListener(v-> sendToRequestPage());
+        backImageView.setOnClickListener(v-> getActivity().onBackPressed());
         setupCalenderRecyclerview();
 
         return view;
@@ -79,23 +80,20 @@ public class ScheduleTripFragment extends Fragment {
         toolbar = view.findViewById(R.id.tb_schedule);
         shimmerRecyclerView = view.findViewById(R.id.shimmer_recycler_view);
         userSharedManager = new UserSharedManager(getContext());
+        backImageView = view.findViewById(R.id.iv_schedule_back);
     }
 
     private void sendToRequestPage() {
         if (userSharedManager.getToken().isEmpty())
         {
-            startActivity(new Intent(getContext(), AuthenticationActivity.class));
-            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+            ((MainActivity)getActivity()).popUpSignInSignUpActivity();
         }
         else {
             Bundle bundle = new Bundle();
             bundle.putString("tripId",tripId);
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
             RequestFragment requestFragment = new RequestFragment();
             requestFragment.setArguments(bundle);
-            fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(), requestFragment)
-                    .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-            fragmentTransaction.commit();
+            ((MainActivity)getActivity()).showFragment(this,requestFragment,false);
         }
     }
 

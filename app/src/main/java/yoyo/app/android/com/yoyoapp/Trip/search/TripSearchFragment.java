@@ -1,8 +1,6 @@
 package yoyo.app.android.com.yoyoapp.Trip.search;
 
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +15,7 @@ import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
 import yoyo.app.android.com.yoyoapp.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,15 +23,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.result.TripResultFragment;
 import yoyo.app.android.com.yoyoapp.Utils;
-
-import static com.google.android.gms.internal.zzagr.runOnUiThread;
 
 public class TripSearchFragment extends Fragment implements View.OnClickListener  {
 
@@ -60,12 +55,9 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         view = inflater.inflate(R.layout.fragment_search_trip,container,false);
 
         init();
-        setupBundle();
         setupOnclickListner();
         setupSearchbutton();
-        backButton.setOnClickListener(v ->{
-            fragmentManager.popBackStack(((MainActivity)getActivity()).getCurrentContainer(),0);
-        } );
+        backButton.setOnClickListener(v -> getActivity().onBackPressed());
         getDestination();
         return view;
     }
@@ -87,17 +79,20 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
     // setup cities search dialog
     private void setupSearchDestination()
     {
-        SimpleSearchDialogCompat<Location> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
+                SimpleSearchDialogCompat<Location> simpleSearchDialogCompat =  new SimpleSearchDialogCompat(getContext(), "Search...",
                 "Where do you like to go?", null, destinationsList,
                 new SearchResultListener<Location>() {
                     @Override
                     public void onSelected(BaseSearchDialogCompat dialog, Location item, int position) {
-
                         searchDestinationTextView.setText(item.getTitle());
                         ((MainActivity) getActivity()).setDestination(item);
                         dialog.dismiss();
                     }
                 });
+                if (destinationsList.isEmpty())
+                simpleSearchDialogCompat.setLoading(true);
+                else
+                    simpleSearchDialogCompat.setLoading(false);
 
         simpleSearchDialogCompat.show();
     }
@@ -105,7 +100,20 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
 
     private void setupFilterPriceButtomsheet() {
 
-        priceFilterBottomSheetFragment = PriceFilterBottomSheetDialogFragment.newInstance();
+        priceFilterBottomSheetFragment = new PriceFilterBottomSheetDialogFragment((min, max) -> {
+            TextView filterPriceTextview = view.findViewById(R.id.tv_search_price_filter);
+            DecimalFormat decimalFormat = new DecimalFormat("#,###,###");
+            String minimum = decimalFormat.format(Integer.valueOf(min));
+            String maximum = decimalFormat.format(Integer.valueOf(max));
+            filterPriceTextview.setText("From " + minimum + " to "+ maximum  +"$");
+            if (!min.equals("10") || !max.equals("5500"))
+            {
+                ((MainActivity)getActivity()).setFromPrice(Integer.parseInt(min));
+                ((MainActivity)getActivity()).setToPrice(Integer.parseInt(max));
+            }
+            else
+                filterPriceTextview.setText(getResources().getString(R.string.filter_by_price_optional));
+        });
         priceFilterBottomSheetFragment.show(getFragmentManager(), "add_price_filter_dialog_fragment");
     }
 
@@ -133,16 +141,7 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
         checkOutTextview.setText(((MainActivity) getActivity()).getToTimeString());
     }
 
-    private void setupBundle() {
-        Bundle bundle = getArguments();
-        incommingBundle = bundle.getString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE);
 
-        if (incommingBundle.contains("trip"))
-        {
-            titleTextview.setText(getString(R.string.tours));
-            smallTitleTextview.setText(getString(R.string.going_anywhere));
-        }
-    }
 
     private void setupOnclickListner() {
         checkInTextview.setOnClickListener(this);
@@ -163,18 +162,14 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 if(searchDestinationTextView.getText().equals("Destination")){
                     Toasty.normal(getContext(), "Destination can not be empty.").show();
                 }else {
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         Bundle bundle = new Bundle();
-
                         bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString);
                         bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString);
                         bundle.putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays);
-
                         TripResultFragment tripListSearchResultFragment = new TripResultFragment();
                         tripListSearchResultFragment.setArguments(bundle);
-                        fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer() ,tripListSearchResultFragment);
-                        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-                        fragmentTransaction.commit();
+
+                        ((MainActivity)getActivity()).showFragment(TripSearchFragment.this,tripListSearchResultFragment,false);
                     }
             }
         });
@@ -192,19 +187,14 @@ public class TripSearchFragment extends Fragment implements View.OnClickListener
                 || v.getId() == R.id.iv_search_calender_logo1
                 || v.getId() == R.id.iv_search_calender_logo2)
         {
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.slide_in_up,R.anim.no_animation);
-            fragmentTransaction.add(((MainActivity)getActivity()).getCurrentContainer(),new DatePickerFragment(arrayList -> {
-                 checkInTextview.setText(arrayList.get(0));
-                 checkOutTextview.setText(arrayList.get(1));
-                 nightNumTextview.setText(arrayList.get(2));
+            ((MainActivity)getActivity()).showFragment(this,new DatePickerFragment(arrayList -> {
+                checkInTextview.setText(arrayList.get(0));
+                checkOutTextview.setText(arrayList.get(1));
+                nightNumTextview.setText(arrayList.get(2));
                 diffDays = arrayList.get(2);
                 startDateString = arrayList.get(3);
                 endDateString = arrayList.get(4);
-
-            }));
-            fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-            fragmentTransaction.commit();
+            }),true);
         }
 
         if (v.getId() == R.id.iv_search_search_city3

@@ -9,15 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import com.dagang.library.GradientButton;
 import com.ramotion.foldingcell.FoldingCell;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
-import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.Trip.details.TripDetailsFragment;
@@ -30,22 +28,17 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
     private static final String TAG = "FoldingCellRecyclerview";
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private Context context;
+    private Fragment currentFragment;
     private ArrayList<Trip> tripArrayList = new ArrayList<>();
 
 
-    public FoldingCellRecyclerviewAdapter(Context context) {
+    public FoldingCellRecyclerviewAdapter(Context context, Fragment currentFragment) {
         this.context = context;
+        this.currentFragment = currentFragment;
     }
 
     public void addTrips(List<Trip> trips) {
         tripArrayList.addAll(trips);
-        notifyDataSetChanged();
-    }
-
-    public void clearTrips() {
-        tripArrayList.clear();
-        // fixing bug
-        unfoldedIndexes.clear();
         notifyDataSetChanged();
     }
 
@@ -99,10 +92,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
 
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
-            FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(((MainActivity)context).getCurrentContainer(), tripDetailsFragment,"tripdetails");
-            fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)context).getCurrentContainer()));
-            fragmentTransaction.commit();
+            ((MainActivity)context).showFragment(currentFragment ,tripDetailsFragment, false);
         });
 
         holder.itemView.setOnClickListener(v->
@@ -207,7 +197,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             operator.setText(trip.getAgency());
             tripTitle.setText(trip.getTitle());
             tripGroup.setText(trip.getTour().getName());
-            Picasso.with(context).load(trip.getGallery().get(0)).into(tripImg);
+            Picasso.with(context).load(trip.getGallery().get(0)).placeholder(context.getResources().getDrawable(R.drawable.blue_round_border_bg)).into(tripImg);
             //TODO: fix this shit
             String str = trip.getLocations().get(0).getTitle();
             String[] splited = str.split("\\s+");
@@ -222,7 +212,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             duraion.setText(String.valueOf(trip.getDayNum()) + " Days");
             durationBig.setText(trip.getDayNum() + " Days");
             tripLeaderName.setText(trip.getTripLeader().getName());
-            Picasso.with(context).load(trip.getTripLeader().getPicture()).into(tripLeaderImg);
+            Picasso.with(context).load(trip.getTripLeader().getPicture()).placeholder(context.getResources().getDrawable(R.drawable.avatar)).into(tripLeaderImg);
             type.setText(trip.getCategories().get(0));
             fromBig.setText(trip.getLocations().get(0).getTitle());
             toBig.setText(trip.getLocations().get(1).getTitle());

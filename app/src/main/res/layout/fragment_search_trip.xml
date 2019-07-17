@@ -5,7 +5,8 @@
                 android:id="@+id/rl_search_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gray_pattern">
+                android:background="@drawable/gray_pattern"
+                android:clickable="true">
 
     <com.github.florent37.shapeofview.shapes.ArcView
             android:layout_width="match_parent"

@@ -106,12 +106,9 @@ public class MainPageFragment extends Fragment {
     private void sendingToTripSearchFragment() {
         Bundle bundle = new Bundle();
         bundle.putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE,"trip");
-
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         TripSearchFragment tripSearchFragment = new TripSearchFragment();
         tripSearchFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.main_container, tripSearchFragment,"TripSearchFragment").addToBackStack(null);
-        fragmentTransaction.commit();
+        ((MainActivity)getActivity()).showFragment(this,tripSearchFragment,false);
     }
 
 }

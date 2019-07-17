@@ -167,6 +167,7 @@ public class EditProfileFragment extends Fragment {
             firstnameEditText.setText(user.getFirstName());
             lastnameEditText.setText(user.getLastName());
             emailTextview.setText(user.getEmail());
+            phoneNumberEditText.setText(user.getPhoneNumber());
             if( !user.getProfilePicture().equalsIgnoreCase("") ){
                 byte[] b = Base64.decode(user.getProfilePicture(), Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -259,7 +260,7 @@ public class EditProfileFragment extends Fragment {
                             {
                                 Toast.makeText(getContext(), getString(R.string.saved), Toast.LENGTH_SHORT).show();
                                 userSharedManager.saveUser(user);
-                                fragmentManager.popBackStack();
+                                getActivity().onBackPressed();
                             }
                             else
                             {

@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/small_margin"
             android:clipToPadding="false"
+            android:visibility="visible"
             app:shimmer_demo_child_count="10"
             app:shimmer_demo_layout="@layout/shimmer_item_trip"
             app:shimmer_demo_layout_manager_type="linear_vertical"
@@ -79,10 +80,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
+    <uk.co.imallan.jellyrefresh.JellyRefreshLayout
+            android:id="@+id/jelly_refresh_home"
+            android:text="loading..."
+            android:textColor="@color/white"
+            app:jellyColor="@color/result_trip_blue"
+            app:pullHeight="128dp"
+            app:triggerHeight="96dp"
+            app:headerHeight="56dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainrv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:divider="@android:color/transparent"
@@ -96,6 +109,9 @@
                 android:layout_below="@+id/tv_trip_list_results_num"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
         />
+
+    </uk.co.imallan.jellyrefresh.JellyRefreshLayout>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbutton_hotellistsearchresult"

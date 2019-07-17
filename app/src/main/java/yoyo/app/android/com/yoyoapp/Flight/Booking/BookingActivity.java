@@ -173,8 +173,8 @@ public class BookingActivity extends AppCompatActivity {
         });
     }
 
-   // get traveller number from previous fragment and
-   // initialize travellers array list
+    // get traveller number from previous fragment and
+    // initialize travellers array list
     private ArrayList<Traveller> getTravellersNum() {
 
         Intent intent = getIntent();
@@ -224,13 +224,13 @@ public class BookingActivity extends AppCompatActivity {
                 Boolean flag = true;
 
 
-                    if (firstnameEditText.getText().toString().equals("")){
-                        Toasty.error(BookingActivity.this,getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.first_name_cannot_be_empty)).show();
-                        flag =false;
-                    }if (lastnameEditText.getText().toString().equals("")){
-                        Toasty.error(BookingActivity.this,getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.last_name_cannot_be_empty)).show();
-                        flag =false;
-                    }
+                if (firstnameEditText.getText().toString().equals("")){
+                    Toasty.error(BookingActivity.this,getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.first_name_cannot_be_empty)).show();
+                    flag =false;
+                }if (lastnameEditText.getText().toString().equals("")){
+                    Toasty.error(BookingActivity.this,getString(R.string.traveler)+ " " +  " " +getResources().getString(R.string.last_name_cannot_be_empty)).show();
+                    flag =false;
+                }
 
 
                 traveller.setFirstName(firstnameEditText.getText().toString());
@@ -341,24 +341,24 @@ public class BookingActivity extends AppCompatActivity {
             }
         }
         // if traveller is iranian, visible nationality code field
-            if (traveller.isIranian())
-            {
-                iranianCodeEditText.setText(traveller.getIranianNationalCode());
-                passportNumberTextview.setVisibility(View.GONE);
-                passpotNumberEditText.setVisibility(View.GONE);
-                iranianCodeEditText.setVisibility(View.VISIBLE);
-                iraninanCodeTextview.setVisibility(View.VISIBLE);
-                isIranian = true;
-            }
-            // if traveller is not iranian, visible passport field
-            else {
-                passpotNumberEditText.setText(traveller.getPassportNumber());
-                passportNumberTextview.setVisibility(View.VISIBLE);
-                passpotNumberEditText.setVisibility(View.VISIBLE);
-                iranianCodeEditText.setVisibility(View.GONE);
-                iraninanCodeTextview.setVisibility(View.GONE);
-                isIranian = false;
-            }
+        if (traveller.isIranian())
+        {
+            iranianCodeEditText.setText(traveller.getIranianNationalCode());
+            passportNumberTextview.setVisibility(View.GONE);
+            passpotNumberEditText.setVisibility(View.GONE);
+            iranianCodeEditText.setVisibility(View.VISIBLE);
+            iraninanCodeTextview.setVisibility(View.VISIBLE);
+            isIranian = true;
+        }
+        // if traveller is not iranian, visible passport field
+        else {
+            passpotNumberEditText.setText(traveller.getPassportNumber());
+            passportNumberTextview.setVisibility(View.VISIBLE);
+            passpotNumberEditText.setVisibility(View.VISIBLE);
+            iranianCodeEditText.setVisibility(View.GONE);
+            iraninanCodeTextview.setVisibility(View.GONE);
+            isIranian = false;
+        }
     }
 
     // access to first fragment class method (updateaddapter)
@@ -381,13 +381,13 @@ public class BookingActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 switch (whichFragment)
                 {
-                     case 0:
-                         if (firstFragment!= null)
-                         {
-                             emailString = firstFragment.emailEditText.getText().toString();
-                             phoneNumberString = firstFragment.mobileNumber + firstFragment.mobilenumberEditText.getText().toString();
-                             Log.d(TAG, "onClick: asasasasasasasas  " + emailString + "  " + phoneNumberString);
-                         }
+                    case 0:
+                        if (firstFragment!= null)
+                        {
+                            emailString = firstFragment.emailEditText.getText().toString();
+                            phoneNumberString = firstFragment.mobileNumber + firstFragment.mobilenumberEditText.getText().toString();
+                            Log.d(TAG, "onClick: asasasasasasasas  " + emailString + "  " + phoneNumberString);
+                        }
                         int result = bookingPresenter.checkingEmptyItems(emailString,phoneNumberString,travellers);
                         if (result == 200)
                         {
@@ -405,34 +405,34 @@ public class BookingActivity extends AppCompatActivity {
                         {
                             Toasty.error(BookingActivity.this, getString(R.string.please_complete_passernger)+ " " + (1 + result) + " " + getString(R.string.info)).show();
                         }
-                         progressBar.setVisibility(View.GONE);
-                             break;
-                     case 1:
+                        progressBar.setVisibility(View.GONE);
+                        break;
+                    case 1:
 
-                         //TODO: FAST FIX SOLUTION
-                         if ((serverDeadlineDate.getTime()+12600000 - nowDate.getTime()) > 0) {
-                             new CheckInternetConnection(BookingActivity.this, frameLayout, new CheckInternetConnection.OnInternetConnected() {
-                                 @Override
-                                 public void onConnected(boolean result) {
-                                     if (result)
-                                     {
-                                         sendPaymentRequest();
-                                     }
-                                 }
-                             });
-                         }
-                         else
-                         {
-                             startActivity(new Intent(BookingActivity.this, MainFlightActivity.class));
-                         }
-                         progressBar.setVisibility(View.GONE);
-                         break;
-                      case 2:
-                                startActivity(new Intent(BookingActivity.this, MainFlightActivity.class));
-                                finish();
-                          progressBar.setVisibility(View.GONE);
-                              break;
-        }
+                        //TODO: FAST FIX SOLUTION
+                        if ((serverDeadlineDate.getTime()+12600000 - nowDate.getTime()) > 0) {
+                            new CheckInternetConnection(BookingActivity.this, frameLayout, new CheckInternetConnection.OnInternetConnected() {
+                                @Override
+                                public void onConnected(boolean result) {
+                                    if (result)
+                                    {
+                                        sendPaymentRequest();
+                                    }
+                                }
+                            });
+                        }
+                        else
+                        {
+                            startActivity(new Intent(BookingActivity.this, MainFlightActivity.class));
+                        }
+                        progressBar.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        startActivity(new Intent(BookingActivity.this, MainFlightActivity.class));
+                        finish();
+                        progressBar.setVisibility(View.GONE);
+                        break;
+                }
             }
         });
     }

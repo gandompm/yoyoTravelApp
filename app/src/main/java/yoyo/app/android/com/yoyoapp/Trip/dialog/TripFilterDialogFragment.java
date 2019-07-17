@@ -1,15 +1,12 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +17,9 @@ import com.shawnlin.numberpicker.NumberPicker;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.CategoryRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.Trip.result.TripResultFragment;
+import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchFragment;
 import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -101,19 +98,14 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment{
             ((MainActivity) getActivity()).setMinDuration(duration);
         }
         dismiss();
-        getFragmentManager().popBackStack();
-
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TripResultFragment());
-        fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-        fragmentTransaction.commit();
+        getActivity().onBackPressed();
+        ((MainActivity)getActivity()).showFragment(new TripSearchFragment(),new TripResultFragment(),false);
     }
 
     private void setupPriceRangeBar() {
         rangeBarPrice.setOnRangeBarChangeListener(new RangeBar.OnRangeBarChangeListener() {
             @Override
-            public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex,
-                                              int rightPinIndex, String leftPinValue, String rightPinValue) {
+            public void onRangeChangeListener(RangeBar rangeBar, int leftPinIndex, int rightPinIndex, String leftPinValue, String rightPinValue) {
                 hasPriceChanged = true;
                 minPrice = leftPinValue;
                 maxPrice = rightPinValue;

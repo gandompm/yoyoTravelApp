@@ -1,6 +1,5 @@
 package yoyo.app.android.com.yoyoapp.Trip.result;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,12 @@ import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.llollox.androidtoggleswitch.widgets.ToggleSwitch;
+import uk.co.imallan.jellyrefresh.JellyRefreshLayout;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.DataModels.Trip;
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.InfiniteScrollProvider;
 import yoyo.app.android.com.yoyoapp.Trip.adapter.FoldingCellRecyclerviewAdapter;
 import yoyo.app.android.com.yoyoapp.Trip.dialog.TripFilterDialogFragment;
@@ -46,6 +45,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private View view;
     private boolean isMoreDataAvailable = true;
     private ToggleSwitch tripTypeToggleSwitch;
+    private JellyRefreshLayout jellyRefreshLayout;
     private ImageView backImageView;
     private TextView backTextView;
     @Nullable
@@ -61,9 +61,28 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         getTrips();
         setupToggleButton();
         setupOnclickListener();
+        refresh();
 
         return view;
     }
+
+    private void refresh() {
+
+            jellyRefreshLayout.setPullToRefreshListener(view ->
+            {
+                jellyRefreshLayout.setRefreshing(true);
+                getTrips();
+            });
+            View loadingView = LayoutInflater.from(getContext()).inflate(R.layout.view_loading, null);
+            jellyRefreshLayout.setLoadingView(loadingView);
+            jellyRefreshLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    jellyRefreshLayout.setRefreshing(false);
+                }
+            });
+    }
+
 
     private void setupToggleButton() {
         tripTypeToggleSwitch.setOnChangeListener(new ToggleSwitch.OnChangeListener() {
@@ -71,15 +90,17 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             public void onToggleSwitchChanged(int i) {
                 page = 1;
                 isMoreDataAvailable = true;
-                adapter = new FoldingCellRecyclerviewAdapter(getContext());
+                adapter = new FoldingCellRecyclerviewAdapter(getContext(), TripResultFragment.this);
                 recyclerView.setAdapter(adapter);
                 if(i==0)
                 {
                     setupQuery("FIXED");
+                    shimmerRecycler.showShimmerAdapter();
                     getTrips();
                 }
                 else {
                     setupQuery("FLEXIBLE");
+                    shimmerRecycler.showShimmerAdapter();
                     getTrips();
                 }
             }
@@ -90,7 +111,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         recyclerView = view.findViewById(R.id.mainrv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new FoldingCellRecyclerviewAdapter(getContext());
+        adapter = new FoldingCellRecyclerviewAdapter(getContext(),this);
         recyclerView.setAdapter(adapter);
         InfiniteScrollProvider infiniteScrollProvider = new InfiniteScrollProvider();
         infiniteScrollProvider.attach(recyclerView, () -> {
@@ -112,7 +133,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
 
 
     private void getTrips() {
-        shimmerRecycler.showShimmerAdapter();
         tripListViewModel = ViewModelProviders.of(getActivity()).get(TripListViewModel.class);
         tripListViewModel.initTripList(page,tripQuery);
         tripListViewModel.getTripList().observe(getActivity(), new Observer<List<Trip>>() {
@@ -130,6 +150,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
                         page++;
                     }
                     shimmerRecycler.hideShimmerAdapter();
+                    jellyRefreshLayout.setRefreshing(false);
                 }
             }
         });
@@ -174,6 +195,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
     private void init() {
+        jellyRefreshLayout = view.findViewById(R.id.jelly_refresh_home);
         floatingActionButton = view.findViewById(R.id.fbutton_hotellistsearchresult);
         shimmerRecycler = view.findViewById(R.id.shimmer_recycler_view);
         backImageView = view.findViewById(R.id.iv_trip_search_back);
@@ -206,8 +228,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
 
-
-
     private void setupOnclickListener() {
         backTextView.setOnClickListener(this);
         backImageView.setOnClickListener(this);
@@ -227,7 +247,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private void setupBackButton() {
         ((MainActivity) getActivity()).setMinDuration(1);
         ((MainActivity) getActivity()).getCategories().clear();
-        getFragmentManager().popBackStack();
+        getActivity().onBackPressed();
     }
 
 

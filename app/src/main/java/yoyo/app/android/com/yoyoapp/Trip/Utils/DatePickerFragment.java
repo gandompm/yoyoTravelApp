@@ -22,7 +22,7 @@ import com.dagang.library.GradientButton;
 import com.google.android.material.snackbar.Snackbar;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,26 +62,20 @@ public class DatePickerFragment extends Fragment {
     }
 
     private void setupCloseButton() {
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (okSnackbar!= null)
-                {
-                    okSnackbar.dismiss();
-                    ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
-                }
-                getFragmentManager().popBackStack();
+        closeButton.setOnClickListener(v -> {
+            if (okSnackbar!= null)
+            {
+                okSnackbar.dismiss();
+                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
             }
+            getActivity().onBackPressed();
         });
     }
 
     private void setupDefaultDateValue() {
-
         startDateString = getDayFormat(defaultC);
         defaultC.add(Calendar.DAY_OF_YEAR, +7);
         endDateString = getDayFormat(defaultC);
-
-
 
         diffDays = 7;
     }
@@ -231,7 +225,7 @@ public class DatePickerFragment extends Fragment {
         consumer.accept(arrayList);
         ((MainActivity) getActivity()).setDiffDays((int) diffDays);
         calendar.setEditable(true);
-        getFragmentManager().popBackStack();
+        getActivity().onBackPressed();
     }
 
 

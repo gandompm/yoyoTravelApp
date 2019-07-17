@@ -1,34 +1,41 @@
 package yoyo.app.android.com.yoyoapp
 
+import android.app.Activity
 import android.content.Intent
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
 import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight
+import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager
 import yoyo.app.android.com.yoyoapp.Trip.ticket.OrdersFragment
 import yoyo.app.android.com.yoyoapp.Trip.Utils.Versioning
+import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity
 import yoyo.app.android.com.yoyoapp.Trip.profile.profile.ProfileFragment
 import yoyo.app.android.com.yoyoapp.Trip.ticket.order.TourTicketFragment
+import java.lang.Exception
 
 import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
+import java.util.logging.Logger
 
 class MainActivity : AppCompatActivity() {
     var languageSetup: LanguageSetup
-    var currentContainer = R.id.main_container
-    private var currentFragmentTag = MAIN_FRAGMENT_TAG
+    private val AUTH_CALL_BACK_CODE = 1001
+    private var currentContainer = R.id.main_container
+    private var currentTabTag = MAIN_TAB_TAG
     lateinit var bottomNavigation: BottomNavigationView
     lateinit var mainFrameLayout: FrameLayout
+    var isFirstFragment = true
     // Trip Search Query Parameters
     var fromPrice = 0
     var toPrice = 20000000
@@ -42,12 +49,15 @@ class MainActivity : AppCompatActivity() {
     var destination: Location
     var diffDays = 7
 
+    private val homeBackStack = Stack<Fragment>()
+    private val profileBackStack = Stack<Fragment>()
+    private val orderBackStack = Stack<Fragment>()
 
     companion object {
         var isSingnedIn = false
-        private const val MAIN_FRAGMENT_TAG = "home_fragment"
-        private const val PROFILE_FRAGMENT_TAG = "profile_fragment"
-        private const val ORDER_FRAGMENT_TAG = "order_fragment"
+        private const val MAIN_TAB_TAG = "home_tab"
+        private const val PROFILE_TAB_TAG = "profile_tab"
+        private const val ORDER_TAB_TAG = "order_tab"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,9 +88,8 @@ class MainActivity : AppCompatActivity() {
             val bundle = Bundle()
             bundle.putBoolean("showTicket", true)
             tourTicketFragment.arguments = bundle
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.main_container, tourTicketFragment).addToBackStack("ticket")
-            fragmentTransaction.commit()
+            currentContainer = R.id.order_container
+            showFragment(OrdersFragment(),tourTicketFragment,false)
         } else {
             languageSetup.loadLanguageFromSharedPref()
             checkingSignIn()
@@ -90,7 +99,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-   init{
+   init
+   {
         languageSetup = LanguageSetup(this)
         // initializing Trip Query
         categories = ArrayList()
@@ -106,12 +116,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupFragments() {
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.main_container, MainPageFragment(), MAIN_FRAGMENT_TAG)
-            add(R.id.profile_container, ProfileFragment(), PROFILE_FRAGMENT_TAG)
-            add(R.id.order_container, OrdersFragment(), ORDER_FRAGMENT_TAG)
+            add(R.id.main_container, MainPageFragment(), MAIN_TAB_TAG)
+            add(R.id.profile_container, ProfileFragment(), PROFILE_TAB_TAG)
+            add(R.id.order_container, OrdersFragment(), ORDER_TAB_TAG)
         }.commit()
 
-        setAndShowCurrentFragment(MAIN_FRAGMENT_TAG)
+        setAndShowCurrentFragment(MAIN_TAB_TAG)
     }
 
     private fun setupBottomNavigation() {
@@ -119,15 +129,17 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation_main.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bn_home -> {
-                    setAndShowCurrentFragment(MAIN_FRAGMENT_TAG)
+                    setAndShowCurrentFragment(MAIN_TAB_TAG)
                     true
                 }
                 R.id.bn_profile -> {
-                    setAndShowCurrentFragment(PROFILE_FRAGMENT_TAG)
+                    setAndShowCurrentFragment(PROFILE_TAB_TAG)
+                    if (!isSingnedIn) popUpSignInSignUpActivity()
                     true
                 }
                 R.id.bn_orders -> {
-                    setAndShowCurrentFragment(ORDER_FRAGMENT_TAG)
+                    setAndShowCurrentFragment(ORDER_TAB_TAG)
+                    if (!isSingnedIn) popUpSignInSignUpActivity()
                     true
                 }
                 else -> false
@@ -135,13 +147,48 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    public fun popUpSignInSignUpActivity() {
+        startActivityForResult(Intent(this, AuthenticationActivity::class.java),AUTH_CALL_BACK_CODE)
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
+    }
+
     private fun setAndShowCurrentFragment(tag: String) {
-        hideAllFragments()
-        currentFragmentTag = tag
-        when (tag) {
-            MAIN_FRAGMENT_TAG -> configForMainFragmentAndShow()
-            PROFILE_FRAGMENT_TAG -> configForProfileFragmentAndShow()
-            ORDER_FRAGMENT_TAG -> configForOrderFragmentAndShow()
+        if (!isFirstFragment && currentTabTag == tag)
+            goToFirstPageInTab()
+        else
+        {
+            hideAllFragments()
+            currentTabTag = tag
+            when (tag) {
+                MAIN_TAB_TAG -> configForMainFragmentAndShow()
+                PROFILE_TAB_TAG -> configForProfileFragmentAndShow()
+                ORDER_TAB_TAG -> configForOrderFragmentAndShow()
+            }
+            isFirstFragment = false
+        }
+    }
+
+    private fun goToFirstPageInTab() {
+        var fragment: Fragment? = null
+        when (currentTabTag) {
+            MAIN_TAB_TAG ->
+            {
+                for(i in 0 until homeBackStack.size)
+                    fragment = homeBackStack.pop()
+            }
+            PROFILE_TAB_TAG -> {
+                for(i in 0 until profileBackStack.size)
+                    fragment = profileBackStack.pop()
+            }
+            ORDER_TAB_TAG -> {
+                for(i in 0 until orderBackStack.size)
+                    fragment = orderBackStack.pop()
+            }
+        }
+        supportFragmentManager.commit {
+            fragment?.let {
+                replace(currentContainer, fragment)
+            }
         }
     }
 
@@ -169,41 +216,45 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation_main.menu.getItem(0).isChecked = true
     }
 
-    // setup fragment
-    private fun addFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager.popBackStack()
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main_container, fragment, tag)
-        ft.commit()
-    }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 0) {
-            handlePopBackstack()
-        } else {
-            super.onBackPressed()
+        try {
+            val fragment = when (currentContainer) {
+                R.id.main_container -> homeBackStack.pop()
+                R.id.profile_container -> profileBackStack.pop()
+                R.id.order_container -> orderBackStack.pop()
+                else -> null
+            }
+            supportFragmentManager.commit {
+                fragment?.let {
+                    replace(currentContainer, fragment)
+                }
+            }
+        } catch (e: Exception) {
+            finish()
         }
     }
 
-    private fun handlePopBackstack() {
-        val state = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1).name?.toInt()
-
-        state?.let {
-            if (state != currentContainer) {
-                when (state) {
-                    R.id.order_container -> setAndShowCurrentFragment(ORDER_FRAGMENT_TAG)
-                    R.id.main_container -> setAndShowCurrentFragment(MAIN_FRAGMENT_TAG)
-                    R.id.profile_container -> setAndShowCurrentFragment(PROFILE_FRAGMENT_TAG)
-                    else -> super.onBackPressed()
-                }
-            } else {
-                super.onBackPressed()
+    fun showFragment(currentFragment: Fragment, nextFragment: Fragment, hasAnimation: Boolean = false) {
+        supportFragmentManager.commit {
+            if(hasAnimation) setCustomAnimations(R.anim.slide_in_up,R.anim.slide_down)
+            add(currentContainer, nextFragment)
+            when (currentContainer) {
+                R.id.main_container -> homeBackStack.push(currentFragment)
+                R.id.profile_container -> profileBackStack.push(currentFragment)
+                R.id.order_container -> orderBackStack.push(currentFragment)
             }
-        } ?: super.onBackPressed()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == AUTH_CALL_BACK_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                recreate()
+                bottom_navigation_main.menu.getItem(1).isChecked = true
+            }
+        }
         for (fragment in supportFragmentManager.fragments) {
             fragment.onActivityResult(requestCode, resultCode, data)
         }
@@ -211,8 +262,7 @@ class MainActivity : AppCompatActivity() {
 
     // check if the user has before signed in or not
     private fun checkingSignIn() {
-        val userSharedManager = UserSharedManagerFlight(this@MainActivity)
-        userSharedManager.client
+        val userSharedManager = UserSharedManager(this@MainActivity)
         if (userSharedManager.token != "") {
             isSingnedIn = true
         }

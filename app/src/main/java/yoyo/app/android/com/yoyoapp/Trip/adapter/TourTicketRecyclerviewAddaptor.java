@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,12 +28,14 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
 
     private static final String TAG = "TourTicketRecyclerviewA";
     private Context context;
+    private Fragment currentFragment;
     private ArrayList<TourTicket> tourTickets;
 
 
-    public TourTicketRecyclerviewAddaptor(Context context, ArrayList<TourTicket> tourTickets)
+    public TourTicketRecyclerviewAddaptor(Context context, Fragment currentFragment, ArrayList<TourTicket> tourTickets)
     {
         this.context = context;
+        this.currentFragment = currentFragment;
         this.tourTickets = tourTickets;
     }
 
@@ -66,10 +69,7 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
 
                 TourTicketDetailFragment tourTicketDetailFragment = new TourTicketDetailFragment();
                 tourTicketDetailFragment.setArguments(bundle);
-                FragmentTransaction fragmentTransaction = ((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.add(((MainActivity)context).getCurrentContainer() , tourTicketDetailFragment);
-                fragmentTransaction.addToBackStack(String.valueOf(((MainActivity)context).getCurrentContainer()));
-                fragmentTransaction.commit();
+                ((MainActivity)context).showFragment(currentFragment, tourTicketDetailFragment, false);
             }
         });
 

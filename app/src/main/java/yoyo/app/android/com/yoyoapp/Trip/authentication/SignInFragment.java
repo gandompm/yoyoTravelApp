@@ -56,11 +56,11 @@ public class SignInFragment extends Fragment {
                 Toasty.error(getContext(),"Email Or Phone Number can not be empty!").show();
                 flag = false;
             }
-            if (passwordEditText.getText().toString().equals("")){
+            else if (passwordEditText.getText().toString().equals("")){
                 Toasty.error(getContext(),getString(R.string.Password_can_not_be_empty)).show();
                 flag = false;
             }
-            if (passwordEditText.getText().length() <= 7){
+            else if (passwordEditText.getText().length() <= 7){
                 Toasty.error(getContext(),"Password can not be less than 8 characters").show();
                 flag =false;
 
@@ -70,10 +70,9 @@ public class SignInFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject();
                 try {
-                    jsonObject.put("email_or_phone_number", emailPhoneNumberEditText.getText().toString());
+                    // TODO: 7/16/2019  
+                    jsonObject.put("username", emailPhoneNumberEditText.getText().toString());
                     jsonObject.put("password", passwordEditText.getText().toString());
-
-
                 } catch (JSONException e) {
                     progressBar.setVisibility(View.GONE);
                     e.printStackTrace();
@@ -91,6 +90,7 @@ public class SignInFragment extends Fragment {
     }
 
     private void sendToSignInPage(JSONObject jsonObject) {
+        signinButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
         authViewModel.initSignIn(jsonObject);
         authViewModel.getSignInResult().observe(getActivity(), user -> {
@@ -103,11 +103,13 @@ public class SignInFragment extends Fragment {
                     getActivity().overridePendingTransition(0, 0);
                 }
                 else {
-                    Intent i = new Intent(getActivity(), MainActivity.class);
+                    Intent i = new Intent();
                     i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-                    startActivity(i);
+//                    startActivity(i);
+//                    getActivity().finish();
+//                    getActivity().overridePendingTransition(0, 0);
+                    getActivity().setResult(getActivity().RESULT_OK,i);
                     getActivity().finish();
-                    getActivity().overridePendingTransition(0, 0);
                 }
             }
             else
@@ -115,6 +117,7 @@ public class SignInFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
                 Toasty.error(getContext(),getString(R.string.failed)).show();
             }
+            signinButton.setClickable(true);
         });
     }
 

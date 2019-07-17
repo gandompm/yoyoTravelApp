@@ -1,6 +1,5 @@
 package yoyo.app.android.com.yoyoapp.Trip.dialog;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import com.appyvet.materialrangebar.RangeBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 
 import java.text.DecimalFormat;
 
@@ -24,11 +22,17 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
     private TextView rangebarTextview, resetTextview;
     private Button applyButton;
     private RangeBar rangeBar;
-    private BotomSheetListener bottomSheetListener;
     private ImageView closeImageview;
     private String minimum, maximum;
     private String minPrice = "10", maxPrice = "5500";
     private View view;
+    private OnApplyClicked onApplyClicked;
+
+    public PriceFilterBottomSheetDialogFragment(OnApplyClicked onApplyClicked)
+    {
+        this.onApplyClicked = onApplyClicked;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.bottom_sheet_filter_price, container,false);
@@ -98,7 +102,7 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
             @Override
             public void onClick(View v) {
 
-                bottomSheetListener.onApplyClicked(minPrice ,maxPrice);
+                onApplyClicked.apply(minPrice,maxPrice);
                 dismiss();
             }
         });
@@ -112,20 +116,15 @@ public class PriceFilterBottomSheetDialogFragment extends BottomSheetDialogFragm
         resetTextview = view.findViewById(R.id.tv_filter_price_reset);
     }
 
-    public static PriceFilterBottomSheetDialogFragment newInstance()
+
+
+
+    public interface OnApplyClicked
     {
-        return new PriceFilterBottomSheetDialogFragment();
+        void apply(String one, String two);
     }
 
-    public interface BotomSheetListener
-    {
-        void onApplyClicked(String minimum, String maximum);
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
 
-        bottomSheetListener = (BotomSheetListener) context;
-    }
+
 }

@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import yoyo.app.android.com.yoyoapp.Flight.FlightTicketFragment;
+import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.TripActivity;
 import yoyo.app.android.com.yoyoapp.Trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Trip.authentication.AuthenticationActivity;
 import yoyo.app.android.com.yoyoapp.Trip.ticket.order.TourTicketFragment;
@@ -32,27 +30,17 @@ public class OrdersFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_orders,container,false);
         init();
         onClick();
-        if (userSharedManager.getToken().isEmpty())
-        {
-            startActivity(new Intent(getContext(), AuthenticationActivity.class));
-            getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
-        }
         return view;
     }
 
     private void onClick() {
-
         tourCardview.setOnClickListener(v -> {
             if (userSharedManager.getToken().isEmpty())
             {
-                startActivity(new Intent(getContext(), AuthenticationActivity.class));
-                getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+                ((MainActivity)getActivity()).popUpSignInSignUpActivity();
             }
             else {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(((MainActivity)getActivity()).getCurrentContainer(),new TourTicketFragment())
-                        .addToBackStack(String.valueOf(((MainActivity)getActivity()).getCurrentContainer()));
-                fragmentTransaction.commit();
+                ((MainActivity)getActivity()).showFragment(this,new TourTicketFragment(),false);
             }
 
         });
@@ -60,13 +48,10 @@ public class OrdersFragment extends BaseFragment {
         flightCardview.setOnClickListener(v -> {
             if (userSharedManager.getToken().isEmpty())
             {
-                startActivity(new Intent(getContext(), AuthenticationActivity.class));
-                getActivity().overridePendingTransition(R.anim.slide_up,  R.anim.no_animation);
+                ((MainActivity)getActivity()).popUpSignInSignUpActivity();
             }
             else {
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container,new FlightTicketFragment()).addToBackStack("flight_ticket");
-                fragmentTransaction.commit();
+                Toasty.info(getContext(),"Coming soon...").show();
             }
         });
     }

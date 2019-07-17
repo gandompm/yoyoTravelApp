@@ -4,6 +4,7 @@ package yoyo.app.android.com.yoyoapp.Trip.schedule.request;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.*;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class RequestFragment extends Fragment {
     private RequstViewModel requstViewModel;
     private ArrayList<DateCalender> dateCalenders;
     private RecyclerView dateCalenderRecyclerView;
+    private ProgressBar progressBar;
     private DateCalenderRecyclerViewAdapter adapter;
     private int passengerNum = 1, calenderNum = 1;
     private View view;
@@ -53,7 +55,7 @@ public class RequestFragment extends Fragment {
         minusCalenderImageview.setOnClickListener(v -> reduceCalenderNumber());
         plusImageview.setOnClickListener(v -> addNumber());
         minusImageview.setOnClickListener(v -> reduceNumber());
-        backButton.setOnClickListener(v-> getFragmentManager().popBackStack());
+        backButton.setOnClickListener(v-> getActivity().onBackPressed());
         return view;
     }
 
@@ -119,12 +121,24 @@ public class RequestFragment extends Fragment {
     }
 
     private boolean checkingFields() {
-        if (TextUtils.isEmpty(firstnameEditText.getText()) ||
-                TextUtils.isEmpty(lastnameEditText.getText()) ||
-                TextUtils.isEmpty(emailEditText.getText()) ||
-                TextUtils.isEmpty(phoneNumberEditText.getText()))
-        {
-            Toasty.error(getContext(),"Please complete all fields").show();
+        if (TextUtils.isEmpty(firstnameEditText.getText())){
+            Toasty.error(getContext(),getString(R.string.first_name_not_empty)).show();
+            return false;
+        }
+        else if (TextUtils.isEmpty(lastnameEditText.getText())){
+            Toasty.error(getContext(),getString(R.string.lastname_not_empty)).show();
+            return false;
+        }
+        else if (TextUtils.isEmpty(emailEditText.getText())){
+            Toasty.error(getContext(),getString(R.string.email_cannot_be_empty)).show();
+            return false;
+        }
+        else if (TextUtils.isEmpty(phoneNumberEditText.getText())) {
+            Toasty.error(getContext(), getString(R.string.phone_number_cannot_be_empty) ).show();
+            return false;
+        }
+        else if (!emailEditText.getText().toString().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")){
+            Toasty.error(getContext(),"Your Email Address is incorrect").show();
             return false;
         }
         for (int i = 0; i < dateCalenders.size(); i++) {
@@ -168,11 +182,14 @@ public class RequestFragment extends Fragment {
         pluscalenderImageview = view.findViewById(R.id.iv_request_calender_plus);
         calenderCount = view.findViewById(R.id.tv_request_calender_num);
         backButton = view.findViewById(R.id.iv_request_back);
+        progressBar = view.findViewById(R.id.progressBar3);
         dateCalenderRecyclerView = view.findViewById(R.id.rv_request_date_calender);
         dateCalenders = new ArrayList<>();
     }
 
     private void sendRequest(JSONObject jsonObject, String tripId) {
+        progressBar.setVisibility(View.VISIBLE);
+        sendButton.setClickable(false);
         requstViewModel = ViewModelProviders.of(getActivity()).get(RequstViewModel.class);
         requstViewModel.initRequest(tripId, jsonObject);
         requstViewModel.getResult().observe(getActivity(), new Observer<Boolean>() {
@@ -180,12 +197,14 @@ public class RequestFragment extends Fragment {
             public void onChanged(Boolean result) {
                 if (result){
                     Toasty.normal(getContext(),"your Request has sent successfully").show();
-                    getFragmentManager().popBackStack();
+                    getActivity().onBackPressed();
                 }
                 else
                 {
                     Toasty.normal(getContext(),"failed to send Request").show();
                 }
+                sendButton.setClickable(true);
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
