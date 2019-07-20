@@ -7,9 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import yoyo.app.android.com.yoyoapp.Flight.Addaptor.MyPagerAdapter;
+import yoyo.app.android.com.yoyoapp.MainActivityViewModel;
 import yoyo.app.android.com.yoyoapp.R;
 
 public class AuthenticationActivity extends AppCompatActivity {
@@ -29,21 +31,11 @@ public class AuthenticationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authentication);
-
-        getBundle();
         init();
         setupSignInSignUpBottomSheet();
         setupCloseImageview();
         adapter.notifyDataSetChanged();
         changeTheTitle();
-    }
-
-    private void getBundle() {
-        Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.getBoolean("fromSchedule"))
-        {
-            isFromSchedule = true;
-        }
     }
 
     private void changeTheTitle() {

@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Utils;
+import yoyo.app.android.com.yoyoapp.trip.booking.BookingActivity;
 
 
 public class SignInFragment extends Fragment {
@@ -96,20 +97,11 @@ public class SignInFragment extends Fragment {
             if (user != null) {
                 userSharedManager.saveUser(user);
                 Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
-                if (((AuthenticationActivity)getActivity()).isFromSchedule)
-                {
-                    getActivity().finish();
-                    getActivity().overridePendingTransition(0, 0);
-                }
-                else {
-                    Intent i = new Intent();
-                    i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-//                    startActivity(i);
-//                    getActivity().finish();
-//                    getActivity().overridePendingTransition(0, 0);
-                    getActivity().setResult(getActivity().RESULT_OK,i);
-                    getActivity().finish();
-                }
+                Intent i = new Intent();
+                i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
+
+                getActivity().setResult(getActivity().RESULT_OK,i);
+                getActivity().finish();
             }
             else
             {

@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 import yoyo.app.android.com.yoyoapp.MainActivity;
+import yoyo.app.android.com.yoyoapp.MainActivityViewModel;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 
@@ -53,8 +55,6 @@ public class SignOutFragment extends Fragment {
             startActivity(new Intent(getContext(), MainActivity.class));
             getActivity().finish();
         });
-
-
     }
 
 }

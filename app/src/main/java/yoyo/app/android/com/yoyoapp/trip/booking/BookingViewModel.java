@@ -21,7 +21,6 @@ public class BookingViewModel extends AndroidViewModel
         bookingRepository = BookingRepository.getInstance(getApplication());
     }
 
-
     public void initBookingRequest(String scheduleId, JSONObject jsonObject) {
         bookingIdMutableLiveData = new MutableLiveData<>();
         bookingIdMutableLiveData = bookingRepository.getBookingId(scheduleId,jsonObject);
