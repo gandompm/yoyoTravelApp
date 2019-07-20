@@ -43,147 +43,145 @@ public class ApiService {
         JWT = userSharedManager.getToken();
     }
 
-    public void getTripListRequest(int page, TripQuery tripQuery, Consumer<ArrayList<Trip>> tripArrayListConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips" + "?price_min=" +
-                tripQuery.getFromPrice()+"&price_max="+tripQuery.getToPrice()+"&start_date="+tripQuery.getFromTime()+
-                "&end_date="+tripQuery.getToTime()+"&category="+tripQuery.getCategories() +"&origin=" + tripQuery.getOrigin()+ "&destination=" + tripQuery.getDestination() +
-                "&duration_min="+ tripQuery.getMinDuration() +"&duration_max=999&page="+ page +"&limit=10&reserve_type="+ tripQuery.getType(),null,
+    public void getTripListRequest(int page, TripQuery tripQuery, Consumer<ArrayList<Trip>> tripArrayListConsumer) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP + "api/trips" + "?price_min=" +
+                tripQuery.getFromPrice() + "&price_max=" + tripQuery.getToPrice() + "&start_date=" + tripQuery.getFromTime() +
+                "&end_date=" + tripQuery.getToTime() + "&category=" + tripQuery.getCategories() + "&origin=" + tripQuery.getOrigin() + "&destination=" + tripQuery.getDestination() +
+                "&duration_min=" + tripQuery.getMinDuration() + "&duration_max=999&page=" + page + "&limit=10&reserve_type=" + tripQuery.getType(), null,
                 response -> {
 
                     ArrayList<Trip> trips = new ArrayList<>();
                     try {
-                    JSONArray tripJsonArray = response.getJSONArray("trips");
+                        JSONArray tripJsonArray = response.getJSONArray("trips");
 
                         for (int i = 0; i < tripJsonArray.length(); i++) {
-                                Trip trip = new Trip();
+                            Trip trip = new Trip();
 
-                                JSONObject mainObject = tripJsonArray.getJSONObject(i);
-                                trip.setTripId(mainObject.getString("trip_id"));
-                                trip.setTitle(mainObject.getString("title"));
-                                trip.setNightNum(mainObject.getInt("days"));
-                                trip.setDayNum(mainObject.getInt("nights"));
-                                trip.setSummary(mainObject.getString("summary"));
+                            JSONObject mainObject = tripJsonArray.getJSONObject(i);
+                            trip.setTripId(mainObject.getString("trip_id"));
+                            trip.setTitle(mainObject.getString("title"));
+                            trip.setNightNum(mainObject.getInt("days"));
+                            trip.setDayNum(mainObject.getInt("nights"));
+                            trip.setSummary(mainObject.getString("summary"));
 
-                                // leader
-                                TripLeader tripLeader = new TripLeader();
-                                JSONObject leaderObject = mainObject.getJSONObject("leader");
-                                tripLeader.setName(leaderObject.getString("name"));
-                                JSONObject pictureObject = leaderObject.getJSONObject("picture");
-                                tripLeader.setPicture(IMAGEIP + pictureObject.getString("original_url"));
-                                tripLeader.setLanguage(leaderObject.getString("language"));
-                                trip.setTripLeader(tripLeader);
+                            // leader
+                            TripLeader tripLeader = new TripLeader();
+                            JSONObject leaderObject = mainObject.getJSONObject("leader");
+                            tripLeader.setName(leaderObject.getString("name"));
+                            JSONObject pictureObject = leaderObject.getJSONObject("picture");
+                            tripLeader.setPicture(IMAGEIP + pictureObject.getString("original_url"));
+                            tripLeader.setLanguage(leaderObject.getString("language"));
+                            trip.setTripLeader(tripLeader);
 
-                                // tour
-                                Tour tour = new Tour();
-                                JSONObject tourObject = mainObject.getJSONObject("tour");
-                                tour.setName(tourObject.getString("name"));
-                                tour.setPassengerCount(tourObject.getInt("passengers_count"));
-                                trip.setTour(tour);
+                            // tour
+                            Tour tour = new Tour();
+                            JSONObject tourObject = mainObject.getJSONObject("tour");
+                            tour.setName(tourObject.getString("name"));
+                            tour.setPassengerCount(tourObject.getInt("passengers_count"));
+                            trip.setTour(tour);
 
-                                // agency
-                                JSONObject agencyObject = mainObject.getJSONObject("agency");
-                                trip.setAgency(agencyObject.getString("name"));
+                            // agency
+                            JSONObject agencyObject = mainObject.getJSONObject("agency");
+                            trip.setAgency(agencyObject.getString("name"));
 
-                                // itinerary
-                                ArrayList<String> itineraries = new ArrayList<>();
-                                JSONArray itineraryJsonArray = mainObject.getJSONArray("itinerary");
-                                for (int j = 0; j < itineraryJsonArray.length(); j++) {
-                                    itineraries.add(itineraryJsonArray.getString(j));
-                                }
-                                trip.setItineraries(itineraries);
+                            // itinerary
+                            ArrayList<String> itineraries = new ArrayList<>();
+                            JSONArray itineraryJsonArray = mainObject.getJSONArray("itinerary");
+                            for (int j = 0; j < itineraryJsonArray.length(); j++) {
+                                itineraries.add(itineraryJsonArray.getString(j));
+                            }
+                            trip.setItineraries(itineraries);
 
-                                // attraction
-                                ArrayList<String> attractios = new ArrayList<>();
-                                JSONArray jsonArray = mainObject.getJSONArray("attractions");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    attractios.add(jsonArray.getString(j));
-                                }
-                                trip.setAttractions(attractios);
+                            // attraction
+                            ArrayList<String> attractios = new ArrayList<>();
+                            JSONArray jsonArray = mainObject.getJSONArray("attractions");
+                            for (int j = 0; j < jsonArray.length(); j++) {
+                                attractios.add(jsonArray.getString(j));
+                            }
+                            trip.setAttractions(attractios);
 
-                                // transportation
-                                ArrayList<String> transportations = new ArrayList<>();
-                                jsonArray = mainObject.getJSONArray("transportation");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    transportations.add(jsonArray.getString(j));
-                                }
-                                trip.setTransportations(transportations);
+                            // transportation
+                            ArrayList<String> transportations = new ArrayList<>();
+                            jsonArray = mainObject.getJSONArray("transportation");
+                            for (int j = 0; j < jsonArray.length(); j++) {
+                                transportations.add(jsonArray.getString(j));
+                            }
+                            trip.setTransportations(transportations);
 
-                                // meals
-                                ArrayList<String> meals = new ArrayList<>();
-                                jsonArray = mainObject.getJSONArray("meals");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    meals.add(jsonArray.getString(j));
-                                }
-                                trip.setMeals(meals);
+                            // meals
+                            ArrayList<String> meals = new ArrayList<>();
+                            jsonArray = mainObject.getJSONArray("meals");
+                            for (int j = 0; j < jsonArray.length(); j++) {
+                                meals.add(jsonArray.getString(j));
+                            }
+                            trip.setMeals(meals);
 
-                                // rules
-                                ArrayList<String> rules = new ArrayList<>();
-                                jsonArray = mainObject.getJSONArray("rules");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    rules.add(jsonArray.getString(j));
-                                }
-                                trip.setRules(rules);
+                            // rules
+                            ArrayList<String> rules = new ArrayList<>();
+                            jsonArray = mainObject.getJSONArray("rules");
+                            for (int j = 0; j < jsonArray.length(); j++) {
+                                rules.add(jsonArray.getString(j));
+                            }
+                            trip.setRules(rules);
 
-                                // categories
-                                ArrayList<String> categories = new ArrayList<>();
-                                jsonArray = mainObject.getJSONArray("categories");
-                                for (int j = 0; j < jsonArray.length(); j++) {
-                                    categories.add(jsonArray.getString(j));
-                                }
-                                trip.setCategories(categories);
+                            // categories
+                            ArrayList<String> categories = new ArrayList<>();
+                            jsonArray = mainObject.getJSONArray("categories");
+                            for (int j = 0; j < jsonArray.length(); j++) {
+                                categories.add(jsonArray.getString(j));
+                            }
+                            trip.setCategories(categories);
 
-                                // gallery
-                                ArrayList<String> galleries = new ArrayList<>();
-                                JSONArray galleryJsonArray = mainObject.getJSONArray("gallery");
-                                for (int j = 0; j < galleryJsonArray.length(); j++) {
-                                    JSONObject galleryObject = galleryJsonArray.getJSONObject(j);
-                                    galleries.add(IMAGEIP + galleryObject.getString("original_url"));
-                                }
-                                trip.setGallery(galleries);
+                            // gallery
+                            ArrayList<String> galleries = new ArrayList<>();
+                            JSONArray galleryJsonArray = mainObject.getJSONArray("gallery");
+                            for (int j = 0; j < galleryJsonArray.length(); j++) {
+                                JSONObject galleryObject = galleryJsonArray.getJSONObject(j);
+                                galleries.add(IMAGEIP + galleryObject.getString("original_url"));
+                            }
+                            trip.setGallery(galleries);
 
-                                // location
+                            // location
 
-                                HashMap<Integer, Location> locations = new HashMap<>();
+                            HashMap<Integer, Location> locations = new HashMap<>();
 //                                ArrayList<Location> locations = new ArrayList<>();
-                                JSONArray locationJsonArray = mainObject.getJSONArray("locations");
+                            JSONArray locationJsonArray = mainObject.getJSONArray("locations");
 
-                            for (int j = 0; j < locationJsonArray.length() ; j++) {
-                                    JSONObject locationObject = locationJsonArray.getJSONObject(j);
-                                    Location location = new Location();
-                                    location.setTitle(locationObject.getString("title"));
-                                    location.setLon(locationObject.getDouble("longitude"));
-                                    location.setLat(locationObject.getDouble("latitude"));
-                                    location.setOrder(locationObject.getInt("order"));
+                            for (int j = 0; j < locationJsonArray.length(); j++) {
+                                JSONObject locationObject = locationJsonArray.getJSONObject(j);
+                                Location location = new Location();
+                                location.setTitle(locationObject.getString("title"));
+                                location.setLon(locationObject.getDouble("longitude"));
+                                location.setLat(locationObject.getDouble("latitude"));
+                                location.setOrder(locationObject.getInt("order"));
 
                                 Log.d(TAG, "getTripListRequest: aaaaaaaz" + location.getOrder());
 
 
                                 locations.put(location.getOrder(), location);
-                                }
+                            }
 
                             ArrayList<Location> locationsArraylist = new ArrayList<>(locations.size());
 
-                            for(int index=0; index<locations.size()-1; index++)
-                            {
+                            for (int index = 0; index < locations.size() - 1; index++) {
                                 locationsArraylist.add(index, locations.get(index));
                             }
                             locationsArraylist.add(locations.get(-1));
 
-                            for (int q=0 ; q<locationsArraylist.size(); q++){
+                            for (int q = 0; q < locationsArraylist.size(); q++) {
 
                                 Log.d(TAG, "getTripListRequest: aaaaaabb   : " + locationsArraylist.get(q).getOrder());
                             }
-                                trip.setLocations(locationsArraylist);
+                            trip.setLocations(locationsArraylist);
 
-                                int tripCount = response.getInt("count");
-                                if (trips.size() == 0) {
-                                    trip.setResultsSize(tripCount);
-                                }
-
-                                trips.add(trip);
-
+                            int tripCount = response.getInt("count");
+                            if (trips.size() == 0) {
+                                trip.setResultsSize(tripCount);
                             }
+
+                            trips.add(trip);
+
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -194,88 +192,7 @@ public class ApiService {
             tripArrayListConsumer.accept(null);
             errorHandling(error);
             error.printStackTrace();
-    }){
-        @Override
-        public Map<String, String> getHeaders() throws AuthFailureError {
-            Map<String, String> params = new HashMap<>();
-            params.put("api-key", apiKey);
-            return params;
-        }
-    };
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
-    }
-
-    private void errorHandling(VolleyError error) {
-        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-            ConnectivityManager cm = (ConnectivityManager)context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo activeNetwork = null;
-            if (cm != null) {
-                activeNetwork = cm.getActiveNetworkInfo();
-            }
-            if(activeNetwork != null && activeNetwork.isConnectedOrConnecting()){
-                Toasty.warning(context,"Server is not connected to internet.").show();
-            } else {
-                Toasty.warning(context,"Your device is not connected to internet.").show();
-            }
-        } else if (error instanceof AuthFailureError) {
-            Toasty.error(context,"server couldn't find the authenticated request.").show();
-        } else if (error instanceof ServerError) {
-            Toasty.error(context,"Server is not responding.").show();
-        }  else if (error instanceof NetworkError || error.getCause() instanceof ConnectException
-                || (error.getCause().getMessage() != null
-                && error.getCause().getMessage().contains("connection"))){
-            Toasty.warning(context,"Your device is not connected to internet.").show();
-        }  else if (error instanceof ParseError || error.getCause() instanceof IllegalStateException
-                || error.getCause() instanceof JSONException
-                || error.getCause() instanceof XmlPullParserException){
-            Toasty.error(context,"Parse Error (because of invalid json or xml).").show();
-        }else if (error instanceof TimeoutError || error.getCause() instanceof SocketTimeoutException
-                || error.getCause() instanceof ConnectTimeoutException
-                || error.getCause() instanceof SocketException
-                || (error.getCause().getMessage() != null
-                && error.getCause().getMessage().contains("Connection timed out"))) {
-            Toasty.error(context,"Connection timeout error").show();
-        }
-    }
-
-    private Calendar getDateAndTime(Long date) {
-        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-        cal.setTimeInMillis(date * 1000);
-        return cal;
-    }
-
-    public void getCategoryRequest(Consumer<ArrayList<Category>> categoriesConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/categories" ,null,
-                response -> {
-
-                    ArrayList<Category> categories = new ArrayList<>();
-                    try {
-                        JSONArray jsonArray = response.getJSONArray("categories");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            Category category = new Category();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                            category.setName(jsonObject.getString("name"));
-                            category.setCode(jsonObject.getString("code"));
-                            categories.add(category);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    categoriesConsumer.accept(categories);
-
-                }, error -> {
-            categoriesConsumer.accept(null);
-            errorHandling(error);
-            error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -288,9 +205,49 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendSignUpRequest(JSONObject jsonObject, Consumer<User> userConsumer){
+    private void errorHandling(VolleyError error) {
+        if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+            ConnectivityManager cm = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = null;
+            if (cm != null) {
+                activeNetwork = cm.getActiveNetworkInfo();
+            }
+            if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+                Toasty.warning(context, "Server is not connected to internet.").show();
+            } else {
+                Toasty.warning(context, "Your device is not connected to internet.").show();
+            }
+        } else if (error instanceof AuthFailureError) {
+            Toasty.error(context, "server couldn't find the authenticated request.").show();
+        } else if (error instanceof ServerError) {
+            Toasty.error(context, "Server is not responding.").show();
+        } else if (error instanceof NetworkError || error.getCause() instanceof ConnectException
+                || (error.getCause().getMessage() != null
+                && error.getCause().getMessage().contains("connection"))) {
+            Toasty.warning(context, "Your device is not connected to internet.").show();
+        } else if (error instanceof ParseError || error.getCause() instanceof IllegalStateException
+                || error.getCause() instanceof JSONException
+                || error.getCause() instanceof XmlPullParserException) {
+            Toasty.error(context, "Parse Error (because of invalid json or xml).").show();
+        } else if (error instanceof TimeoutError || error.getCause() instanceof SocketTimeoutException
+                || error.getCause() instanceof ConnectTimeoutException
+                || error.getCause() instanceof SocketException
+                || (error.getCause().getMessage() != null
+                && error.getCause().getMessage().contains("Connection timed out"))) {
+            Toasty.error(context, "Connection timeout error").show();
+        }
+    }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,  IP + "api/user/register", jsonObject, response -> {
+    private Calendar getDateAndTime(Long date) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(date * 1000);
+        return cal;
+    }
+
+    public void sendSignUpRequest(JSONObject jsonObject, Consumer<User> userConsumer) {
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/user/register", jsonObject, response -> {
             User user = new User();
             try {
                 user.setFirstName(response.getString("firstname"));
@@ -299,11 +256,11 @@ public class ApiService {
                 user.setPhoneNumber(response.getString("phone_number"));
                 user.setToken(response.getString("token"));
 
-                } catch (JSONException e) {
+            } catch (JSONException e) {
 
                 e.printStackTrace();
-                }
-                userConsumer.accept(user);
+            }
+            userConsumer.accept(user);
 
         }, error -> {
             // TODO: 6/18/2019 fixing error presentation
@@ -330,9 +287,9 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendSignInRequest(JSONObject jsonObject, Consumer<User> userConsumer){
+    public void sendSignInRequest(JSONObject jsonObject, Consumer<User> userConsumer) {
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,  IP + "api/user/login", jsonObject, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/user/login", jsonObject, response -> {
             User user = new User();
             try {
                 user.setFirstName(response.getString("firstname"));
@@ -354,7 +311,7 @@ public class ApiService {
             errorHandling(error);
 
             Log.d(TAG, "sendSignInRequest: login " + error.toString());
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -367,11 +324,9 @@ public class ApiService {
     }
 
 
-
-    public void getProfileRequest(Consumer<User> userConsumer)
-    {
+    public void getProfileRequest(Consumer<User> userConsumer) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                 IP + "api/user/profile" ,null,
+                IP + "api/user/profile", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -399,11 +354,11 @@ public class ApiService {
                 errorHandling(e);
                 e.printStackTrace();
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -412,10 +367,9 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendEditProfileRequest(JSONObject jsonObject, Consumer<User> userConsumer)
-    {
+    public void sendEditProfileRequest(JSONObject jsonObject, Consumer<User> userConsumer) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT,
-                 IP + "api/user/profile" ,jsonObject,
+                IP + "api/user/profile", jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -446,11 +400,11 @@ public class ApiService {
 
                 Log.d(TAG, "onErrorResponse: edit profile " + e.toString());
             }
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -460,10 +414,9 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void getTravellersCompanionsRequest(Consumer<ArrayList<Traveller>> travellersConsumer)
-    {
+    public void getTravellersCompanionsRequest(Consumer<ArrayList<Traveller>> travellersConsumer) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
-                 IP + "api/user/profile/passengers",null,
+                IP + "api/user/profile/passengers", null,
                 response -> {
 
                     ArrayList<Traveller> travellers = new ArrayList<>();
@@ -494,14 +447,14 @@ public class ApiService {
                     }
                     travellersConsumer.accept(travellers);
                 }, e -> {
-                    travellersConsumer.accept(null);
-                    errorHandling(e);
-                    e.printStackTrace();
-                }){
+            travellersConsumer.accept(null);
+            errorHandling(e);
+            e.printStackTrace();
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -511,21 +464,20 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
-    public void sendAddTravellerCompanionRequest(JSONObject jsonObject, Consumer<Boolean> isTravellerAdded)
-    {
+    public void sendAddTravellerCompanionRequest(JSONObject jsonObject, Consumer<Boolean> isTravellerAdded) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                IP + "api/user/profile/passengers",jsonObject,
+                IP + "api/user/profile/passengers", jsonObject,
                 response -> {
                     isTravellerAdded.accept(true);
                 }, e -> {
             isTravellerAdded.accept(false);
-                    e.printStackTrace();
-                    errorHandling(e);
-                }){
+            e.printStackTrace();
+            errorHandling(e);
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -536,10 +488,9 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendDeleteTravellerCompanionRequest(String travellerId,Consumer<Boolean> isDeleted)
-    {
+    public void sendDeleteTravellerCompanionRequest(String travellerId, Consumer<Boolean> isDeleted) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE,
-                 IP + "api/user/profile/passengers/"+ travellerId  ,null,
+                IP + "api/user/profile/passengers/" + travellerId, null,
                 response ->
                         isDeleted.accept(true),
                 e -> {
@@ -547,11 +498,11 @@ public class ApiService {
                     isDeleted.accept(true);
                     errorHandling(e);
                     e.printStackTrace();
-                }){
+                }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -560,20 +511,19 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendEditTravellerCompanionRequest(String travellerId,JSONObject jsonObject, Consumer<Boolean> isEditedConsumer)
-    {
+    public void sendEditTravellerCompanionRequest(String travellerId, JSONObject jsonObject, Consumer<Boolean> isEditedConsumer) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT,
-                IP + "api/user/profile/passengers/" + travellerId ,jsonObject,
+                IP + "api/user/profile/passengers/" + travellerId, jsonObject,
                 response -> isEditedConsumer.accept(true),
                 e -> {
                     isEditedConsumer.accept(false);
                     e.printStackTrace();
                     errorHandling(e);
-                }){
+                }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -582,12 +532,11 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void sendProfilePhotoRequest(JSONObject jsonObject, Consumer<String> stringConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/user/profile/picture", jsonObject ,
+    public void sendProfilePhotoRequest(JSONObject jsonObject, Consumer<String> stringConsumer) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/user/profile/picture", jsonObject,
                 response -> {
                     try {
-                            stringConsumer.accept(IP + response.getString("profile_thumbnail_picture"));
+                        stringConsumer.accept(IP + response.getString("profile_thumbnail_picture"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -595,15 +544,14 @@ public class ApiService {
                 error -> {
                     stringConsumer.accept(null);
                     errorHandling(error);
-                })
-        {
+                }) {
             /**
              * Passing some request headers
              */
             @Override
             public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer "+ JWT);
+                headers.put("Authorization", "Bearer " + JWT);
                 headers.put("Content-Type", "application/json");
                 headers.put("api-key", apiKey);
                 return headers;
@@ -614,11 +562,9 @@ public class ApiService {
     }
 
 
-
-    public void getScheduleRequest(String tripId,long startDate, long endDate,Consumer<ArrayList<Schedule>> scheduleConsumer)
-    {
+    public void getScheduleRequest(String tripId, long startDate, long endDate, Consumer<ArrayList<Schedule>> scheduleConsumer) {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
-                IP + "api/trips/"+ tripId+ "?start_date=" + startDate + "&end_date=" + endDate ,null,
+                IP + "api/trips/" + tripId + "?start_date=" + startDate + "&end_date=" + endDate, null,
                 response -> {
 
                     ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
@@ -645,7 +591,7 @@ public class ApiService {
             scheduleConsumer.accept(null);
             errorHandling(e);
             e.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -658,8 +604,7 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
-    public void sendTripRequest(String tripId,JSONObject jsonObject, Consumer<Boolean> isRequestSuccessfull)
-    {
+    public void sendTripRequest(String tripId, JSONObject jsonObject, Consumer<Boolean> isRequestSuccessfull) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
                 IP + "api/trips/request/" + tripId, jsonObject,
                 response -> {
@@ -668,12 +613,12 @@ public class ApiService {
             isRequestSuccessfull.accept(false);
             errorHandling(e);
             e.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("api-key", apiKey);
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 return params;
             }
         };
@@ -682,98 +627,13 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-
-    public void getDestinationsRequest(Consumer<ArrayList<Location>> locationConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/destinations" ,null,
-                response -> {
-
-                    ArrayList<Location> locations = new ArrayList<>();
-                    try {
-                        JSONArray jsonArray = response.getJSONArray("locations");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                            Location location = new Location();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            location.setCode(jsonObject.getString("code"));
-                            location.setTitle(jsonObject.getString("name"));
-
-                            locations.add(location);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    locationConsumer.accept(locations);
-
-                }, error -> {
-            locationConsumer.accept(null);
-            errorHandling(error);
-            error.printStackTrace();
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("api-key", apiKey);
-                return params;
-            }
-        };
-
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
-    }
-
-    public void getOriginsRequest(Consumer<ArrayList<Location>> locationConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP +"api/trips/origins" ,null,
-                response -> {
-
-                    ArrayList<Location> locations = new ArrayList<>();
-                    try {
-                        JSONArray jsonArray = response.getJSONArray("locations");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-
-                            Location location = new Location();
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            location.setCode(jsonObject.getString("code"));
-                            location.setTitle(jsonObject.getString("name"));
-
-                            locations.add(location);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    locationConsumer.accept(locations);
-
-                }, error -> {
-            locationConsumer.accept(null);
-            errorHandling(error);
-            error.printStackTrace();
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("api-key", apiKey);
-                return params;
-            }
-        };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
-    }
-
-    public void sendBookingRequest(String scheduleId, JSONObject jsonObject , Consumer<String> bookingIdConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP +"api/schedules/" + scheduleId ,jsonObject,
+    public void sendBookingRequest(String scheduleId, JSONObject jsonObject, Consumer<String> bookingIdConsumer) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/schedules/" + scheduleId, jsonObject,
                 response -> {
                     try {
-                      String payment_url = response.getString("payment_url");
+                        String payment_url = response.getString("payment_url");
                         Log.d(TAG, "sendBookingRequest: " + payment_url);
-                      bookingIdConsumer.accept(payment_url);
+                        bookingIdConsumer.accept(payment_url);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -782,11 +642,11 @@ public class ApiService {
             bookingIdConsumer.accept(null);
             errorHandling(error);
             error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -796,9 +656,8 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
 
-    public void getTourTicketRequest(Consumer<ArrayList<TourTicket>> ticketsConsumer)
-    {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/user/dashboard/orders" ,null,
+    public void getTourTicketRequest(Consumer<ArrayList<TourTicket>> ticketsConsumer) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP + "api/user/dashboard/orders", null,
                 response -> {
 
                     ArrayList<TourTicket> orders = new ArrayList<>();
@@ -818,11 +677,11 @@ public class ApiService {
             ticketsConsumer.accept(null);
             errorHandling(error);
             error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -831,9 +690,8 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
-    public void getTourRequestRequest(Consumer<ArrayList<TourRequest>> ticketsconsumer)
-    {
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP +"api/user/dashboard/trip-requests" ,null,
+    public void getTourRequestRequest(Consumer<ArrayList<TourRequest>> ticketsconsumer) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, IP + "api/user/dashboard/trip-requests", null,
                 response -> {
                     ArrayList<TourRequest> tourRequests = new ArrayList<>();
                     try {
@@ -852,11 +710,11 @@ public class ApiService {
             ticketsconsumer.accept(null);
             errorHandling(error);
             error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }
@@ -865,9 +723,8 @@ public class ApiService {
         Volley.newRequestQueue(context).add(jsonArrayRequest);
     }
 
-    public void sendCancelTripRequest(String bookingId , Consumer<String> bookingIdConsumer)
-    {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP +"api/trip/cancel/" + bookingId ,null,
+    public void sendCancelTripRequest(String bookingId, Consumer<String> bookingIdConsumer) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, IP + "api/trip/cancel/" + bookingId, null,
                 response -> {
                     try {
                         String payment_url = response.getString("payment_url");
@@ -880,11 +737,11 @@ public class ApiService {
             bookingIdConsumer.accept(null);
             errorHandling(error);
             error.printStackTrace();
-        }){
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT "+ JWT);
+                params.put("Authorization", "JWT " + JWT);
                 params.put("api-key", apiKey);
                 return params;
             }

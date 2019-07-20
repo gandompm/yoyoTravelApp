@@ -9,19 +9,30 @@ import yoyo.app.android.com.yoyoapp.DataModels.Location
 class TourSearchViewModel(application: Application) : AndroidViewModel(application) {
     private val tourSearchRepository = TourSearchRepository(application)
 
-    val origins = MutableLiveData<List<Location>>()
     val destinations = MutableLiveData<List<Location>>()
     val categories = MutableLiveData<List<Category>>()
 
-    fun initOrigin() {
-        tourSearchRepository.requestOrigins { origins.value = it }
-    }
-
     fun initCategories() {
-        tourSearchRepository.requestCategories { categories.value = it }
+        tourSearchRepository.requestCategories {
+            val categories = it?.categories?.map {
+                Category().apply {
+                    name = it.name
+                    code = it.code
+                }
+            }
+            this.categories.value = categories
+        }
     }
 
     fun initDestination() {
-        tourSearchRepository.requestDestinations { destinations.value = it }
+        tourSearchRepository.requestDestinations {
+            val location = it?.locations?.map {
+                Location().apply {
+                    code = it.code
+                    title = it.name
+                }
+            }
+            destinations.value = location
+        }
     }
 }

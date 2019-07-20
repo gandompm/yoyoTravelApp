@@ -110,6 +110,7 @@ dependencies {
     implementation 'jp.gr.java_conf.androtaku.countrylist:countrylist:1.1.0' // country list
     implementation 'com.shawnlin:number-picker:2.4.8'                        // number picker
     implementation 'com.github.allan1st:JellyRefreshLayout:2.0'              // pull to refresh
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+'
 
 
 
