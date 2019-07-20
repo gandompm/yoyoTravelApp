@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
@@ -20,7 +19,6 @@ import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.BottomSheet.DatePickerBottomSheet;
-import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
@@ -31,7 +29,6 @@ import yoyo.app.android.com.yoyoapp.trip.dialog.PriceFilterBottomSheetDialogFrag
 import yoyo.app.android.com.yoyoapp.trip.search.TourSearchViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HotelSearchFragment extends Fragment implements View.OnClickListener  {
 
@@ -69,23 +66,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         sharedDataViewModel.getFromPrice().observe(this, price -> fromPrice = price);
         sharedDataViewModel.getToPrice().observe(this, price -> toPrice = price);
 
-        getLocations();
         return view;
-    }
-
-    private void getLocations() {
-        tourSearchViewModel.initOrigin();
-        tourSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
-            @Override
-            public void onChanged(List<Location> locations) {
-                if (locations != null) {
-                    for (Location location:locations) {
-                        SampleSearchModel sampleSearchModel = new SampleSearchModel(location.getTitle());
-                        locationsList.add(sampleSearchModel);
-                    }
-                }
-            }
-        });
     }
 
     // setup cities search dialog
