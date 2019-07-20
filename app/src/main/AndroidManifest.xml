@@ -16,7 +16,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".Trip.booking.BookingActivity">
+        <activity android:name=".trip.booking.BookingActivity">
         </activity>
 
         <uses-library
@@ -93,7 +93,7 @@
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateHidden">
         </activity>
-        <activity android:name=".Trip.authentication.AuthenticationActivity"
+        <activity android:name=".trip.authentication.AuthenticationActivity"
                   android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
     </application>
 

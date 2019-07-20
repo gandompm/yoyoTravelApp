@@ -20,14 +20,15 @@ import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
 import yoyo.app.android.com.yoyoapp.BottomSheet.DatePickerBottomSheet;
+import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Trip.Utils.DatePickerFragment;
-import yoyo.app.android.com.yoyoapp.Trip.dialog.PriceFilterBottomSheetDialogFragment;
-import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.SearchDialog.SampleSearchModel;
-import yoyo.app.android.com.yoyoapp.Trip.search.TripSearchViewModel;
+import yoyo.app.android.com.yoyoapp.SharedDataViewModel;
 import yoyo.app.android.com.yoyoapp.Utils;
+import yoyo.app.android.com.yoyoapp.trip.Utils.DatePickerFragment;
+import yoyo.app.android.com.yoyoapp.trip.dialog.PriceFilterBottomSheetDialogFragment;
+import yoyo.app.android.com.yoyoapp.trip.search.TourSearchViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,10 +46,14 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
     private BottomSheetBehavior bottomSheetBehavior;
     private PriceFilterBottomSheetDialogFragment priceFilterBottomSheetFragment;
     private FragmentManager fragmentManager;
-    private TripSearchViewModel tripSearchViewModel;
+    private TourSearchViewModel tourSearchViewModel;
     private ArrayList<SampleSearchModel> locationsList;
     private DatePickerBottomSheet datePickerBottomSheet;
     private View view;
+
+    private SharedDataViewModel sharedDataViewModel;
+    private int fromPrice;
+    private int toPrice;
 
     @Nullable
     @Override
@@ -61,13 +66,16 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         setupSearchbutton();
         backButton.setOnClickListener(v -> getActivity().finish());
 
+        sharedDataViewModel.getFromPrice().observe(this, price -> fromPrice = price);
+        sharedDataViewModel.getToPrice().observe(this, price -> toPrice = price);
+
         getLocations();
         return view;
     }
 
     private void getLocations() {
-        tripSearchViewModel.initOrigin();
-        tripSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
+        tourSearchViewModel.initOrigin();
+        tourSearchViewModel.getOrigins().observe(getActivity(), new Observer<List<Location>>() {
             @Override
             public void onChanged(List<Location> locations) {
                 if (locations != null) {
@@ -104,7 +112,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
 
     private void init() {
         locationsList = new ArrayList<>();
-        tripSearchViewModel = ViewModelProviders.of(getActivity()).get(TripSearchViewModel.class);
+        tourSearchViewModel = ViewModelProviders.of(getActivity()).get(TourSearchViewModel.class);
         checkInEditText = view.findViewById(R.id.tv_search_check_in);
         checkOutEditText = view.findViewById(R.id.tv_search_check_out);
         titleTextview = view.findViewById(R.id.tv_search_page_title);
@@ -122,6 +130,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
         filterLogo = view.findViewById(R.id.iv_search_filter);
         categoryTextview = view.findViewById(R.id.tv_search_type);
         categoryLogo = view.findViewById(R.id.iv_search_type);
+        sharedDataViewModel = ViewModelProviders.of(getActivity()).get(SharedDataViewModel.class);
     }
 
     private void setupBundle() {
@@ -162,8 +171,8 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, DatePickerBottomSheet.startDateString);
                 bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, DatePickerBottomSheet.endDateString);
                 bundle.putLong(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, DatePickerBottomSheet.diffDays);
-                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, ((MainActivity) getActivity()).getFromPrice());
-                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, ((MainActivity) getActivity()).getToPrice());
+                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, fromPrice);
+                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, toPrice);
                 bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE, ((MainActivity) getActivity()).getFromTime());
                 bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE, ((MainActivity) getActivity()).getToTime());
 //                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((MainActivity)getActivity()).origin);

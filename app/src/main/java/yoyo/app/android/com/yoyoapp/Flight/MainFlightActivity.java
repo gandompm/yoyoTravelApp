@@ -141,7 +141,7 @@ public class MainFlightActivity extends AppCompatActivity  implements TravellerB
         switch (index) {
 
             case FragNavController.TAB1:
-                if (MainActivity.Companion.isSingnedIn())
+                if (MainActivity.Companion.isSignedIn())
                     return new FlightTicketFragment();
                 else
                     return new FlightTicketNotSignedInFragment();
