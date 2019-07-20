@@ -6,7 +6,7 @@
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
                                                    android:background="@color/background"
-                                                   tools:context=".Trip.schedule.request.RequestFragment">
+                                                   tools:context=".trip.schedule.request.RequestFragment">
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_request"
             android:layout_width="match_parent"

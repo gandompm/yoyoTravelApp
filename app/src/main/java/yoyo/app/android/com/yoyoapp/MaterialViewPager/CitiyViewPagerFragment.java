@@ -35,10 +35,10 @@ public class CitiyViewPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_city_view_pager,container,false);
+        view = inflater.inflate(R.layout.fragment_city_view_pager, container, false);
 
-        ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.GONE);
-        ((MainActivity) getContext()).getMainFrameLayout().setPadding(0, 0, 0, 0);
+        ((MainActivity) getActivity()).hideBottomNavigation();
+        ((MainActivity) getActivity()).setMainFrameLayoutPadding(0, 0, 0, 0);
 
         mViewPager = view.findViewById(R.id.materialViewPager);
         Bundle bundle = getArguments();
@@ -51,7 +51,7 @@ public class CitiyViewPagerFragment extends Fragment {
 
         final Toolbar toolbar = mViewPager.getToolbar();
         if (toolbar != null) {
-            ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+            ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         }
 
         mViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
@@ -123,11 +123,8 @@ public class CitiyViewPagerFragment extends Fragment {
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
 
-
-
-        final TextView logo = (TextView)view.findViewById(R.id.logo_white);
+        final TextView logo = (TextView) view.findViewById(R.id.logo_white);
         logo.setText(cityName);
-
 
 
         if (logo != null) {
@@ -145,9 +142,9 @@ public class CitiyViewPagerFragment extends Fragment {
             public void onClick(View v) {
                 float scale = getResources().getDisplayMetrics().density;
                 int dpAsPixels = (int) (50 * scale + 0.5f);
-                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
-                ((MainActivity) getActivity()).getMainFrameLayout().setPadding(0, 0, 0, dpAsPixels);
-                ((MainActivity) getActivity()).getBottomNavigation().setVisibility(View.VISIBLE);
+                ((MainActivity) getActivity()).showBottomNavigation();
+                ((MainActivity) getActivity()).setMainFrameLayoutPadding(0, 0, 0, dpAsPixels);
+                ((MainActivity) getActivity()).showBottomNavigation();
                 getFragmentManager().popBackStack();
             }
         });
