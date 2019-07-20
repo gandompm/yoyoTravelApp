@@ -3,10 +3,12 @@ package yoyo.app.android.com.yoyoapp
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
@@ -19,6 +21,7 @@ import yoyo.app.android.com.yoyoapp.trip.ticket.OrdersFragment
 import yoyo.app.android.com.yoyoapp.trip.ticket.order.TourTicketFragment
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -28,9 +31,8 @@ class MainActivity : AppCompatActivity() {
         private const val ORDER_TAB_TAG = "order_tab"
         private const val AUTH_CALL_BACK_CODE = 1001
     }
-
+    private lateinit var activityViewModel: MainActivityViewModel
     private var languageSetup: LanguageSetup = LanguageSetup(this)
-
     private var currentContainer = R.id.main_container
     private var currentTabTag = MAIN_TAB_TAG
 
@@ -65,6 +67,14 @@ class MainActivity : AppCompatActivity() {
             setupBottomNavigation()
         }
         setupFragments()
+
+        activityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+
+        activityViewModel.isUserSignedIn.observe(this,androidx.lifecycle.Observer {
+            if (it) {
+
+            }
+        })
     }
 
     private fun checkingIfItIsFromPayment() {
@@ -128,7 +138,7 @@ class MainActivity : AppCompatActivity() {
 
     fun popUpSignInSignUpActivity() {
         startActivityForResult(Intent(this, AuthenticationActivity::class.java), AUTH_CALL_BACK_CODE)
-        overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
+        overridePendingTransition(R.anim.slide_up, R.anim.no_animation)
     }
 
     private fun setAndShowCurrentFragment(tag: String) {
@@ -228,8 +238,8 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == AUTH_CALL_BACK_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                recreate()
-                bottom_navigation_main.menu.getItem(1).isChecked = true
+                isSignedIn = true
+                activityViewModel.setSignInOrNot(true)
             }
         }
         for (fragment in supportFragmentManager.fragments) {

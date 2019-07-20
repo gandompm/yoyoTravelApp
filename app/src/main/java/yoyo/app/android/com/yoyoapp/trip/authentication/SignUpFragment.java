@@ -54,17 +54,9 @@ public class SignUpFragment extends Fragment {
                 {
                     Toasty.success(getContext(),getString(R.string.thanks_for_joining)).show();
                     userSharedManager.saveUser(user);
-                    if (((AuthenticationActivity)getActivity()).isFromSchedule)
-                    {
-                        getActivity().finish();
-                        getActivity().overridePendingTransition(0, 0);
-                    }
-                    else {
-                        Intent i = new Intent();
-                        i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-                        getActivity().setResult(getActivity().RESULT_OK,i);
-                        getActivity().finish();
-                    }
+                    Intent i = new Intent();
+                    getActivity().setResult(getActivity().RESULT_OK,i);
+                    getActivity().finish();
                 }
                 signUpButton.setClickable(true);
             }

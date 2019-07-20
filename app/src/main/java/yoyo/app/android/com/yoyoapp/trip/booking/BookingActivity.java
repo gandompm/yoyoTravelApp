@@ -20,6 +20,7 @@ import yoyo.app.android.com.yoyoapp.DataModels.Traveller;
 import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingThirdFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.CheckInternetConnection;
 import yoyo.app.android.com.yoyoapp.MainActivity;
+import yoyo.app.android.com.yoyoapp.MainActivityViewModel;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.trip.dialog.ExitDialogFragment;
 
