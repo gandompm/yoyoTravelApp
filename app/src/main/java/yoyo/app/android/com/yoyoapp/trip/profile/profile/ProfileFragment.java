@@ -69,7 +69,7 @@ public class ProfileFragment extends Fragment {
 
 
     private void setupAboutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),"",false );
     }
 
     // show user the language dialog fragment
@@ -79,19 +79,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupSignOutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),"",false );
     }
 
     private void setupEditProfilePage() {
-        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),"",false );
     }
 
     private void setupRulesPage() {
-        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),"",false );
     }
 
     private void setupTravellerCompanionPage() {
-        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),"",false );
     }
 
     private void retrieveProfileData() {

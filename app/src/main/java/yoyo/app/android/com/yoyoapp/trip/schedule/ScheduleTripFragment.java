@@ -90,7 +90,7 @@ public class ScheduleTripFragment extends Fragment {
             bundle.putString("tripId",tripId);
             RequestFragment requestFragment = new RequestFragment();
             requestFragment.setArguments(bundle);
-            ((MainActivity)getActivity()).showFragment(this,requestFragment,false);
+            ((MainActivity)getActivity()).showFragment(this,requestFragment,"",false );
         }
     }
 

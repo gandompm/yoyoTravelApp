@@ -41,7 +41,7 @@ public class OrdersFragment extends BaseFragment {
         tourCardview.setOnClickListener(v -> {
             if (isSignedIn)
             {
-                ((MainActivity)getActivity()).showFragment(this,new TourTicketFragment(),false);
+                ((MainActivity)getActivity()).showFragment(this,new TourTicketFragment(),"",false );
             }
             else {
                 ((MainActivity)getActivity()).popUpSignInSignUpActivity();

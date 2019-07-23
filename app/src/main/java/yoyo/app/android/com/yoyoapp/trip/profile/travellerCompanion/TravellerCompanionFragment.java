@@ -54,7 +54,7 @@ public class TravellerCompanionFragment extends Fragment {
     private void setupEditTravellerPage() {
         TravellerCompanionsEditFragment detailsFragment = new TravellerCompanionsEditFragment();
         getActivity().onBackPressed();
-        ((MainActivity)getActivity()).showFragment(this,detailsFragment,false);
+        ((MainActivity)getActivity()).showFragment(this,detailsFragment,"",false );
     }
 
     private void init() {
@@ -112,7 +112,7 @@ public class TravellerCompanionFragment extends Fragment {
 
                 TravellerCompanionsEditFragment travellerCompanionsEditFragment = new TravellerCompanionsEditFragment();
                 travellerCompanionsEditFragment.setArguments(bundle);
-                ((MainActivity)getActivity()).showFragment(TravellerCompanionFragment.this,travellerCompanionsEditFragment,true);
+                ((MainActivity)getActivity()).showFragment(TravellerCompanionFragment.this,travellerCompanionsEditFragment,"",true );
             }
         });
         recyclerView.setAdapter(travellerRecyclerviewaddapter);

@@ -64,7 +64,7 @@ public class TourTicketRecyclerviewAddaptor extends RecyclerView.Adapter<TourTic
 
                 TourTicketDetailFragment tourTicketDetailFragment = new TourTicketDetailFragment();
                 tourTicketDetailFragment.setArguments(bundle);
-                ((MainActivity)context).showFragment(currentFragment, tourTicketDetailFragment, false);
+                ((MainActivity)context).showFragment(currentFragment, tourTicketDetailFragment, "",false );
             }
         });
 

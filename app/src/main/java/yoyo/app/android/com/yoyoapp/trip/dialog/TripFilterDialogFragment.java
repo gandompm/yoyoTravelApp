@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.trip.dialog;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ import yoyo.app.android.com.yoyoapp.trip.adapter.CategoryRecyclerviewAddapter;
 import yoyo.app.android.com.yoyoapp.trip.result.TripResultFragment;
 import yoyo.app.android.com.yoyoapp.trip.search.TourSearchFragment;
 import yoyo.app.android.com.yoyoapp.trip.search.TourSearchViewModel;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +65,8 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
     }
 
     private void initFilter() {
-        if (((MainActivity) getActivity()).getMinDuration() != 1)
-            numberPicker.setValue(((MainActivity) getActivity()).getMinDuration());
+        if (sharedDataViewModel.getMinDuration().getValue() != 1)
+            numberPicker.setValue(sharedDataViewModel.getMinDuration().getValue());
     }
 
     private void setupNumberPicker() {
@@ -97,11 +97,11 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
             sharedDataViewModel.selectToPrice(Integer.parseInt(maxPrice));
         }
         if (hasDurationChanged) {
-            ((MainActivity) getActivity()).setMinDuration(duration);
+            sharedDataViewModel.selectMinDuration(duration);
         }
+        sharedDataViewModel.selectCategories(selectedCategories);
         dismiss();
-        getActivity().onBackPressed();
-        ((MainActivity) getActivity()).showFragment(new TourSearchFragment(), new TripResultFragment(), false);
+        sharedDataViewModel.hasFilterChanged(true);
     }
 
     private void setupPriceRangeBar() {
@@ -131,17 +131,15 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
         applyButton = view.findViewById(R.id.button_filtertrip_apply);
         cancelButton = view.findViewById(R.id.button_filtertrip_cancel);
         categorieList = new ArrayList<>();
-        selectedCategories = ((MainActivity) getActivity()).getCategories();
         numberPicker = view.findViewById(R.id.number_picker);
         tourSearchViewModel = ViewModelProviders.of(getActivity()).get(TourSearchViewModel.class);
         sharedDataViewModel = ViewModelProviders.of(getActivity()).get(SharedDataViewModel.class);
+        sharedDataViewModel.getCategories().observe(getActivity(), categories -> selectedCategories = categories);
+        selectedCategories = sharedDataViewModel.getCategories().getValue();
     }
 
 
-    private void showApplyButton() {
-        applyButton.setTextColor(ContextCompat.getColor(getContext(), R.color.green));
-    }
-
+    private void showApplyButton() { applyButton.setTextColor(ContextCompat.getColor(getContext(), R.color.green)); }
 
     private void setupRecyclerview() {
         recyclerView = view.findViewById(R.id.rv_filtertour_types);

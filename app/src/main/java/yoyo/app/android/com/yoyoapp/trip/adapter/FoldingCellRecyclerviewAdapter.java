@@ -92,7 +92,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
 
             TripDetailsFragment tripDetailsFragment = new TripDetailsFragment();
             tripDetailsFragment.setArguments(bundle);
-            ((MainActivity)context).showFragment(currentFragment ,tripDetailsFragment, false);
+            ((MainActivity)context).showFragment(currentFragment ,tripDetailsFragment, "",false );
         });
 
         holder.itemView.setOnClickListener(v->

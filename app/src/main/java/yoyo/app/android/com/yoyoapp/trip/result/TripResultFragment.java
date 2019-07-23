@@ -49,16 +49,17 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     private JellyRefreshLayout jellyRefreshLayout;
     private ImageView backImageView;
     private TextView backTextView;
+    private ArrayList<String> categoryCodes;
     private SharedDataViewModel sharedDataViewModel;
 
     private int fromPrice = 0;
-    private int toPrice = 0;
+    private int toPrice = 20000000;
+    private int minDuration;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trip_result,container,false);
-
 
         init();
         setupRecyclerview();
@@ -73,7 +74,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
     private void refresh() {
-
             jellyRefreshLayout.setPullToRefreshListener(view ->
             {
                 jellyRefreshLayout.setRefreshing(true);
@@ -185,18 +185,12 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
             String duration = bundle.getString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE);
         }
         tripQuery.setType(reserveType);
-        tripQuery.setFromTime(((MainActivity) getActivity()).getFromTime());
-        tripQuery.setToTime(((MainActivity) getActivity()).getToTime());
-        tripQuery.setMinDuration(((MainActivity) getActivity()).getMinDuration());
+        tripQuery.setFromTime(sharedDataViewModel.getFromTime().getValue());
+        tripQuery.setToTime(sharedDataViewModel.getToTime().getValue());
+        tripQuery.setMinDuration(minDuration);
         tripQuery.setFromPrice(fromPrice);
         tripQuery.setToPrice(toPrice);
-        tripQuery.setOrigin(((MainActivity) getActivity()).getOrigin().getCode());
-        tripQuery.setDestination(((MainActivity) getActivity()).getDestination().getCode());
-        // category
-        ArrayList<String> categoryCodes = new ArrayList<>();
-        for (Category category : ((MainActivity) getActivity()).getCategories()){
-            categoryCodes.add(category.getCode());
-        }
+        tripQuery.setDestination(sharedDataViewModel.getDestination().getValue().getCode());
         tripQuery.setCategories(categoryCodes);
     }
 
@@ -209,10 +203,29 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         tripTypeToggleSwitch = view.findViewById(R.id.toggleSwitch_trip_search);
         tripTypeToggleSwitch.setCheckedPosition(1);
         sharedDataViewModel = ViewModelProviders.of(getActivity()).get(SharedDataViewModel.class);
+        categoryCodes = new ArrayList<>();
 
         sharedDataViewModel.getFromPrice().observe(this, price -> fromPrice = price);
         sharedDataViewModel.getToPrice().observe(this, price -> toPrice = price);
-
+        sharedDataViewModel.getCategories().observe(this, categories -> {
+            for (Category category : categories){
+                categoryCodes.add(category.getCode());
+            }
+        });
+        sharedDataViewModel.getMinDuration().observe(this, minDuration -> this.minDuration = minDuration);
+        sharedDataViewModel.getHasFiltersChanged().observe(this, isChanged -> {
+            if(isChanged)
+            {
+                isMoreDataAvailable = true;
+                page = 1;
+                adapter = new FoldingCellRecyclerviewAdapter(getContext(), TripResultFragment.this);
+                recyclerView.setAdapter(adapter);
+                shimmerRecycler.showShimmerAdapter();
+                setupQuery("FLEXIBLE");
+                getTrips();
+            }
+        }
+        );
     }
 
     private void setupFloatingActionButton() {
@@ -238,7 +251,6 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
         });
     }
 
-
     private void setupOnclickListener() {
         backTextView.setOnClickListener(this);
         backImageView.setOnClickListener(this);
@@ -256,8 +268,7 @@ public class TripResultFragment extends Fragment implements View.OnClickListener
     }
 
     private void setupBackButton() {
-        ((MainActivity) getActivity()).setMinDuration(1);
-        ((MainActivity) getActivity()).getCategories().clear();
+        sharedDataViewModel.resetFilters();
         getActivity().onBackPressed();
     }
 

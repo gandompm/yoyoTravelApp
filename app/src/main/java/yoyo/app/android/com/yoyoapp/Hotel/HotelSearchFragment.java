@@ -154,8 +154,8 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 bundle.putLong(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, DatePickerBottomSheet.diffDays);
                 bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, fromPrice);
                 bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, toPrice);
-                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE, ((MainActivity) getActivity()).getFromTime());
-                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE, ((MainActivity) getActivity()).getToTime());
+//                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE, ((MainActivity) getActivity()).getFromTime());
+//                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE, ((MainActivity) getActivity()).getToTime());
 //                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((MainActivity)getActivity()).origin);
 
                 if (incommingBundle.equals("trip"))
