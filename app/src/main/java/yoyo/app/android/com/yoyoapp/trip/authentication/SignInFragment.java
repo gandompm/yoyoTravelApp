@@ -84,20 +84,11 @@ public class SignInFragment extends Fragment {
             if (user != null) {
                 userSharedManager.saveUser(user);
                 Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
-                if (((AuthenticationActivity)getActivity()).isFromSchedule)
-                {
-                    getActivity().finish();
-                    getActivity().overridePendingTransition(0, 0);
-                }
-                else {
-                    Intent i = new Intent();
-                    i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
-//                    startActivity(i);
-//                    getActivity().finish();
-//                    getActivity().overridePendingTransition(0, 0);
-                    getActivity().setResult(getActivity().RESULT_OK,i);
-                    getActivity().finish();
-                }
+                Intent i = new Intent();
+                i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
+
+                getActivity().setResult(getActivity().RESULT_OK,i);
+                getActivity().finish();
             }
             else
             {

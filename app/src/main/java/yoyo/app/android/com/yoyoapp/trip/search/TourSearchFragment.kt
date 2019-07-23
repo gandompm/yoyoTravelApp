@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import es.dmoral.toasty.Toasty
@@ -21,25 +22,26 @@ import yoyo.app.android.com.yoyoapp.trip.Utils.DatePickerFragment
 import yoyo.app.android.com.yoyoapp.trip.dialog.PriceFilterBottomSheetDialogFragment
 import yoyo.app.android.com.yoyoapp.trip.result.TripResultFragment
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TourSearchFragment : Fragment(), View.OnClickListener {
     private var priceFilterBottomSheetFragment: PriceFilterBottomSheetDialogFragment? = null
-    private lateinit var tourSearchViewModel : TourSearchViewModel
     private var destinationsList: ArrayList<Location> = ArrayList()
     private var diffDays = "7"
     private var startDateString = "From..."
     private var endDateString = "To..."
-
     private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()
+    private val tourSearchViewModel by activityViewModels<TourSearchViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val res = inflater.inflate(R.layout.fragment_search_trip, container, false)
 
-        tourSearchViewModel = ViewModelProviders.of(activity!!)[TourSearchViewModel::class.java]
 
-        res.tv_search_check_in.text = (activity as MainActivity).fromTimeString
-        res.tv_search_check_out.text = (activity as MainActivity).toTimeString
+        sharedDataViewModel.fromTimeString.observe(activity!!, Observer { res.tv_search_check_in.text = it})
+        sharedDataViewModel.toTimeString.observe(activity!!, Observer { res.tv_search_check_out.text = it})
+        res.tv_search_check_in.text = sharedDataViewModel.fromTimeString.value
+        res.tv_search_check_out.text = sharedDataViewModel.toTimeString.value
 
         setupOnclickListener(res)
         setupSearchButton(res)
@@ -67,7 +69,7 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
             "Where do you like to go?", null, destinationsList,
             SearchResultListener { dialog, item, _ ->
                 view?.et_search_bar_destination?.text = item.title
-                (activity as MainActivity).destination = item
+                sharedDataViewModel.selectDestination(item)
                 dialog.dismiss()
             })
         if (destinationsList.isEmpty())
@@ -118,7 +120,7 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
                         putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays)
                     }
                 }
-                (activity as MainActivity).showFragment(this@TourSearchFragment, tripListSearchResultFragment, false)
+                (activity as MainActivity).showFragment(this@TourSearchFragment, tripListSearchResultFragment, "",false)
             }
         }
     }
@@ -138,7 +140,7 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
                 diffDays = arrayList[2]
                 startDateString = arrayList[3]
                 endDateString = arrayList[4]
-            }, true)
+            }, "",true)
         }
 
         if (v.id == R.id.iv_search_search_city3 || v.id == R.id.et_search_bar_destination) {
@@ -148,5 +150,13 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
         if (v.id == R.id.iv_search_filter || v.id == R.id.tv_search_price_filter) {
             setupFilterPriceBottomSheet()
         }
+    }
+
+    private fun getDayFormat(calendar: Calendar): String {
+        val dayFormat = SimpleDateFormat("E", Locale.getDefault())
+        val dayOfWeekNameFrom = dayFormat.format(calendar.time)
+        val monthNameFrom = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
+
+        return "$dayOfWeekNameFrom, ${calendar.get(Calendar.DAY_OF_MONTH)} $monthNameFrom"
     }
 }

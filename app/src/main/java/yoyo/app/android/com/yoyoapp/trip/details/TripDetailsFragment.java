@@ -72,7 +72,7 @@ public class TripDetailsFragment extends Fragment {
         bundle.putString("tourImage",tourImage);
         bundle.putString("title",tripTitle);
         scheduleTripFragment.setArguments(bundle);
-        ((MainActivity)getActivity()).showFragment(this,scheduleTripFragment,false);
+        ((MainActivity)getActivity()).showFragment(this,scheduleTripFragment,"",false );
     }
 
     private void setupViews() {

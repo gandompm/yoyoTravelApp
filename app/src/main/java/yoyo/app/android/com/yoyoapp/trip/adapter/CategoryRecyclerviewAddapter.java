@@ -6,46 +6,51 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.SharedDataViewModel;
 
 import java.util.ArrayList;
 
-public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryRecyclerviewAddapter.AirlineViewholder> {
+public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryRecyclerviewAddapter.categoryViewHolder> {
 
     private static final String TAG = "AirlineRecyclerviewAdda";
     private ArrayList<Category> categories;
     private ArrayList<String> selectedCategories;
     private Context context;
+    private SharedDataViewModel sharedDataViewModel;
     private OnItemCategorySelected onItemCategorySelected;
 
     public CategoryRecyclerviewAddapter(ArrayList<Category> categories, Context context, OnItemCategorySelected onItemCategorySelected) {
         this.categories = categories;
         this.context = context;
         this.onItemCategorySelected = onItemCategorySelected;
+        sharedDataViewModel = ViewModelProviders.of(((MainActivity)context)).get(SharedDataViewModel.class);
         selectedCategories = new ArrayList<>();
-        for (Category category :
-                ((MainActivity) context).getCategories()) {
-            selectedCategories.add(category.getName());
-        }
+        sharedDataViewModel.getCategories().observe(((MainActivity)context), selectedCategories -> {
+            for (Category category : selectedCategories) {
+                this.selectedCategories.add(category.getName());
+            }
+        });
     }
 
     @NonNull
     @Override
-    public AirlineViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public categoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_category, parent, false);
-        return new AirlineViewholder(view);
+        return new categoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final AirlineViewholder holder, final int position) {
+    public void onBindViewHolder(@NonNull final categoryViewHolder holder, final int position) {
         final Category category = categories.get(position);
         holder.bindAirlineItem(category);
         holder.itemView.setOnClickListener(v -> {
-            category.setSelected(!category.isSelected());
             onItemCategorySelected.onSelectd(category);
+            category.setSelected(!category.isSelected());
             if (category.isSelected())
             {
                 holder.nameTextview.setTextColor(context.getResources().getColor(R.color.white));
@@ -66,11 +71,11 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
     }
 
 
-    public class AirlineViewholder extends RecyclerView.ViewHolder
+    public class categoryViewHolder extends RecyclerView.ViewHolder
     {
         private TextView nameTextview;
 
-        public AirlineViewholder(@NonNull View itemView) {
+        public categoryViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextview = itemView.findViewById(R.id.tv_categoryitem);
         }

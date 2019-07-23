@@ -48,6 +48,6 @@ class HomeFragment : Fragment() {
         val tripSearchFragment = TourSearchFragment().apply {
             arguments = Bundle().apply { putString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE, "trip") }
         }
-        (activity as MainActivity).showFragment(this, tripSearchFragment, false)
+        (activity as MainActivity).showFragment(this, tripSearchFragment, "searchTrip",false)
     }
 }

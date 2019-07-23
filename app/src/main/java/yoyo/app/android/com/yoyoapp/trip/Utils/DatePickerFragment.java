@@ -17,11 +17,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 import com.dagang.library.GradientButton;
 import com.google.android.material.snackbar.Snackbar;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
+import yoyo.app.android.com.yoyoapp.SharedDataViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +45,7 @@ public class DatePickerFragment extends Fragment {
     private ImageView closeButton;
     private Snackbar okSnackbar;
     private Typeface typeface;
+    private SharedDataViewModel sharedDataViewModel;
     private Consumer<ArrayList<String>> consumer;
     private View view;
 
@@ -139,7 +143,7 @@ public class DatePickerFragment extends Fragment {
         fromDateTextView =  fromDateButton.getButton();
         toDateTextView =  toDateButton.getButton();
         typeface = ResourcesCompat.getFont(getContext(),R.font.roboto_medium);
-
+        sharedDataViewModel = ViewModelProviders.of(getActivity()).get(SharedDataViewModel.class);
         calendar.setFonts(typeface);
     }
 
@@ -190,20 +194,19 @@ public class DatePickerFragment extends Fragment {
     private void calculateEndDate() {
         endDateString = getDayFormat(end);
         startDateString = getDayFormat(start);
-        ((MainActivity) getContext()).setFromTime(start.getTimeInMillis() / 1000);
-        ((MainActivity) getActivity()).setToTime(end.getTimeInMillis() / 1000);
+        sharedDataViewModel.selectFromTime(start.getTimeInMillis() / 1000);
+        sharedDataViewModel.selectToTime(end.getTimeInMillis() / 1000);
         Log.d(TAG, "calculateEndDate: "+ start.getTimeInMillis());
         Log.d(TAG, "calculateStartDate2: "+ end.getTimeInMillis());
     }
 
     private void calculateStartDate() {
         startDateString = getDayFormat(start);
-        ((MainActivity) getContext()).setFromTime(start.getTimeInMillis() / 1000);
+        sharedDataViewModel.selectFromTime(start.getTimeInMillis() / 1000);
         Log.d(TAG, "calculateStartDate: "+ start.getTimeInMillis());
     }
 
     private void setupOkButton() {
-
         if (start != null && end != null)
         {
             saveResults(startDateString,endDateString);
@@ -223,7 +226,7 @@ public class DatePickerFragment extends Fragment {
         arrayList.add(startDateString);
         arrayList.add(endDateString);
         consumer.accept(arrayList);
-        ((MainActivity) getActivity()).setDiffDays((int) diffDays);
+        sharedDataViewModel.selectDiffDays((int) diffDays);
         calendar.setEditable(true);
         getActivity().onBackPressed();
     }

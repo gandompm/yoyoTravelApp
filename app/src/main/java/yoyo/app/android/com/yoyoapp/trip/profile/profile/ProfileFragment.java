@@ -12,11 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Profile.*;
 import yoyo.app.android.com.yoyoapp.MainActivity;
+import yoyo.app.android.com.yoyoapp.MainActivityViewModel;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.trip.profile.SignOutFragment;
@@ -31,6 +33,7 @@ public class ProfileFragment extends Fragment {
     private TextView nameTextview, languageTextview;
     private ImageView circleImageView;
     private UserSharedManager userSharedManager;
+    private MainActivityViewModel mainActivityViewModel;
     private boolean isSignedIn = true;
     private ProfileViewModel profileViewModel;
     private ImageView  travellerCompanionImageview, rulesImageview, editProfileImageview ,signoutImageview, languageImageView, aboutImageview;
@@ -49,13 +52,24 @@ public class ProfileFragment extends Fragment {
         signoutImageview.setOnClickListener(v -> { if (isSignedIn) setupSignOutPage(); else popUpSignInSignUpActivity();});
         aboutImageview.setOnClickListener(v -> setupAboutPage());
         languageImageView.setOnClickListener(v -> setupLanguage());
+        setupSignInObserver();
 
         return view;
     }
 
+    private void setupSignInObserver() {
+        mainActivityViewModel.isUserSignedIn().observe(getActivity(), isSignedIn -> {
+            if (isSignedIn) {
+                this.isSignedIn = true;
+                user = userSharedManager.getUser();
+                nameTextview.setText(user.getFirstName()+" "+ user.getLastName());
+            }
+        });
+    }
+
 
     private void setupAboutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),"",false );
     }
 
     // show user the language dialog fragment
@@ -65,19 +79,19 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupSignOutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),"",false );
     }
 
     private void setupEditProfilePage() {
-        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),"",false );
     }
 
     private void setupRulesPage() {
-        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),"",false );
     }
 
     private void setupTravellerCompanionPage() {
-        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),false);
+        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),"",false );
     }
 
     private void retrieveProfileData() {
@@ -126,6 +140,7 @@ public class ProfileFragment extends Fragment {
 
     private void init() {
         profileViewModel = ViewModelProviders.of(getActivity()).get(ProfileViewModel.class);
+        mainActivityViewModel = ViewModelProviders.of(getActivity()).get(MainActivityViewModel.class);
         rulesImageview = view.findViewById(R.id.iv_profile_rules);
         travellerCompanionImageview = view.findViewById(R.id.iv_profile_traveller_companion);
         editProfileImageview = view.findViewById(R.id.iv_profile_edit_profile);
