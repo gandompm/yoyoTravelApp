@@ -13,10 +13,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import org.xmlpull.v1.XmlPullParserException
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
-import yoyo.app.android.com.yoyoapp.trip.api.SignInRequest
-import yoyo.app.android.com.yoyoapp.trip.api.SignInResponse
-import yoyo.app.android.com.yoyoapp.trip.api.TourCategories
-import yoyo.app.android.com.yoyoapp.trip.api.TourDestinations
+import yoyo.app.android.com.yoyoapp.trip.api.*
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -31,9 +28,14 @@ class ApiService2(val context: Context) {
     private val IP = "http://www.yoyo.travel/"
     private val apiKey = "ChapterLittleIngeniousFerrariMagic"
 
+    fun sendSignUpRequest(request: SignUpRequest, f: (SignUpResponse?) -> Unit) {
+        sendPostRequest(false, IP + "api/user/register", JSONObject(request.toJson())) {
+            f(SignUpResponse.fromJson(it.toString()))
+        }
+    }
+
     fun sendSignInRequest(request: SignInRequest, f: (SignInResponse?) -> Unit) {
-        sendPostRequest(
-            false, IP + "api/user/login", JSONObject(request.toJson())) {
+        sendPostRequest(false, IP + "api/user/login", JSONObject(request.toJson())) {
             f(SignInResponse.fromJson(it.toString()))
         }
     }

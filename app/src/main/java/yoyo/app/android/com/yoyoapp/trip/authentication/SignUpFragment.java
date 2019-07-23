@@ -13,12 +13,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
-import org.json.JSONException;
-import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Utils;
+import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 
 
 public class SignUpFragment extends Fragment {
@@ -42,11 +40,17 @@ public class SignUpFragment extends Fragment {
         return view;
     }
 
-    private void signUpRequest(JSONObject jsonObjectRequest) {
+    private void signUpRequest(
+            String firstName,
+            String lastName,
+            String email,
+            String phoneNumber,
+            String password
+    ) {
         signUpButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
-        authViewModel.initSignUp(jsonObjectRequest);
-        authViewModel.getSignUpResult().observe(getActivity(), new Observer<User>() {
+        authViewModel.sendSingUp(firstName, lastName, email, phoneNumber, password);
+        authViewModel.getSignUp().observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(User user) {
                 progressBar.setVisibility(View.GONE);
@@ -98,20 +102,13 @@ public class SignUpFragment extends Fragment {
 
             if (flag){
                 progressBar.setVisibility(View.VISIBLE);
-                JSONObject jsonObjectRequest = new JSONObject();
-                try {
-                    jsonObjectRequest.put("firstname", firstNameEditText.getText().toString());
-                    jsonObjectRequest.put("lastname", lastNameEditText.getText().toString());
-                    jsonObjectRequest.put("email", emailEditText.getText().toString());
-                    jsonObjectRequest.put("phone_number", phoneNumberEditText.getText().toString());
-                    jsonObjectRequest.put("password", passwordEditText.getText().toString());
-                    jsonObjectRequest.put("password", passwordEditText.getText().toString());
-
-                } catch (JSONException e) {
-                    progressBar.setVisibility(View.GONE);
-                    e.printStackTrace();
-                }
-                signUpRequest(jsonObjectRequest);
+                signUpRequest(
+                        firstNameEditText.getText().toString(),
+                        lastNameEditText.getText().toString(),
+                        emailEditText.getText().toString(),
+                        phoneNumberEditText.getText().toString(),
+                        passwordEditText.getText().toString()
+                );
             }
 
         });

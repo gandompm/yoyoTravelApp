@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
-import org.json.JSONException;
-import org.json.JSONObject;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 import yoyo.app.android.com.yoyoapp.Utils;
-import yoyo.app.android.com.yoyoapp.trip.booking.BookingActivity;
+import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 
 
 public class SignInFragment extends Fragment {
@@ -68,19 +67,7 @@ public class SignInFragment extends Fragment {
 
             if (flag){
                 progressBar.setVisibility(View.VISIBLE);
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    // TODO: 7/16/2019  
-                    jsonObject.put("username", emailPhoneNumberEditText.getText().toString());
-                    jsonObject.put("password", passwordEditText.getText().toString());
-                } catch (JSONException e) {
-                    progressBar.setVisibility(View.GONE);
-                    e.printStackTrace();
-
-                }
-
-                // todo sign in request
-                sendToSignInPage(jsonObject);
+                sendToSignInPage(emailPhoneNumberEditText.getText().toString(), passwordEditText.getText().toString());
             }else {
                 progressBar.setVisibility(View.GONE);
 
@@ -89,11 +76,11 @@ public class SignInFragment extends Fragment {
         });
     }
 
-    private void sendToSignInPage(JSONObject jsonObject) {
+    private void sendToSignInPage(String username, String password) {
         signinButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
-        authViewModel.initSignIn(jsonObject);
-        authViewModel.getSignInResult().observe(getActivity(), user -> {
+        authViewModel.sendSignIn(username, password);
+        authViewModel.getSingIn().observe(getActivity(), user -> {
             if (user != null) {
                 userSharedManager.saveUser(user);
                 Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();

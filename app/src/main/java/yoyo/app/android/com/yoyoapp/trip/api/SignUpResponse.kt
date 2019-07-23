@@ -11,7 +11,7 @@ private val mapper = jacksonObjectMapper().apply {
     setSerializationInclusion(JsonInclude.Include.NON_NULL)
 }
 
-data class SignInResponse (
+data class SignUpResponse (
     val username: String? = null,
     val firstname: String? = null,
     val lastname: String? = null,
@@ -31,6 +31,6 @@ data class SignInResponse (
     fun toJson() = mapper.writeValueAsString(this)
 
     companion object {
-        fun fromJson(json: String) = mapper.readValue<SignInResponse>(json)
+        fun fromJson(json: String) = mapper.readValue<SignUpResponse>(json)
     }
 }
