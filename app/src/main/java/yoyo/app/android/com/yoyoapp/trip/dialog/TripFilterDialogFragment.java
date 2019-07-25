@@ -1,13 +1,13 @@
 package yoyo.app.android.com.yoyoapp.trip.dialog;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
+import androidx.core.util.Consumer;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,12 +16,9 @@ import com.appyvet.materialrangebar.RangeBar;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.shawnlin.numberpicker.NumberPicker;
 import yoyo.app.android.com.yoyoapp.DataModels.Category;
-import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.SharedDataViewModel;
 import yoyo.app.android.com.yoyoapp.trip.adapter.CategoryRecyclerviewAddapter;
-import yoyo.app.android.com.yoyoapp.trip.result.TripResultFragment;
-import yoyo.app.android.com.yoyoapp.trip.search.TourSearchFragment;
 import yoyo.app.android.com.yoyoapp.trip.search.TourSearchViewModel;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -46,6 +43,11 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
     private int duration = 6;
     private View view;
     private SharedDataViewModel sharedDataViewModel;
+    private Consumer<Boolean> applyConsumer;
+
+    public TripFilterDialogFragment(Consumer<Boolean> applyConsumer) {
+        this.applyConsumer = applyConsumer;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -101,7 +103,7 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
         }
         sharedDataViewModel.selectCategories(selectedCategories);
         dismiss();
-        sharedDataViewModel.hasFilterChanged(true);
+        applyConsumer.accept(true);
     }
 
     private void setupPriceRangeBar() {
@@ -170,10 +172,6 @@ public class TripFilterDialogFragment extends BottomSheetDialogFragment {
                 }
             }
         });
-    }
-
-    public static TripFilterDialogFragment newInstance() {
-        return new TripFilterDialogFragment();
     }
 
 }

@@ -3,16 +3,9 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="yoyo.app.android.com.yoyoapp.CitiesListFragment">
+              >
 
-    <!--<TextView-->
-    <!--android:id="@+id/tv_cities_list"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="30dp"-->
-    <!--android:text="Popular Cities"-->
-    <!--android:fontFamily="@font/roboto_medium"-->
-    <!--android:textColor="@color/colorPrimary"-->
-    <!--android:gravity="center"/>-->
+
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_cities"

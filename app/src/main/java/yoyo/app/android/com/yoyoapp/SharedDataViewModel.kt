@@ -20,7 +20,6 @@ class SharedDataViewModel : ViewModel() {
     var minDuration = MutableLiveData<Int>()
     var destination = MutableLiveData<Location>()
     var diffDays = MutableLiveData<Int>()
-    var hasFiltersChanged = MutableLiveData<Boolean>()
 
     init {
         val calendar = Calendar.getInstance()
@@ -35,7 +34,6 @@ class SharedDataViewModel : ViewModel() {
         diffDays.value = 15
         toPrice.value = 20000000
         fromPrice.value = 0
-        hasFiltersChanged.value = false
     }
 
 
@@ -58,7 +56,6 @@ class SharedDataViewModel : ViewModel() {
         toPrice.value = 20000000
         fromPrice.value = 0
         minDuration.value = 1
-        hasFiltersChanged = MutableLiveData()
     }
 
     fun selectFromTime(fromTime: Long) {
@@ -89,9 +86,6 @@ class SharedDataViewModel : ViewModel() {
         this.diffDays.value = diffDays
     }
 
-    fun hasFilterChanged(isChanged: Boolean) {
-        this.hasFiltersChanged.value = isChanged
-    }
 
     private fun getDayFormat(calendar: Calendar): String {
         val dayFormat = SimpleDateFormat("E", Locale.getDefault())

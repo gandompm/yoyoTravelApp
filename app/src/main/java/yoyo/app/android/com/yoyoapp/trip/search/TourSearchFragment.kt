@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import es.dmoral.toasty.Toasty
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat
 import ir.mirrajabi.searchdialog.core.SearchResultListener
@@ -20,7 +18,7 @@ import yoyo.app.android.com.yoyoapp.SharedDataViewModel
 import yoyo.app.android.com.yoyoapp.Utils
 import yoyo.app.android.com.yoyoapp.trip.Utils.DatePickerFragment
 import yoyo.app.android.com.yoyoapp.trip.dialog.PriceFilterBottomSheetDialogFragment
-import yoyo.app.android.com.yoyoapp.trip.result.TripResultFragment
+import yoyo.app.android.com.yoyoapp.trip.result.TourResultFragment
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -113,13 +111,14 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
             if (res.et_search_bar_destination.text == "Destination") {
                 Toasty.normal(context!!, "Destination can not be empty.").show()
             } else {
-                val tripListSearchResultFragment = TripResultFragment().apply {
+                val tripListSearchResultFragment = TourResultFragment().apply {
                     arguments = Bundle().apply {
                         putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, startDateString)
                         putString(Utils.KEY_BUNDLE_TO_DATE_CODE, endDateString)
                         putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays)
                     }
                 }
+                sharedDataViewModel.resetFilters()
                 (activity as MainActivity).showFragment(this@TourSearchFragment, tripListSearchResultFragment, "",false)
             }
         }

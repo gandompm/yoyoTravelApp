@@ -42,8 +42,8 @@ public class CitiyViewPagerFragment extends Fragment {
 
         mViewPager = view.findViewById(R.id.materialViewPager);
         Bundle bundle = getArguments();
-        cityName = bundle.getString(Utils.KEY_BUNDLE_CITY_NAME);
-        cityImage = bundle.getString(Utils.KEY_BUNDLE_CITY_IMAGE);
+        cityName = bundle.getString(Utils.INSTANCE.getKEY_BUNDLE_CITY_NAME());
+        cityImage = bundle.getString(Utils.INSTANCE.getKEY_BUNDLE_CITY_IMAGE());
 
 
         AboutCityFragment aboutCityFragment = new AboutCityFragment();
