@@ -50,15 +50,15 @@ public class CitiesRecyclerviewAddaptor extends RecyclerView.Adapter<CitiesRecyc
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString(Utils.KEY_BUNDLE_CITY_NAME,cities.get(position).getName());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_IMAGE,cities.get(position).getImage());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_ABOUT,cities.get(position).getAbout());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_NATURAL_ATT,cities.get(position).getNaturalAttraction());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_HISTORICAL_ATT,cities.get(position).getHistoricalAttraction());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_MAN_MADE_ATT,cities.get(position).getManMadeAttraction());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_FOOD_SOUVENIR,cities.get(position).getFoodAndSouvenir());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_CLIMATE,cities.get(position).getClimate());
-                bundle.putString(Utils.KEY_BUNDLE_CITY_FOOD_TOPEXPERIENCE,cities.get(position).getTopExperince());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_NAME(),cities.get(position).getName());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_IMAGE(),cities.get(position).getImage());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_ABOUT(),cities.get(position).getAbout());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_NATURAL_ATT(),cities.get(position).getNaturalAttraction());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_HISTORICAL_ATT(),cities.get(position).getHistoricalAttraction());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_MAN_MADE_ATT(),cities.get(position).getManMadeAttraction());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_FOOD_SOUVENIR(),cities.get(position).getFoodAndSouvenir());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_CLIMATE(),cities.get(position).getClimate());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_CITY_FOOD_TOPEXPERIENCE(),cities.get(position).getTopExperince());
 
                 FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

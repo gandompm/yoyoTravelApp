@@ -104,10 +104,10 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
         // for existing cell set valid valid state(without animation)
         if (unfoldedIndexes.contains(position)) {
             // fixing with and height must be > 0
-//            if(cell.getParent() != null)
+            if(cell.getParent() != null)
             cell.unfold(true);
         } else {
-//            if(cell.getParent() != null)
+            if(cell.getParent() != null)
             cell.fold(true);
         }
     }

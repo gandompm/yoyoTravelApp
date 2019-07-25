@@ -33,10 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var languageSetup: LanguageSetup = LanguageSetup(this)
     private var currentContainer = R.id.main_container
     private var currentTabTag = MAIN_TAB_TAG
-
     var isFirstFragment = true
-
-
     private val homeBackStack = Stack<Fragment>()
     private val profileBackStack = Stack<Fragment>()
     private val orderBackStack = Stack<Fragment>()
@@ -197,11 +194,7 @@ class MainActivity : AppCompatActivity() {
                     replace(currentContainer, fragment)
                 }
             }
-            if (fragment?.tag.equals("searchTrip"))
-            {
-                val sharedDataViewModel = ViewModelProviders.of(this).get(SharedDataViewModel::class.java)
-                sharedDataViewModel.resetFilters()
-            }
+
         } catch (e: Exception) {
             finish()
         }
@@ -243,14 +236,6 @@ class MainActivity : AppCompatActivity() {
         if (userSharedManager.token != "") {
             isSignedIn = true
         }
-    }
-
-    private fun getDayFormat(calendar: Calendar): String {
-        val dayFormat = SimpleDateFormat("E", Locale.getDefault())
-        val dayOfWeekNameFrom = dayFormat.format(calendar.time)
-        val monthNameFrom = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
-
-        return "$dayOfWeekNameFrom, ${calendar.get(Calendar.DAY_OF_MONTH)} $monthNameFrom"
     }
 
     fun setMainFrameLayoutPadding(left: Int, top: Int, right: Int, bottom: Int) {

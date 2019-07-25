@@ -116,7 +116,7 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
 
     private void setupBundle() {
         Bundle bundle = getArguments();
-        incommingBundle = bundle.getString(Utils.KEY_BUNDLE_MAIN_PAGE_CODE);
+        incommingBundle = bundle.getString(Utils.INSTANCE.getKEY_BUNDLE_MAIN_PAGE_CODE());
 
         if (incommingBundle.contains("trip"))
         {
@@ -148,12 +148,12 @@ public class HotelSearchFragment extends Fragment implements View.OnClickListene
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Bundle bundle = new Bundle();
 
-                bundle.putString(Utils.KEY_BUNDLE_SEARCH_STRING_CODE, searchTextView.getText().toString());
-                bundle.putString(Utils.KEY_BUNDLE_FROM_DATE_CODE, DatePickerBottomSheet.startDateString);
-                bundle.putString(Utils.KEY_BUNDLE_TO_DATE_CODE, DatePickerBottomSheet.endDateString);
-                bundle.putLong(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, DatePickerBottomSheet.diffDays);
-                bundle.putInt(Utils.KEY_BUNDLE_FROM_PRICE_CODE, fromPrice);
-                bundle.putInt(Utils.KEY_BUNDLE_TO_PRICE_CODE, toPrice);
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_SEARCH_STRING_CODE(), searchTextView.getText().toString());
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_FROM_DATE_CODE(), DatePickerBottomSheet.startDateString);
+                bundle.putString(Utils.INSTANCE.getKEY_BUNDLE_TO_DATE_CODE(), DatePickerBottomSheet.endDateString);
+                bundle.putLong(Utils.INSTANCE.getKEY_BUNDLE_NIGHT_NUM_CODE(), DatePickerBottomSheet.diffDays);
+                bundle.putInt(Utils.INSTANCE.getKEY_BUNDLE_FROM_PRICE_CODE(), fromPrice);
+                bundle.putInt(Utils.INSTANCE.getKEY_BUNDLE_TO_PRICE_CODE(), toPrice);
 //                bundle.putLong(Utils.KEY_BUNDLE_FROM_TIME_CODE, ((MainActivity) getActivity()).getFromTime());
 //                bundle.putLong(Utils.KEY_BUNDLE_TO_TIME_CODE, ((MainActivity) getActivity()).getToTime());
 //                bundle.putString(Utils.KEY_BUNDLE_LOCATION_CODE,((MainActivity)getActivity()).origin);

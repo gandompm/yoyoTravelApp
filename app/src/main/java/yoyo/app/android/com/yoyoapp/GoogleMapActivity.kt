@@ -29,32 +29,32 @@ import com.google.android.gms.tasks.Task
 
 class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private var startLatLng: LatLng? = null
-    private var finishLatLng: LatLng? = null
+    private lateinit var startLatLng: LatLng
+    private lateinit var finishLatLng: LatLng
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_google_map)
 
+        intent.extras.apply {
+            val lat1 =  getDouble("lat1")
+            val long1 = getDouble("long1")
+            val lat2 =  getDouble("lat2")
+            val long2 = getDouble("long2")
+            startLatLng = LatLng(lat1, long1)
+            finishLatLng = LatLng(lat2, long2)
+        }
 
-        val lat1 = intent.extras!!.getDouble("lat1")
-        val long1 = intent.extras!!.getDouble("long1")
-        val lat2 = intent.extras!!.getDouble("lat2")
-        val long2 = intent.extras!!.getDouble("long2")
-        startLatLng = LatLng(lat1, long1)
-        finishLatLng = LatLng(lat2, long2)
         initMap()
     }
 
     private fun initMap() {
-        Log.d(TAG, "initMap: initializing map")
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment!!.getMapAsync(this@GoogleMapActivity)
+        mapFragment?.getMapAsync(this@GoogleMapActivity)
     }
 
     private fun moveCamera(googleMap: GoogleMap, latLng: LatLng) {
-        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude)
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 6f))
     }
 
@@ -62,12 +62,10 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json))
 
-
-
-        moveCamera(googleMap, startLatLng!!)
+        moveCamera(googleMap, startLatLng)
 
         val markerOptions = MarkerOptions()
-        markerOptions.position(startLatLng!!)
+        markerOptions.position(startLatLng)
         markerOptions.title("Start")
 
 
@@ -80,22 +78,23 @@ class GoogleMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 ).geodesic(true)
         )
 
-        polyline.endCap = RoundCap()
-        polyline.width = 5f
-        polyline.color = Color.RED
-        polyline.jointType = JointType.ROUND
-        polyline.startCap = RoundCap()
-        polyline.endCap = CustomCap(
-            BitmapDescriptorFactory.fromResource(R.drawable.arrow),
-            16f
-        )
+
+        polyline.apply {
+            endCap = RoundCap()
+            width = 5f
+            color = Color.RED
+            jointType = JointType.ROUND
+            startCap = RoundCap()
+            endCap = CustomCap(
+                BitmapDescriptorFactory.fromResource(R.drawable.arrow),
+                16f
+            )
+        }
+
     }
 
     override fun onBackPressed() {
         finish()
     }
 
-    companion object {
-        private val TAG = "MapActivity"
-    }
 }
