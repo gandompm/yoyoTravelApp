@@ -34,8 +34,9 @@ class ApiService2(val context: Context) {
         }
     }
 
+    //todo fixing hard code json object!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     fun sendSignInRequest(request: SignInRequest, f: (SignInResponse?) -> Unit) {
-        sendPostRequest(false, IP + "api/user/login", JSONObject(request.toJson())) {
+        sendPostRequest(false, IP + "api/user/login", JSONObject("{username: "+"msh" + ",password: "+"mshpassword"+"}")) {
             f(SignInResponse.fromJson(it.toString()))
         }
     }

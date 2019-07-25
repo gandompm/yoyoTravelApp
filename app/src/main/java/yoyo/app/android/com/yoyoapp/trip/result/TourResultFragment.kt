@@ -8,6 +8,8 @@ import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.util.Consumer
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,13 +35,13 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var shimmerRecycler: ShimmerRecyclerView
     private lateinit var adapter: FoldingCellRecyclerviewAdapter
-    private lateinit var tourResultViewModel: TourResultViewModel
     private lateinit var tripQuery: TripQuery
     private var page = 1
     private var isMoreDataAvailable = true
     private lateinit var jellyRefreshLayout: JellyRefreshLayout
     private lateinit var categoryCodes: ArrayList<String>
-    private var sharedDataViewModel: SharedDataViewModel? = null
+    private val tourResultViewModel by viewModels<TourResultViewModel>()
+    private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()
     private var reserveType: String = "FLEXIBLE"
     private var fromPrice = 0
     private var toPrice = 20000000
@@ -132,7 +134,6 @@ class TourResultFragment : Fragment(), View.OnClickListener {
 
 
     private fun getTrips() {
-        tourResultViewModel = ViewModelProviders.of(activity!!).get(TourResultViewModel::class.java)
         tourResultViewModel.initTripList(page, tripQuery)
         tourResultViewModel.getTripList()!!.observe(activity!!, Observer { trips ->
             if (trips != null) {
@@ -188,7 +189,6 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         res.toggleSwitch_trip_search.setCheckedPosition(1)
         res.tv_trip_search_back.setOnClickListener(this)
         res.iv_trip_search_back.setOnClickListener(this)
-        sharedDataViewModel = ViewModelProviders.of(activity!!).get(SharedDataViewModel::class.java)
         categoryCodes = ArrayList()
     }
 

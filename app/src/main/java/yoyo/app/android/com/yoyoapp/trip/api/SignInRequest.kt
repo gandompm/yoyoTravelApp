@@ -12,8 +12,7 @@ private val mapper = jacksonObjectMapper().apply {
 
 data class SignInRequest (
     val username: String,
-    val password: String
-) {
+    val password: String) {
     fun toJson() = mapper.writeValueAsString(this)
 
     companion object {
