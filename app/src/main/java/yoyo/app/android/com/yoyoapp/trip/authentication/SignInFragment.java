@@ -85,7 +85,7 @@ public class SignInFragment extends Fragment {
                 userSharedManager.saveUser(user);
                 Toasty.success(getContext(),getString(R.string.welcome_to_yoyo_app)).show();
                 Intent i = new Intent();
-                i.putExtra(Utils.INSTANCE.getKEY_BUNDLE_MAINACTIVITY(), true);
+                i.putExtra(Utils.KEY_BUNDLE_MAINACTIVITY, true);
 
                 getActivity().setResult(getActivity().RESULT_OK,i);
                 getActivity().finish();
