@@ -29,26 +29,25 @@ class ApiService2(val context: Context) {
     private val apiKey = "ChapterLittleIngeniousFerrariMagic"
 
     fun sendSignUpRequest(request: SignUpRequest, f: (SignUpResponse?) -> Unit) {
-        sendPostRequest(false, IP + "api/user/register", JSONObject(request.toJson())) {
+        sendPostRequest(false, "${IP}api/user/register", JSONObject(request.toJson())) {
             f(SignUpResponse.fromJson(it.toString()))
         }
     }
 
-    //todo fixing hard code json object!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     fun sendSignInRequest(request: SignInRequest, f: (SignInResponse?) -> Unit) {
-        sendPostRequest(false, IP + "api/user/login", JSONObject("{username: "+"msh" + ",password: "+"mshpassword"+"}")) {
+        sendPostRequest(false, "${IP}api/user/login", JSONObject(request.toJson())) {
             f(SignInResponse.fromJson(it.toString()))
         }
     }
 
     fun sendCategoriesRequest(f: (TourCategories?) -> Unit) {
-        sendGetRequest(false, IP + "api/trips/categories") {
+        sendGetRequest(false, "${IP}api/trips/categories") {
             f(TourCategories.fromJson(it.toString()))
         }
     }
 
     fun sendDestinationsRequest(f: (TourDestinations?) -> Unit) {
-        sendGetRequest(false, IP + "api/trips/destinations") {
+        sendGetRequest(false, "${IP}api/trips/destinations") {
             f(TourDestinations.fromJson(it.toString()))
         }
     }
