@@ -1,17 +1,26 @@
 package yoyo.app.android.com.yoyoapp.trip.profile.editProfile
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
 import yoyo.app.android.com.yoyoapp.trip.ApiService
+import yoyo.app.android.com.yoyoapp.trip.ApiService2
 
 class EditProfileRepository(val context: Context) {
 
     private val apiService: ApiService = ApiService(context)
+    private val apiService2: ApiService2 = ApiService2(context)
 
-    fun getProfile(f: (User?) -> (Unit)) {
-        apiService.getProfileRequest { user -> f(user) }
+    fun getProfile(f: (User?) -> Unit) {
+        apiService2.sendGetProfileRequest {
+            f(User().apply {
+                firstName = it?.firstname
+                lastName = it?.lastname
+                email = it?.email
+                phoneNumber = it?.phoneNumber
+                profilePicture = it?.profileOriginalPicture
+            })
+        }
     }
 
     fun getEditedUser(jsonObject: JSONObject, f: (User?) -> (Unit)) {
