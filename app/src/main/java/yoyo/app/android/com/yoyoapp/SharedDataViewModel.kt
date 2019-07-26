@@ -38,13 +38,11 @@ class SharedDataViewModel : ViewModel() {
 
 
     fun selectFromPrice(fromPrice: Int) {
-//        this.fromPrice.value = fromPrice
-        this.fromPrice.postValue(fromPrice)
+        this.fromPrice.value = fromPrice
     }
 
     fun selectToPrice(toPrice: Int) {
-//        this.toPrice.value = toPrice
-        this.toPrice.postValue(toPrice)
+        this.toPrice.value = toPrice
     }
 
     fun selectCategories(categories: ArrayList<Category>){

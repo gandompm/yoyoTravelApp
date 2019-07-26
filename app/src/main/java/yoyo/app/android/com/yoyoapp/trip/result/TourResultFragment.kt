@@ -63,14 +63,14 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     }
 
     private fun observingSharedData() {
-        sharedDataViewModel!!.fromPrice.observe(this, Observer{ price -> fromPrice = price!! })
-        sharedDataViewModel!!.toPrice.observe(this, Observer{ price -> toPrice = price!! })
-        sharedDataViewModel!!.categories.observe(this, Observer{ categories ->
+        sharedDataViewModel.fromPrice.observe(this, Observer{ price -> fromPrice = price!! })
+        sharedDataViewModel.toPrice.observe(this, Observer{ price -> toPrice = price!! })
+        sharedDataViewModel.categories.observe(this, Observer{ categories ->
             for (category in categories) {
                 category.code?.let { categoryCodes.add(it) }
             }
         })
-        sharedDataViewModel!!.minDuration.observe(this, Observer{ minDuration -> this.minDuration = minDuration!! })
+        sharedDataViewModel.minDuration.observe(this, Observer{ minDuration -> this.minDuration = minDuration!! })
     }
 
     private fun refresh() {
@@ -120,8 +120,8 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         infiniteScrollProvider.attach(recyclerView) {
             if (isMoreDataAvailable) {
                 tourResultViewModel.initTripList(page, tripQuery)
-                tourResultViewModel.getTripList()!!.observe(activity!!, Observer{ trips ->
-                    if (trips != null && trips.isNotEmpty()) {
+                tourResultViewModel.getTripList()!!.observe(activity!!, Observer { trips ->
+                    if (!trips.isNullOrEmpty()) {
                         Toast.makeText(activity, "load more", Toast.LENGTH_SHORT).show()
                         adapter.addTrips(trips)
                         page++
@@ -173,12 +173,12 @@ class TourResultFragment : Fragment(), View.OnClickListener {
             val duration = bundle.getString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE)
         }
         tripQuery.type = reserveType
-        tripQuery.fromTime = sharedDataViewModel!!.fromTime.value
-        tripQuery.toTime = sharedDataViewModel!!.toTime.value
+        tripQuery.fromTime = sharedDataViewModel.fromTime.value
+        tripQuery.toTime = sharedDataViewModel.toTime.value
         tripQuery.minDuration = minDuration
         tripQuery.fromPrice = fromPrice
         tripQuery.toPrice = toPrice
-        tripQuery.destination = sharedDataViewModel!!.destination.value!!.code
+        tripQuery.destination = sharedDataViewModel.destination.value!!.code
         tripQuery.categories = categoryCodes
     }
 
@@ -230,7 +230,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setupBackButton() {
-        sharedDataViewModel!!.resetFilters()
+        sharedDataViewModel.resetFilters()
         activity!!.onBackPressed()
     }
 

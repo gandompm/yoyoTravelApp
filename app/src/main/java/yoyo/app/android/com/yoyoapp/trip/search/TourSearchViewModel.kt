@@ -26,13 +26,13 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
 
     fun initDestination() {
         tourSearchRepository.requestDestinations {
-            val location = it?.locations?.map {
+            val locations = it?.locations?.map {
                 Location().apply {
                     code = it.code
                     title = it.name
                 }
             }
-            destinations.value = location
+            destinations.value = locations
         }
     }
 }
