@@ -1,6 +1,7 @@
 package yoyo.app.android.com.yoyoapp.trip.roomDataBase
 
 import androidx.room.*
+import yoyo.app.android.com.yoyoapp.DataModels.Location
 
 @Dao
 interface LocationDao {
@@ -16,4 +17,5 @@ interface LocationDao {
 
     @Delete
     fun delete(location: Location)
+
 }

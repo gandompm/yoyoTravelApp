@@ -12,7 +12,6 @@ import java.lang.ref.WeakReference
 import android.provider.ContactsContract.CommonDataKinds.Note
 
 
-
 class TourSearchViewModel(application: Application) : AndroidViewModel(application) {
     private val tourSearchRepository = TourSearchRepository(application)
 
@@ -34,63 +33,22 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun initDestination() {
-        tourSearchRepository.requestDestinations {
+        tourSearchRepository.requestLocalDestinations {
+            destinations.value = it
+        }
+        tourSearchRepository.requestDestinations { it ->
             val locations = it?.locations?.map {
                 Location().apply {
                     code = it.code
-                    title = it.name
+                    name = it.name
                 }
             }
             destinations.value = locations
 
-            it?.let {
-                var i = 1
-                for (location in it.locations!!) {
+            it?.let { tourSearchRepository.saveDestinationsInLocal(it) }
 
-                    InsertTask(this, yoyo.app.android.com.yoyoapp.trip.roomDataBase.Location(
-                        i
-                        , location.name
-                        , location.code
-                    )
-                    ).execute()
-                    i++
-                }
-            }
-
-        }
-        RetrieveTask(this).execute()
-    }
-
-    private class RetrieveTask(val tourSearchViewModel: TourSearchViewModel) : AsyncTask<Void, Void, ArrayList<Location>>() {
-        val locationList: ArrayList<Location> = ArrayList()
-
-        override fun doInBackground(vararg voids: Void): ArrayList<Location>? {
-            if (tourSearchViewModel.localDatabase.userDao().getAll().isNotEmpty())
-            {
-                for (location in tourSearchViewModel.localDatabase.userDao().getAll()) {
-                    val newLocation = Location()
-                    newLocation.code = location.code
-                    newLocation.title = location.title
-                    locationList.add(newLocation)
-                }
-                return locationList
-            }
-            return null
-        }
-        override fun onPostExecute(result: ArrayList<Location>?) {
-            if (!result.isNullOrEmpty()) {
-                tourSearchViewModel.destinations.value = result
-            }
         }
     }
 
-    class InsertTask(private val tourSearchViewModel: TourSearchViewModel,
-                     private val location: yoyo.app.android.com.yoyoapp.trip.roomDataBase.Location) : AsyncTask<Void, Void, Boolean>() {
 
-        // doInBackground methods runs on a worker thread
-        override fun doInBackground(vararg objs: Void): Boolean? {
-            tourSearchViewModel.localDatabase.userDao().update(location)
-            return true
-        }
-    }
 }
