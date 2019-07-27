@@ -7,21 +7,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.room.Room
 import es.dmoral.toasty.Toasty
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat
 import ir.mirrajabi.searchdialog.core.SearchResultListener
 import kotlinx.android.synthetic.main.fragment_search_trip.view.*
 import yoyo.app.android.com.yoyoapp.DataModels.Location
 import yoyo.app.android.com.yoyoapp.MainActivity
-import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.SharedDataViewModel
 import yoyo.app.android.com.yoyoapp.Utils
 import yoyo.app.android.com.yoyoapp.trip.Utils.DatePickerFragment
 import yoyo.app.android.com.yoyoapp.trip.dialog.PriceFilterBottomSheetDialogFragment
 import yoyo.app.android.com.yoyoapp.trip.result.TourResultFragment
+import yoyo.app.android.com.yoyoapp.trip.roomDataBase.AppDatabase
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import android.provider.ContactsContract.CommonDataKinds.Note
+import android.os.AsyncTask
+import yoyo.app.android.com.yoyoapp.R
+import java.lang.ref.WeakReference
+
 
 class TourSearchFragment : Fragment(), View.OnClickListener {
     private var priceFilterBottomSheetFragment: PriceFilterBottomSheetDialogFragment? = null
@@ -29,6 +36,7 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
     private var diffDays = "7"
     private var startDateString = "From..."
     private var endDateString = "To..."
+    private lateinit var localDatabase: AppDatabase
     private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()
     private val tourSearchViewModel by activityViewModels<TourSearchViewModel>()
 
@@ -36,8 +44,8 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
         val res = inflater.inflate(R.layout.fragment_search_trip, container, false)
 
 
-        sharedDataViewModel.fromTimeString.observe(activity!!, Observer { res.tv_search_check_in.text = it})
-        sharedDataViewModel.toTimeString.observe(activity!!, Observer { res.tv_search_check_out.text = it})
+        sharedDataViewModel.fromTimeString.observe(activity!!, Observer { res.tv_search_check_in.text = it })
+        sharedDataViewModel.toTimeString.observe(activity!!, Observer { res.tv_search_check_out.text = it })
         res.tv_search_check_in.text = sharedDataViewModel.fromTimeString.value
         res.tv_search_check_out.text = sharedDataViewModel.toTimeString.value
 
@@ -48,11 +56,14 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
 
         tourSearchViewModel.destinations.observe(activity!!,
             Observer { locations ->
-                destinationsList.clear()
-                if (locations != null) {
+                if (!locations.isNullOrEmpty()) {
+                    destinationsList.clear()
                     destinationsList.addAll(locations)
                 }
             })
+
+        localDatabase = AppDatabase.getInstance(context!!)
+
 
         return res
     }
@@ -119,7 +130,12 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
                     }
                 }
                 sharedDataViewModel.resetFilters()
-                (activity as MainActivity).showFragment(this@TourSearchFragment, tripListSearchResultFragment, "",false)
+                (activity as MainActivity).showFragment(
+                    this@TourSearchFragment,
+                    tripListSearchResultFragment,
+                    "",
+                    false
+                )
             }
         }
     }
@@ -139,7 +155,7 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
                 diffDays = arrayList[2]
                 startDateString = arrayList[3]
                 endDateString = arrayList[4]
-            }, "",true)
+            }, "", true)
         }
 
         if (v.id == R.id.iv_search_search_city3 || v.id == R.id.et_search_bar_destination) {
@@ -151,11 +167,5 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun getDayFormat(calendar: Calendar): String {
-        val dayFormat = SimpleDateFormat("E", Locale.getDefault())
-        val dayOfWeekNameFrom = dayFormat.format(calendar.time)
-        val monthNameFrom = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())
 
-        return "$dayOfWeekNameFrom, ${calendar.get(Calendar.DAY_OF_MONTH)} $monthNameFrom"
-    }
 }

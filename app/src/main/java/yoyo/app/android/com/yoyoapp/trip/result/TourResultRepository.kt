@@ -10,7 +10,7 @@ class TourResultRepository(val context: Context) {
 
     private val apiService: ApiService = ApiService(context)
 
-    fun getTripList(page: Int, tripQuery: TripQuery, consumer: Consumer<List<Trip>>){
-        apiService.getTripListRequest(page, tripQuery) { tripList -> consumer.accept(tripList) }
+    fun getTripList(page: Int, tripQuery: TripQuery, f: (ArrayList<Trip>?) -> Unit){
+        apiService.getTripListRequest(page, tripQuery) { f(it) }
     }
 }

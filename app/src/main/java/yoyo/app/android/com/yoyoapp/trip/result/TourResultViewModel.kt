@@ -12,9 +12,9 @@ class TourResultViewModel(application: Application) : AndroidViewModel(applicati
     private var tourResultRepository = TourResultRepository(getApplication())
 
     fun initTripList(page: Int, tripQuery: TripQuery) {
-        tourResultRepository.getTripList(page, tripQuery, Consumer {
+        tourResultRepository.getTripList(page, tripQuery) {
             tourListMutableLiveData.value = it
-        })
+        }
     }
 
     fun getTripList(): LiveData<List<Trip>>? = tourListMutableLiveData

@@ -13,12 +13,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.llollox.androidtoggleswitch.widgets.ToggleSwitch
 import kotlinx.android.synthetic.main.fragment_trip_result.view.*
-import uk.co.imallan.jellyrefresh.JellyRefreshLayout
 import yoyo.app.android.com.yoyoapp.DataModels.TripQuery
 import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.SharedDataViewModel
@@ -36,13 +34,10 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         const val LOADING_MORE_STATE = 2
         const val BEGINNING_STATE = 3
     }
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var shimmerRecycler: ShimmerRecyclerView
     private lateinit var adapter: FoldingCellRecyclerviewAdapter
     private lateinit var tripQuery: TripQuery
     private var page = 1
     private var isMoreDataAvailable = true
-    private lateinit var jellyRefreshLayout: JellyRefreshLayout
     private lateinit var categoryCodes: ArrayList<String>
     private val tourResultViewModel by viewModels<TourResultViewModel>()
     private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()
@@ -57,15 +52,19 @@ class TourResultFragment : Fragment(), View.OnClickListener {
 
         init(res)
         observingSharedData()
-        setupRecyclerview()
-        setupLoadMore()
         setupQuery()
-        setupFloatingActionButton(res.fbutton_hotellistsearchresult)
-        getTrips()
-        setupToggleButton(res.toggleSwitch_trip_search)
-        refresh()
 
         return res
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupRecyclerview()
+        setupLoadMore()
+        setupFloatingActionButton(view.fbutton_hotellistsearchresult)
+        getTrips()
+        setupToggleButton(view.toggleSwitch_trip_search)
+        refresh()
     }
 
     private fun observingSharedData() {
@@ -80,21 +79,18 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     }
 
     private fun refresh() {
-        jellyRefreshLayout.setPullToRefreshListener {
-            jellyRefreshLayout.isRefreshing = true
+        view?.jelly_refresh?.setPullToRefreshListener {
+            view?.jelly_refresh?.isRefreshing = true
             isMoreDataAvailable = true
             page = 1
-//            adapter = FoldingCellRecyclerviewAdapter(context, this@TourResultFragment)
-//            recyclerView.adapter = adapter
             setupQuery()
             state = REFRESHING_STATE
             tourResultViewModel.initTripList(page, tripQuery)
         }
         val loadingView = LayoutInflater.from(context).inflate(R.layout.view_loading, null)
-        jellyRefreshLayout.setLoadingView(loadingView)
-        jellyRefreshLayout.setOnClickListener { jellyRefreshLayout.isRefreshing = false }
+        view?.jelly_refresh?.setLoadingView(loadingView)
+        view?.jelly_refresh?.setOnClickListener { view?.jelly_refresh?.isRefreshing = false }
     }
-
 
     private fun setupToggleButton(toggleSwitch: ToggleSwitch) {
         toggleSwitch.onChangeListener = object : ToggleSwitch.OnChangeListener {
@@ -103,16 +99,16 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                 isMoreDataAvailable = true
                 state = BEGINNING_STATE
                 adapter = FoldingCellRecyclerviewAdapter(context, this@TourResultFragment)
-                recyclerView.adapter = adapter
+                view?.main_recylcler_view?.adapter = adapter
                 if (i == 0) {
                     reserveType = "FIXED"
                     setupQuery()
-                    shimmerRecycler.showShimmerAdapter()
+                    view?.shimmer_recycler_view?.showShimmerAdapter()
                     tourResultViewModel.initTripList(page, tripQuery)
                 } else {
                     reserveType = "FLEXIBLE"
                     setupQuery()
-                    shimmerRecycler.showShimmerAdapter()
+                    view?.shimmer_recycler_view?.showShimmerAdapter()
                     tourResultViewModel.initTripList(page, tripQuery)
                 }
             }
@@ -121,25 +117,17 @@ class TourResultFragment : Fragment(), View.OnClickListener {
 
     private fun setupRecyclerview() {
         val linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
-        recyclerView.layoutManager = linearLayoutManager
+        view?.main_recylcler_view?.layoutManager = linearLayoutManager
         adapter = FoldingCellRecyclerviewAdapter(activity, this)
-        recyclerView.adapter = adapter
+        view?.main_recylcler_view?.adapter = adapter
     }
 
     private fun setupLoadMore() {
         val infiniteScrollProvider = InfiniteScrollProvider()
-        infiniteScrollProvider.attach(recyclerView) {
+        infiniteScrollProvider.attach(view?.main_recylcler_view) {
             if (isMoreDataAvailable) {
                 state = LOADING_MORE_STATE
                 tourResultViewModel.initTripList(page, tripQuery)
-    //                tourResultViewModel.getTripList()?.observe(activity!!, Observer { trips ->
-    //                    if (!trips.isNullOrEmpty()) {
-    //                        Toast.makeText(activity, "load more", Toast.LENGTH_SHORT).show()
-    //                        adapter.addTrips(trips)
-    //                        page++
-    //                    } else
-    //                        isMoreDataAvailable = false
-    //                })
             }
         }
     }
@@ -153,7 +141,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                     BEGINNING_STATE ->
                     {
                         setupSnackBar(trips[0].resultsSize)
-                        shimmerRecycler.hideShimmerAdapter()
+                        view?.shimmer_recycler_view?.hideShimmerAdapter()
                     }
                     LOADING_MORE_STATE ->
                     {
@@ -162,8 +150,8 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                     REFRESHING_STATE ->
                     {
                         adapter = FoldingCellRecyclerviewAdapter(context, this@TourResultFragment)
-                        recyclerView.adapter = adapter
-                        jellyRefreshLayout.isRefreshing = false
+                        view?.main_recylcler_view?.adapter = adapter
+                        view?.jelly_refresh?.isRefreshing = false
                     }
                 }
                     adapter.addTrips(trips)
@@ -171,9 +159,12 @@ class TourResultFragment : Fragment(), View.OnClickListener {
             }
             else
             {
-                if (trips.isEmpty() && page ==1)
+                if (state == BEGINNING_STATE)
+                {
+                    view?.shimmer_recycler_view?.hideShimmerAdapter()
                     Toast.makeText(context, "We couldn't find any Tour", Toast.LENGTH_SHORT).show()
-                if (page != 1)
+                }
+                if (state == LOADING_MORE_STATE)
                     isMoreDataAvailable = false
             }
         })
@@ -212,9 +203,6 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     }
 
     private fun init(res: View) {
-        jellyRefreshLayout = res.jelly_refresh_home
-        shimmerRecycler = res.shimmer_recycler_view
-        recyclerView = res.mainrv
         res.toggleSwitch_trip_search.setCheckedPosition(1)
         res.tv_trip_search_back.setOnClickListener(this)
         res.iv_trip_search_back.setOnClickListener(this)
@@ -223,7 +211,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
 
     private fun setupFloatingActionButton(floatingActionButton: FloatingActionButton) {
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        view?.main_recylcler_view?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0 && floatingActionButton.visibility == View.VISIBLE) {
@@ -239,8 +227,8 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                     isMoreDataAvailable = true
                     page = 1
                     adapter = FoldingCellRecyclerviewAdapter(context, this@TourResultFragment)
-                    recyclerView.adapter = adapter
-                    shimmerRecycler.showShimmerAdapter()
+                    view?.main_recylcler_view?.adapter = adapter
+                    view?.shimmer_recycler_view?.showShimmerAdapter()
                     setupQuery()
                     state = BEGINNING_STATE
                     tourResultViewModel.initTripList(page, tripQuery)

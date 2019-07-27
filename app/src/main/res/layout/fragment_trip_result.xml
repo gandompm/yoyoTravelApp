@@ -81,7 +81,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <uk.co.imallan.jellyrefresh.JellyRefreshLayout
-            android:id="@+id/jelly_refresh_home"
+            android:id="@+id/jelly_refresh"
             android:text="loading..."
             android:textColor="@color/white"
             app:jellyColor="@color/result_trip_blue"
@@ -93,7 +93,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mainrv"
+                android:id="@+id/main_recylcler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipChildren="false"
