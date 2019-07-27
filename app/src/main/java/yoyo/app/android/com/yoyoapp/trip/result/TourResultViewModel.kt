@@ -8,15 +8,13 @@ import yoyo.app.android.com.yoyoapp.DataModels.TripQuery
 
 class TourResultViewModel(application: Application) : AndroidViewModel(application) {
 
-    //    private  var tourListMutableLiveData = MutableLiveData<List<Trip>>()
+     private  var tourListMutableLiveData = MutableLiveData<List<Trip>>()
     private var tourResultRepository = TourResultRepository(getApplication())
-    private lateinit var tourListMutableLiveData: MutableLiveData<List<Trip>>
 
     fun initTripList(page: Int, tripQuery: TripQuery) {
-        tourListMutableLiveData = MutableLiveData()
-        tourResultRepository.getTripList(page, tripQuery, Consumer {
+        tourResultRepository.getTripList(page, tripQuery) {
             tourListMutableLiveData.value = it
-        })
+        }
     }
 
     fun getTripList(): LiveData<List<Trip>>? = tourListMutableLiveData

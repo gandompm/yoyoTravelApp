@@ -150,7 +150,7 @@ public class ApiService {
                             for (int j = 0; j < locationJsonArray.length(); j++) {
                                 JSONObject locationObject = locationJsonArray.getJSONObject(j);
                                 Location location = new Location();
-                                location.setTitle(locationObject.getString("title"));
+                                location.setName(locationObject.getString("title"));
                                 location.setLon(locationObject.getDouble("longitude"));
                                 location.setLat(locationObject.getDouble("latitude"));
                                 location.setOrder(locationObject.getInt("order"));

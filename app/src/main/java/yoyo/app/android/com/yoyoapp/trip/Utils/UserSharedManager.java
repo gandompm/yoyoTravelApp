@@ -2,7 +2,12 @@ package yoyo.app.android.com.yoyoapp.trip.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import yoyo.app.android.com.yoyoapp.DataModels.Location;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class UserSharedManager {
@@ -33,6 +38,7 @@ public class UserSharedManager {
         }
         editor.apply();
     }
+
 
     public User getUser()
     {
