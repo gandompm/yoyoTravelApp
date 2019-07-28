@@ -186,16 +186,13 @@ class EditProfileFragment : Fragment() {
          }
     }
 
-    // update user's data from server after retrieving data form shared pref
     private fun retrieveData(res: View) {
         editProfileViewModel.initGetProfile()
-        editProfileViewModel.profile!!.observe(activity!!, Observer { user ->
-            if (user != null) {
-                res.et_edit_profile_firstname.setText(user.firstName)
-                res.et_edit_profile_lastname.setText(user.lastName)
-                res.tv_edit_profile_email.text = user.email
-                res.et_edit_profile_phone_number.setText(user.phoneNumber)
-            }
+        editProfileViewModel.userMutableLiveData.observe(activity!!, Observer { user ->
+            res.et_edit_profile_firstname.setText(user.firstName)
+            res.et_edit_profile_lastname.setText(user.lastName)
+            res.tv_edit_profile_email.text = user.email
+            res.et_edit_profile_phone_number.setText(user.phoneNumber)
         })
     }
 

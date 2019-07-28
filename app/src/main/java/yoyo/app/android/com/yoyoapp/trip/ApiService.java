@@ -245,48 +245,48 @@ public class ApiService {
         return cal;
     }
 
-    public void getProfileRequest(Consumer<User> userConsumer) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                IP + "api/user/profile", null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        User user = new User();
-                        try {
-                            user.setFirstName(response.getString("firstname"));
-                            user.setLastName(response.getString("lastname"));
-                            user.setEmail(response.getString("email"));
-                            user.setPhoneNumber(response.getString("phone_number"));
-                            user.setProfilePicture(response.getString("profile_picture"));
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        userConsumer.accept(user);
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError e) {
-                Log.d(TAG, "onErrorResponse: " + e.toString());
-                userConsumer.accept(null);
-                errorHandling(e);
-                e.printStackTrace();
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("Authorization", "JWT " + JWT);
-                params.put("api-key", apiKey);
-                return params;
-            }
-        };
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(context).add(jsonObjectRequest);
-    }
+//    public void getProfileRequest(Consumer<User> userConsumer) {
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
+//                IP + "api/user/profile", null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//
+//                        User user = new User();
+//                        try {
+//                            user.setFirstName(response.getString("firstname"));
+//                            user.setLastName(response.getString("lastname"));
+//                            user.setEmail(response.getString("email"));
+//                            user.setPhoneNumber(response.getString("phone_number"));
+//                            user.setProfilePicture(response.getString("profile_picture"));
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        userConsumer.accept(user);
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError e) {
+//                Log.d(TAG, "onErrorResponse: " + e.toString());
+//                userConsumer.accept(null);
+//                errorHandling(e);
+//                e.printStackTrace();
+//            }
+//        }) {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("Authorization", "JWT " + JWT);
+//                params.put("api-key", apiKey);
+//                return params;
+//            }
+//        };
+//        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(18000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//        Volley.newRequestQueue(context).add(jsonObjectRequest);
+//    }
 
     public void sendEditProfileRequest(JSONObject jsonObject, Consumer<User> userConsumer) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT,

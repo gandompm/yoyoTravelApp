@@ -12,9 +12,6 @@ interface LocationDao {
     fun insertAll(vararg locations: Location)
 
 
-    @Update
-    fun update(vararg locations: Location)
-
     @Delete
     fun delete(location: Location)
 
