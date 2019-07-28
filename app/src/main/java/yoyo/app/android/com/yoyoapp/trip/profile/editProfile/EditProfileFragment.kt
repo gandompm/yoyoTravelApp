@@ -184,15 +184,13 @@ class EditProfileFragment : Fragment() {
          }
     }
 
-
-    private fun bindProfile(res: View) {
-        editProfileViewModel.profile!!.observe(activity!!, Observer { user ->
-            if (user != null) {
-                res.et_edit_profile_firstname.setText(user.firstName)
-                res.et_edit_profile_lastname.setText(user.lastName)
-                res.tv_edit_profile_email.text = user.email
-                res.et_edit_profile_phone_number.setText(user.phoneNumber)
-            }
+    private fun retrieveData(res: View) {
+        editProfileViewModel.initGetProfile()
+        editProfileViewModel.userMutableLiveData.observe(activity!!, Observer { user ->
+            res.et_edit_profile_firstname.setText(user.firstName)
+            res.et_edit_profile_lastname.setText(user.lastName)
+            res.tv_edit_profile_email.text = user.email
+            res.et_edit_profile_phone_number.setText(user.phoneNumber)
         })
     }
 

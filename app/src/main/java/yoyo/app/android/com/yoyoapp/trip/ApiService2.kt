@@ -22,21 +22,26 @@ class ApiService2(context: Context) : Api(context) {
         }
     }
 
-    fun sendCategoriesRequest(f: (TourCategories?) -> Unit) {
+
+    fun getCategoriesRequest(f: (TourCategories?) -> Unit) {
         sendGetRequest(false, "$IP/api/trips/categories") {
             f(TourCategories.fromJson(it.toString()))
         }
     }
 
-    fun sendDestinationsRequest(f: (TourDestinations?) -> Unit) {
-        sendGetRequest(false, "$IP/api/trips/destinations") {
-            f(TourDestinations.fromJson(it.toString()))
-        }
-    }
 
-    fun sendGetProfileRequest(f: (ResponseGetProfile?) -> Unit) {
-        sendGetRequest(true, "$IP/api/user/profile") {
-            f(ResponseGetProfile.fromJson(it.toString()))
+    fun getDestinationsRequest(f: (TourDestinations?) -> Unit) {
+        sendGetRequest(false, "$IP/api/trips/destinations") {
+                f(TourDestinations.fromJson(it.toString()))
+            }
         }
-    }
+
+
+    fun getProfileRequest(f: (ProfileResponse?) -> Unit) {
+            sendGetRequest(true, "$IP/api/user/profile") {
+                f(ProfileResponse.fromJson(it.toString()))
+            }
+        }
+
+
 }
