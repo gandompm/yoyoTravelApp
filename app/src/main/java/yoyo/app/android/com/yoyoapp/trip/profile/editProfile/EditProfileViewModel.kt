@@ -10,22 +10,21 @@ import yoyo.app.android.com.yoyoapp.DataModels.User
 class EditProfileViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: EditProfileRepository = EditProfileRepository(application)
-    private var userMutableLiveData: MutableLiveData<User> = MutableLiveData()
+    val userMutableLiveData: MutableLiveData<User> = MutableLiveData()
     private var newUserMutableLiveData: MutableLiveData<User>? = null
     private var profilePicture: MutableLiveData<String>? = null
 
-    val profile: LiveData<User>?
-        get() = userMutableLiveData
 
     val editedProfile: LiveData<User>?
         get() = newUserMutableLiveData
 
 
-    fun initialize() {
+    fun initGetProfile() {
         repository.getProfile {
             userMutableLiveData.value = it
         }
     }
+
 
     fun initEditProfile(jsonObject: JSONObject) {
         newUserMutableLiveData = MutableLiveData()
