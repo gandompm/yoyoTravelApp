@@ -197,8 +197,7 @@ public class BookingActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     BookingSecondFragment bookingSecondFragment = new BookingSecondFragment();
                     bookingSecondFragment.setArguments(bundle);
-                    fragmentTransaction.add(R.id.fl_booking, bookingSecondFragment);
-                    fragmentTransaction.addToBackStack("bookingsecond");
+                    fragmentTransaction.replace(R.id.fl_booking, bookingSecondFragment);
                     fragmentTransaction.commit();
                     setupSecondFragment();
                 }
@@ -229,6 +228,7 @@ public class BookingActivity extends AppCompatActivity {
 
                 jsonArray.put(js);
             }
+
             jsonObject.put("companion_travellers", jsonArray);
 
         } catch (JSONException e) {
@@ -278,6 +278,13 @@ public class BookingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0)
+        {
+            continueButton.setVisibility(View.VISIBLE);
+            constraintLayout.setVisibility(View.VISIBLE);
+            super.onBackPressed();
+        }
+        else
             setupExit();
     }
 

@@ -180,7 +180,7 @@ public class BookingFirstFragment extends Fragment {
         TravellerInfoFragment travellerInfoFragment = new TravellerInfoFragment();
         travellerInfoFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fl_booking,travellerInfoFragment);
+        fragmentTransaction.add(R.id.fl_booking, travellerInfoFragment);
         fragmentTransaction.addToBackStack("travellerInfo");
         fragmentTransaction.commit();
     }

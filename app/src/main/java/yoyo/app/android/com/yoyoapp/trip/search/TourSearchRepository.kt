@@ -4,11 +4,7 @@ import android.content.Context
 import yoyo.app.android.com.yoyoapp.trip.ApiService2
 import yoyo.app.android.com.yoyoapp.trip.api.TourCategories
 import yoyo.app.android.com.yoyoapp.trip.api.TourDestinations
-import android.os.AsyncTask
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import yoyo.app.android.com.yoyoapp.DataModels.Location
 import yoyo.app.android.com.yoyoapp.trip.roomDataBase.AppDatabase
 
@@ -26,8 +22,8 @@ class TourSearchRepository(context: Context) {
         apiService2.getDestinationsRequest(f)
     }
 
-    fun requestLocalDestinations(f: (List<Location>) -> Unit) {
-        GlobalScope.launch(Dispatchers.Main) {
+    fun requestLocalDestinations(scope: CoroutineScope,f: (List<Location>) -> Unit) {
+        scope.launch(Dispatchers.Main) {
             f(
             async(Dispatchers.IO) {
                 localDatabase.userDao().getAll()
@@ -35,7 +31,7 @@ class TourSearchRepository(context: Context) {
         }
     }
 
-    fun saveDestinationsInLocal(tourDestinations: TourDestinations) {
+    fun saveDestinationsInLocal(scope: CoroutineScope, tourDestinations: TourDestinations) {
         tourDestinations.locations?.let {
             var i = 1
             for (location in it) {
@@ -44,7 +40,7 @@ class TourSearchRepository(context: Context) {
                     , location.code
                     , location.name
                 )
-                GlobalScope.launch(Dispatchers.Main) {
+                scope.launch(Dispatchers.Main) {
                     async(Dispatchers.IO) {
                         localDatabase.userDao().delete(newLocation)
                         localDatabase.userDao().insertAll(newLocation)

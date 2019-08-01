@@ -1,15 +1,12 @@
 package yoyo.app.android.com.yoyoapp.trip.search
 
 import android.app.Application
-import android.os.AsyncTask
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
-import yoyo.app.android.com.yoyoapp.MainActivity
 import yoyo.app.android.com.yoyoapp.trip.roomDataBase.AppDatabase
-import java.lang.ref.WeakReference
-import android.provider.ContactsContract.CommonDataKinds.Note
+import androidx.lifecycle.viewModelScope
 
 
 class TourSearchViewModel(application: Application) : AndroidViewModel(application) {
@@ -33,7 +30,7 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun initDestination() {
-        tourSearchRepository.requestLocalDestinations {
+        tourSearchRepository.requestLocalDestinations(viewModelScope) {
             destinations.value = it
         }
         tourSearchRepository.requestDestinations { it ->
@@ -45,8 +42,7 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
             }
             destinations.value = locations
 
-            it?.let { tourSearchRepository.saveDestinationsInLocal(it) }
-
+            it?.let { tourSearchRepository.saveDestinationsInLocal(viewModelScope, it) }
         }
     }
 
