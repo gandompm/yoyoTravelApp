@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.trip.profile.editProfile
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,8 +12,11 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -21,19 +25,14 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.fragment_edit_profile_trip.view.*
 import org.json.JSONException
 import org.json.JSONObject
-import yoyo.app.android.com.yoyoapp.DataModels.User
 import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
-
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.InputStream
-
-import android.app.Activity.RESULT_OK
-import androidx.fragment.app.viewModels
-import kotlinx.android.synthetic.main.fragment_edit_profile_trip.view.*
 
 class EditProfileFragment : Fragment() {
 
@@ -48,12 +47,11 @@ class EditProfileFragment : Fragment() {
         val res = inflater.inflate(R.layout.fragment_edit_profile_trip, container, false)
 
         init(res)
+
         getDataFromSharedPrefrence(res)
         res.iv_editprofile_back.setOnClickListener{activity?.onBackPressed()}
-        retrieveData(res)
         res.button_edit_profile_save.setOnClickListener{if (checkingCompleteFields(res))saveUserData(res)}
         circleImageView.setOnClickListener{openImageFromGallery() }
-
 
         return res
     }
@@ -196,7 +194,6 @@ class EditProfileFragment : Fragment() {
         })
     }
 
-
     private fun init(res: View) {
         circleImageView = res.iv_edit_profile_img
         profilePictureProgressbar = res.progressbar_edit_profile_image
@@ -230,7 +227,6 @@ class EditProfileFragment : Fragment() {
                 }
             })
     }
-
 
 }
 

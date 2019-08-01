@@ -22,7 +22,7 @@ import yoyo.app.android.com.yoyoapp.GoogleMapActivity
 import yoyo.app.android.com.yoyoapp.MainActivity
 import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.trip.adapter.DayPlanRecyclerviewAddaptor
-import yoyo.app.android.com.yoyoapp.trip.schedule.ScheduleTripFragment
+import yoyo.app.android.com.yoyoapp.trip.schedule.ScheduleTourFragment
 
 
 import java.util.ArrayList
@@ -53,9 +53,9 @@ class TripDetailsFragment : Fragment() {
     }
 
     private fun sendToSchedulePage() {
-        val scheduleTripFragment = ScheduleTripFragment()
+        val scheduleTripFragment = ScheduleTourFragment()
         val bundle = Bundle()
-        bundle.putString("tripId", tripId)
+        bundle.putString("tourId", tripId)
         bundle.putString("tourImage", tourImage)
         bundle.putString("title", tripTitle)
         scheduleTripFragment.arguments = bundle

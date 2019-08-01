@@ -125,5 +125,15 @@
             android:src="@drawable/ic_filter_list_black_24dp"
             app:fabSize="normal" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
+    <TextView
+            android:text="Sorry, we couldn't find any tour for you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:fontFamily="@font/roboto_medium"
+            android:autoSizeTextType="uniform"
+            android:id="@+id/tv_trip_search_no_result"
+            android:layout_gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

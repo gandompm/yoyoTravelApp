@@ -26,7 +26,6 @@ public class AuthenticationActivity extends AppCompatActivity {
     public boolean isFromSchedule = false;
     private FragmentManager fragmentManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

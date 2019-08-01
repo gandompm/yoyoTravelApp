@@ -46,7 +46,7 @@ public class ApiService {
     public void getTripListRequest(int page, TripQuery tripQuery, Consumer<ArrayList<Trip>> tripArrayListConsumer) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP + "api/trips" + "?price_min=" +
                 tripQuery.getFromPrice() + "&price_max=" + tripQuery.getToPrice() + "&start_date=" + tripQuery.getFromTime() +
-                "&end_date=" + tripQuery.getToTime() + "&category=" + tripQuery.getCategories() + "&origin=" + tripQuery.getOrigin() + "&destination=" + tripQuery.getDestination() +
+                "&end_date=" + tripQuery.getToTime() + "&category=" + tripQuery.getCategories() + "&origin=" + tripQuery.getDestination() + "&destination=" + tripQuery.getDestination() +
                 "&duration_min=" + tripQuery.getMinDuration() + "&duration_max=999&page=" + page + "&limit=10&reserve_type=" + tripQuery.getType(), null,
                 response -> {
 

@@ -33,4 +33,6 @@ data class SignUpResponse (
     companion object {
         fun fromJson(json: String) = mapper.readValue<SignUpResponse>(json)
     }
+
+
 }
