@@ -1,7 +1,6 @@
 package yoyo.app.android.com.yoyoapp.trip.profile.editProfile
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
 import yoyo.app.android.com.yoyoapp.trip.ApiService
