@@ -10,9 +10,7 @@ import kotlinx.android.synthetic.main.item_date_calender.view.*
 import yoyo.app.android.com.yoyoapp.DataModels.DateCalender
 import yoyo.app.android.com.yoyoapp.trip.Utils.DateCalenderSetup
 
-
-
-class DateCalenderRecyclerViewAdapter(var timeStamps: ArrayList<DateCalender>, val context: Context, val timeStampsConsumer: Function<Long, Int, String>)
+class DateCalenderRecyclerViewAdapter(var timeStamps: ArrayList<DateCalender>, val context: Context,val f: (Long,Int,String) -> Unit )
     : RecyclerView.Adapter<DateCalenderRecyclerViewAdapter.DateCalenderViewHolder>() {
 
     private val dateOfBirthListner: DatePickerDialog.OnDateSetListener? = null
@@ -34,7 +32,7 @@ class DateCalenderRecyclerViewAdapter(var timeStamps: ArrayList<DateCalender>, v
             DateCalenderSetup(context, dateOfBirthListner, DateCalenderSetup.Function { timestamp, standardDate ->
                 run {
                     holder.itemView.tv_date_calender.text = standardDate
-                    timeStampsConsumer.apply(timestamp, position, standardDate)
+                    f(timestamp, position, standardDate)
                 }
             })
         }
@@ -45,12 +43,6 @@ class DateCalenderRecyclerViewAdapter(var timeStamps: ArrayList<DateCalender>, v
 
         fun bindView(dateCalender: DateCalender) {
             itemView.tv_date_calender.text = dateCalender.standardDate
-
         }
-    }
-
-    @FunctionalInterface
-    interface Function<One, Two, Three> {
-        fun apply(one: One, two: Two, three:Three)
     }
 }

@@ -94,7 +94,7 @@
                 android:windowSoftInputMode="stateHidden">
         </activity>
         <activity android:name=".trip.authentication.AuthenticationActivity"
-                  android:windowSoftInputMode="adjustResize|stateAlwaysHidden"/>
+                  android:windowSoftInputMode="stateAlwaysHidden"/>
     </application>
 
 </manifest>

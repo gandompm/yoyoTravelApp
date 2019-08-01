@@ -1,5 +1,6 @@
 package yoyo.app.android.com.yoyoapp.trip.result
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -75,7 +76,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                 category.code?.let { categoryCodes.add(it) }
             }
         })
-        sharedDataViewModel.minDuration.observe(this, Observer{ minDuration -> this.minDuration = minDuration!! })
+        sharedDataViewModel.minDuration.observe(this, Observer{ minDuration -> this.minDuration = minDuration!!})
     }
 
     private fun refresh() {
@@ -85,6 +86,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
             page = 1
             setupQuery()
             state = REFRESHING_STATE
+            view?.tv_trip_search_no_result?.visibility = View.GONE
             tourResultViewModel.initTripList(page, tripQuery)
         }
         val loadingView = LayoutInflater.from(context).inflate(R.layout.view_loading, null)
@@ -103,14 +105,13 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                 if (i == 0) {
                     reserveType = "FIXED"
                     setupQuery()
-                    view?.shimmer_recycler_view?.showShimmerAdapter()
-                    tourResultViewModel.initTripList(page, tripQuery)
                 } else {
                     reserveType = "FLEXIBLE"
                     setupQuery()
-                    view?.shimmer_recycler_view?.showShimmerAdapter()
-                    tourResultViewModel.initTripList(page, tripQuery)
                 }
+                view?.shimmer_recycler_view?.showShimmerAdapter()
+                view?.tv_trip_search_no_result?.visibility = View.GONE
+                tourResultViewModel.initTripList(page, tripQuery)
             }
         }
     }
@@ -127,6 +128,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         infiniteScrollProvider.attach(view?.main_recylcler_view) {
             if (isMoreDataAvailable) {
                 state = LOADING_MORE_STATE
+                view?.tv_trip_search_no_result?.visibility = View.GONE
                 tourResultViewModel.initTripList(page, tripQuery)
             }
         }
@@ -162,7 +164,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                 if (state == BEGINNING_STATE)
                 {
                     view?.shimmer_recycler_view?.hideShimmerAdapter()
-                    Toast.makeText(context, "We couldn't find any Tour", Toast.LENGTH_SHORT).show()
+                    view?.tv_trip_search_no_result?.visibility = View.VISIBLE
                 }
                 if (state == LOADING_MORE_STATE)
                     isMoreDataAvailable = false
@@ -231,6 +233,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
                     view?.shimmer_recycler_view?.showShimmerAdapter()
                     setupQuery()
                     state = BEGINNING_STATE
+                    view?.tv_trip_search_no_result?.visibility = View.GONE
                     tourResultViewModel.initTripList(page, tripQuery)
                 }
             })
@@ -238,17 +241,18 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         }
     }
 
-
+    override fun onPause() {
+        super.onPause()
+        sharedDataViewModel.resetFilters()
+    }
 
     override fun onClick(v: View) {
-
         if (v.id == R.id.iv_trip_search_back || v.id == R.id.tv_trip_search_back) {
             setupBackButton()
         }
     }
 
     private fun setupBackButton() {
-        sharedDataViewModel.resetFilters()
         activity!!.onBackPressed()
     }
 

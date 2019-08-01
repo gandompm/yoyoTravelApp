@@ -99,6 +99,7 @@ public class TravellerInfoFragment extends Fragment {
         if (bundle != null)
         {
             position = bundle.getInt("position");
+            travllerDetailsTitle.setText("Traveller "+ (position+1));
             traveller = ((BookingActivity)getActivity()).travellers.get(position);
         }
         setupView(traveller,position);

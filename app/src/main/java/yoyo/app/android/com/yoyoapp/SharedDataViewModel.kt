@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,10 +24,10 @@ class SharedDataViewModel : ViewModel() {
 
     init {
         val calendar = Calendar.getInstance()
-        fromTime.value = calendar.timeInMillis
+        fromTime.value = calendar.timeInMillis / 1000
         fromTimeString.value = getDayFormat(calendar)
         calendar.add(Calendar.DAY_OF_MONTH, 15)
-        toTime.value = calendar.timeInMillis
+        toTime.value = calendar.timeInMillis / 1000
         toTimeString.value = getDayFormat(calendar)
         categories.value = ArrayList()
         destination.value = Location()

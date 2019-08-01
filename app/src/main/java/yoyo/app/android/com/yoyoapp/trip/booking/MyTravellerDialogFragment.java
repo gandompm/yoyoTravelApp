@@ -44,7 +44,6 @@ public class MyTravellerDialogFragment extends DialogFragment {
         getTravellersCompanions();
         setupRecyclerview();
 
-
         return view;
     }
 

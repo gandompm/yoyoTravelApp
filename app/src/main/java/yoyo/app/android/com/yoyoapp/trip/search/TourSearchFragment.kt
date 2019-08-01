@@ -129,7 +129,6 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
                         putString(Utils.KEY_BUNDLE_NIGHT_NUM_CODE, diffDays)
                     }
                 }
-                sharedDataViewModel.resetFilters()
                 (activity as MainActivity).showFragment(
                     this@TourSearchFragment,
                     tripListSearchResultFragment,

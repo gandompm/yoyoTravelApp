@@ -47,7 +47,11 @@ class EditProfileFragment : Fragment() {
         val res = inflater.inflate(R.layout.fragment_edit_profile_trip, container, false)
 
         init(res)
+<<<<<<< HEAD
+
+=======
         bindProfile(res)
+>>>>>>> 62e30d0b7fceedbb11770b876676926512e08917
         getDataFromSharedPrefrence(res)
         res.iv_editprofile_back.setOnClickListener{activity?.onBackPressed()}
         res.button_edit_profile_save.setOnClickListener{if (checkingCompleteFields(res))saveUserData(res)}
@@ -228,7 +232,6 @@ class EditProfileFragment : Fragment() {
                 }
             })
     }
-
 
 }
 

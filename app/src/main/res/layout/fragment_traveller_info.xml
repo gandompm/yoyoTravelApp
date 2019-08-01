@@ -32,7 +32,7 @@
         />
         <ImageView
                 android:id="@+id/iv_travellers_details_close"
-                android:src="@drawable/ic_close_white_24dp"
+                android:src="@drawable/ic_close_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
