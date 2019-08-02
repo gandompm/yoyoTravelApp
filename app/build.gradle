@@ -80,7 +80,7 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.4.0'
     implementation 'co.infinum:prince-of-versions:3.0.0'
     implementation 'com.nightonke:jellytogglebutton:1.0.2'
-    implementation 'androidx.annotation:annotation:1.1.0-beta01'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.tbuonomo:morph-bottom-navigation:1.0.1'
     implementation 'com.hanks.animatecheckbox:library:0.1'
     implementation 'com.github.Cutta:ContinuousScrollableImageView:1.0'
@@ -110,7 +110,7 @@ dependencies {
     implementation 'jp.gr.java_conf.androtaku.countrylist:countrylist:1.1.0' // country list
     implementation 'com.shawnlin:number-picker:2.4.8'                        // number picker
     implementation 'com.github.allan1st:JellyRefreshLayout:2.0'              // pull to refresh
-    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.+'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.6'
 
 
 

@@ -7,8 +7,9 @@ import yoyo.app.android.com.yoyoapp.trip.api.*
 
 @Obfuscate
 class ApiService2(context: Context) : Api(context) {
-    private val IMAGEIP = "http://www.yoyo.travel"
-    private val IP = "http://www.yoyo.travel"
+    companion object {
+        private const val IP = "http://www.yoyo.travel"
+    }
 
     fun sendSignUpRequest(request: SignUpRequest, f: (SignUpResponse?) -> Unit) {
         sendPostRequest(false, "$IP/api/user/register", JSONObject(request.toJson())) {
@@ -17,7 +18,7 @@ class ApiService2(context: Context) : Api(context) {
     }
 
     fun sendSignInRequest(request: SignInRequest, f: (SignInResponse?) -> Unit) {
-        sendPostRequest(false, "$IP/api/user/login", JSONObject("{username: msh, password: mshpassword}")) {
+        sendPostRequest(false, "$IP/api/user/login", JSONObject(request.toJson())) {
             f(SignInResponse.fromJson(it.toString()))
         }
     }
