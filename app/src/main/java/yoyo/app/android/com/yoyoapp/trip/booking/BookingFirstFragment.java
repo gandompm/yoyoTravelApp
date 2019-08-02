@@ -47,9 +47,9 @@ public class BookingFirstFragment extends Fragment {
     }
 
     private void setupContactViews() {
-        mobilenumberEditText.setText(((BookingActivity)getActivity()).mobileNumberString);
-        emailEditText.setText(((BookingActivity)getActivity()).emailString);
-        fullNameEditText.setText(((BookingActivity)getActivity()).fullNameString);
+        mobilenumberEditText.setText(((BookingActivity) getActivity()).getMobileNumberString());
+        emailEditText.setText(((BookingActivity) getActivity()).getEmailString());
+        fullNameEditText.setText(((BookingActivity) getActivity()).getFullNameString());
         fullNameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,7 +59,7 @@ public class BookingFirstFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
-                    ((BookingActivity)getActivity()).fullNameString = s.toString();
+                    ((BookingActivity) getActivity()).setFullNameString(s.toString());
                 }
             }
 
@@ -77,7 +77,7 @@ public class BookingFirstFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
-                    ((BookingActivity)getActivity()).emailString = s.toString();
+                    ((BookingActivity) getActivity()).setEmailString(s.toString());
                 }
             }
 
@@ -95,7 +95,7 @@ public class BookingFirstFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0) {
-                    ((BookingActivity)getActivity()).mobileNumberString = s.toString();
+                    ((BookingActivity) getActivity()).setMobileNumberString(s.toString());
                 }
             }
 
@@ -107,13 +107,13 @@ public class BookingFirstFragment extends Fragment {
     }
 
     private void reduceNumber() {
-        if (passengerNum > ((BookingActivity)getActivity()).minCapacity) {
+        if (passengerNum > ((BookingActivity) getActivity()).getMinCapacity()) {
             passengerNum--;
-            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(false);
+            ((BookingActivity) getActivity()).getPassengerNumLiveData().postValue(false);
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }
-        if (passengerNum == ((BookingActivity)getActivity()).minCapacity)
+        if (passengerNum == ((BookingActivity) getActivity()).getMinCapacity())
         {
             minusImageview.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_light_24dp));
         }
@@ -122,11 +122,11 @@ public class BookingFirstFragment extends Fragment {
     private void addNumber() {
         if (passengerNum < 9) {
             passengerNum++;
-            ((BookingActivity)getActivity()).passerngerNumLiveData.postValue(true);
+            ((BookingActivity) getActivity()).getPassengerNumLiveData().postValue(true);
             passengerCount.setText(String.valueOf(passengerNum));
             travellerRecyclerviewAddapter.notifyDataSetChanged();
         }
-        if (passengerNum >= (((BookingActivity)getActivity()).minCapacity + 1))
+        if (passengerNum >= (((BookingActivity) getActivity()).getMinCapacity() + 1))
         {
             appearView(minusImageview, passengerCount);
         }
@@ -140,28 +140,28 @@ public class BookingFirstFragment extends Fragment {
         plusImageview = view.findViewById(R.id.iv_bookingfirst_plus);
         passengerCount = view.findViewById(R.id.tv_bookingfirst_num);
         fullNameEditText = view.findViewById(R.id.et_booking_contact_name);
-        passengerNum = ((BookingActivity)getActivity()).travellers.size();
+        passengerNum = ((BookingActivity) getActivity()).getTravellers().size();
         passengerCount.setText(String.valueOf(passengerNum));
     }
 
     // get country code for mobile number
     private void setupMobileNumber() {
-        ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getDefaultCountryCodeWithPlus();
-        if ( ((BookingActivity)getActivity()).countryCode != null) {
-            countryCodePicker.setCountryForNameCode(((BookingActivity)getActivity()).countryCode);
+        ((BookingActivity) getActivity()).setMobileNumberCode(countryCodePicker.getDefaultCountryCodeWithPlus());
+        if ( ((BookingActivity) getActivity()).getCountryCode() != null) {
+            countryCodePicker.setCountryForNameCode(((BookingActivity) getActivity()).getCountryCode());
         }
         countryCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
             public void onCountrySelected() {
-                String s = ((BookingActivity)getActivity()).countryCode = countryCodePicker.getSelectedCountryNameCode();
-                String s1= ((BookingActivity)getActivity()).mobileNumberCode = countryCodePicker.getSelectedCountryCodeWithPlus();
+                ((BookingActivity) getActivity()).setCountryCode(countryCodePicker.getSelectedCountryNameCode());
+                ((BookingActivity) getActivity()).setMobileNumberCode(countryCodePicker.getSelectedCountryCodeWithPlus());
             }
         });
     }
 
     // setup traveller recycler view
     private void setupRecyclerview() {
-        travellerRecyclerviewAddapter = new TravellerRecyclerviewAddapter(((BookingActivity)getActivity()).travellers, getActivity(), new TravellerRecyclerviewAddapter.OnItemSelected() {
+        travellerRecyclerviewAddapter = new TravellerRecyclerviewAddapter(((BookingActivity) getActivity()).getTravellers(), getActivity(), new TravellerRecyclerviewAddapter.OnItemSelected() {
             @Override
             public void onSendResult(Traveller traveller, int position) {
                 // when the user on one traveller item clicked, call expandbottomsheet method in booking activity

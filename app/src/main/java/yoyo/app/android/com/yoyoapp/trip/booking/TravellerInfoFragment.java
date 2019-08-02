@@ -88,8 +88,8 @@ public class TravellerInfoFragment extends Fragment {
     }
 
     private void setupBackButton() {
-        ((BookingActivity)getActivity()).continueButton.setVisibility(View.VISIBLE);
-        ((BookingActivity)getActivity()).constraintLayout.setVisibility(View.VISIBLE);
+        ((BookingActivity) getActivity()).getContinueButton().setVisibility(View.VISIBLE);
+        ((BookingActivity) getActivity()).getConstraintLayout().setVisibility(View.VISIBLE);
         getFragmentManager().popBackStack();
     }
 
@@ -100,7 +100,7 @@ public class TravellerInfoFragment extends Fragment {
         {
             position = bundle.getInt("position");
             travllerDetailsTitle.setText("Traveller "+ (position+1));
-            traveller = ((BookingActivity)getActivity()).travellers.get(position);
+            traveller = ((BookingActivity) getActivity()).getTravellers().get(position);
         }
         setupView(traveller,position);
     }
@@ -120,8 +120,8 @@ public class TravellerInfoFragment extends Fragment {
         passpotNumberEditText = view.findViewById(R.id.et_traveller_details_passport_number);
         travllerDetailsTitle = view.findViewById(R.id.tv_traveller_details_title);
         nationalityTextview = view.findViewById(R.id.tv_traveller_details_nationality);
-        ((BookingActivity)getActivity()).continueButton.setVisibility(View.GONE);
-        ((BookingActivity)getActivity()).constraintLayout.setVisibility(View.GONE);
+        ((BookingActivity) getActivity()).getContinueButton().setVisibility(View.GONE);
+        ((BookingActivity) getActivity()).getConstraintLayout().setVisibility(View.GONE);
         genderToggleSwitch.setCheckedPosition(0);
         gender = Gender.MALE;
         isIranian = false;
@@ -209,14 +209,14 @@ public class TravellerInfoFragment extends Fragment {
             traveller.setNationality(code);
 
             if (flag){
-                ((BookingActivity)getActivity()).travellers.set(position ,traveller);
+                ((BookingActivity) getActivity()).getTravellers().set(position ,traveller);
                 sendToPreviousPage();
             }
     }
 
     private void sendToPreviousPage() {
-        ((BookingActivity)getActivity()).continueButton.setVisibility(View.VISIBLE);
-        ((BookingActivity)getActivity()).constraintLayout.setVisibility(View.VISIBLE);
+        ((BookingActivity) getActivity()).getContinueButton().setVisibility(View.VISIBLE);
+        ((BookingActivity) getActivity()).getConstraintLayout().setVisibility(View.VISIBLE);
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fl_booking,new BookingFirstFragment(),"firstFragment");
         fragmentTransaction.commit();
