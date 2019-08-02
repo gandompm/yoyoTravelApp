@@ -18,7 +18,7 @@ class ApiService2(context: Context) : Api(context) {
     }
 
     fun sendSignInRequest(request: SignInRequest, f: (SignInResponse?) -> Unit) {
-        sendPostRequest(false, "$IP/api/user/login", JSONObject("{username: msh, password: mshpassword}")) {
+        sendPostRequest(false, "$IP/api/user/login", JSONObject(request.toJson())) {
             f(SignInResponse.fromJson(it.toString()))
         }
     }

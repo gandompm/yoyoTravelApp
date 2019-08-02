@@ -7,6 +7,11 @@ import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
 import yoyo.app.android.com.yoyoapp.trip.roomDataBase.AppDatabase
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import yoyo.app.android.com.yoyoapp.trip.api.TourDestinations
 
 
 class TourSearchViewModel(application: Application) : AndroidViewModel(application) {
@@ -14,7 +19,6 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
 
     val destinations = MutableLiveData<List<Location>>()
     val categories = MutableLiveData<List<Category>>()
-    val localDatabase: AppDatabase = AppDatabase.getInstance(context = application)
 
 
     fun initCategories() {
@@ -30,7 +34,7 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun initDestination() {
-        tourSearchRepository.requestLocalDestinations(viewModelScope) {
+        requestLocalDestinations(viewModelScope) {
             destinations.value = it
         }
         tourSearchRepository.requestDestinations { it ->
@@ -42,7 +46,30 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
             }
             destinations.value = locations
 
-            it?.let { tourSearchRepository.saveDestinationsInLocal(viewModelScope, it) }
+            it?.let { saveDestinationsInLocal(viewModelScope, it) }
+        }
+    }
+
+    private fun saveDestinationsInLocal(scope: CoroutineScope, tourDestinations: TourDestinations) {
+        tourDestinations.locations?.let {
+            for (location in it) {
+                val newLocation = Location(
+                     code = location.code
+                    , name = location.name
+                )
+                scope.launch(Dispatchers.IO) {
+                    tourSearchRepository.saveDestinationsInLocal(newLocation)
+                }
+            }
+        }
+    }
+
+    private fun requestLocalDestinations(scope: CoroutineScope, f: (List<Location>) -> Unit) {
+        scope.launch(Dispatchers.Main) {
+            f(
+                async(Dispatchers.IO) {
+                    tourSearchRepository.requestLocalDestinations()
+                }.await())
         }
     }
 

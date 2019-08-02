@@ -22,32 +22,14 @@ class TourSearchRepository(context: Context) {
         apiService2.getDestinationsRequest(f)
     }
 
-    fun requestLocalDestinations(scope: CoroutineScope,f: (List<Location>) -> Unit) {
-        scope.launch(Dispatchers.Main) {
-            f(
-            async(Dispatchers.IO) {
-                localDatabase.userDao().getAll()
-            }.await())
-        }
+    fun saveDestinationsInLocal(newLocation: Location) {
+        localDatabase.userDao().delete(newLocation)
+        localDatabase.userDao().insertAll(newLocation)
     }
 
-    fun saveDestinationsInLocal(scope: CoroutineScope, tourDestinations: TourDestinations) {
-        tourDestinations.locations?.let {
-            var i = 1
-            for (location in it) {
-                val newLocation = Location(
-                    i
-                    , location.code
-                    , location.name
-                )
-                scope.launch(Dispatchers.Main) {
-                    async(Dispatchers.IO) {
-                        localDatabase.userDao().delete(newLocation)
-                        localDatabase.userDao().insertAll(newLocation)
-                    }
-                }
-                i++
-            }
-        }
+    fun requestLocalDestinations(): List<Location> {
+        return localDatabase.userDao().getAll()
     }
+
+
 }

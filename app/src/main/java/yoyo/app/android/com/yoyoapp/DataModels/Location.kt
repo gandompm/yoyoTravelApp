@@ -7,7 +7,7 @@ import ir.mirrajabi.searchdialog.core.Searchable
 
 @Entity(tableName = "locations")
 data class Location(@PrimaryKey(autoGenerate = true)
-                    var locationId: Int? = null,
+                    var locationId: Int = 0,
                     @ColumnInfo(name = "code")
                     var code: String? = null,
                     @ColumnInfo(name = "title")
