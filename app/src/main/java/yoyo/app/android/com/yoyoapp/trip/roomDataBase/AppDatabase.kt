@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import yoyo.app.android.com.yoyoapp.DataModels.Location
 
-@Database(entities = [Location::class], version = 2, exportSchema = false)
+@Database(entities = [Location::class], version = 3, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): LocationDao
 

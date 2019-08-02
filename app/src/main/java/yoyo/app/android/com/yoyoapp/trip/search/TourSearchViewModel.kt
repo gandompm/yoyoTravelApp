@@ -34,7 +34,7 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun initDestination() {
-        requestLocalDestinations(viewModelScope) {
+        requestLocalDestinations {
             destinations.value = it
         }
         tourSearchRepository.requestDestinations { it ->
@@ -46,26 +46,26 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
             }
             destinations.value = locations
 
-            it?.let { saveDestinationsInLocal(viewModelScope, it) }
+            it?.let { saveDestinationsInLocal( it) }
         }
     }
 
-    private fun saveDestinationsInLocal(scope: CoroutineScope, tourDestinations: TourDestinations) {
+    private fun saveDestinationsInLocal( tourDestinations: TourDestinations) {
         tourDestinations.locations?.let {
             for (location in it) {
                 val newLocation = Location(
                      code = location.code
                     , name = location.name
                 )
-                scope.launch(Dispatchers.IO) {
+                viewModelScope.launch(Dispatchers.IO) {
                     tourSearchRepository.saveDestinationsInLocal(newLocation)
                 }
             }
         }
     }
 
-    private fun requestLocalDestinations(scope: CoroutineScope, f: (List<Location>) -> Unit) {
-        scope.launch(Dispatchers.Main) {
+    private fun requestLocalDestinations( f: (List<Location>) -> Unit) {
+        viewModelScope.launch(Dispatchers.Main) {
             f(
                 async(Dispatchers.IO) {
                     tourSearchRepository.requestLocalDestinations()
