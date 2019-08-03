@@ -4,25 +4,35 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
+import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
 import yoyo.app.android.com.yoyoapp.trip.api.RequestSetProfilePicture
 
-class EditProfileViewModel(application: Application) : AndroidViewModel(application) {
+class EditProfileViewModel(val app: Application) : AndroidViewModel(app) {
 
-    private val repository: EditProfileRepository = EditProfileRepository(application)
-    val userMutableLiveData: MutableLiveData<User> = MutableLiveData()
+    private val repository: EditProfileRepository = EditProfileRepository(app)
+    val loggedInUser: MutableLiveData<User> = MutableLiveData()
     private var newUserMutableLiveData: MutableLiveData<User>? = null
     private var profilePicture: MutableLiveData<String> = MutableLiveData()
-
 
     val editedProfile: LiveData<User>?
         get() = newUserMutableLiveData
 
 
-    fun initGetProfile() {
-        repository.getProfile {
-            userMutableLiveData.value = it
+    fun loadProfile() {
+        viewModelScope.launch {
+            val userFromDb = loadProfileFromDatabase()
+            if (!userFromDb?.token.isNullOrEmpty()) {
+                loggedInUser.postValue(userFromDb)
+            }
+            repository.getProfile {
+                it?.let { user -> loggedInUser.postValue(user) }
+            }
         }
     }
 
@@ -44,4 +54,9 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
         return profilePicture
     }
 
+
+    private suspend fun loadProfileFromDatabase() = withContext(Dispatchers.IO) {
+        val userSharedManager = UserSharedManager(app.applicationContext)
+        userSharedManager.user
+    }
 }

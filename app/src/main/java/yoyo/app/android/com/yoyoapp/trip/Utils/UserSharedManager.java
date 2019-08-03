@@ -50,6 +50,7 @@ public class UserSharedManager {
         user.setLanguage(sharedPreference.getString("language","en"));
         user.setPhoneNumber(sharedPreference.getString("phonenumber",""));
         user.setProfilePicture(sharedPreference.getString("profile_picture",""));
+        user.setToken(sharedPreference.getString("token", null));
 
         return user;
     }

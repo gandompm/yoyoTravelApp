@@ -15,14 +15,17 @@ class EditProfileRepository(val context: Context) {
 
     fun getProfile(f: (User?) -> Unit) {
         apiService2.getProfileRequest {
-            val profile = User().apply {
-                firstName = it?.firstname
-                lastName = it?.lastname
-                email = it?.email
-                phoneNumber = it?.phoneNumber
-                profilePicture = it?.profileOriginalPicture
+            it?.let {
+                val profile = User().apply {
+                    firstName = it.firstname
+                    lastName = it.lastname
+                    email = it.email
+                    phoneNumber = it.phoneNumber
+                    profilePicture = IP + it.profileOriginalPicture
+                }
+                f(profile)
             }
-            f(profile)
+            f(null)
         }
     }
 
