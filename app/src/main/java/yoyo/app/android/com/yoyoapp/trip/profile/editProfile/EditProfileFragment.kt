@@ -51,6 +51,7 @@ class EditProfileFragment : Fragment() {
         res.iv_editprofile_back.setOnClickListener{activity?.onBackPressed()}
         res.button_edit_profile_save.setOnClickListener{if (checkingCompleteFields(res))saveUserData(res)}
         circleImageView.setOnClickListener{openImageFromGallery() }
+        retrieveData(res)
 
         return res
     }
