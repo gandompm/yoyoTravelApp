@@ -6,13 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
+import yoyo.app.android.com.yoyoapp.trip.api.RequestSetProfilePicture
 
 class EditProfileViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository: EditProfileRepository = EditProfileRepository(application)
     val userMutableLiveData: MutableLiveData<User> = MutableLiveData()
     private var newUserMutableLiveData: MutableLiveData<User>? = null
-    private var profilePicture: MutableLiveData<String>? = null
+    private var profilePicture: MutableLiveData<String> = MutableLiveData()
 
 
     val editedProfile: LiveData<User>?
@@ -33,10 +34,9 @@ class EditProfileViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    fun sendImageProfile(jsonObject: JSONObject) {
-        profilePicture = MutableLiveData()
-        repository.getImageProfile(jsonObject){
-            profilePicture?.value = it
+    fun sendImageProfile(encodedPicture: String) {
+        repository.setProfilePicture(RequestSetProfilePicture(encodedPicture)){
+            profilePicture.value = it
         }
     }
 

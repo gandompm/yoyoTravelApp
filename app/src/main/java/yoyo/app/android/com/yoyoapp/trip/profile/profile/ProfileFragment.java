@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.LanguageDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Profile.*;
@@ -36,8 +37,9 @@ public class ProfileFragment extends Fragment {
     private MainActivityViewModel mainActivityViewModel;
     private boolean isSignedIn = true;
     private ProfileViewModel profileViewModel;
-    private ImageView  travellerCompanionImageview, rulesImageview, editProfileImageview ,signoutImageview, languageImageView, aboutImageview;
+    private ImageView travellerCompanionImageview, rulesImageview, editProfileImageview, signoutImageview, languageImageView, aboutImageview;
     private View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profile_trip, container, false);
@@ -46,10 +48,19 @@ public class ProfileFragment extends Fragment {
         checkingSignIn();
         retrieveProfileData();
 
-        travellerCompanionImageview.setOnClickListener(v -> {if(isSignedIn) setupTravellerCompanionPage();else popUpSignInSignUpActivity();});
+        travellerCompanionImageview.setOnClickListener(v -> {
+            if (isSignedIn) setupTravellerCompanionPage();
+            else popUpSignInSignUpActivity();
+        });
         rulesImageview.setOnClickListener(v -> setupRulesPage());
-        editProfileImageview.setOnClickListener(v -> {if(isSignedIn) setupEditProfilePage(); else popUpSignInSignUpActivity();});
-        signoutImageview.setOnClickListener(v -> { if (isSignedIn) setupSignOutPage(); else popUpSignInSignUpActivity();});
+        editProfileImageview.setOnClickListener(v -> {
+            if (isSignedIn) setupEditProfilePage();
+            else popUpSignInSignUpActivity();
+        });
+        signoutImageview.setOnClickListener(v -> {
+            if (isSignedIn) setupSignOutPage();
+            else popUpSignInSignUpActivity();
+        });
         aboutImageview.setOnClickListener(v -> setupAboutPage());
         languageImageView.setOnClickListener(v -> setupLanguage());
         setupSignInObserver();
@@ -62,14 +73,14 @@ public class ProfileFragment extends Fragment {
             if (isSignedIn) {
                 this.isSignedIn = true;
                 user = userSharedManager.getUser();
-                nameTextview.setText(user.getFirstName()+" "+ user.getLastName());
+                nameTextview.setText(user.getFirstName() + " " + user.getLastName());
             }
         });
     }
 
 
     private void setupAboutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(),"",false );
+        ((MainActivity) getActivity()).showFragment(this, new AboutFragment(), "", false);
     }
 
     // show user the language dialog fragment
@@ -79,25 +90,24 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setupSignOutPage() {
-        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(),"",false );
+        ((MainActivity) getActivity()).showFragment(this, new SignOutFragment(), "", false);
     }
 
     private void setupEditProfilePage() {
-        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(),"",false );
+        ((MainActivity) getActivity()).showFragment(this, new EditProfileFragment(), "", false);
     }
 
     private void setupRulesPage() {
-        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(),"",false );
+        ((MainActivity) getActivity()).showFragment(this, new RuleFragment(), "", false);
     }
 
     private void setupTravellerCompanionPage() {
-        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(),"",false );
+        ((MainActivity) getActivity()).showFragment(this, new TravellerCompanionFragment(), "", false);
     }
 
     private void retrieveProfileData() {
         User user = userSharedManager.getUser();
-        if (user.getFirstName().equals(""))
-        {
+        if (user.getFirstName().equals("")) {
             //todo set profile data
 //            apiServiceFlight.retrieveProfileData(new ApiServiceFlight.OnProfileDataRecieved() {
 //                @Override
@@ -112,29 +122,26 @@ public class ProfileFragment extends Fragment {
     // if the user has not signed in yet, pop up the signup activity
     private void checkingSignIn() {
         user = userSharedManager.getUser();
-        if (userSharedManager.getToken().equals(""))
-        {
+        if (userSharedManager.getToken().equals("")) {
             isSignedIn = false;
-        }
-        else
-        {
+        } else {
             setupViewsFromSharedPref();
         }
     }
 
     private void setupViewsFromSharedPref() {
-        nameTextview.setText(user.getFirstName()+" "+ user.getLastName());
-        if( !user.getProfilePicture().equalsIgnoreCase("") ){
-            byte[] b = Base64.decode(user.getProfilePicture(), Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-            circleImageView.setImageBitmap(bitmap);
+        nameTextview.setText(user.getFirstName() + " " + user.getLastName());
+        if (!user.getProfilePicture().equalsIgnoreCase("")) {
+            Picasso.with(getContext())
+                    .load(user.getProfilePicture())
+                    .into(circleImageView);
         }
         isSignedIn = true;
     }
 
     // setup signup activity
     private void popUpSignInSignUpActivity() {
-        ((MainActivity)getActivity()).popUpSignInSignUpActivity();
+        ((MainActivity) getActivity()).popUpSignInSignUpActivity();
     }
 
 
@@ -153,8 +160,6 @@ public class ProfileFragment extends Fragment {
         languageTextview = view.findViewById(R.id.tv_profile_language);
         circleImageView = view.findViewById(R.id.iv_profile);
     }
-
-
 
 
 }

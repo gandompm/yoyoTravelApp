@@ -5,6 +5,8 @@ import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
 import yoyo.app.android.com.yoyoapp.trip.ApiService
 import yoyo.app.android.com.yoyoapp.trip.ApiService2
+import yoyo.app.android.com.yoyoapp.trip.ApiService2.Companion.IP
+import yoyo.app.android.com.yoyoapp.trip.api.RequestSetProfilePicture
 
 class EditProfileRepository(val context: Context) {
 
@@ -28,9 +30,9 @@ class EditProfileRepository(val context: Context) {
         apiService.sendEditProfileRequest(jsonObject) { user -> f(user) }
     }
 
-    fun getImageProfile(jsonObject: JSONObject, f: (String?) -> Unit) {
-        apiService.sendProfilePhotoRequest(jsonObject) { f(it) }
+    fun setProfilePicture(request: RequestSetProfilePicture, f: (String?) -> Unit) {
+        apiService2.setProfilePictureRequest(request) {
+            f(IP + it?.profileThumbnailPicture)
+        }
     }
-
-
 }

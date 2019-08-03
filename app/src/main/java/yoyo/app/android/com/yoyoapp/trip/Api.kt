@@ -22,7 +22,7 @@ open class Api(val context: Context) {
     private val JWT = userSharedManager.token
     private val apiKey = "ChapterLittleIngeniousFerrariMagic"
 
-    protected fun sendPostRequest(shouldSendJWT: Boolean, url: String, jsonObject: JSONObject? = null, f: (JSONObject?) -> Unit) {
+    protected fun sendPostRequest(shouldSendJWT: Boolean, url: String, jsonObject: JSONObject, f: (JSONObject?) -> Unit) {
         sendHttpRequest(Request.Method.POST, shouldSendJWT, url, jsonObject, f)
     }
 

@@ -9,7 +9,7 @@ import yoyo.app.android.com.yoyoapp.trip.api.*
 @Obfuscate
 class ApiService2(context: Context) : Api(context) {
     companion object {
-        private const val IP = "http://www.yoyo.travel"
+        const val IP = "http://www.yoyo.travel"
     }
 
     private val gson = Gson()
@@ -36,14 +36,20 @@ class ApiService2(context: Context) : Api(context) {
 
     fun getDestinationsRequest(f: (TourDestinationsResponse?) -> Unit) {
         sendGetRequest(false, "$IP/api/trips/destinations") {
-                f(gson.fromJson(it.toString(), TourDestinationsResponse::class.java))
-            }
+            f(gson.fromJson(it.toString(), TourDestinationsResponse::class.java))
         }
+    }
 
 
     fun getProfileRequest(f: (ResponseGetProfile?) -> Unit) {
-            sendGetRequest(true, "$IP/api/user/profile") {
-                f(gson.fromJson(it.toString(), ResponseGetProfile::class.java))
-            }
+        sendGetRequest(true, "$IP/api/user/profile") {
+            f(gson.fromJson(it.toString(), ResponseGetProfile::class.java))
         }
+    }
+
+    fun setProfilePictureRequest(request: RequestSetProfilePicture, f: (ResponseSetProfilePicture?) -> Unit) {
+        sendPostRequest(true, "$IP/api/user/profile/picture", JSONObject(gson.toJson(request))) {
+            f(gson.fromJson(it.toString(), ResponseSetProfilePicture::class.java))
+        }
+    }
 }

@@ -132,14 +132,8 @@ class EditProfileFragment : Fragment() {
 
 
     private fun saveImageRequest() {
-        val jsonObject = JSONObject()
-        try {
-            jsonObject.put("profile_picture", encodedProfileImage)
-        } catch (e: JSONException) {
-            e.printStackTrace()
-        }
 
-        editProfileViewModel.sendImageProfile(jsonObject)
+        editProfileViewModel.sendImageProfile(encodedProfileImage)
         editProfileViewModel.getProfilePicture()!!.observe(activity!!, Observer{ profilePicture ->
             if (profilePicture != null) {
                 userSharedManager.saveProfilePhoto(encodedProfileImage)
