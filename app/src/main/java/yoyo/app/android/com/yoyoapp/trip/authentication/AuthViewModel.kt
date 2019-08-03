@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import yoyo.app.android.com.yoyoapp.DataModels.User
+import yoyo.app.android.com.yoyoapp.trip.ApiService2.Companion.IP
 import yoyo.app.android.com.yoyoapp.trip.api.SignInRequest
 import yoyo.app.android.com.yoyoapp.trip.api.SignUpRequest
 
@@ -20,7 +21,7 @@ class AuthViewModel(app: Application) : AndroidViewModel(app) {
                 lastName = it?.lastname
                 email = it?.email
                 phoneNumber = it?.phoneNumber
-                profilePicture = it?.profileThumbnailPicture
+                profilePicture = IP + it?.profileThumbnailPicture
                 token = it?.token
             }
 
@@ -35,7 +36,7 @@ class AuthViewModel(app: Application) : AndroidViewModel(app) {
                 this.lastName = it?.lastname
                 this.email = it?.email
                 this.phoneNumber = it?.phoneNumber
-                this.profilePicture = it?.profileThumbnailPicture
+                this.profilePicture = IP + it?.profileThumbnailPicture
                 this.token = it?.token
             }
 
