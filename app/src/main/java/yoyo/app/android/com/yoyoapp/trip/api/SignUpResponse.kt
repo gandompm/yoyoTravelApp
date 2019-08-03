@@ -1,38 +1,23 @@
 package yoyo.app.android.com.yoyoapp.trip.api
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 
-private val mapper = jacksonObjectMapper().apply {
-    propertyNamingStrategy = PropertyNamingStrategy.LOWER_CAMEL_CASE
-    setSerializationInclusion(JsonInclude.Include.NON_NULL)
-}
+import com.google.gson.annotations.SerializedName
 
-data class SignUpResponse (
+data class SignUpResponse(
+    @SerializedName("username")
     val username: String? = null,
+    @SerializedName("firstname")
     val firstname: String? = null,
+    @SerializedName("lastname")
     val lastname: String? = null,
+    @SerializedName("email")
     val email: String? = null,
-
-    @get:JsonProperty("phone_number")@field:JsonProperty("phone_number")
+    @SerializedName("phone_number")
     val phoneNumber: String? = null,
-
-    @get:JsonProperty("profile_thumbnail_picture")@field:JsonProperty("profile_thumbnail_picture")
+    @SerializedName("profile_thumbnail_picture")
     val profileThumbnailPicture: String? = null,
-
-    @get:JsonProperty("profile_original_picture")@field:JsonProperty("profile_original_picture")
+    @SerializedName("profile_original_picture")
     val profileOriginalPicture: String? = null,
-
+    @SerializedName("token")
     val token: String? = null
-) {
-    fun toJson() = mapper.writeValueAsString(this)
-
-    companion object {
-        fun fromJson(json: String) = mapper.readValue<SignUpResponse>(json)
-    }
-
-
-}
+)
