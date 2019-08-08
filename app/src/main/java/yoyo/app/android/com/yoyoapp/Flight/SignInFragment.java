@@ -72,7 +72,7 @@ public class SignInFragment extends Fragment {
                     progressBar.setVisibility(View.VISIBLE);
                     JSONObject jsonObject = new JSONObject();
                     try {
-                        jsonObject.put("username", userNameEditText.getText().toString());
+                        jsonObject.put("emailOrPassword", userNameEditText.getText().toString());
                         jsonObject.put("password", passwordEditText.getText().toString());
 
 

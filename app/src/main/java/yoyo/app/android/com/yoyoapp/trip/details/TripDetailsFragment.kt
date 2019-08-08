@@ -88,7 +88,7 @@ class TripDetailsFragment : Fragment() {
             res.tv_tripdetails_transport.text = transports.toString()
             // type
             val types = StringBuilder()
-            for (type in getStringArrayList("categories")!!) {
+            for (type in getStringArrayList("selectedCategories")!!) {
                 types.append(type).append("\n")
             }
             res.tv_tripdetails_type.text = types.toString()

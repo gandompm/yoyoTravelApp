@@ -128,7 +128,7 @@ public class EditProfileFragment extends Fragment {
                 else {
                     JSONObject jsonObject = new JSONObject();
                     try {
-                        jsonObject.put("username", usernameEditText.getText().toString());
+                        jsonObject.put("emailOrPassword", usernameEditText.getText().toString());
                         jsonObject.put("first_name", firstnameEditText.getText().toString());
                         jsonObject.put("last_name", lastnameEditText.getText().toString());
                         jsonObject.put("email", emailTextview.getText().toString());

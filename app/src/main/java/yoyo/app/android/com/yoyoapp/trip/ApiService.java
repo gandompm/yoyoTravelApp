@@ -31,8 +31,10 @@ import java.util.*;
 public class ApiService {
     private static final String TAG = "ApiService";
     private Context context;
-    private String IMAGEIP = "http://www.yoyo.travel";
-    private String IP = "http://www.yoyo.travel/";
+//    private String IMAGEIP = "http://www.yoyo.travel";
+    private String IMAGEIP = "http://192.168.1.57";
+//    private String IP = "http://www.yoyo.travel/";
+    private String IP = "http://192.168.1.57/";
     private String apiKey = "ChapterLittleIngeniousFerrariMagic";
     private String JWT;
     private UserSharedManager userSharedManager;
@@ -44,12 +46,10 @@ public class ApiService {
     }
 
     public void getTripListRequest(int page, TripQuery tripQuery, Consumer<ArrayList<Trip>> tripArrayListConsumer) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP + "api/trips" + "?price_min=" +
-                tripQuery.getFromPrice() + "&price_max=" + tripQuery.getToPrice() + "&start_date=" + tripQuery.getFromTime() +
-                "&end_date=" + tripQuery.getToTime() + "&category=" + tripQuery.getCategories() + "&origin=" + tripQuery.getDestination() + "&destination=" + tripQuery.getDestination() +
-                "&duration_min=" + tripQuery.getMinDuration() + "&duration_max=999&page=" + page + "&limit=10&reserve_type=" + tripQuery.getType(), null,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, IP + "api/trips" + "?start_date=" + tripQuery.getFromTime() +
+                "&end_date=" + tripQuery.getToTime() + "&destination=" + tripQuery.getDestination() +
+                "&page=" + page + "&limit=10", null,
                 response -> {
-
                     ArrayList<Trip> trips = new ArrayList<>();
                     try {
                         JSONArray tripJsonArray = response.getJSONArray("trips");
@@ -124,7 +124,7 @@ public class ApiService {
                             }
                             trip.setRules(rules);
 
-                            // categories
+                            // selectedCategories
                             ArrayList<String> categories = new ArrayList<>();
                             jsonArray = mainObject.getJSONArray("categories");
                             for (int j = 0; j < jsonArray.length(); j++) {
@@ -257,12 +257,11 @@ public class ApiService {
                             user.setFirstName(response.getString("firstname"));
                             user.setLastName(response.getString("lastname"));
                             user.setEmail(response.getString("email"));
-                            user.setProfilePicture(response.getString("profile_picture"));
                             user.setPhoneNumber(response.getString("phone_number"));
+                            user.setProfilePicture(response.getString("profile_thumbnail_picture"));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-
                             Log.d(TAG, "onResponse: edit profile " + e.toString());
                         }
 

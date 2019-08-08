@@ -44,7 +44,7 @@ public class ApiServiceFlight {
                 try {
                     user.setFirstName(response.getString("first_name"));
                     user.setLastName(response.getString("last_name"));
-                    user.setUserName(response.getString("username"));
+                    user.setUserName(response.getString("emailOrPassword"));
                     user.setEmail(response.getString("email"));
                     user.setToken(response.getString("token"));
                     user.setExpireDate(response.getString("expires"));
@@ -975,7 +975,7 @@ public class ApiServiceFlight {
                         try {
                             user.setFirstName(response.getString("first_name"));
                             user.setLastName(response.getString("last_name"));
-                            user.setUserName(response.getString("username"));
+                            user.setUserName(response.getString("emailOrPassword"));
                             user.setEmail(response.getString("email"));
                         } catch (JSONException e) {
                             e.printStackTrace();

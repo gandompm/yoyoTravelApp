@@ -1,7 +1,7 @@
 package yoyo.app.android.com.yoyoapp.trip.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,29 +9,32 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import yoyo.app.android.com.yoyoapp.DataModels.Schedule;
 import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
-import yoyo.app.android.com.yoyoapp.trip.booking.BookingActivity;
+import yoyo.app.android.com.yoyoapp.trip.booking.firstPage.BookingFirstFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleRecyclerviewAddapter.ScheduleViewholder> {
+public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ScheduleViewHolder> {
     private static final String TAG = "ScheduleRecyclerviewAdd";
     private ArrayList<Schedule> schedules;
     private String tripTitle;
     private Context context;
     private OnItemSelected onItemSelected;
     private String monthName;
+    private Fragment currentFragment;
     private UserSharedManager userSharedManager;
     private int dayOfMonth;
 
-    public ScheduleRecyclerviewAddapter(ArrayList<Schedule> schedules,String tripTitle, Context context, OnItemSelected onItemSelected) {
+    public ScheduleRecyclerViewAdapter(ArrayList<Schedule> schedules, String tripTitle, Fragment currentFragment, Context context, OnItemSelected onItemSelected) {
+        this.currentFragment = currentFragment;
         userSharedManager = new UserSharedManager(context);
         this.schedules = schedules;
         this.tripTitle = tripTitle;
@@ -41,36 +44,34 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
 
     @NonNull
     @Override
-    public ScheduleViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item_schedule,parent,false);
-        return new ScheduleViewholder(view);
+        return new ScheduleViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ScheduleViewholder holder, final int position) {
+    public void onBindViewHolder(@NonNull ScheduleViewHolder holder, final int position) {
         holder.bindTravellerCompanionItem(schedules.get(position));
         holder.itemView.setOnClickListener(v -> {
             Schedule schedule = schedules.get(position);
             onItemSelected.onSendResult(schedule);
         });
 
-        holder.bookButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (userSharedManager.getToken().isEmpty())
-                {
-                    ((MainActivity)context).popUpSignInSignUpActivity();
-                }
-                else
-                {
-                    Intent intent = new Intent(context, BookingActivity.class);
-                    intent.putExtra("scheduleId",schedules.get(position).getId());
-                    intent.putExtra("price",schedules.get(position).getPrice());
-                    intent.putExtra("minCapacity",schedules.get(position).getMinCapacity());
-                    context.startActivity(intent);
-                    ((MainActivity)context).overridePendingTransition(0,  0);
-                }
+        holder.bookButton.setOnClickListener(v -> {
+            if (userSharedManager.getToken().isEmpty())
+            {
+                ((MainActivity)context).popUpSignInSignUpActivity();
+            }
+            else
+            {
+                BookingFirstFragment bookingFirstFragment = new BookingFirstFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("scheduleId",schedules.get(position).getId());
+                bundle.putDouble("price", schedules.get(position).getPrice());
+                bundle.putInt("minCapacity",schedules.get(position).getMinCapacity());
+                bookingFirstFragment.setArguments(bundle);
+                ((MainActivity)context).showFragment(currentFragment, bookingFirstFragment, "booking_first",false );
             }
         });
     }
@@ -80,7 +81,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
         return schedules.size();
     }
 
-    public class ScheduleViewholder extends RecyclerView.ViewHolder
+    public class ScheduleViewHolder extends RecyclerView.ViewHolder
     {
         private TextView titleTextview;
         private TextView startDateTextview;
@@ -92,7 +93,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
         private TextView remainingCapacityTextview;
         private Button   bookButton;
 
-        public ScheduleViewholder(@NonNull View itemView) {
+        private ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextview = itemView.findViewById(R.id.tv_schedule_title);
             startDateTextview = itemView.findViewById(R.id.tv_scheduleItem_start_time);
@@ -105,7 +106,7 @@ public class ScheduleRecyclerviewAddapter extends RecyclerView.Adapter<ScheduleR
             bookButton = itemView.findViewById(R.id.button_schedule_book);
         }
 
-        public void bindTravellerCompanionItem(Schedule schedule) {
+        private void bindTravellerCompanionItem(Schedule schedule) {
             titleTextview.setText(tripTitle);
             startDateTextview.setText(getDayFormat(schedule.getStartTimeStamp()));
             priceTextview.setText(schedule.getPrice()+" $");

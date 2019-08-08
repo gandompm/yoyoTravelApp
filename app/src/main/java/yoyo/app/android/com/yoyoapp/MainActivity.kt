@@ -15,6 +15,7 @@ import yoyo.app.android.com.yoyoapp.Flight.Utils.LanguageSetup
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
 import yoyo.app.android.com.yoyoapp.trip.Utils.Versioning
 import yoyo.app.android.com.yoyoapp.trip.authentication.AuthenticationActivity
+import yoyo.app.android.com.yoyoapp.trip.dialog.ExitDialogFragment
 import yoyo.app.android.com.yoyoapp.trip.profile.profile.ProfileFragment
 import yoyo.app.android.com.yoyoapp.trip.ticket.OrdersFragment
 import yoyo.app.android.com.yoyoapp.trip.ticket.order.TourTicketFragment

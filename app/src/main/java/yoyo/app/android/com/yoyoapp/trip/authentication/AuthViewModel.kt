@@ -15,32 +15,37 @@ class AuthViewModel(app: Application) : AndroidViewModel(app) {
     val signUp = MutableLiveData<User>()
 
     fun sendSignIn(username: String, password: String) {
-        authRepository.sendSignInRequest(SignInRequest(username, password)) {
-            val response = User().apply {
-                firstName = it?.firstname
-                lastName = it?.lastname
-                email = it?.email
-                phoneNumber = it?.phoneNumber
-                profilePicture = IP + it?.profileThumbnailPicture
-                token = it?.token
+        authRepository.sendSignInRequest(SignInRequest(username, password)) { response ->
+            singIn.value =
+                if (response != null) {
+                 User().apply {
+                    firstName = response.firstname
+                    lastName = response.lastname
+                    email = response.email
+                    phoneNumber = response.phoneNumber
+                    profilePicture = IP + response.profileThumbnailPicture
+                    token = response.token
+                }
             }
-
-            this.singIn.value = response
+            else null
         }
     }
 
-    fun sendSingUp(firstName: String, lastName: String, email: String, phoneNumber: String, password: String) {
+    fun sendSignUp(firstName: String, lastName: String, email: String, phoneNumber: String, password: String) {
         authRepository.sendSignUpRequest(SignUpRequest(firstName, lastName, email, phoneNumber, password)) {
-            val response = User().apply {
-                this.firstName = it?.firstname
-                this.lastName = it?.lastname
-                this.email = it?.email
-                this.phoneNumber = it?.phoneNumber
-                this.profilePicture = IP + it?.profileThumbnailPicture
-                this.token = it?.token
-            }
-
-            this.signUp.value = response
+            signUp.value =
+                if (it != null)
+                {
+                    User().apply {
+                        this.firstName = it.firstname
+                        this.lastName = it.lastname
+                        this.email = it.email
+                        this.phoneNumber = it.phoneNumber
+                        this.profilePicture = IP + it.profileThumbnailPicture
+                        this.token = it.token
+                    }
+                }
+                 else null
         }
     }
 }

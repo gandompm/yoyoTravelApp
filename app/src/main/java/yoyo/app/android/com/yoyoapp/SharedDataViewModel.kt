@@ -2,10 +2,9 @@ package yoyo.app.android.com.yoyoapp
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fasterxml.jackson.annotation.ObjectIdGenerators
 import yoyo.app.android.com.yoyoapp.DataModels.Category
 import yoyo.app.android.com.yoyoapp.DataModels.Location
-import java.sql.Timestamp
+import yoyo.app.android.com.yoyoapp.DataModels.Traveller
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -13,7 +12,7 @@ import kotlin.collections.ArrayList
 class SharedDataViewModel : ViewModel() {
     val fromPrice = MutableLiveData<Int>()
     val toPrice = MutableLiveData<Int>()
-    val categories = MutableLiveData<ArrayList<Category>>()
+    val selectedCategories = MutableLiveData<ArrayList<Category>>()
     var fromTime = MutableLiveData<Long>()
     var toTime = MutableLiveData<Long>()
     var fromTimeString = MutableLiveData<String>()
@@ -21,6 +20,7 @@ class SharedDataViewModel : ViewModel() {
     var minDuration = MutableLiveData<Int>()
     var destination = MutableLiveData<Location>()
     var diffDays = MutableLiveData<Int>()
+    var travellersList = MutableLiveData<ArrayList<Traveller>>()
 
     init {
         val calendar = Calendar.getInstance()
@@ -29,14 +29,14 @@ class SharedDataViewModel : ViewModel() {
         calendar.add(Calendar.DAY_OF_MONTH, 15)
         toTime.value = calendar.timeInMillis / 1000
         toTimeString.value = getDayFormat(calendar)
-        categories.value = ArrayList()
+        selectedCategories.value = ArrayList()
         destination.value = Location()
         minDuration.value = 1
         diffDays.value = 15
         toPrice.value = 20000000
         fromPrice.value = 0
+        travellersList.value = ArrayList()
     }
-
 
     fun selectFromPrice(fromPrice: Int) {
         this.fromPrice.value = fromPrice
@@ -47,11 +47,11 @@ class SharedDataViewModel : ViewModel() {
     }
 
     fun selectCategories(categories: ArrayList<Category>){
-        this.categories.postValue(categories)
+        this.selectedCategories.postValue(categories)
     }
 
     fun resetFilters() {
-        this.categories.value?.clear()
+        this.selectedCategories.value?.clear()
         toPrice.value = 20000000
         fromPrice.value = 0
         minDuration.value = 1
@@ -63,14 +63,6 @@ class SharedDataViewModel : ViewModel() {
 
     fun selectToTime(toTime: Long) {
         this.toTime.value = toTime
-    }
-
-    fun selectFromTimeString(fromTime: String) {
-        this.fromTimeString.value = fromTime
-    }
-
-    fun selectToTimeString(toTime: String) {
-        this.toTimeString.value = toTime
     }
 
     fun selectMinDuration(minDuration: Int) {
@@ -85,6 +77,17 @@ class SharedDataViewModel : ViewModel() {
         this.diffDays.value = diffDays
     }
 
+    fun setTraveller(index: Int, traveller: Traveller) {
+        this.travellersList.value?.set(index,traveller)
+        this.travellersList.value = this.travellersList.value
+    }
+
+    fun addTraveller(traveller: Traveller) {
+        this.travellersList.value?.add(traveller)
+    }
+
+    fun getTraveller(index: Int)
+            = this.travellersList.value?.get(index)
 
     private fun getDayFormat(calendar: Calendar): String {
         val dayFormat = SimpleDateFormat("E", Locale.getDefault())
@@ -94,6 +97,7 @@ class SharedDataViewModel : ViewModel() {
         return "$dayOfWeekNameFrom, ${calendar.get(Calendar.DAY_OF_MONTH)} $monthNameFrom"
     }
 
-
-
+    fun resetBookingTravellers() {
+        this.travellersList.value?.clear()
+    }
 }

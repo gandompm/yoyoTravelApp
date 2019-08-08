@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProviders;
 import es.dmoral.toasty.Toasty;
 import yoyo.app.android.com.yoyoapp.DataModels.User;
 import yoyo.app.android.com.yoyoapp.R;
-import yoyo.app.android.com.yoyoapp.Utils;
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager;
 
 
@@ -49,7 +48,7 @@ public class SignUpFragment extends Fragment {
     ) {
         signUpButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
-        authViewModel.sendSingUp(firstName, lastName, email, phoneNumber, password);
+        authViewModel.sendSignUp(firstName, lastName, email, phoneNumber, password);
         authViewModel.getSignUp().observe(getActivity(), new Observer<User>() {
             @Override
             public void onChanged(User user) {

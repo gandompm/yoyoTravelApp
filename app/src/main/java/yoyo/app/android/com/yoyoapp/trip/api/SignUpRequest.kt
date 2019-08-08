@@ -4,13 +4,13 @@ package yoyo.app.android.com.yoyoapp.trip.api
 import com.google.gson.annotations.SerializedName
 
 data class SignUpRequest(
-    @SerializedName("firstName")
+    @SerializedName("firstname")
     val firstName: String,
-    @SerializedName("lastName")
+    @SerializedName("lastname")
     val lastName: String,
     @SerializedName("email")
     val email: String,
-    @SerializedName("phoneNumber")
+    @SerializedName("phone_number")
     val phoneNumber: String,
     @SerializedName("password")
     val password: String

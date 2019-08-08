@@ -73,7 +73,7 @@ public class FoldingCellRecyclerviewAdapter extends RecyclerView.Adapter<Folding
             bundle.putStringArrayList("transportation",trip.getTransportations());
             bundle.putStringArrayList("meals",trip.getMeals());
             bundle.putStringArrayList("rules",trip.getRules());
-            bundle.putStringArrayList("categories",trip.getCategories());
+            bundle.putStringArrayList("selectedCategories",trip.getCategories());
             bundle.putStringArrayList("gallery",trip.getGallery());
             bundle.putInt("days",trip.getDayNum());
             bundle.putInt("nights",trip.getNightNum());

@@ -19,7 +19,7 @@ import yoyo.app.android.com.yoyoapp.MainActivity
 import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
 import yoyo.app.android.com.yoyoapp.trip.adapter.ScheduleCalenderRecyclerviewAddapter
-import yoyo.app.android.com.yoyoapp.trip.adapter.ScheduleRecyclerviewAddapter
+import yoyo.app.android.com.yoyoapp.trip.adapter.ScheduleRecyclerViewAdapter
 import yoyo.app.android.com.yoyoapp.trip.schedule.request.RequestFragment
 
 import java.util.ArrayList
@@ -29,7 +29,7 @@ class ScheduleTourFragment : Fragment() {
     private val scheduleViewModel by viewModels<ScheduleTourViewModel>()
     private var myCalenders: ArrayList<ScheduleCalender> = ArrayList()
     private var scheduleArrayList: ArrayList<Schedule> = ArrayList()
-    private var adapter: ScheduleRecyclerviewAddapter? = null
+    private var adapter: ScheduleRecyclerViewAdapter? = null
     private var position = 0
     private lateinit var tourId: String
     private lateinit var tourTitle: String
@@ -86,11 +86,12 @@ class ScheduleTourFragment : Fragment() {
                 scheduleArrayList.addAll(schedules)
 
                 if (adapter == null) {
-                    adapter = ScheduleRecyclerviewAddapter(
+                    adapter = ScheduleRecyclerViewAdapter(
                         scheduleArrayList,
                         tourTitle,
+                        this,
                         context,
-                        ScheduleRecyclerviewAddapter.OnItemSelected { })
+                        ScheduleRecyclerViewAdapter.OnItemSelected { })
                     res.rv_schedule_result?.adapter = adapter
                 } else
                     adapter?.notifyDataSetChanged()
