@@ -182,8 +182,6 @@ class EditProfileFragment : Fragment() {
     private fun saveUserData(res: View) {
         val jsonObject = JSONObject()
         try {
-            // todo fix user id
-            jsonObject.put("user_id", userSharedManager.user.id)
             jsonObject.put("firstname", res.et_edit_profile_firstname.text.toString())
             jsonObject.put("lastname", res.et_edit_profile_lastname.text.toString())
             jsonObject.put("email", res.tv_edit_profile_email.text.toString())
@@ -194,11 +192,11 @@ class EditProfileFragment : Fragment() {
         }
 
         editProfileViewModel.initEditProfile(jsonObject)
-        editProfileViewModel.editedProfile!!.observe(activity!!, Observer { user ->
+        editProfileViewModel.newUserMutableLiveData.observe(activity!!, Observer { user ->
             if (user != null) {
                 Toast.makeText(context, getString(R.string.saved), Toast.LENGTH_SHORT).show()
                 userSharedManager.saveUser(user)
-                activity!!.onBackPressed()
+                activity?.onBackPressed()
             } else {
                 Toast.makeText(context, getString(R.string.failed), Toast.LENGTH_SHORT).show()
             }

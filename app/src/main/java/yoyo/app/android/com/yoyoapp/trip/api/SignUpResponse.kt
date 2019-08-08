@@ -4,8 +4,6 @@ package yoyo.app.android.com.yoyoapp.trip.api
 import com.google.gson.annotations.SerializedName
 
 data class SignUpResponse(
-    @SerializedName("username")
-    val username: String? = null,
     @SerializedName("firstname")
     val firstname: String? = null,
     @SerializedName("lastname")

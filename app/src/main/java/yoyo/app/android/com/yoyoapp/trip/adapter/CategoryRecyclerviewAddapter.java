@@ -30,7 +30,7 @@ public class CategoryRecyclerviewAddapter extends RecyclerView.Adapter<CategoryR
         this.onItemCategorySelected = onItemCategorySelected;
         sharedDataViewModel = ViewModelProviders.of(((MainActivity)context)).get(SharedDataViewModel.class);
         selectedCategories = new ArrayList<>();
-        sharedDataViewModel.getCategories().observe(((MainActivity)context), selectedCategories -> {
+        sharedDataViewModel.getSelectedCategories().observe(((MainActivity)context), selectedCategories -> {
             for (Category category : selectedCategories) {
                 this.selectedCategories.add(category.getName());
             }

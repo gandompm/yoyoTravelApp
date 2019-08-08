@@ -32,7 +32,7 @@ public class SignInFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
         init();
-        setupSigninButton();
+        setupSignInButton();
 
         return view;
     }
@@ -47,7 +47,7 @@ public class SignInFragment extends Fragment {
     }
 
     // before signing in, check the probable errors
-    private void setupSigninButton() {
+    private void setupSignInButton() {
         signinButton.setOnClickListener(v -> {
 
             Boolean flag = true;
@@ -76,10 +76,10 @@ public class SignInFragment extends Fragment {
         });
     }
 
-    private void sendToSignInPage(String username, String password) {
+    private void sendToSignInPage(String emailOrPhone, String password) {
         signinButton.setClickable(false);
         AuthViewModel authViewModel = ViewModelProviders.of(getActivity()).get(AuthViewModel.class);
-        authViewModel.sendSignIn(username, password);
+        authViewModel.sendSignIn(emailOrPhone, password);
         authViewModel.getSingIn().observe(getActivity(), user -> {
             if (user != null) {
                 userSharedManager.saveUser(user);

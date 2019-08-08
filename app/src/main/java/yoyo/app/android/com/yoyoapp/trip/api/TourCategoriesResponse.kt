@@ -4,7 +4,7 @@ package yoyo.app.android.com.yoyoapp.trip.api
 import com.google.gson.annotations.SerializedName
 
 data class TourCategoriesResponse(
-    @SerializedName("categories")
+    @SerializedName("selectedCategories")
     val categories: List<Category?>? = listOf()
 ) {
     data class Category(

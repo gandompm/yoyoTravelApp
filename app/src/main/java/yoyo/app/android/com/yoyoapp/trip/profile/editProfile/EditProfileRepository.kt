@@ -29,7 +29,7 @@ class EditProfileRepository(val context: Context) {
         }
     }
 
-    fun getEditedUser(jsonObject: JSONObject, f: (User?) -> Unit) {
+    fun editProfile(jsonObject: JSONObject, f: (User?) -> Unit) {
         apiService.sendEditProfileRequest(jsonObject) { user -> f(user) }
     }
 

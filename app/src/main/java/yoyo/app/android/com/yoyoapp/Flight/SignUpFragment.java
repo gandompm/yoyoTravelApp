@@ -83,7 +83,7 @@ public class SignUpFragment extends Fragment {
                     try {
                         jsonObjectRequest.put("first_name", firstNameEditText.getText().toString());
                         jsonObjectRequest.put("last_name", lastNameEditText.getText().toString());
-                        jsonObjectRequest.put("username", userNameEditText.getText().toString());
+                        jsonObjectRequest.put("emailOrPassword", userNameEditText.getText().toString());
                         jsonObjectRequest.put("email", emailEditText.getText().toString());
                         jsonObjectRequest.put("password1", passwordEditText.getText().toString());
                         jsonObjectRequest.put("password2", passwordEditText.getText().toString());

@@ -1,7 +1,7 @@
 package yoyo.app.android.com.yoyoapp.trip.result
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +26,6 @@ import yoyo.app.android.com.yoyoapp.trip.adapter.FoldingCellRecyclerviewAdapter
 import yoyo.app.android.com.yoyoapp.trip.dialog.TripFilterDialogFragment
 import yoyo.app.android.com.yoyoapp.Utils
 
-import java.util.ArrayList
-
 class TourResultFragment : Fragment(), View.OnClickListener {
 
     companion object{
@@ -39,7 +37,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     private lateinit var tripQuery: TripQuery
     private var page = 1
     private var isMoreDataAvailable = true
-    private lateinit var categoryCodes: ArrayList<String>
+    private lateinit var categoryCodes: MutableSet<String>
     private val tourResultViewModel by viewModels<TourResultViewModel>()
     private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()
     private var reserveType: String = "FLEXIBLE"
@@ -60,7 +58,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerview()
+        setupRecyclerView()
         setupLoadMore()
         setupFloatingActionButton(view.fbutton_hotellistsearchresult)
         getTrips()
@@ -69,14 +67,31 @@ class TourResultFragment : Fragment(), View.OnClickListener {
     }
 
     private fun observingSharedData() {
-        sharedDataViewModel.fromPrice.observe(this, Observer{ price -> fromPrice = price!! })
-        sharedDataViewModel.toPrice.observe(this, Observer{ price -> toPrice = price!! })
-        sharedDataViewModel.categories.observe(this, Observer{ categories ->
-            for (category in categories) {
-                category.code?.let { categoryCodes.add(it) }
+        sharedDataViewModel.fromPrice.observe(this, Observer{ price ->
+            run {
+                Log.d("kkkkkkkkk", "fromPrice")
+                fromPrice = price
             }
         })
-        sharedDataViewModel.minDuration.observe(this, Observer{ minDuration -> this.minDuration = minDuration!!})
+        sharedDataViewModel.toPrice.observe(this, Observer{ price ->
+            run {
+                Log.d("kkkkkkkkk", "toPrice")
+                toPrice = price
+            }})
+        sharedDataViewModel.selectedCategories.observe(this, Observer{ categories ->
+            run {
+                Log.d("kkkkkkkkk", "category")
+                for (category in categories) {
+                    category.code?.let { categoryCodes.add(it) }
+                }
+            }
+        })
+        sharedDataViewModel.minDuration.observe(this, Observer { minDuration ->
+            run {
+                Log.d("kkkkkkkkk", "minDuration")
+                this.minDuration = minDuration
+            }
+        })
     }
 
     private fun refresh() {
@@ -116,7 +131,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setupRecyclerview() {
+    private fun setupRecyclerView() {
         val linearLayoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
         view?.main_recylcler_view?.layoutManager = linearLayoutManager
         adapter = FoldingCellRecyclerviewAdapter(activity, this)
@@ -208,7 +223,7 @@ class TourResultFragment : Fragment(), View.OnClickListener {
         res.toggleSwitch_trip_search.setCheckedPosition(1)
         res.tv_trip_search_back.setOnClickListener(this)
         res.iv_trip_search_back.setOnClickListener(this)
-        categoryCodes = ArrayList()
+        categoryCodes = hashSetOf()
     }
 
     private fun setupFloatingActionButton(floatingActionButton: FloatingActionButton) {

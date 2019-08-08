@@ -23,7 +23,7 @@ public class UserSharedManagerFlight {
         editor.putString("firstName",user.getFirstName());
         editor.putString("lastName",user.getLastName());
         editor.putString("email", user.getEmail());
-        editor.putString("username", user.getUserName());
+        editor.putString("emailOrPassword", user.getUserName());
         if (user.getToken() != null) {
             editor.putString("token", user.getToken());
             editor.putString("language", String.valueOf(user.getLanguage()));
@@ -37,7 +37,7 @@ public class UserSharedManagerFlight {
         user.setFirstName(sharedPreference.getString("firstName",""));
         user.setLastName(sharedPreference.getString("lastName",""));
         user.setEmail(sharedPreference.getString("email",""));
-        user.setUserName(sharedPreference.getString("username",""));
+        user.setUserName(sharedPreference.getString("emailOrPassword",""));
         user.setLanguage(sharedPreference.getString("language","en"));
 
 

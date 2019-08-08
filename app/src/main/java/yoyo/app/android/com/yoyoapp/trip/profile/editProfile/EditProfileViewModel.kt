@@ -17,11 +17,8 @@ class EditProfileViewModel(val app: Application) : AndroidViewModel(app) {
 
     private val repository: EditProfileRepository = EditProfileRepository(app)
     val loggedInUser: MutableLiveData<User> = MutableLiveData()
-    private var newUserMutableLiveData: MutableLiveData<User>? = null
+    val newUserMutableLiveData: MutableLiveData<User> = MutableLiveData()
     private var profilePicture: MutableLiveData<String> = MutableLiveData()
-
-    val editedProfile: LiveData<User>?
-        get() = newUserMutableLiveData
 
 
     fun loadProfile() {
@@ -38,9 +35,8 @@ class EditProfileViewModel(val app: Application) : AndroidViewModel(app) {
 
 
     fun initEditProfile(jsonObject: JSONObject) {
-        newUserMutableLiveData = MutableLiveData()
-        repository.getEditedUser(jsonObject) {
-            newUserMutableLiveData?.value = it
+        repository.editProfile(jsonObject) {
+            newUserMutableLiveData.value = it
         }
     }
 

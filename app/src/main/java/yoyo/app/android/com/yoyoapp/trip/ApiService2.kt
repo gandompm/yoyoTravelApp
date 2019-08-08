@@ -9,9 +9,9 @@ import yoyo.app.android.com.yoyoapp.trip.api.*
 @Obfuscate
 class ApiService2(context: Context) : Api(context) {
     companion object {
-        const val IP = "http://www.yoyo.travel"
+//        const val IP = "http://www.yoyo.travel"
+        const val IP = "http://192.168.1.57"
     }
-
     private val gson = Gson()
 
     fun sendSignUpRequest(request: SignUpRequest, f: (SignUpResponse?) -> Unit) {
@@ -28,7 +28,7 @@ class ApiService2(context: Context) : Api(context) {
 
 
     fun getCategoriesRequest(f: (TourCategoriesResponse?) -> Unit) {
-        sendGetRequest(false, "$IP/api/trips/categories") {
+        sendGetRequest(false, "$IP/api/trips/selectedCategories") {
             f(gson.fromJson(it.toString(), TourCategoriesResponse::class.java))
         }
     }
@@ -50,6 +50,12 @@ class ApiService2(context: Context) : Api(context) {
     fun setProfilePictureRequest(request: RequestSetProfilePicture, f: (ResponseSetProfilePicture?) -> Unit) {
         sendPostRequest(true, "$IP/api/user/profile/picture", JSONObject(gson.toJson(request))) {
             f(gson.fromJson(it.toString(), ResponseSetProfilePicture::class.java))
+        }
+    }
+
+    fun sendBookingRequest(scheduleId: String, request: BookScheduleRequest, f: (BookScheduleResponse) -> Unit) {
+        sendPostRequest(true, "$IP/api/schedules/$scheduleId", JSONObject(gson.toJson(request))){
+            f(gson.fromJson(it.toString(),BookScheduleResponse::class.java))
         }
     }
 }
