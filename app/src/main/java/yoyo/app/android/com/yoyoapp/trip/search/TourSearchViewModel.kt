@@ -19,7 +19,6 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
     val destinations = MutableLiveData<List<Location>>()
     val categories = MutableLiveData<List<Category>>()
 
-
     fun initCategories() {
         tourSearchRepository.requestCategories {
             val categories = it?.categories?.map {
@@ -38,10 +37,7 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
         }
         tourSearchRepository.requestDestinations { it ->
             val locations = it?.locations?.map {
-                Location().apply {
-                    code = it?.code
-                    name = it?.name
-                }
+                Location(it?.code ?: "0", it?.name)
             }
             destinations.value = locations
 
@@ -53,8 +49,8 @@ class TourSearchViewModel(application: Application) : AndroidViewModel(applicati
         tourDestinations.locations?.let {
             for (location in it) {
                 val newLocation = Location(
-                     code = location?.code
-                    , name = location?.name
+                     location?.code!!
+                    ,name = location.name
                 )
                 viewModelScope.launch(Dispatchers.IO) {
                     tourSearchRepository.saveDestinationsInLocal(newLocation)

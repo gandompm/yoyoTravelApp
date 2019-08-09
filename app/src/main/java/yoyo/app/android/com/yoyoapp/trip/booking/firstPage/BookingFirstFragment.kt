@@ -1,6 +1,5 @@
 package yoyo.app.android.com.yoyoapp.trip.booking.firstPage
 
-
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,12 +13,10 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hbb20.CountryCodePicker
 import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_booking_first2.view.*
 import kotlinx.android.synthetic.main.fragment_booking_first2.view.iv_sign_out_back
 import kotlinx.android.synthetic.main.fragment_booking_first2.view.progressbar_booking_book
-import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.Traveller
 import yoyo.app.android.com.yoyoapp.MainActivity
 import yoyo.app.android.com.yoyoapp.R
@@ -35,7 +32,6 @@ class BookingFirstFragment : Fragment() {
 
     lateinit var travellers: ArrayList<Traveller>
     private var travellerRecyclerAdapter: TravellerRecyclerviewAddapter? = null
-    private lateinit var countryCodePicker: CountryCodePicker
     private var passengerNum = 1
     private var minCapacity = 1
     private val bookingViewModel by viewModels<BookingViewModel>()
@@ -48,17 +44,24 @@ class BookingFirstFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val res = inflater.inflate(R.layout.fragment_booking_first2, container, false)
 
-        getBundle()
-        setupTravellersArray()
         init(res)
-        res.iv_bookingfirst_plus.setOnClickListener { addNumber()}
-        res.iv_bookingfirst_minus.setOnClickListener { reduceNumber() }
+        observeTravellers()
+        setupTravellersArray()
+        res.iv_bookingfirst_plus.setOnClickListener { addTravellersNumber()}
+        res.iv_bookingfirst_minus.setOnClickListener { reduceTravellersNumber()}
         res.button_booking_continue.setOnClickListener{ setupContinueButton()}
         res.iv_sign_out_back.setOnClickListener{ setupExit()}
         setupRecycler(res)
-        setupMobileNumber()
+        setupMobileNumber(res)
 
         return res
+    }
+
+    private fun observeTravellers() {
+        sharedDataViewModel.travellersList.observe(context as LifecycleOwner, Observer {
+            travellers = it
+            travellerRecyclerAdapter?.notifyDataSetChanged()
+        })
     }
 
     private fun setupTravellersArray() {
@@ -66,10 +69,6 @@ class BookingFirstFragment : Fragment() {
             val traveller = Traveller()
             sharedDataViewModel.addTraveller(traveller)
         }
-        sharedDataViewModel.travellersList.observe(context as LifecycleOwner, Observer {
-            travellers = it
-            travellerRecyclerAdapter?.notifyDataSetChanged()
-        })
     }
 
     private fun setupContinueButton() {
@@ -107,8 +106,7 @@ class BookingFirstFragment : Fragment() {
         val leaderTraveller = BookScheduleRequest.LeaderTraveller(
             view?.et_traveller_details_email?.text.toString()
             , view?.et_booking_contact_name?.text.toString()
-            , mobileNumberCode + view?.et_traveller_details_mobile?.text.toString()
-        )
+            , mobileNumberCode + view?.et_traveller_details_mobile?.text.toString())
 
         val travellerCompanions = ArrayList<BookScheduleRequest.CompanionTraveller>()
         for (traveller in travellers) {
@@ -135,7 +133,7 @@ class BookingFirstFragment : Fragment() {
         phoneNumberString: String?,
         travellers: ArrayList<Traveller>
     ): Boolean {
-        if (fullNameString == null || fullNameString == "") {
+        if (fullNameString.isNullOrEmpty()) {
             Toasty.error(activity!!, "full name can not be empty").show()
             return false
         }
@@ -162,14 +160,7 @@ class BookingFirstFragment : Fragment() {
     }
 
 
-    private fun getBundle() {
-        minCapacity = arguments?.getInt("minCapacity") ?: 1
-        price = arguments?.getDouble("price") ?: 0.0
-        scheduleId = arguments?.getString("scheduleId") ?: ""
-    }
-
-
-    private fun reduceNumber() {
+    private fun reduceTravellersNumber() {
         if (passengerNum > minCapacity) {
             passengerNum --
             travellers.removeAt(travellers.size - 1)
@@ -181,7 +172,7 @@ class BookingFirstFragment : Fragment() {
         }
     }
 
-    private fun addNumber() {
+    private fun addTravellersNumber() {
         if (passengerNum < 9) {
             passengerNum++
             val traveller = Traveller()
@@ -190,25 +181,26 @@ class BookingFirstFragment : Fragment() {
             travellerRecyclerAdapter?.notifyDataSetChanged()
         }
         if (passengerNum >= minCapacity + 1) {
-            appearView(view?.iv_bookingfirst_minus, view?.tv_bookingfirst_num)
+            appearMinusView(view?.iv_bookingfirst_minus, view?.tv_bookingfirst_num)
         }
     }
 
     private fun init(res: View) {
-        countryCodePicker = res.ccp_traveller_details
+        minCapacity = arguments?.getInt("minCapacity") ?: 1
+        price = arguments?.getDouble("price") ?: 0.0
+        scheduleId = arguments?.getString("scheduleId") ?: ""
         passengerNum = travellers.size
         res.tv_bookingfirst_num.text = passengerNum.toString()
     }
 
     // get country code for mobile number
-    private fun setupMobileNumber() {
-        mobileNumberCode = countryCodePicker.defaultCountryCodeWithPlus
-        countryCodePicker.setOnCountryChangeListener {
-            mobileNumberCode = countryCodePicker.selectedCountryCodeWithPlus
+    private fun setupMobileNumber(res: View) {
+        mobileNumberCode = res.ccp_traveller_details.defaultCountryCodeWithPlus
+        res.ccp_traveller_details.setOnCountryChangeListener {
+            mobileNumberCode = res.ccp_traveller_details.selectedCountryCodeWithPlus
         }
     }
 
-    // setup traveller recycler view
     private fun setupRecycler(res: View) {
         travellerRecyclerAdapter = TravellerRecyclerviewAddapter(travellers, activity,
             TravellerRecyclerviewAddapter.OnItemSelected { traveller, position ->
@@ -229,7 +221,7 @@ class BookingFirstFragment : Fragment() {
 
     }
 
-    private fun appearView(imageView: ImageView?, textView: TextView?) {
+    private fun appearMinusView(imageView: ImageView?, textView: TextView?) {
         imageView?.setImageDrawable(resources.getDrawable(R.drawable.ic_remove_circle_outline_black_24dp))
         textView?.setTextColor(resources.getColor(R.color.colorPrimary))
     }
@@ -238,7 +230,6 @@ class BookingFirstFragment : Fragment() {
         val exitDialogFragment = ExitDialogFragment()
         fragmentManager?.let { exitDialogFragment.show(it, "exit") }
     }
-
 
     override fun onPause() {
         sharedDataViewModel.resetBookingTravellers()
