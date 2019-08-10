@@ -1,17 +1,16 @@
 package yoyo.app.android.com.yoyoapp.trip
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import io.michaelrocks.paranoid.Obfuscate
 import org.json.JSONObject
+import yoyo.app.android.com.yoyoapp.R
 import yoyo.app.android.com.yoyoapp.trip.api.*
 
 @Obfuscate
 class ApiService2(context: Context) : Api(context) {
-    companion object {
-//        const val IP = "http://www.yoyo.travel"
-        const val IP = "http://192.168.1.57"
-    }
+    private val IP = context.getString(R.string.endpoint)
     private val gson = Gson()
 
     fun sendSignUpRequest(request: SignUpRequest, f: (SignUpResponse?) -> Unit) {
