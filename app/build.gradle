@@ -22,6 +22,16 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+
+        local {
+            initWith debug
+            applicationIdSuffix ".localDebug"
+        }
     }
     compileOptions {
         sourceCompatibility = '1.8'

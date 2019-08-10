@@ -3,9 +3,9 @@ package yoyo.app.android.com.yoyoapp.trip.profile.editProfile
 import android.content.Context
 import org.json.JSONObject
 import yoyo.app.android.com.yoyoapp.DataModels.User
+import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight.IP
 import yoyo.app.android.com.yoyoapp.trip.ApiService
 import yoyo.app.android.com.yoyoapp.trip.ApiService2
-import yoyo.app.android.com.yoyoapp.trip.ApiService2.Companion.IP
 import yoyo.app.android.com.yoyoapp.trip.api.RequestSetProfilePicture
 
 class EditProfileRepository(val context: Context) {

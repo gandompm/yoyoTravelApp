@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import yoyo.app.android.com.yoyoapp.DataModels.User
-import yoyo.app.android.com.yoyoapp.trip.ApiService2.Companion.IP
+import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight.IP
 import yoyo.app.android.com.yoyoapp.trip.api.SignInRequest
 import yoyo.app.android.com.yoyoapp.trip.api.SignUpRequest
 

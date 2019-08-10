@@ -27,8 +27,8 @@ import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.fragment_edit_profile_trip.view.*
 import org.json.JSONException
 import org.json.JSONObject
+import yoyo.app.android.com.yoyoapp.Flight.ApiServiceFlight.IP
 import yoyo.app.android.com.yoyoapp.R
-import yoyo.app.android.com.yoyoapp.trip.ApiService2.Companion.IP
 import yoyo.app.android.com.yoyoapp.trip.Utils.UserSharedManager
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
