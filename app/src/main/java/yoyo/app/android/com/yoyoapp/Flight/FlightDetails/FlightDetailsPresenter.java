@@ -24,42 +24,6 @@ public class FlightDetailsPresenter {
 
     // get flight details
     public void getFlightDetails(int flightId, Consumer<Flight> onNewResult) {
-
-        // check internet connection first
-        new CheckInternetConnection(context, linearLayout, new CheckInternetConnection.OnInternetConnected() {
-            @Override
-            public void onConnected(boolean result) {
-                if (result)
-                {
-                    apiServiceFlight.sendFlightsDetailsRequest(flightId, new ApiServiceFlight.OnDetailsFlightRecieved() {
-                        @Override
-                        public void onRecieved(Flight flight) {
-                            if (flight != null)
-                            {
-                                onNewResult.accept(flight);
-                            }
-                        }
-                    });
-                }
-            }
-        });
-                  //fake data for details
-//                departureDateTextview.setText("2019-01-29");
-//                flightNumberTextview.setText("D34");
-//                departureTimeTextview.setText("09:30");
-//                departureTimeTopTextview.setText("09:30");
-//                capacityTextview.setText(String.valueOf("16"));
-//                airlineTextview.setText("Mahan Air");
-//                aircraftTextview.setText("Boeing(740)");
-//                originCityTextview.setText("Tehran");
-//                destinationCityTextview.setText("Mashhad");
-//                flightPathTextview.setText("Mehrabad - Hashminejad");
-//                originIata.setText("TEH");
-//                destinationIata.setText("MSH");
-//                adultPriceTextview.setText("260$");
-//                childPriceTextview.setText("260$");
-//                infantPriceTextview.setText("150$");
-//                flightTypeTextview.setText("Charter");
     }
 
     // pre reserve flight request

@@ -8,13 +8,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.Flight;
 import yoyo.app.android.com.yoyoapp.Flight.FlightDetails.FlightDetailsFragment;
+import yoyo.app.android.com.yoyoapp.Flight.FlightSearch.FlightSearchFragment;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.text.DecimalFormat;
@@ -118,7 +121,7 @@ public class FlightRecyclerviewAddapter extends RecyclerView.Adapter<FlightRecyc
 
 
             if (flight.getAdultPrice()!=null) {
-                String adultPrice = decimalFormat.format(Double.valueOf(flight.getAdultPrice()));
+                String adultPrice = "95$";
                 priceTextview.setText(adultPrice);
             }
             if (flight.getType().equals(""))

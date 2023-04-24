@@ -59,12 +59,12 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         });
 
         holder.bookButton.setOnClickListener(v -> {
-            if (userSharedManager.getToken().isEmpty())
-            {
-                ((MainActivity)context).popUpSignInSignUpActivity();
-            }
-            else
-            {
+//            if (userSharedManager.getToken().isEmpty())
+//            {
+//                ((MainActivity)context).popUpSignInSignUpActivity();
+//            }
+//            else
+//            {
                 BookingFirstFragment bookingFirstFragment = new BookingFirstFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("scheduleId",schedules.get(position).getId());
@@ -72,7 +72,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
                 bundle.putInt("minCapacity",schedules.get(position).getMinCapacity());
                 bookingFirstFragment.setArguments(bundle);
                 ((MainActivity)context).showFragment(currentFragment, bookingFirstFragment, "booking_first",false );
-            }
+//            }
         });
     }
 

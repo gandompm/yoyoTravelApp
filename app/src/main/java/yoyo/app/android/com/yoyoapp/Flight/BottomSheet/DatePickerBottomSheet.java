@@ -72,7 +72,7 @@ public class DatePickerBottomSheet {
         endDateString = getDayFormat(defaultC);
         diffDays = 7;
         toDayOfWeek = getDayOfWeekName(defaultC);
-        ((MainFlightActivity)context).standardDate = Calendar.getInstance();
+//        ((MainFlightActivity)context).standardDate = Calendar.getInstance();
     }
 
     // setup calender
@@ -242,7 +242,7 @@ public class DatePickerBottomSheet {
         {
             fromDayOfWeek = getDayOfWeekName(start);
             toDayOfWeek =  getDayOfWeekName(end);
-            ((MainFlightActivity)context).standardDate = start;
+//            ((MainFlightActivity)context).standardDate = start;
             setupDateTextview(startDateString,endDateString, fromDayOfWeek,toDayOfWeek, getStandardDateFormat(start) , getStandardDateFormat(end));
         }
         else
@@ -257,13 +257,13 @@ public class DatePickerBottomSheet {
         {
             dateTextview.setText(from);
             dateOfWeekTextview.setText(fromDayOfWeek);
-            ((MainFlightActivity)context).isDateChanged = true;
+//            ((MainFlightActivity)context).isDateChanged = true;
         }
         else
         {
             dateTextview.setText(from + " - " + to);
             dateOfWeekTextview.setText(fromDayOfWeek+ " - " + toDayOfWeek);
-            ((MainFlightActivity)context).isDateChanged = true;
+//            ((MainFlightActivity)context).isDateChanged = true;
         }
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         resetCalendar();

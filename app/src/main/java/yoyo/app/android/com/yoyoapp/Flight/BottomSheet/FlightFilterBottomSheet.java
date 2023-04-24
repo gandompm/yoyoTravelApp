@@ -83,9 +83,9 @@ public class FlightFilterBottomSheet  {
         resetFilterTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainFlightActivity)context).iataCodeAirlines.clear();
-                ((MainFlightActivity)context).idAircrafts.clear();
-                ((MainFlightActivity)context).dayTimes.clear();
+//                ((MainFlightActivity)context).iataCodeAirlines.clear();
+//                ((MainFlightActivity)context).idAircrafts.clear();
+//                ((MainFlightActivity)context).dayTimes.clear();
                 dayTimemultiSelectToggleGroup.clearCheck();
                 rangeBarPrice.setRangePinsByValue(25,5500);
                 minPrice = "0";
@@ -117,13 +117,13 @@ public class FlightFilterBottomSheet  {
                         dayTime = "NIGHT";
                         break;
                 }
-                if (!daytimesString.contains(dayTime))
-                    daytimesString.add(dayTime);
-                else
-                    daytimesString.remove(dayTime);
+//                if (!daytimesString.contains(dayTime))
+//                    daytimesString.add(dayTime);
+//                else
+//                    daytimesString.remove(dayTime);
                 // save day time to main activity
-                ((MainFlightActivity)context).dayTimes = daytimesString;
-                Log.d(TAG, "onCheckedStateChanged:1 "+ ((MainFlightActivity)context).dayTimes);
+//                ((MainFlightActivity)context).dayTimes = daytimesString;
+//                Log.d(TAG, "onCheckedStateChanged:1 "+ ((MainFlightActivity)context).dayTimes);
                 showApplyButton();
             }
         });
@@ -144,7 +144,7 @@ public class FlightFilterBottomSheet  {
 
 
     private void init() {
-        daytimesString = ((MainFlightActivity)context).dayTimes;
+//        daytimesString = ((MainFlightActivity)context).dayTimes;
         resetFilterTextview = view.findViewById(R.id.tv_flight_filter_reset);
         floatingActionButton = view.findViewById(R.id.fbutton_flightresult);
         relativeLayout = view.findViewById(R.id.bottom_sheet_flight_filter);
@@ -194,7 +194,7 @@ public class FlightFilterBottomSheet  {
             @Override
             public void onClick(View v) {
                 AirlineDialogFragment airlineDialogFragment = new AirlineDialogFragment();
-                airlineDialogFragment.show(((MainFlightActivity)context).getSupportFragmentManager(), "airline list");
+//                airlineDialogFragment.show(((MainFlightActivity)context).getSupportFragmentManager(), "airline list");
                 showApplyButton();
                 airlineButton.setBackground(context.getResources().getDrawable(R.drawable.colorprimary_roundshape));
                 airlineButton.setTextColor(context.getResources().getColor(R.color.white));
@@ -208,7 +208,7 @@ public class FlightFilterBottomSheet  {
             @Override
             public void onClick(View v) {
                 AirCraftDialogFragment airCraftDialogFragment = new AirCraftDialogFragment();
-                airCraftDialogFragment.show(((MainFlightActivity)context).getSupportFragmentManager(), "aircraft list");
+//                airCraftDialogFragment.show(((MainFlightActivity)context).getSupportFragmentManager(), "aircraft list");
                 showApplyButton();
                 aircraftsButton.setBackground(context.getResources().getDrawable(R.drawable.colorprimary_roundshape));
                 aircraftsButton.setTextColor(context.getResources().getColor(R.color.white));

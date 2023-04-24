@@ -24,10 +24,10 @@ import yoyo.app.android.com.yoyoapp.Flight.BottomSheet.DatePickerShamsiBottomShe
 import yoyo.app.android.com.yoyoapp.Flight.BottomSheet.TravellerBottomSheetDialogFragment;
 import yoyo.app.android.com.yoyoapp.Flight.DataModel.City;
 import yoyo.app.android.com.yoyoapp.Flight.FlightResult.FlightsResultFragment;
-import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.SearchDialog.SampleSearchModel;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -94,10 +94,10 @@ public class FlightSearchFragment extends BaseFragment implements View.OnClickLi
         childNumTextView = view.findViewById(R.id.tv_flight_child_num);
         infantNumTextView = view.findViewById(R.id.tv_flight_infant_num);
         progressBar = view.findViewById(R.id.progressBar_flight_booking);
-        adultCount = ((MainFlightActivity)getContext()).adultCount;
-        childCount = ((MainFlightActivity)getContext()).childCount;
-        infantCount = ((MainFlightActivity)getContext()).infantCount;
-        sum = ((MainFlightActivity)getContext()).sum;
+        adultCount = 1;
+        childCount = 0;
+        infantCount = 0;
+        sum = 1;
         citiesList = new ArrayList<>();
         flightPresenter = new FlightSearchPresenter(getContext(),constraintLayout);
         travellerCardImageview.setOnClickListener(this);
@@ -179,33 +179,35 @@ public class FlightSearchFragment extends BaseFragment implements View.OnClickLi
                 bundle.putString("originCity", departureTextview.getText().toString());
                 bundle.putString("destinationCityCode", destinationCityTextview.getText().toString());
                 bundle.putString("destinationCity", destinationTextview.getText().toString());
-                if (!((MainFlightActivity)getContext()).isDateChanged)
-                {
-                    String standardDateFormat = getStandardDateFormat(Calendar.getInstance());
-                    String newValueDepartureDate = convertToEnglishNumbers(standardDateFormat);
-                    bundle.putString("departureDate", newValueDepartureDate);
-                    ((MainFlightActivity)getContext()).standardDate = Calendar.getInstance();
-                }
-                else
-                {
-                    String standardDateFormat = getStandardDateFormat(((MainFlightActivity)getContext()).standardDate);
-                    String newValueDepartureDate = convertToEnglishNumbers(standardDateFormat);
-                    bundle.putString("departureDate", newValueDepartureDate);
-                }
+//                if (!((MainFlightActivity)getContext()).isDateChanged)
+//                {
+//                    String standardDateFormat = getStandardDateFormat(Calendar.getInstance());
+//                    String newValueDepartureDate = convertToEnglishNumbers(standardDateFormat);
+//                    bundle.putString("departureDate", newValueDepartureDate);
+//                    ((MainFlightActivity)getContext()).standardDate = Calendar.getInstance();
+//                }
+//                else
+//                {
+//                    String standardDateFormat = getStandardDateFormat(((MainFlightActivity)getContext()).standardDate);
+//                    String newValueDepartureDate = convertToEnglishNumbers(standardDateFormat);
+//                    bundle.putString("departureDate", newValueDepartureDate);
+//                }
                 bundle.putInt("adultCount", adultCount);
                 bundle.putInt("childCount", childCount);
                 bundle.putInt("infantCount", infantCount);
                 flightsResultFragment.setArguments(bundle);
                 progressBar.setVisibility(View.GONE);
-                ((MainFlightActivity)getContext()).idAircrafts.clear();
-                ((MainFlightActivity)getContext()).iataCodeAirlines.clear();
-                ((MainFlightActivity)getContext()).dayTimes.clear();
+                ((MainActivity)getContext()).showFragment(FlightSearchFragment.this, flightsResultFragment, "flight_result",false);
 
-                if (mFragmentNavigation != null) {
-                    mFragmentNavigation.pushFragment(flightsResultFragment);
+//                ((MainFlightActivity)getContext()).idAircrafts.clear();
+//                ((MainFlightActivity)getContext()).iataCodeAirlines.clear();
+//                ((MainFlightActivity)getContext()).dayTimes.clear();
+//
+//                if (mFragmentNavigation != null) {
+//                    mFragmentNavigation.pushFragment(flightsResultFragment);
                     lottieAnimationView.setVisibility(View.GONE);
                     lottieAnimationView.pauseAnimation();
-                }
+//                }
 
 
                 }

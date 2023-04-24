@@ -13,7 +13,6 @@ import androidx.fragment.app.FragmentManager;
 import com.squareup.picasso.Picasso;
 import yoyo.app.android.com.yoyoapp.Flight.Booking.BookingActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Dialog.SignUpDialogFragment;
-import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.ItemAnimation;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
@@ -32,7 +31,7 @@ public class FlightDetailsFragment extends BaseFragment implements View.OnClickL
     private TextView adultPriceTextview, childPriceTextview, infantPriceTextview ,flightTypeTextview, departureTimeTopTextview ,totalPriceTextview;
     private int adultNum= 1, childNum= 0, infantNum =0, sum =0 ,flightId;
     private FragmentManager fragmentManager;
-    private ProgressBar bookingProgressbar, progressBar;
+    private ProgressBar bookingProgressbar;
     private LinearLayout linearLayout;
     private FlightDetailsPresenter flightDetailsPresenter;
     private DecimalFormat decimalFormat;
@@ -49,6 +48,26 @@ public class FlightDetailsFragment extends BaseFragment implements View.OnClickL
         getDataWithBundle();
         setupCounters();
         getFlightDetails();
+
+
+        //fake data for details
+        departureDateTextview.setText("2019-01-29");
+        flightNumberTextview.setText("D34");
+        departureTimeTextview.setText("09:30");
+        departureTimeTopTextview.setText("09:30");
+        capacityTextview.setText(String.valueOf("16"));
+        airlineTextview.setText("Mahan Air");
+        aircraftTextview.setText("Boeing(740)");
+        originCityTextview.setText("Tehran");
+        destinationCityTextview.setText("Mashhad");
+        flightPathTextview.setText("Mehrabad - Hashminejad");
+        originIata.setText("TEH");
+        destinationIata.setText("MSH");
+        adultPriceTextview.setText("260$");
+        childPriceTextview.setText("260$");
+        infantPriceTextview.setText("150$");
+        flightTypeTextview.setText("Charter");
+
         return view;
     }
 
@@ -97,7 +116,6 @@ public class FlightDetailsFragment extends BaseFragment implements View.OnClickL
     private void init() {
         decimalFormat = new DecimalFormat("#,###,###");
         linearLayout = view.findViewById(R.id.rv_flightDetails);
-        progressBar = view.findViewById(R.id.progressBar_flightdetails);
         departureDateTextview = view.findViewById(R.id.tv_flightdetails_departure_date);
         departureTimeTopTextview = view.findViewById(R.id.tv_flightdetails_departure_time_top);
         flightTypeTextview = view.findViewById(R.id.tv_flightdetails_type);
@@ -128,12 +146,12 @@ public class FlightDetailsFragment extends BaseFragment implements View.OnClickL
         totalPriceTextview = view.findViewById(R.id.tv_flightdetails_totalprice);
         bookingProgressbar = view.findViewById(R.id.progressBar_flightdetails_booking);
         airlineLogoImageview = view.findViewById(R.id.iv_flightdetails_airline);
-        adultNum = ((MainFlightActivity)getContext()).adultCount;
-        childNum = ((MainFlightActivity)getContext()).childCount;
-        infantNum = ((MainFlightActivity)getContext()).infantCount;
+        adultNum = 1;
+        childNum = 0;
+        infantNum = 0;
         flightDetailsPresenter = new FlightDetailsPresenter(getContext(), linearLayout);
         userSharedManager = new UserSharedManagerFlight(getContext());
-        sum = ((MainFlightActivity)getContext()).sum;
+        sum = 1;
         fragmentManager = getFragmentManager();
         applyTravellerButton.setOnClickListener(this);
         plusinfantImageview.setOnClickListener(this);
@@ -148,11 +166,8 @@ public class FlightDetailsFragment extends BaseFragment implements View.OnClickL
     // send flight details request, and then initializing views
     private void getFlightDetails() {
 
-        progressBar.setVisibility(View.VISIBLE);
-
         flightDetailsPresenter.getFlightDetails(flightId, flight -> {
 
-            progressBar.setVisibility(View.GONE);
             if (flight != null) {
                 departureDateTextview.setText(flight.getDapartureDate());
                 flightNumberTextview.setText(flight.getFlightNumber());

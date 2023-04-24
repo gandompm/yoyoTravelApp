@@ -12,11 +12,29 @@ class ScheduleTourRepository(val context: Context) {
     private val apiService: ApiService = ApiService(context)
 
     fun getSchedule(tripId: String, startDate: Long, endDate: Long, consumer: Consumer<ArrayList<Schedule>>) {
-        apiService.getScheduleRequest(tripId, startDate, endDate) { schedules ->
-            consumer.accept(schedules)
-        }
+//        apiService.getScheduleRequest(tripId, startDate, endDate) { schedules ->
+//            consumer.accept(schedules)
+//        }
+        consumer.accept(getFakeScheduleData())
     }
 
+    private fun getFakeScheduleData(): ArrayList<Schedule> {
+        val scheduleArrayList = ArrayList<Schedule>()
+            for (i in 0 until 3) {
+                val schedule = Schedule()
+
+                schedule.id = "dfadsfd"
+                schedule.price = 99.00
+                schedule.minCapacity = 1
+                schedule.maxCapacity = 25
+                schedule.remainingCapacity = 9
+                schedule.startTimeStamp = 1565222400
+                schedule.endTimeStamp = 1566691200
+
+                scheduleArrayList.add(schedule)
+            }
+        return scheduleArrayList
+    }
 
 
 }

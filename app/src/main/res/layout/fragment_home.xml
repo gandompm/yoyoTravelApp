@@ -193,8 +193,8 @@
 
                 <TextView
                         android:id="@+id/tv_trip_cardview_offer_mainpage"
-                        android:layout_width="46dp"
-                        android:layout_height="27dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:fontFamily="@font/roboto_medium"

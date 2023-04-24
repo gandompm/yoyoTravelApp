@@ -30,9 +30,9 @@ import java.util.ArrayList
 
 class BookingFirstFragment : Fragment() {
 
-    lateinit var travellers: ArrayList<Traveller>
+    var travellers: ArrayList<Traveller> = ArrayList()
     private var travellerRecyclerAdapter: TravellerRecyclerviewAddapter? = null
-    private var passengerNum = 1
+    private var passengerNum = 2
     private var minCapacity = 1
     private val bookingViewModel by viewModels<BookingViewModel>()
     private val sharedDataViewModel by activityViewModels<SharedDataViewModel>()

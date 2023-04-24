@@ -49,29 +49,6 @@ public class AboutFragment extends BaseFragment {
                 getActivity().onBackPressed();
             }
         });
-
-        phonenumTextview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:+982128427330"));
-                startActivity(callIntent);
-
-            }
-        });
-
-        phonenumTextview2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:+989109040384"));
-                startActivity(callIntent);
-
-            }
-        });
-
     }
 
 }

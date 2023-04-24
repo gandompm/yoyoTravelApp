@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,6 +29,7 @@ import yoyo.app.android.com.yoyoapp.Flight.FlightDetails.FlightDetailsFragment;
 import yoyo.app.android.com.yoyoapp.Flight.MainFlightActivity;
 import yoyo.app.android.com.yoyoapp.Flight.Utils.UserSharedManagerFlight;
 import yoyo.app.android.com.yoyoapp.FragmentTransaction.BaseFragment;
+import yoyo.app.android.com.yoyoapp.MainActivity;
 import yoyo.app.android.com.yoyoapp.R;
 
 import java.util.ArrayList;
@@ -60,6 +63,7 @@ public class FlightsResultFragment extends BaseFragment {
     private String minprice = "0", maxprice = "900000000";
     private String originCityCode, destinationCityCode, departureDate, destinationCity, departureCity;
     private UserSharedManagerFlight userSharedManager;
+    private Boolean fakeData = true;
     private View view;
 
     @Override
@@ -128,9 +132,9 @@ public class FlightsResultFragment extends BaseFragment {
             departureDate = bundle.getString("departureDate");
             destinationCity = bundle.getString("destinationCity");
             departureCity = bundle.getString("originCity");
-            adultCount = ((MainFlightActivity) getContext()).adultCount;
-            childCount = ((MainFlightActivity) getContext()).childCount;
-            infantCount = ((MainFlightActivity) getContext()).infantCount;
+            adultCount = 1;
+            childCount = 0;
+            infantCount = 0;
             destinationIataTextview.setText(destinationCityCode);
             originIataTextview.setText(originCityCode);
             destinationCityTextview.setText(destinationCity);
@@ -164,13 +168,16 @@ public class FlightsResultFragment extends BaseFragment {
                 infantCount, minprice, maxprice, filterFlight.toString(), flights ->
                 {
                     flightArrayList.clear();
-
+                    if (fakeData)
+                    flights = flightResultPresenter.getFakeFlightList();
+                    fakeData = !fakeData;
                     if (flights != null) {
                         flightArrayList.addAll(flights);
                     }
                     if (flights == null || flights.size() == 0) {
                         noResultConstraintLayout.setVisibility(View.VISIBLE);
                     }
+
 
                     shimmerRecycler.hideShimmerAdapter();
                     flightRecyclerviewAddapter.notifyDataSetChanged();
@@ -214,18 +221,18 @@ public class FlightsResultFragment extends BaseFragment {
 
     // for showing the right position in the date list
     private void calculateDiffDaysForPosition() {
-        long millis2 = ((MainFlightActivity)getContext()).standardDate.getTimeInMillis();
-        long millis1 = Calendar.getInstance().getTimeInMillis();
+        long millis2 = (long) 35.6892;
+        long millis1 = (long) 51.3890;
         long diff = millis2 - millis1;
         diff =  diff / (24 * 60 * 60 * 1000);
         if (diff < 10 )
         {
             position =(int) diff + 1;
-            if (((MainFlightActivity)getContext()).standardDate.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR) &&
-                    ((MainFlightActivity)getContext()).standardDate.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR))
-            {
+//            if (((MainFlightActivity)getContext()).standardDate.get(Calendar.DAY_OF_YEAR) == Calendar.getInstance().get(Calendar.DAY_OF_YEAR) &&
+//                    ((MainFlightActivity)getContext()).standardDate.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR))
+//            {
                 position = 0 ;
-            }
+//            }
         }
         else
             position = 10;
@@ -282,9 +289,10 @@ public class FlightsResultFragment extends BaseFragment {
                 bundle.putInt("flightId",flightId);
                 FlightDetailsFragment flightDetailsFragment = new FlightDetailsFragment();
                 flightDetailsFragment.setArguments(bundle);
-                if (mFragmentNavigation != null) {
-                    mFragmentNavigation.pushFragment(flightDetailsFragment);
-                }
+                ((MainActivity)getActivity()).showFragment(FlightsResultFragment.this, flightDetailsFragment, "flight_details",false);
+//                if (mFragmentNavigation != null) {
+//                    mFragmentNavigation.pushFragment(flightDetailsFragment);
+//                }
             }
         });
         recyclerView.setLayoutManager(llManager);

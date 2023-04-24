@@ -89,39 +89,39 @@ public class FlightResultPresenter {
     // convert airline array to one string with comma between each airline
     private String getConvertedAirlines() {
         StringBuilder nameBuilder = new StringBuilder();
-        if (((MainFlightActivity)context).iataCodeAirlines.size()>0)
-        {
-            for (String n : ((MainFlightActivity)context).iataCodeAirlines) {
-                nameBuilder.append(n).append(",");
-            }
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-        }
+//        if (((MainFlightActivity)context).iataCodeAirlines.size()>0)
+//        {
+//            for (String n : ((MainFlightActivity)context).iataCodeAirlines) {
+//                nameBuilder.append(n).append(",");
+//            }
+//            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+//        }
         return String.valueOf(nameBuilder);
     }
 
     // convert aircraft array to one string with comma between each aircraft
     private String getConvertedAirCrafts() {
         StringBuilder nameBuilder = new StringBuilder();
-        if (((MainFlightActivity)context).idAircrafts.size() > 0)
-        {
-            for (String n : ((MainFlightActivity)context).idAircrafts) {
-                nameBuilder.append(n).append(",");
-            }
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-        }
+//        if (((MainFlightActivity)context).idAircrafts.size() > 0)
+//        {
+//            for (String n : ((MainFlightActivity)context).idAircrafts) {
+//                nameBuilder.append(n).append(",");
+//            }
+//            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+//        }
         return String.valueOf(nameBuilder);
     }
 
     // convert day times array to one string with comma between each day time
     private String getConvertedDayTimes() {
         StringBuilder nameBuilder = new StringBuilder();
-        if (((MainFlightActivity)context).dayTimes.size() > 0)
-        {
-            for (String n : ((MainFlightActivity)context).dayTimes) {
-                nameBuilder.append(n).append(",");
-            }
-            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
-        }
+//        if (((MainFlightActivity)context).dayTimes.size() > 0)
+//        {
+//            for (String n : ((MainFlightActivity)context).dayTimes) {
+//                nameBuilder.append(n).append(",");
+//            }
+//            nameBuilder.deleteCharAt(nameBuilder.length() - 1);
+//        }
         return String.valueOf(nameBuilder);
     }
 
@@ -146,7 +146,7 @@ public class FlightResultPresenter {
         ArrayList<MyCalender> myCalenders = new ArrayList<>();
         Calendar today = Calendar.getInstance();
         Calendar selectedDay = Calendar.getInstance();
-        selectedDay.setTime((((MainFlightActivity)context).standardDate).getTime());
+//        selectedDay.setTime((((MainFlightActivity)context).standardDate).getTime());
 
         float diffDays = daysBetween(today,selectedDay);
 
@@ -200,6 +200,11 @@ public class FlightResultPresenter {
         }
         myCalender.setDay(String.valueOf(day));
         myCalender.setDayOfTheWeek(dayOfTheWeek);
+        myCalender.setMinPrice("95$");
+        myCalender.setMin(false);
+        if (day%5==0) {
+            myCalender.setMin(true);
+        }
         myCalender.setStandardDate(standardFormatDate.format("yyyy-MM-dd", theDay).toString());
 
         return myCalender;
@@ -266,7 +271,7 @@ public class FlightResultPresenter {
     }
 
     // generate fake data for flights
-    private ArrayList<Flight> getFakeFlightList() {
+    public ArrayList<Flight> getFakeFlightList() {
         ArrayList<Flight> flights = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             Flight flight = new Flight();
@@ -277,7 +282,7 @@ public class FlightResultPresenter {
                 flight.setType("Charter");
                 flight.setOriginIataCode("TEH");
                 flight.setDestinationIataCode("MHD");
-                flight.setAdultPrice("95$");
+                flight.setAdultPrice("95");
                 flight.setDepartureTime("09:00");
                 flight.setAirlineLogo("https://ghasedak24.com/uploads/wysiwyg/images/mahan11.jpg");
             }
@@ -287,7 +292,7 @@ public class FlightResultPresenter {
                 flight.setType("Charter");
                 flight.setOriginIataCode("TEH");
                 flight.setDestinationIataCode("MHD");
-                flight.setAdultPrice("60$");
+                flight.setAdultPrice("60");
                 flight.setDepartureTime("10:00");
                 flight.setAirlineLogo("https://www.hamburg-airport.de/images/QB_angepasst.jpg");
             }

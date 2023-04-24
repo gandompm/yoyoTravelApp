@@ -43,6 +43,9 @@ class TourSearchFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val res = inflater.inflate(R.layout.fragment_search_trip, container, false)
 
+        destinationsList.add(0, Location("TEH","Tehran"))
+        destinationsList.add(1, Location("KAS","Kashan"))
+        destinationsList.add(2, Location("MSH","Mashhad"))
 
         sharedDataViewModel.fromTimeString.observe(activity!!, Observer { res.tv_search_check_in.text = it })
         sharedDataViewModel.toTimeString.observe(activity!!, Observer { res.tv_search_check_out.text = it })

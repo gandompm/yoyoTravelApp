@@ -115,7 +115,13 @@ public class CalenderRecyclerviewAddapter extends RecyclerView.Adapter<CalenderR
             priceTextview.setTextColor(context.getResources().getColor(R.color.black2));
             if (calender.getMinPrice()!=null)
             {
-                String minPrice = decimalFormat.format(Double.valueOf(calender.getMinPrice()));
+                String minPrice;
+                if (calender.isMin())
+                {
+                    minPrice = "79$";
+                }
+                else
+                    minPrice = "95$";
                 priceTextview.setText(minPrice);
             }
             bottomImageview.setVisibility(View.GONE);

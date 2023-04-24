@@ -31,7 +31,7 @@ public class TravellerBottomSheetDialogFragment extends BottomSheetDialogFragmen
             @Override
             public void onClick(View v) {
                 // store these values in main activity for next usages
-                bottomSheetListener.onButtonClicked(sum,adultNum,childNum,infantNum);
+//                bottomSheetListener.onButtonClicked(sum,adultNum,childNum,infantNum);
                 dismiss();
             }
         });
@@ -165,6 +165,5 @@ public class TravellerBottomSheetDialogFragment extends BottomSheetDialogFragmen
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        bottomSheetListener = (BotomSheetListener) context;
     }
 }

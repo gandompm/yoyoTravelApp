@@ -2,6 +2,7 @@ package yoyo.app.android.com.yoyoapp.trip.schedule
 
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -67,15 +68,15 @@ class ScheduleTourFragment : Fragment() {
     }
 
     private fun sendToRequestPage() {
-        if (userSharedManager.token.isEmpty()) {
-            (activity as MainActivity).popUpSignInSignUpActivity()
-        } else {
+//        if (userSharedManager.token.isEmpty()) {
+//            (activity as MainActivity).popUpSignInSignUpActivity()
+//        } else {
             val bundle = Bundle()
             bundle.putString("tourId", tourId)
             val requestFragment = RequestFragment()
             requestFragment.arguments = bundle
             (activity as MainActivity).showFragment(this, requestFragment, "", false)
-        }
+//        }
     }
 
     private fun getSchedules(res: View,startDate: Long, endDate: Long) {
@@ -84,19 +85,24 @@ class ScheduleTourFragment : Fragment() {
             if (schedules != null) {
                 scheduleArrayList.clear()
                 scheduleArrayList.addAll(schedules)
+                Handler().postDelayed(
+                    {
+                        if (adapter == null) {
+                            adapter = ScheduleRecyclerViewAdapter(
+                                scheduleArrayList,
+                                tourTitle,
+                                this,
+                                context,
+                                ScheduleRecyclerViewAdapter.OnItemSelected { })
+                            res.rv_schedule_result?.adapter = adapter
+                        } else
+                            adapter?.notifyDataSetChanged()
 
-                if (adapter == null) {
-                    adapter = ScheduleRecyclerViewAdapter(
-                        scheduleArrayList,
-                        tourTitle,
-                        this,
-                        context,
-                        ScheduleRecyclerViewAdapter.OnItemSelected { })
-                    res.rv_schedule_result?.adapter = adapter
-                } else
-                    adapter?.notifyDataSetChanged()
+                        res.shimmer_recycler_view?.hideShimmerAdapter()
+                    },
+                    2000 // value in milliseconds
+                )
 
-                res.shimmer_recycler_view?.hideShimmerAdapter()
             }
         })
     }

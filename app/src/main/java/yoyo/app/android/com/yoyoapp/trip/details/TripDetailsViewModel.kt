@@ -14,6 +14,4 @@ class TripDetailsViewModel(application: Application) : AndroidViewModel(applicat
     init {
         tripDetailsRepository = TripDetailsRepository(getApplication())
     }
-
-
 }

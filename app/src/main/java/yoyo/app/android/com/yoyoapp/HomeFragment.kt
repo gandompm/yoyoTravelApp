@@ -10,6 +10,7 @@ import es.dmoral.toasty.Toasty
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import yoyo.app.android.com.yoyoapp.BannerSlider.BasicPagerAdapter
 import yoyo.app.android.com.yoyoapp.BottomSheet.CitiesListBottomSheetDialogFragment
+import yoyo.app.android.com.yoyoapp.Flight.FlightSearch.FlightSearchFragment
 import yoyo.app.android.com.yoyoapp.trip.booking.firstPage.BookingFirstFragment
 import yoyo.app.android.com.yoyoapp.trip.search.TourSearchFragment
 
@@ -27,20 +28,14 @@ class HomeFragment : Fragment() {
             openSearchBottomSheet()
         }
         res.cv_mainpage_hotels.setOnClickListener {
-//          Toasty.info(context!!, "Coming soon...").show()
-            val bookingFirstFragment = BookingFirstFragment()
-            val bundle = Bundle()
-            bundle.putString("scheduleId","JHJHJHHJHJ")
-            bundle.putDouble("price", 12.89)
-            bundle.putInt("minCapacity", 1)
-            bookingFirstFragment.arguments = bundle
-            (context as MainActivity).showFragment(this, bookingFirstFragment, "booking_first", false)
+            Toasty.info(context!!, "Coming soon...").show()
         }
         res.cv_mainpage_trips.setOnClickListener {
             openTourSearch()
         }
         res.cv_mainpage_flight.setOnClickListener {
-            Toasty.info(context!!, "Coming soon...").show()
+            val flightSearchFragment = FlightSearchFragment()
+            (activity as MainActivity).showFragment(this, flightSearchFragment, "flight",false)
         }
 
         return res
